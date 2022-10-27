@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">JobMonitoring</string>
+    <string name="app_name">Job Monitoring</string>
+    <string name="menu_divisi">Divisi</string>
+    <string name="menu_karyawan">Karyawan</string>
+    <string name="menu_presensi">Presensi</string>
+    <string name="menu_pekerjaan">Pekerjaan</string>
+    <string name="menu_pengaturan">Pengaturan</string>
+    <string name="img_menu_divisi">img_menu_divisi</string>
+    <string name="img_menu_karyawan">img_menu_karyawan</string>
+    <string name="img_menu_presensi">img_menu_presensi</string>
+    <string name="img_menu_pekerjaan">img_menu_pekerjaan</string>
+    <string name="img_menu_pengaturan">img_menu_pengaturan</string>
+    <string name="text_apps_menu">Apps</string>
 </resources>
