@@ -84,6 +84,7 @@
         tools:textSize="24sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colider_menu_divisi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -108,12 +109,12 @@
 
         <ImageView
             android:id="@+id/img_menu_divisi"
-            android:contentDescription="@string/img_menu_divisi"
             android:layout_width="48dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
+            android:contentDescription="@string/img_menu_divisi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -122,6 +123,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colider_menu_karyawan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -145,12 +147,12 @@
 
         <ImageView
             android:id="@+id/img_menu_karyawan"
-            android:contentDescription="@string/img_menu_karyawan"
             android:layout_width="48dp"
             android:layout_height="44dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
+            android:contentDescription="@string/img_menu_karyawan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -159,6 +161,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colider_menu_presensi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -197,6 +200,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colider_menu_pekerjaan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -235,6 +239,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/colider_menu_pengaturan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
