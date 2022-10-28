@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/tambah_divisi"
+                android:id="@+id/button_tambah_divisi"
                 android:layout_width="wrap_content"
                 android:layout_height="44dp"
                 android:layout_marginTop="16dp"
