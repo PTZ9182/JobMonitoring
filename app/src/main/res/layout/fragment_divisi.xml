@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.DivisiFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/pick_background_menu"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -36,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/menu_divisi"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
@@ -86,7 +88,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <SearchView
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/search_divisi"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -95,10 +97,12 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/pick_background_menu"
+            app:iconifiedByDefault="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/collider_tambah_divisi" />
+            app:layout_constraintTop_toBottomOf="@+id/collider_tambah_divisi"
+            app:queryHint="@string/search_hint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

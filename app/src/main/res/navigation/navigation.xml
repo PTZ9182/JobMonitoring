@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/divisiFragment">
+
+
+    <fragment
+        android:id="@+id/divisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.DivisiFragment"
+        android:label="fragment_divisi"
+        tools:layout="@layout/fragment_divisi" >
+        <action
+            android:id="@+id/action_divisiFragment_to_tambahDivisiFragment"
+            app:destination="@id/tambahDivisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.TambahDivisiFragment"
+        android:label="fragment_tambah_divisi"
+        tools:layout="@layout/fragment_tambah_divisi" />
+</navigation>

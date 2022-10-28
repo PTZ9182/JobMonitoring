@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pick_background_1"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.TambahDivisiFragment">
 
     <TextView
         android:id="@+id/text_tambah_divisi"
@@ -16,7 +17,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/tambah_divisi"
         android:textColor="#515151"
-        android:textSize="16sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/text_forum_nama_divisi"
@@ -27,7 +28,7 @@
         android:fontFamily="@font/nunito_semibold"
         android:text="@string/text_forum_nama_divisi"
         android:textColor="#515151"
-        android:textSize="11sp" />
+        android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/collider_form_nama_divisi"
@@ -46,13 +47,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:autofillHints=""
             android:background="@android:color/transparent"
             android:ems="10"
             android:hint="@string/text_forum_nama_divisi"
             android:inputType="textPersonName"
             android:textColorHint="#6F6F6F"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +64,7 @@
         android:id="@+id/button_tambah_divisi_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nunito_semibold"
@@ -74,7 +75,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
 
 </LinearLayout>
