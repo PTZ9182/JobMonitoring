@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">JobMonitoring</string>
+    <string name="img_menu_divisi">img_menu_divisi</string>
+    <string name="menu_divisi">Divisi</string>
+    <string name="jumlah_divisi">2</string>
+    <string name="tambah_divisi">Tambah Divisi</string>
+    <string name="divisi_android">Android Developer</string>
+    <string name="divisi_icon_edit">divisi_icon_edit</string>
 </resources>
