@@ -3,13 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_cekung.xml" value="0.235" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_menu.xml" value="0.2385" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_menu_atas.xml" value="0.235" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/font/nunito.xml" value="0.22702009405728943" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/activity_main.xml" value="0.24635416666666668" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2415" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2415" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/fragment_divisi.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/fragment_home_perusahaan.xml" value="0.264" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/home_perusahaan.xml" value="0.536" />
       </map>
     </option>
   </component>

@@ -7,7 +7,6 @@
     android:background="#E5F1FF"
     android:orientation="vertical">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,11 +18,12 @@
             android:layout_width="97dp"
             android:layout_height="88dp"
             android:layout_marginTop="24dp"
+            android:contentDescription="@string/img_profil_perusahaan"
+            android:src="@mipmap/ic_launcher_round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@mipmap/ic_launcher_round" />
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/nama_profil_perusahaan"
@@ -31,13 +31,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/nunito"
+            android:text="@string/nama_profil_perusahaan"
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
-            tools:ignore="TextContrastCheck"
-            tools:text="Nama Perusahaan" />
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/alamat_perusahaan"
@@ -46,14 +46,14 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/nunito"
+            android:text="@string/alamat_perusahaan"
             android:textColor="#FFFFFF"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
-            tools:ignore="TextContrastCheck"
-            tools:text="Bandung, Jawa barat, Indonesia" />
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,6 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -81,7 +82,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/text_apps_menu"
         android:textColor="#515151"
-        tools:textSize="24sp" />
+        android:textSize="20sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/colider_menu_divisi"
@@ -100,12 +101,12 @@
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/menu_divisi"
             android:textColor="#515151"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_menu_divisi"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <ImageView
             android:id="@+id/img_menu_divisi"
@@ -139,6 +140,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/menu_karyawan"
             android:textColor="#515151"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -177,6 +179,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/menu_presensi"
             android:textColor="#515151"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -216,6 +219,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/menu_pekerjaan"
             android:textColor="#515151"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -255,6 +259,7 @@
             android:fontFamily="@font/nunito_semibold"
             android:text="@string/menu_pengaturan"
             android:textColor="#515151"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -272,8 +277,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_pengaturan"
-            tools:ignore="ImageContrastCheck" />
+            app:srcCompat="@drawable/ic_pengaturan"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
