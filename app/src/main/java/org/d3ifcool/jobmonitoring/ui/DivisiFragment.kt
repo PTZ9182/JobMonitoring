@@ -6,8 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.Api.ApiRetrofit
@@ -49,7 +53,27 @@ class DivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle ?) {
         super.onViewCreated(view, savedInstanceState)
-        divisiAdapter = AdapterDivisi(arrayListOf(),requireContext())
+        divisiAdapter = AdapterDivisi(arrayListOf(),object : AdapterDivisi.OnAdapterListener{
+            override fun popupMenus(divisi: DivisiModel.Data, v: View) {
+                val popupMenus = PopupMenu(context, v)
+                popupMenus.inflate(R.menu.main_menu)
+                popupMenus.setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.edit_divisi -> {
+                            findNavController().navigate( R.id.action_divisiFragment_to_editDivisiFragment)
+                            true
+                        }
+                        R.id.delete_divisi -> {
+                            Toast.makeText(context, "Delete", Toast.LENGTH_LONG).show()
+                            true
+                        }
+                        else -> true
+                    }
+                }
+                popupMenus.show()
+            }
+
+        })
         with(binding.recyclerView) {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
             adapter = divisiAdapter
