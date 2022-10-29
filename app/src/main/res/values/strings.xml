@@ -4,10 +4,13 @@
     <string name="menu_divisi">Divisi</string>
     <string name="jumlah_divisi">2</string>
     <string name="tambah_divisi">Tambah Divisi</string>
+    <string name="Edit_divisi">Simpan</string>
+    <string name="edit_divisi">Edit Divisi</string>
     <string name="divisi_android">Android Developer</string>
     <string name="divisi_icon_edit">divisi_icon_edit</string>
     <string name="text_tambah_divisi">Tambah Divisi</string>
     <string name="text_forum_nama_divisi">Nama Divisi</string>
     <string name="search_hint">Cari Divisi ...</string>
-    <string name="app_label">ssssss</string>
+    <string name="menu_edit_divisi">Edit Divisi</string>
+    <string name="menu_delete_divisi">Delete Divisi</string>
 </resources>

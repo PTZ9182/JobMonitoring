@@ -9,18 +9,18 @@
     tools:context=".ui.TambahDivisiFragment">
 
     <TextView
-        android:id="@+id/text_tambah_divisi"
+        android:id="@+id/text_edit_divisi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/tambah_divisi"
+        android:text="@string/edit_divisi"
         android:textColor="#515151"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/text_forum_nama_divisi"
+        android:id="@+id/text_forum_nama_divisi_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -31,7 +31,7 @@
         android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/collider_form_nama_divisi"
+        android:id="@+id/collider_form_nama_divisi_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -62,14 +62,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button_tambah_divisi_form"
+        android:id="@+id/button_edit_divisi_form"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/tambah_divisi"
+        android:text="@string/edit_divisi"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,5 +77,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
-
 </LinearLayout>
