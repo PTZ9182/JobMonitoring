@@ -1,5 +1,5 @@
 package org.d3ifcool.jobmonitoring.data
 
-data class TambahDivisiModel(
+data class SubmitDivisiModel(
     val divisi: String
 )

@@ -4,7 +4,6 @@ import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.data.DivisiModel
 import org.d3ifcool.jobmonitoring.databinding.AdapterDivisiBinding
-import android.content.Context as Context
 
 
 class AdapterDivisi(
@@ -25,7 +24,7 @@ class AdapterDivisi(
     override fun onBindViewHolder(holder: DivisiHolder, position: Int) {
         val divisi: DivisiModel.Data = tabel_divisi[position]
         holder.bind(divisi)
-        holder.menu.setOnClickListener { listener.popupMenus(divisi, it) }
+        holder.menu.setOnClickListener { listener.popupMenus(divisi,it) }
 
     }
 
@@ -45,7 +44,7 @@ class AdapterDivisi(
 
     interface OnAdapterListener{
 
-        fun popupMenus(divisi : DivisiModel.Data , v: View)
+        fun popupMenus(divisi : DivisiModel.Data, v : View)
 
     }
 }

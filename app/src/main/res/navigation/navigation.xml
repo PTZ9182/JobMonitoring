@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/divisiFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.DivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.DivisiFragment"
         android:label="fragment_divisi"
         tools:layout="@layout/fragment_divisi" >
         <action
@@ -20,12 +20,26 @@
     </fragment>
     <fragment
         android:id="@+id/tambahDivisiFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.TambahDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.TambahDivisiFragment"
         android:label="fragment_tambah_divisi"
-        tools:layout="@layout/fragment_tambah_divisi" />
+        tools:layout="@layout/fragment_tambah_divisi" >
+        <action
+            android:id="@+id/action_tambahDivisiFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editDivisiFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.EditDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.EditDivisiFragment"
         android:label="EditDivisiFragment"
-        tools:layout="@layout/fragment_edit_divisi"/>
+        tools:layout="@layout/fragment_edit_divisi">
+        <argument
+            android:name="divisi"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editDivisiFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+    </fragment>
 </navigation>

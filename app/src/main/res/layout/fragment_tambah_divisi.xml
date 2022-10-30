@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/pick_background_1"
     android:orientation="vertical"
-    tools:context=".ui.TambahDivisiFragment">
+    tools:context=".ui.divisi.TambahDivisiFragment">
 
     <TextView
         android:id="@+id/text_tambah_divisi"
