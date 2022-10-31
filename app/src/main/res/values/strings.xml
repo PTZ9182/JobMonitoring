@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">JobMonitoring</string>
+
+    <string name="img_menu_karyawan">img_menu_karyawan</string>
+    <string name="menu_karyawan">Karyawan</string>
+    <string name="jumlah_divisi">2</string>
+    <string name="tambah_karyawan">+ Karyawan</string>
+
+    <string-array name="pilih_divisi">Divisi
+        <item>Android Developer</item>
+        <item>Web Developer</item>
+    </string-array>
+
+    <string name="divisi_android">Android Developer</string>
+    <string name="data_karyawan1">Data Karyawan 1</string>
+    <string name="foto">Foto Karyawan</string>
+    <string name="nama_karyawan">Nama Karyawan</string>
+    <string name="email_karyawan">E-Mail Karyawan</string>
+    <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
+    <string name="divisi_icon_edit">divisi_icon_edit</string>
 </resources>
