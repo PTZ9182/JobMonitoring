@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import org.d3ifcool.jobmonitoring.Api.ApiRetrofit
+import org.d3ifcool.jobmonitoring.api.ApiRetrofit
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditDivisiBinding

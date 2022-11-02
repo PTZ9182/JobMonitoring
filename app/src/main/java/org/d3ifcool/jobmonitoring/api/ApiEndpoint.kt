@@ -1,4 +1,4 @@
-package org.d3ifcool.jobmonitoring.Api
+package org.d3ifcool.jobmonitoring.api
 
 import org.d3ifcool.jobmonitoring.data.DivisiModel
 import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel

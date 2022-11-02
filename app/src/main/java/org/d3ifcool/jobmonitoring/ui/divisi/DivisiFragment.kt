@@ -14,7 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import org.d3ifcool.jobmonitoring.Api.ApiRetrofit
+import org.d3ifcool.jobmonitoring.api.ApiRetrofit
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.adapter.AdapterDivisi
 import org.d3ifcool.jobmonitoring.data.DivisiModel
@@ -122,6 +122,10 @@ class DivisiFragment : Fragment() {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
             adapter = divisiAdapter
             setHasFixedSize(true)
+        }
+        binding.swiperefreshlayout.setOnRefreshListener {
+            getNode()
+            binding.swiperefreshlayout.isRefreshing = false
         }
 
         binding.buttonTambahDivisi.setOnClickListener {

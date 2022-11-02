@@ -1,4 +1,4 @@
-package org.d3ifcool.jobmonitoring.Api
+package org.d3ifcool.jobmonitoring.api
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
