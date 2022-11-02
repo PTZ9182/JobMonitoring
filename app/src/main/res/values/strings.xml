@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">JobMonitoring</string>
-    <string name="img_menu_divisi">img_menu_divisi</string>
-    <string name="menu_divisi">Divisi</string>
     <string name="jumlah_divisi">2</string>
     <string name="tambah_divisi">Tambah Divisi</string>
     <string name="Edit_divisi">Simpan</string>
@@ -14,4 +12,26 @@
     <string name="menu_edit_divisi">Edit Divisi</string>
     <string name="menu_delete_divisi">Delete Divisi</string>
     <string name="pesan_hapus_divisi">Hapus Divisi?</string>
+
+    <string name="img_profil_perusahaan">img_profil_perusahaan</string>
+    <string name="nama_profil_perusahaan">Nama Perusahaan</string>
+    <string name="alamat_perusahaan">Bandung, Jawa barat, Indonesia</string>
+
+    <string name="text_apps_menu">Apps</string>
+
+    <string name="menu_divisi">Divisi</string>
+    <string name="menu_karyawan">Karyawan</string>
+    <string name="menu_presensi">Presensi</string>
+    <string name="menu_pekerjaan">Pekerjaan</string>
+    <string name="menu_pengaturan">Pengaturan</string>
+
+    <string name="img_menu_divisi">img_menu_divisi</string>
+    <string name="img_menu_karyawan">img_menu_karyawan</string>
+    <string name="img_menu_presensi">img_menu_presensi</string>
+    <string name="img_menu_pekerjaan">img_menu_pekerjaan</string>
+    <string name="img_menu_pengaturan">img_menu_pengaturan</string>
+
+
+
+
 </resources>
