@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/adapter_divisi.xml" value="0.2" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_divisi.xml" value="0.2747395833333333" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.1037037037037037" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_tambah_divisi.xml" value="0.1037037037037037" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2415" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_divisi.xml" value="0.1555" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_karyawan.xml" value="0.2555" />
@@ -13,7 +17,10 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_cekung.xml" value="0.139" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_menu.xml" value="0.1555" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/pick_background_menu_atas.xml" value="0.139" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/font/nunito.xml" value="0.23001282599401454" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/font/nunito_bold.xml" value="0.23001282599401454" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/font/nunito_semibold.xml" value="0.23001282599401454" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/adapter_divisi.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/divisi.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/divisi_edit.xml" value="0.4" />
@@ -25,6 +32,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/layout/popup_divisi.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/menu/main_menu.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/menu/popup_divisi.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.225" />
       </map>
     </option>
   </component>

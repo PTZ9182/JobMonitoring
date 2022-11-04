@@ -123,9 +123,9 @@ class DivisiFragment : Fragment() {
             adapter = divisiAdapter
             setHasFixedSize(true)
         }
-        binding.swiperefreshlayout.setOnRefreshListener {
+        binding.layoutDivisi.setOnRefreshListener {
             getNode()
-            binding.swiperefreshlayout.isRefreshing = false
+            binding.layoutDivisi.isRefreshing = false
         }
 
         binding.buttonTambahDivisi.setOnClickListener {

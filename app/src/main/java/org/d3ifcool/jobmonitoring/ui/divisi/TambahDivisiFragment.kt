@@ -35,7 +35,11 @@ class TambahDivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tambahDivisi()
+
+        binding.tambahtDivisi.setOnRefreshListener {
+            tambahDivisi()
+            binding.tambahtDivisi.isRefreshing = false
+        }
     }
 
     private fun tambahDivisi() {
