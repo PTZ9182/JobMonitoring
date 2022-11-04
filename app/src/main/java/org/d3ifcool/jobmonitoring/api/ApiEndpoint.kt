@@ -10,24 +10,24 @@ import retrofit2.http.POST
 
 interface ApiEndpoint {
 
-    @GET("data.php")
+    @GET("Divisi/data.php")
     fun data() : Call<DivisiModel>
 
     @FormUrlEncoded
-    @POST("create.php")
+    @POST("Divisi/create.php")
     fun create(
         @Field("divisi") divisi: String
     ) : Call<SubmitDivisiModel>
 
     @FormUrlEncoded
-    @POST("update.php")
+    @POST("Divisi/update.php")
     fun update(
         @Field("id") id: String,
         @Field("divisi") divisi: String
     ) : Call<SubmitDivisiModel>
 
     @FormUrlEncoded
-    @POST("delete.php")
+    @POST("Divisi/delete.php")
     fun delete(
         @Field("id") id: String
     ) : Call<SubmitDivisiModel>

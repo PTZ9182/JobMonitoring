@@ -17,7 +17,7 @@ class ApiRetrofit {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.110/Job-Monitoring/Divisi/")
+            .baseUrl("http://192.168.0.110/Job-Monitoring/")
             .client( client )
             .addConverterFactory(GsonConverterFactory.create())
             .build()
