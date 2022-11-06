@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homePerusahaanFragment">
+
+
+    <fragment
+        android:id="@+id/homePerusahaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.home.HomePerusahaanFragment"
+        android:label="fragment_home_perusahaan"
+        tools:layout="@layout/fragment_home_perusahaan" >
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/divisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.DivisiFragment"
+        android:label="fragment_divisi"
+        tools:layout="@layout/fragment_divisi" >
+        <action
+            android:id="@+id/action_divisiFragment_to_tambahDivisiFragment"
+            app:destination="@id/tambahDivisiFragment" />
+        <action
+            android:id="@+id/action_divisiFragment_to_editDivisiFragment"
+            app:destination="@id/editDivisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.TambahDivisiFragment"
+        android:label="fragment_tambah_divisi"
+        tools:layout="@layout/fragment_tambah_divisi" >
+        <action
+            android:id="@+id/action_tambahDivisiFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.EditDivisiFragment"
+        android:label="EditDivisiFragment"
+        tools:layout="@layout/fragment_edit_divisi">
+        <action
+            android:id="@+id/action_editDivisiFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
+    </fragment>
+</navigation>

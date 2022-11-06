@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homePerusahaan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5F1FF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.home.HomePerusahaanFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/pick_background_menu_atas"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginBottom="-30dp"
+                android:background="@drawable/pick_background_menu_atas">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_profil_perusahaan"
@@ -70,31 +69,41 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pick_background_cekung">
+
+                <TextView
+                    android:id="@+id/t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/text_apps_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
+                android:layout_marginTop="-16dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/text_apps_menu"
                 android:textColor="#515151"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+                android:textSize="20sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/colider_menu_divisi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/pick_background_menu"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_apps_menu">
+                android:layout_marginRight="32dp"
+                android:background="@drawable/pick_background_menu">
 
                 <TextView
                     android:id="@+id/menu_divisi"
@@ -130,13 +139,10 @@
                 android:id="@+id/colider_menu_karyawan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/pick_background_menu"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colider_menu_divisi">
+                android:layout_marginRight="32dp"
+                android:background="@drawable/pick_background_menu">
 
                 <TextView
                     android:id="@+id/menu_karyawan"
@@ -160,7 +166,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_divisi"
+                    android:contentDescription="@string/img_menu_karyawan"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -172,13 +178,10 @@
                 android:id="@+id/colider_menu_presensi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/pick_background_menu"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colider_menu_karyawan">
+                android:layout_marginRight="32dp"
+                android:background="@drawable/pick_background_menu">
 
                 <TextView
                     android:id="@+id/action_menu_presensi"
@@ -215,13 +218,10 @@
                 android:id="@+id/colider_menu_pekerjaan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:background="@drawable/pick_background_menu"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colider_menu_presensi">
+                android:layout_marginRight="32dp"
+                android:background="@drawable/pick_background_menu">
 
                 <TextView
                     android:id="@+id/action_menu_pekerjaan"
@@ -262,11 +262,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="32dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/pick_background_menu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/colider_menu_pekerjaan">
+                android:background="@drawable/pick_background_menu">
 
                 <TextView
                     android:id="@+id/action_menu_pengaturan"
@@ -296,30 +292,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_pengaturan" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-24dp"
-                android:background="@drawable/pick_background_cekung"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
-
-                <TextView
-                    android:id="@+id/t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
