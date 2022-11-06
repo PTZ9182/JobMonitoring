@@ -67,6 +67,8 @@ interface ApiEndpoint {
     fun deletePekerjaan(
         @Field("id") id: Int
     ) : Call<PekerjaanModel>
+
+    //Karyawan
     @GET("Karyawan/dataKaryawan.php")
     fun dataKaryawan() : Call<KaryawanModel>
 

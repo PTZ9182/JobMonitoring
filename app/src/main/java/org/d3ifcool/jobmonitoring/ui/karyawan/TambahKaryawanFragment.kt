@@ -51,6 +51,9 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         super.onViewCreated(view, savedInstanceState)
         tambahKaryawan()
         listDivisi()
+        binding.layoutTambahKaryawan.setOnRefreshListener {
+            binding.layoutTambahKaryawan.isRefreshing = false
+        }
     }
 
     private fun tambahKaryawan() {

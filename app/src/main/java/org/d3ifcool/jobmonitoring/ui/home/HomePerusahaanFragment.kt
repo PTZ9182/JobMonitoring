@@ -44,5 +44,9 @@ class HomePerusahaanFragment : Fragment() {
         binding.coliderMenuPekerjaan.setOnClickListener {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_pekerjaanFragment)
         }
+
+        binding.coliderMenuKaryawan.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_karyawanFragment)
+        }
     }
 }

@@ -53,6 +53,9 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         setFL()
         listDivisi()
         editKaryawan()
+        binding.layoutEditKaryawan.setOnRefreshListener {
+            binding.layoutEditKaryawan.isRefreshing = false
+        }
 
         binding.gantiPassword.setOnClickListener {
             it.findNavController().navigate(R.id.action_editKaryawanFragment_to_gantiPasswordKaryawanFragment)

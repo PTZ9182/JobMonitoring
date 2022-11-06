@@ -54,7 +54,7 @@ class KaryawanFragment : Fragment() {
         karyawanAdapter = AdapterKaryawan(arrayListOf(),object : AdapterKaryawan.OnAdapterListener {
             override fun popupMenus(karyawan: KaryawanModel.Data, v: View) {
                 val popupMenus = PopupMenu(context, v)
-                popupMenus.inflate(R.menu.main_menu)
+                popupMenus.inflate(R.menu.karyawan_menu)
                 popupMenus.setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.edit_Karyawan -> {
@@ -161,9 +161,8 @@ class KaryawanFragment : Fragment() {
             adapter = karyawanAdapter
             setHasFixedSize(true)
         }
-        binding.swiperefreshlayout.setOnRefreshListener {
-            getNode()
-            binding.swiperefreshlayout.isRefreshing = false
+        binding.layoutKaryawan.setOnRefreshListener {
+            binding.layoutKaryawan.isRefreshing = false
         }
         binding.buttonTambahKaryawan.setOnClickListener {
             it.findNavController().navigate(R.id.action_karyawanFragment_to_tambahKaryawanFragment)

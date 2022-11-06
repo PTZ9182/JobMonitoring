@@ -60,25 +60,21 @@
 
 
 <!--Menu Karyawan-->
-    <string name="img_menu_karyawan">img_menu_karyawan</string>
-    <string name="menu_karyawan">Karyawan</string>
     <string name="jumlah_karyawan">0</string>
     <string name="button_tambah_karyawan">+ Karyawan</string>
     <string name="search_hint_karyawan">Cari Karyawan ...</string>
-    <string name="spinner">spinner</string>
 
-    <string-array name="status">
+
+    <string-array name="pilih_divisi">
         <item>Pilih Divisi</item>
-        <item>Android Developer</item>
+        <item>Android </item>
     </string-array>
 
     <string name="divisi_android">Android Developer</string>
     <string name="data_karyawan1">Data Karyawan 1</string>
-    <string name="img_profil">img_profil</string>
     <string name="nama_karyawan">Nama Karyawan</string>
     <string name="email_karyawan">E-Mail Karyawan</string>
     <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
-    <string name="icon_titik3">icon_titik3</string>
 
 
 <!--Menu Tambah Karyawan-->
