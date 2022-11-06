@@ -8,20 +8,20 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiRetrofit {
 
     val endpoint: ApiEndpoint
-    get() {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
+        get() {
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        val client = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
+            val client = OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build()
 
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.0.110/Job-Monitoring/")
-            .client( client )
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://job-monitoring.000webhostapp.com/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
 
-        return retrofit.create(ApiEndpoint::class.java)
-    }
+            return retrofit.create(ApiEndpoint::class.java)
+        }
 }

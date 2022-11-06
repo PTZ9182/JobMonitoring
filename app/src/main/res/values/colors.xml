@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Warna Baru -->
+    <color name="blue01">#2987DE</color>
+    <color name="blue02">#3CB4F0</color>
+    <color name="greenblue">#3CDFC0</color>
+    <color name="orange">#F6894C</color>
+    <!-- Warna Lama -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

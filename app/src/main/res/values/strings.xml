@@ -58,4 +58,75 @@
 
 
 
+
+<!--Menu Karyawan-->
+    <string name="img_menu_karyawan">img_menu_karyawan</string>
+    <string name="menu_karyawan">Karyawan</string>
+    <string name="jumlah_karyawan">0</string>
+    <string name="button_tambah_karyawan">+ Karyawan</string>
+    <string name="search_hint_karyawan">Cari Karyawan ...</string>
+    <string name="spinner">spinner</string>
+
+    <string-array name="status">
+        <item>Pilih Divisi</item>
+        <item>Android Developer</item>
+    </string-array>
+
+    <string name="divisi_android">Android Developer</string>
+    <string name="data_karyawan1">Data Karyawan 1</string>
+    <string name="img_profil">img_profil</string>
+    <string name="nama_karyawan">Nama Karyawan</string>
+    <string name="email_karyawan">E-Mail Karyawan</string>
+    <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
+    <string name="icon_titik3">icon_titik3</string>
+
+
+<!--Menu Tambah Karyawan-->
+    <string name="menu_tambah_karyawan">Tambah Karyawan</string>
+    <string name="text_nama_karyawan">Nama Karyawan</string>
+    <string name="text_form_nama_karyawan">Nama</string>
+    <string name="text_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+
+    <string name="text_jenis_kelamin">Jenis Kelamin</string>
+    <string-array name="text_form_jenis_kelamin">Jenis Kelamin
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string name="text_alamat_karyawan">Alamat Karyawan</string>
+    <string name="text_form_alamat_karyawan">Alamat</string>
+    <string name="text_no_handphone_karyawan">No. Handphone Karyawan</string>
+    <string name="text_form_no_handphone_karyawan">No. Handphone</string>
+
+    <string name="text_pilih_divisi">Pilih Divisi Karyawan</string>
+    <string-array name="text_form_pilih_divisi">Dvisi
+        <item>Android</item>
+        <item>Web Developer</item>
+    </string-array>
+
+    <string name="text_email_karyawan">E-mail Karyawan</string>
+    <string name="text_form_email_karyawan">Email</string>
+    <string name="text_password_karyawan">Password Karyawan</string>
+    <string name="text_form_password_karyawan">Password</string>
+    <string name="simpan_data">Simpan</string>
+
+<!--Menu Edit Karyawan-->
+    <string name="ganti_password">Ganti Password</string>
+    <string name="menu_edit_karyawan">Edit Karyawan</string>
+    <string name="text_edit_nama_karyawan">Nama</string>
+    <string name="text_edit_tanggallahir">Nama</string>
+    <string name="text_edit_jenis_kelamin">Nama</string>
+    <string name="text_edit_alamat_karyawan">Nama</string>
+    <string name="text_edit_no_handphone_karyawan">Nama</string>
+    <string name="text_edit_pilih_divisi">Nama</string>
+    <string name="text_edit_email_karyawan">Nama</string>
+
+<!--Menu Ganti Password-->
+    <string name="menu_ganti_password">Ganti Password</string>
+    <string name="text_password_lama">Password Lama</string>
+    <string name="text_password_baru1">Password Baru</string>
+    <string name="text_password_baru2">Password Baru</string>
+
+    <string name="menu_delete_karyawan">Hapus Karyawan</string>
+    <string name="pesan_hapus_karyawan">Hapus Data Karyawan?</string>
 </resources>
