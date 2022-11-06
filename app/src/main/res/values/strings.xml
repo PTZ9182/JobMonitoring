@@ -61,5 +61,9 @@
     <string name="text_edit_pilih_divisi">Nama</string>
     <string name="text_edit_email_karyawan">Nama</string>
 
-
+<!--Menu Ganti Password-->
+    <string name="menu_ganti_password">Ganti Password</string>
+    <string name="text_password_lama">Password Lama</string>
+    <string name="text_password_baru1">Password Baru</string>
+    <string name="text_password_baru2">Password Baru</string>
 </resources>
