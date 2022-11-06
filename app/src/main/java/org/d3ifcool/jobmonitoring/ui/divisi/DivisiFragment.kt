@@ -124,6 +124,7 @@ class DivisiFragment : Fragment() {
             setHasFixedSize(true)
         }
         binding.layoutDivisi.setOnRefreshListener {
+            getNode()
             binding.layoutDivisi.isRefreshing = false
         }
 

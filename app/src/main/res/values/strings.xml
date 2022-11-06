@@ -46,6 +46,7 @@
     <string name="pilih_karyawan">Karyawan</string>
 
     <string-array name="status">
+        <item>Pilih Status</item>
         <item>Selesai</item>
         <item>Berjalan</item>
     </string-array>

@@ -162,6 +162,7 @@ class KaryawanFragment : Fragment() {
             setHasFixedSize(true)
         }
         binding.layoutKaryawan.setOnRefreshListener {
+            getNode()
             binding.layoutKaryawan.isRefreshing = false
         }
         binding.buttonTambahKaryawan.setOnClickListener {

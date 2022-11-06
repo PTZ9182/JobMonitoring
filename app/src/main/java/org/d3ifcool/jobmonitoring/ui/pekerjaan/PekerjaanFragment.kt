@@ -132,6 +132,7 @@ class PekerjaanFragment : Fragment() {
             setHasFixedSize(true)
         }
         binding.layoutPekerjaan.setOnRefreshListener {
+            getNode()
             binding.layoutPekerjaan.isRefreshing = false
         }
 
