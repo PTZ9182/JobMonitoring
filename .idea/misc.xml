@@ -3,10 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/adapter_divisi.xml" value="0.2" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_divisi.xml" value="0.2747395833333333" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.1037037037037037" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44gab3/app/src/main/res/layout/fragment_tambah_divisi.xml" value="0.1037037037037037" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_tambah_divisi.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2415" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_divisi.xml" value="0.1555" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_karyawan.xml" value="0.2555" />

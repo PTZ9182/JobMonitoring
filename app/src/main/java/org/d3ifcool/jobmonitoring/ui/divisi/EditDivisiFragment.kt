@@ -50,9 +50,8 @@ class EditDivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        editDivisi()
         binding.editDivisi.setOnRefreshListener {
-            editDivisi()
             binding.editDivisi.isRefreshing = false
         }
 

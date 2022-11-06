@@ -32,12 +32,6 @@
         android:name="org.d3ifcool.jobmonitoring.ui.divisi.EditDivisiFragment"
         android:label="EditDivisiFragment"
         tools:layout="@layout/fragment_edit_divisi">
-        <argument
-            android:name="divisi"
-            app:argType="string" />
-        <argument
-            android:name="id"
-            app:argType="string" />
         <action
             android:id="@+id/action_editDivisiFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />

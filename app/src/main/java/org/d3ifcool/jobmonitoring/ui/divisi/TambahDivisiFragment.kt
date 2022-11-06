@@ -35,10 +35,9 @@ class TambahDivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.tambahtDivisi.setOnRefreshListener {
-            tambahDivisi()
-            binding.tambahtDivisi.isRefreshing = false
+        tambahDivisi()
+        binding.tambahDivisi.setOnRefreshListener {
+            binding.tambahDivisi.isRefreshing = false
         }
     }
 
