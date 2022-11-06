@@ -28,5 +28,34 @@
     <string name="img_menu_pengaturan">img_menu_pengaturan</string>
     <string name="text_apps_menu">Apps</string>
 
+    <string name="button_edit_Pekerjaan">Simpan</string>
+    <string name="edit_pekerjaan">Edit Pekerjaan</string>
+    <string name="pesan_hapus_pekerjaan">Hapus Pekerjaan?</string>
+    <string name="menu_edit_pekerjaan">Edit Pekerjaan</string>
+    <string name="menu_delete_pekerjaan">Delete Pekerjaan</string>
+    <string name="icon_titik3">icon_titik3</string>
+    <string name="img_profil">img_profil</string>
+    <string name="button_tambah_pekerjaan">+ Pekerjaan</string>
+    <string name="jumlah_pekerjaan">0</string>
+    <string name="search_hint_pekerjaan">Cari Pekerjaan ...</string>
+    <string name="status">Status</string>
+    <string name="spinner">spinner</string>
+    <string name="tambah_pekerjaan">Tambah Pekerjaan</string>
+    <string name="text_forum_nama_pekerjaan">Nama Pekerjaan</string>
+    <string name="text_forum_text_pekerjaan">Deskripsi Pekerjaan</string>
+    <string name="pilih_karyawan">Karyawan</string>
+
+    <string-array name="status">
+        <item>Selesai</item>
+        <item>Berjalan</item>
+    </string-array>
+
+    <string-array name="karyawan">
+        <item>papa zola</item>
+        <item>tukiman</item>
+    </string-array>
+
+
+
 
 </resources>

@@ -7,11 +7,16 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/drawable/pick_background_menu_atas.xml" value="0.1145" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_pekerjaan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_divisi.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_pekerjaan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_home_perusahaan.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_tambah_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_tambah_pekerjaan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/menu/main_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/menu/pekerjaan_menu.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2415" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_divisi.xml" value="0.1555" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/drawable/ic_karyawan.xml" value="0.2555" />

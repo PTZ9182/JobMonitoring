@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_homePerusahaanFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"
@@ -44,5 +47,35 @@
         <action
             android:id="@+id/action_editDivisiFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.PekerjaanFragment"
+        android:label="fragment_pekerjaan"
+        tools:layout="@layout/fragment_pekerjaan" >
+        <action
+            android:id="@+id/action_pekerjaanFragment_to_tambahPekerjaanFragment"
+            app:destination="@id/tambahPekerjaanFragment" />
+        <action
+            android:id="@+id/action_pekerjaanFragment_to_editPekerjaanFragment"
+            app:destination="@id/editPekerjaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.EditPekerjaanFragment"
+        android:label="fragment_edit_pekerjaan"
+        tools:layout="@layout/fragment_edit_pekerjaan" >
+        <action
+            android:id="@+id/action_editPekerjaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahPekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.TambahPekerjaanFragment"
+        android:label="fragment_tambah_pekerjaan"
+        tools:layout="@layout/fragment_tambah_pekerjaan" >
+        <action
+            android:id="@+id/action_tambahPekerjaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
     </fragment>
 </navigation>

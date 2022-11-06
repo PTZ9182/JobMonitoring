@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentHomePerusahaanBinding
 
@@ -39,6 +40,9 @@ class HomePerusahaanFragment : Fragment() {
 
         binding.coliderMenuDivisi.setOnClickListener {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_divisiFragment)
+        }
+        binding.coliderMenuPekerjaan.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_pekerjaanFragment)
         }
     }
 }

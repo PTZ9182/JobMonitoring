@@ -1,4 +1,4 @@
-package org.d3ifcool.jobmonitoring.ui.divisi
+package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -14,22 +14,20 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.AdapterDivisi
-import org.d3ifcool.jobmonitoring.data.DivisiModel
-import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel
-import org.d3ifcool.jobmonitoring.databinding.FragmentDivisiBinding
+import org.d3ifcool.jobmonitoring.adapter.AdapterPekerjaan
+import org.d3ifcool.jobmonitoring.api.ApiRetrofit
+import org.d3ifcool.jobmonitoring.data.PekerjaanModel
+import org.d3ifcool.jobmonitoring.databinding.FragmentPekerjaanBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
-class DivisiFragment : Fragment() {
+class PekerjaanFragment : Fragment() {
 
     private val api by lazy { ApiRetrofit().endpoint }
-    private lateinit var divisiAdapter: AdapterDivisi
-    private var _binding: FragmentDivisiBinding? = null
+    private lateinit var pekerjaanAdapter: AdapterPekerjaan
+    private var _binding: FragmentPekerjaanBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -37,7 +35,7 @@ class DivisiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentDivisiBinding.inflate(inflater, container, false)
+        _binding = FragmentPekerjaanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,6 +43,7 @@ class DivisiFragment : Fragment() {
         super.onStart()
         getNode()
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -54,42 +53,51 @@ class DivisiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        divisiAdapter = AdapterDivisi(arrayListOf(), object : AdapterDivisi.OnAdapterListener {
-
-            override fun popupMenus(divisi: DivisiModel.Data, v: View) {
+        pekerjaanAdapter = AdapterPekerjaan(arrayListOf(), object  : AdapterPekerjaan.OnAdapterListener {
+            override fun popupMenus(pekerjaan: PekerjaanModel.Data, v: View) {
                 val popupMenus = PopupMenu(context, v)
-                popupMenus.inflate(R.menu.divisi_menu)
+                popupMenus.inflate(R.menu.pekerjaan_menu)
                 popupMenus.setOnMenuItemClickListener {
                     when (it.itemId) {
-                        R.id.edit_divisi -> {
-                            val td_divisi = divisi.divisi
+                        R.id.edit_pekerjaan -> {
+                            val pid = pekerjaan.id
                             setFragmentResult(
-                                "divisi",
-                                bundleOf("divisi" to td_divisi)
+                                "id",
+                                bundleOf("id" to pid)
                             )
 
-                            val td_id2 = divisi.id
+                            val pnpekerjaan = pekerjaan.nama_pekerjaan
                             setFragmentResult(
-                                "id2",
-                                bundleOf("id2" to td_id2)
+                                "nama_pekerjaan",
+                                bundleOf("nama_pekerjaan" to pnpekerjaan)
+                            )
+                            val pdeskripsi = pekerjaan.deskripsi
+                            setFragmentResult(
+                                "deskripsi",
+                                bundleOf("deskripsi" to pdeskripsi)
                             )
 
-                            findNavController().navigate(R.id.action_divisiFragment_to_editDivisiFragment)
+                            val pkaryawan = pekerjaan.karyawan
+                            setFragmentResult(
+                                "karyawan",
+                                bundleOf("karyawan" to pkaryawan)
+                            )
+                            findNavController().navigate(R.id.action_pekerjaanFragment_to_editPekerjaanFragment)
                             true
                         }
-                        R.id.delete_divisi -> {
+                        R.id.delete_pekerjaan -> {
                             AlertDialog.Builder(context).apply {
-                                setMessage(R.string.pesan_hapus_divisi)
+                                setMessage(R.string.pesan_hapus_pekerjaan)
                                 setPositiveButton("HAPUS") { _, _ ->
-                                    api.delete(divisi.id!!)
-                                        .enqueue(object : Callback<SubmitDivisiModel> {
+                                    api.deletePekerjaan(pekerjaan.id!!)
+                                        .enqueue(object : Callback<PekerjaanModel> {
                                             override fun onResponse(
-                                                call: Call<SubmitDivisiModel>,
-                                                response: Response<SubmitDivisiModel>
+                                                call: Call<PekerjaanModel>,
+                                                response: Response<PekerjaanModel>
                                             ) {
                                                 if (response.isSuccessful) {
                                                     Toast.makeText(
-                                                        activity, "Divisi Telah Dihapus",
+                                                        activity, "Pekerjaan Telah Dihapus",
                                                         Toast.LENGTH_LONG).show()
                                                     getNode()
                                                 } else
@@ -98,7 +106,7 @@ class DivisiFragment : Fragment() {
                                                         Toast.LENGTH_LONG).show()
                                             }
 
-                                            override fun onFailure(call: Call<SubmitDivisiModel>, t: Throwable) {
+                                            override fun onFailure(call: Call<PekerjaanModel>, t: Throwable) {
 
                                             }
                                         })
@@ -120,30 +128,31 @@ class DivisiFragment : Fragment() {
         })
         with(binding.recyclerView) {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
-            adapter = divisiAdapter
+            adapter = pekerjaanAdapter
             setHasFixedSize(true)
         }
-        binding.layoutDivisi.setOnRefreshListener {
-            binding.layoutDivisi.isRefreshing = false
+        binding.layoutPekerjaan.setOnRefreshListener {
+            binding.layoutPekerjaan.isRefreshing = false
         }
 
-        binding.buttonTambahDivisi.setOnClickListener {
-            it.findNavController().navigate(R.id.action_divisiFragment_to_tambahDivisiFragment)
+        binding.buttonTambahPekerjaan.setOnClickListener {
+            it.findNavController().navigate(R.id.action_pekerjaanFragment_to_tambahPekerjaanFragment)
         }
     }
 
     private fun getNode() {
-        api.data().enqueue(object : Callback<DivisiModel> {
-            override fun onResponse(call: Call<DivisiModel>, response: Response<DivisiModel>) {
+        api.dataPekerjaan().enqueue(object : Callback<PekerjaanModel> {
+            override fun onResponse(call: Call<PekerjaanModel>, response: Response<PekerjaanModel>) {
                 if (response.isSuccessful) {
-                    val listData = response.body()!!.tabel_divisi
+                    val listData = response.body()!!.tabel_pekerjaan
 
-                    divisiAdapter.setData(listData)
-                    binding.jumlahDivisi.text = listData.size.toString()
+                    pekerjaanAdapter.setData(listData)
+                    binding.jumlahPekerjaan.text = listData.size.toString()
+                    binding.status
                 }
             }
 
-            override fun onFailure(call: Call<DivisiModel>, t: Throwable) {
+            override fun onFailure(call: Call<PekerjaanModel>, t: Throwable) {
                 Toast.makeText(
                     activity, "Gagal Memuat",
                     Toast.LENGTH_LONG
@@ -151,6 +160,4 @@ class DivisiFragment : Fragment() {
             }
         })
     }
-
 }
-
