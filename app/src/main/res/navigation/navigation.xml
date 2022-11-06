@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/karyawanFragment">
+
+    <fragment
+        android:id="@+id/karyawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.karyawan.KaryawanFragment"
+        android:label="fragment_karyawan"
+        tools:layout="@layout/fragment_karyawan" >
+        <action
+            android:id="@+id/action_karyawanFragment_to_tambahKaryawanFragment"
+            app:destination="@id/tambahKaryawanFragment" />
+        <action
+            android:id="@+id/action_karyawanFragment_to_editKaryawanFragment"
+            app:destination="@id/editKaryawanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.karyawan.TambahKaryawanFragment"
+        android:label="TambahKaryawanFragment"
+        tools:layout="@layout/fragment_tambah_karyawan">
+        <action
+            android:id="@+id/action_tambahKaryawanFragment_to_karyawanFragment"
+            app:destination="@id/karyawanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.karyawan.EditKaryawanFragment"
+        android:label="EditKaryawanFragment"
+        tools:layout="@layout/fragment_edit_karyawan">
+        <action
+            android:id="@+id/action_editKaryawanFragment_to_karyawanFragment"
+            app:destination="@id/karyawanFragment" />
+        <action
+            android:id="@+id/action_editKaryawanFragment_to_gantiPasswordKaryawanFragment"
+            app:destination="@id/gantiPasswordKaryawanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiPasswordKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.karyawan.GantiPasswordKaryawanFragment"
+        android:label="GantiPasswordKaryawanFragment"
+        tools:layout="@layout/fragment_ganti_password"/>
+</navigation>

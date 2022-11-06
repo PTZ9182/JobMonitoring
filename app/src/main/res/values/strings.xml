@@ -4,21 +4,23 @@
 <!--Menu Karyawan-->
     <string name="img_menu_karyawan">img_menu_karyawan</string>
     <string name="menu_karyawan">Karyawan</string>
-    <string name="jumlah_divisi">2</string>
-    <string name="tambah_karyawan">Tambah Karyawan</string>
+    <string name="jumlah_karyawan">0</string>
+    <string name="button_tambah_karyawan">+ Karyawan</string>
+    <string name="search_hint_karyawan">Cari Karyawan ...</string>
+    <string name="spinner">spinner</string>
 
-    <string-array name="pilih_divisi">Divisi
+    <string-array name="status">
+        <item>Pilih Divisi</item>
         <item>Android Developer</item>
-        <item>Web Developer</item>
     </string-array>
 
     <string name="divisi_android">Android Developer</string>
     <string name="data_karyawan1">Data Karyawan 1</string>
-    <string name="foto">Foto Karyawan</string>
+    <string name="img_profil">img_profil</string>
     <string name="nama_karyawan">Nama Karyawan</string>
     <string name="email_karyawan">E-Mail Karyawan</string>
     <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
-    <string name="divisi_icon_edit">divisi_icon_edit</string>
+    <string name="icon_titik3">icon_titik3</string>
 
 
 <!--Menu Tambah Karyawan-->
@@ -40,7 +42,7 @@
 
     <string name="text_pilih_divisi">Pilih Divisi Karyawan</string>
     <string-array name="text_form_pilih_divisi">Dvisi
-        <item>Android Developer</item>
+        <item>Android</item>
         <item>Web Developer</item>
     </string-array>
 
@@ -66,4 +68,7 @@
     <string name="text_password_lama">Password Lama</string>
     <string name="text_password_baru1">Password Baru</string>
     <string name="text_password_baru2">Password Baru</string>
+
+    <string name="menu_delete_karyawan">Hapus Karyawan</string>
+    <string name="pesan_hapus_karyawan">Hapus Data Karyawan?</string>
 </resources>
