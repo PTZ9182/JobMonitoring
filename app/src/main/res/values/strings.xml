@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">JobMonitoring</string>
 
+<!--Menu Karyawan-->
     <string name="img_menu_karyawan">img_menu_karyawan</string>
     <string name="menu_karyawan">Karyawan</string>
     <string name="jumlah_divisi">2</string>
-    <string name="tambah_karyawan">+ Karyawan</string>
+    <string name="tambah_karyawan">Tambah Karyawan</string>
 
     <string-array name="pilih_divisi">Divisi
         <item>Android Developer</item>
@@ -18,4 +19,38 @@
     <string name="email_karyawan">E-Mail Karyawan</string>
     <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
     <string name="divisi_icon_edit">divisi_icon_edit</string>
+
+<!--Menu Tambah Karyawan-->
+    <string name="menu_tambah_karyawan">Tambah Karyawan</string>
+
+    <string name="text_nama_karyawan">Nama Karyawan</string>
+    <string name="text_form_nama_karyawan">Nama</string>
+
+    <string name="text_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+
+    <string name="text_jenis_kelamin">Jenis Kelamin</string>
+    <string-array name="text_form_jenis_kelamin">Jenis Kelamin
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string name="text_alamat_karyawan">Alamat Karyawan</string>
+    <string name="text_form_alamat_karyawan">Alamat</string>
+
+    <string name="text_no_handphone_karyawan">No. Handphone Karyawan</string>
+    <string name="text_form_no_handphone_karyawan">No. Handphone</string>
+
+    <string name="text_pilih_divisi">Pilih Divisi Karyawan</string>
+    <string-array name="text_form_pilih_divisi">Dvisi
+        <item>Android Developer</item>
+        <item>Web Developer</item>
+    </string-array>
+
+    <string name="text_email_karyawan">E-mail Karyawan</string>
+    <string name="text_form_email_karyawan">Email</string>
+
+    <string name="text_password_karyawan">Password Karyawan</string>
+    <string name="text_form_password_karyawan">Password</string>
+
+    <string name="simpan_data">Simpan</string>
 </resources>
