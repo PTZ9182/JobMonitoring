@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_homePerusahaanFragment_to_karyawanFragment"
             app:destination="@id/karyawanFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_presensiFragment"
+            app:destination="@id/presensiFragment" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"
@@ -119,4 +122,26 @@
         android:name="org.d3ifcool.jobmonitoring.ui.karyawan.GantiPasswordKaryawanFragment"
         android:label="fragment_ganti_password"
         tools:layout="@layout/fragment_ganti_password" />
+    <fragment
+        android:id="@+id/presensiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.presensi.PresensiFragment"
+        android:label="fragment_presensi"
+        tools:layout="@layout/fragment_presensi" >
+        <action
+            android:id="@+id/action_presensiFragment_to_presensiKaryawanFragment"
+            app:destination="@id/presensiKaryawanFragment" />
+        <action
+            android:id="@+id/action_presensiFragment_to_tambahPresensiFragment"
+            app:destination="@id/tambahPresensiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/presensiKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.presensi.PresensiKaryawanFragment"
+        android:label="fragment_presensi_karyawan"
+        tools:layout="@layout/fragment_presensi_karyawan" />
+    <fragment
+        android:id="@+id/tambahPresensiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.presensi.TambahPresensiFragment"
+        android:label="fragment_tambah_presensi"
+        tools:layout="@layout/fragment_tambah_presensi" />
 </navigation>

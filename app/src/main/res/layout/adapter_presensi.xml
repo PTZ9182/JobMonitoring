@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/colider_pekerjaan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/presensi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tanggal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="@string/waktu"
+            android:textColor="#515151"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+        </TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profil_perusahaan"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/img_profil"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/presensi"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/status_pekerjaan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="#00C853"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nama_karyawan"
+        app:layout_constraintEnd_toEndOf="@+id/status_pekerjaan_berjalan"
+        app:layout_constraintTop_toTopOf="@+id/nama_karyawan"
+        tools:ignore="TextContrastCheck"
+        tools:text="Hadir" />
+
+    <TextView
+        android:id="@+id/nama_karyawan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="#515151"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_profil_perusahaan"
+        app:layout_constraintEnd_toStartOf="@+id/status_pekerjaan_berjalan"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/img_profil_perusahaan"
+        app:layout_constraintTop_toTopOf="@+id/img_profil_perusahaan"
+        tools:text="Papa Zola" />
+
+
+    <TextView
+        android:id="@+id/status_pekerjaan_berjalan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="#F6894C"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nama_karyawan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nama_karyawan"
+        tools:ignore="TextContrastCheck"
+        tools:text="Tidak Hadir" />
+
+
+    <TextView
+        android:id="@+id/nama_karyawan_berjalan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="#515151"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_profil_perusahaan"
+        app:layout_constraintEnd_toStartOf="@+id/status_pekerjaan_berjalan"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/img_profil_perusahaan"
+        app:layout_constraintTop_toTopOf="@+id/img_profil_perusahaan"
+        tools:text="Papa Zola" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

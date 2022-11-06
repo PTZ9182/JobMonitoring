@@ -6,6 +6,7 @@ import org.d3ifcool.jobmonitoring.data.PekerjaanModel
 import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel
 import org.d3ifcool.jobmonitoring.data.KaryawanModel
 import org.d3ifcool.jobmonitoring.data.ListDivisiModel
+import org.d3ifcool.jobmonitoring.model.PresensiModel
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -107,4 +108,8 @@ interface ApiEndpoint {
         @Field("divisi")        divisi          : String,
         @Field("email")         email           : String
     ) : Call<KaryawanModel>
+
+    //Presensi
+    @GET("Presensi/dataPresensi.php")
+    fun dataPresensi() : Call<PresensiModel>
 }

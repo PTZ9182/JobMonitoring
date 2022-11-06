@@ -48,5 +48,8 @@ class HomePerusahaanFragment : Fragment() {
         binding.coliderMenuKaryawan.setOnClickListener {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_karyawanFragment)
         }
+        binding.coliderMenuPresensi.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_presensiFragment)
+        }
     }
 }

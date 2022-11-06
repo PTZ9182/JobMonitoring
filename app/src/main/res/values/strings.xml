@@ -126,4 +126,30 @@
 
     <string name="menu_delete_karyawan">Hapus Karyawan</string>
     <string name="pesan_hapus_karyawan">Hapus Data Karyawan?</string>
+
+
+    <string name="button_edit_presensi">Simpan</string>
+    <string name="edit_presensi">Edit Presensi</string>
+    <string name="pesan_hapus_presensi">Hapus Presensi?</string>
+    <string name="menu_edit_presensi">Edit Presensi</string>
+    <string name="menu_delete_presensi">Delete Presensi</string>
+    <string name="button_tambah_presensi">+ Presensi</string>
+    <string name="jumlah_presensi">0</string>
+    <string name="search_hint_presensi">Cari Presensi ...</string>
+    <string name="tambah_presensi">Simpan</string>
+    <string name="text_forum_nama_presensi">Tanggal Presensi</string>
+    <string name="text_forum_text_presensi">Deskripsi Presensi</string>
+    <string name="pilih_waktu">Waktu</string>
+    <string name="pilih_divisi">Cari Nama Divisi</string>
+    <string name="papa_zola">Papa Zola</string>
+    <string name="catatan">Catatan</string>
+    <string name="waktu">07-10-2022</string>
+
+
+    <string-array name="status_hadir">
+        <item>Status Hadir</item>
+        <item>Hadir</item>
+        <item>Tidak Hadir</item>
+    </string-array>
+
 </resources>
