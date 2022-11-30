@@ -2,12 +2,12 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homePerusahaan"
+    android:id="@+id/homeKaryawan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5F1FF"
     android:orientation="vertical"
-    tools:context=".ui.home.HomePerusahaanFragment">
+    tools:context=".ui.home.HomeKaryawanFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,44 +26,45 @@
                 android:background="@drawable/pick_background_menu_atas">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_profil_perusahaan"
+                    android:id="@+id/hk_img_profil_karyawan"
                     android:layout_width="97dp"
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
-                    android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@drawable/profilperusahaan"
+                    android:contentDescription="@string/hk_img_profil_karyawan"
+                    android:src="@drawable/profil"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView
-                    android:id="@+id/nama_profil_perusahaan"
+                    android:id="@+id/hk_nama_profil_karyawan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="@string/nama_profil_perusahaan"
+                    android:hint=""
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
+                    app:layout_constraintTop_toBottomOf="@+id/hk_img_profil_karyawan"
                     tools:ignore="TextContrastCheck" />
 
                 <TextView
-                    android:id="@+id/alamat_perusahaan"
+                    android:id="@+id/hk_alamat_karyawan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/nunito"
-                    android:text=""
+                    android:hint=""
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
+                    app:layout_constraintTop_toBottomOf="@+id/hk_nama_profil_karyawan"
+                    app:layout_constraintVertical_bias="0.49"
                     tools:ignore="TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,18 +86,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/text_apps_menu"
+                android:id="@+id/hk_text_apps_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="-16dp"
                 android:fontFamily="@font/nunito_sans_extrabold"
-                android:text="@string/text_apps_menu"
+                android:text="@string/hk_text_apps_menu"
                 android:textColor="#515151"
                 android:textSize="24sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/colider_menu_divisi"
+                android:id="@+id/hk_coll_presensi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
@@ -105,106 +106,28 @@
                 android:background="@drawable/pick_background_menu">
 
                 <TextView
-                    android:id="@+id/menu_divisi"
+                    android:id="@+id/hk_presensi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/menu_divisi"
+                    android:text="@string/hk_menu_presensi"
                     android:textColor="#515151"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_menu_divisi"
+                    app:layout_constraintStart_toEndOf="@+id/hk_img_presensi"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/img_menu_divisi"
+                    android:id="@+id/hk_img_presensi"
                     android:layout_width="48dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_divisi"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_divisi" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/colider_menu_karyawan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="32dp"
-                android:background="@drawable/pick_background_menu">
-
-                <TextView
-                    android:id="@+id/menu_karyawan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/menu_karyawan"
-                    android:textColor="#515151"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_menu_karyawan"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/img_menu_karyawan"
-                    android:layout_width="48dp"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_karyawan"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_karyawan" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/colider_menu_presensi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="32dp"
-                android:background="@drawable/pick_background_menu">
-
-                <TextView
-                    android:id="@+id/action_menu_presensi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/menu_presensi"
-                    android:textColor="#515151"
-                    android:textSize="16sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_menu_presensi"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/img_menu_presensi"
-                    android:layout_width="48dp"
-                    android:layout_height="44dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_presensi"
+                    android:contentDescription="@string/hk_img_menu_presensi"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -214,7 +137,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/colider_menu_pekerjaan"
+                android:id="@+id/hk_coll_pekerjaan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
@@ -223,28 +146,28 @@
                 android:background="@drawable/pick_background_menu">
 
                 <TextView
-                    android:id="@+id/action_menu_pekerjaan"
+                    android:id="@+id/hk_pekerjaan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/menu_pekerjaan"
+                    android:text="@string/hk_menu_pekerjaan"
                     android:textColor="#515151"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_menu_pekerjaan"
+                    app:layout_constraintStart_toEndOf="@+id/hk_img_pekerjaan"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/img_menu_pekerjaan"
+                    android:id="@+id/hk_img_pekerjaan"
                     android:layout_width="48dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_pekerjaan"
+                    android:contentDescription="@string/hk_img_menu_pekerjaan"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -254,7 +177,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/colider_menu_pengaturan"
+                android:id="@+id/hk_coll_pengaturan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
@@ -264,28 +187,28 @@
                 android:background="@drawable/pick_background_menu">
 
                 <TextView
-                    android:id="@+id/action_menu_pengaturan"
+                    android:id="@+id/hk_pengaturan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:text="@string/menu_pengaturan"
+                    android:text="@string/hk_menu_pengaturan"
                     android:textColor="#515151"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_menu_pengaturan"
+                    app:layout_constraintStart_toEndOf="@+id/hk_img_pengaturan"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/img_menu_pengaturan"
+                    android:id="@+id/hk_img_pengaturan"
                     android:layout_width="48dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/img_menu_pengaturan"
+                    android:contentDescription="@string/hk_img_menu_pengaturan"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

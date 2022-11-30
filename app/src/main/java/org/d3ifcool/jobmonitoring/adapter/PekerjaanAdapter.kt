@@ -4,14 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.d3ifcool.jobmonitoring.data.PekerjaanModel
 import org.d3ifcool.jobmonitoring.databinding.AdapterPekerjaanBinding
+import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 
-class AdapterPekerjaan (
-    val datas: ArrayList<PekerjaanModel.Data>,
+class PekerjaanAdapter (
+    val datas: ArrayList<PekerjaanModel>,
     val listener : OnAdapterListener,
 
-    ) : RecyclerView.Adapter<AdapterPekerjaan.ViewHolder>() {
+) : RecyclerView.Adapter<PekerjaanAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = AdapterPekerjaanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,7 +19,7 @@ class AdapterPekerjaan (
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pekerjaan: PekerjaanModel.Data = datas[position]
+        val pekerjaan: PekerjaanModel = datas[position]
         holder.bind(pekerjaan)
         holder.menu.setOnClickListener { listener.popupMenus(pekerjaan,it) }
     }
@@ -29,22 +29,22 @@ class AdapterPekerjaan (
 
     class ViewHolder(private val itemBinding: AdapterPekerjaanBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
-        fun bind(pekerjaan: PekerjaanModel.Data) {
+        fun bind(pekerjaan: PekerjaanModel) {
             val statuss = pekerjaan.status
             if(statuss == "1"){
-                itemBinding.statusPekerjaan.text = "Selesai"
-                itemBinding.namaKaryawan.text = pekerjaan.karyawan
-                itemBinding.data1Pekerjaan.text = pekerjaan.nama_pekerjaan
-            } else{
-                itemBinding.statusPekerjaanBerjalan.text = "Berjalan"
-                itemBinding.namaKaryawanBerjalan.text = pekerjaan.karyawan
-                itemBinding.data1PekerjaanBerjalan.text = pekerjaan.nama_pekerjaan
+                itemBinding.pkStatusSelesai.text = "Selesai"
+                itemBinding.pkNamaKaryawanSelesai.text = pekerjaan.karyawan
+                itemBinding.pkPekerjaanSelesai.text = pekerjaan.nama_pekerjaan
+            } else if (statuss == "0"){
+                itemBinding.pkStatusBelumselesai.text = "Belum Selesai"
+                itemBinding.pkNamaKaryawanBelumselesai.text = pekerjaan.karyawan
+                itemBinding.pkPekerjaanBelumselesai.text = pekerjaan.nama_pekerjaan
             }
         }
-        val menu = itemBinding.pekerjaanIconEdit
+        val menu = itemBinding.pkTitik3
     }
 
-    public fun setData(data: List<PekerjaanModel.Data>) {
+    public fun setData(data: List<PekerjaanModel>) {
         datas.clear()
         datas.addAll(data)
         notifyDataSetChanged()
@@ -52,7 +52,7 @@ class AdapterPekerjaan (
 
     interface OnAdapterListener{
 
-        fun popupMenus(pekerjaan : PekerjaanModel.Data, v : View)
+        fun popupMenus(pekerjaan : PekerjaanModel, v : View)
 
     }
 }

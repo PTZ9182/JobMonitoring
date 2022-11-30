@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homePerusahaanFragment">
-
-
+    app:startDestination="@id/splashFragment">
     <fragment
         android:id="@+id/homePerusahaanFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.home.HomePerusahaanFragment"
@@ -15,14 +13,17 @@
             android:id="@+id/action_homePerusahaanFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />
         <action
-            android:id="@+id/action_homePerusahaanFragment_to_pekerjaanFragment"
-            app:destination="@id/pekerjaanFragment" />
-        <action
             android:id="@+id/action_homePerusahaanFragment_to_karyawanFragment"
             app:destination="@id/karyawanFragment" />
         <action
             android:id="@+id/action_homePerusahaanFragment_to_presensiFragment"
             app:destination="@id/presensiFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"
@@ -30,11 +31,20 @@
         android:label="fragment_divisi"
         tools:layout="@layout/fragment_divisi" >
         <action
-            android:id="@+id/action_divisiFragment_to_tambahDivisiFragment"
-            app:destination="@id/tambahDivisiFragment" />
-        <action
             android:id="@+id/action_divisiFragment_to_editDivisiFragment"
             app:destination="@id/editDivisiFragment" />
+        <action
+            android:id="@+id/action_divisiFragment_to_tambahDivisiFragment"
+            app:destination="@id/tambahDivisiFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDivisiFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.divisi.EditDivisiFragment"
+        android:label="fragment_edit_divisi"
+        tools:layout="@layout/fragment_edit_divisi" >
+        <action
+            android:id="@+id/action_editDivisiFragment_to_divisiFragment"
+            app:destination="@id/divisiFragment" />
     </fragment>
     <fragment
         android:id="@+id/tambahDivisiFragment"
@@ -44,45 +54,6 @@
         <action
             android:id="@+id/action_tambahDivisiFragment_to_divisiFragment"
             app:destination="@id/divisiFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editDivisiFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.divisi.EditDivisiFragment"
-        android:label="EditDivisiFragment"
-        tools:layout="@layout/fragment_edit_divisi">
-        <action
-            android:id="@+id/action_editDivisiFragment_to_divisiFragment"
-            app:destination="@id/divisiFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/pekerjaanFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.PekerjaanFragment"
-        android:label="fragment_pekerjaan"
-        tools:layout="@layout/fragment_pekerjaan" >
-        <action
-            android:id="@+id/action_pekerjaanFragment_to_tambahPekerjaanFragment"
-            app:destination="@id/tambahPekerjaanFragment" />
-        <action
-            android:id="@+id/action_pekerjaanFragment_to_editPekerjaanFragment"
-            app:destination="@id/editPekerjaanFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editPekerjaanFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.EditPekerjaanFragment"
-        android:label="fragment_edit_pekerjaan"
-        tools:layout="@layout/fragment_edit_pekerjaan" >
-        <action
-            android:id="@+id/action_editPekerjaanFragment_to_pekerjaanFragment"
-            app:destination="@id/pekerjaanFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/tambahPekerjaanFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.TambahPekerjaanFragment"
-        android:label="fragment_tambah_pekerjaan"
-        tools:layout="@layout/fragment_tambah_pekerjaan" >
-        <action
-            android:id="@+id/action_tambahPekerjaanFragment_to_pekerjaanFragment"
-            app:destination="@id/pekerjaanFragment" />
     </fragment>
     <fragment
         android:id="@+id/karyawanFragment"
@@ -121,27 +92,125 @@
         android:id="@+id/gantiPasswordKaryawanFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.karyawan.GantiPasswordKaryawanFragment"
         android:label="fragment_ganti_password"
-        tools:layout="@layout/fragment_ganti_password" />
+        tools:layout="@layout/fragment_ganti_password" >
+        <action
+            android:id="@+id/action_gantiPasswordKaryawanFragment_to_karyawanFragment"
+            app:destination="@id/karyawanFragment" />
+    </fragment>
     <fragment
         android:id="@+id/presensiFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.presensi.PresensiFragment"
         android:label="fragment_presensi"
         tools:layout="@layout/fragment_presensi" >
         <action
-            android:id="@+id/action_presensiFragment_to_presensiKaryawanFragment"
-            app:destination="@id/presensiKaryawanFragment" />
-        <action
             android:id="@+id/action_presensiFragment_to_tambahPresensiFragment"
             app:destination="@id/tambahPresensiFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/presensiKaryawanFragment"
-        android:name="org.d3ifcool.jobmonitoring.ui.presensi.PresensiKaryawanFragment"
-        android:label="fragment_presensi_karyawan"
-        tools:layout="@layout/fragment_presensi_karyawan" />
     <fragment
         android:id="@+id/tambahPresensiFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.presensi.TambahPresensiFragment"
         android:label="fragment_tambah_presensi"
         tools:layout="@layout/fragment_tambah_presensi" />
+    <fragment
+        android:id="@+id/pekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.PekerjaanFragment"
+        android:label="fragment_pekerjaan"
+        tools:layout="@layout/fragment_pekerjaan" >
+        <action
+            android:id="@+id/action_pekerjaanFragment_to_tambahPekerjaanFragment"
+            app:destination="@id/tambahPekerjaanFragment" />
+        <action
+            android:id="@+id/action_pekerjaanFragment_to_editPekerjaanFragment"
+            app:destination="@id/editPekerjaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tambahPekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.TambahPekerjaanFragment"
+        android:label="fragment_tambah_pekerjaan"
+        tools:layout="@layout/fragment_tambah_pekerjaan" >
+        <action
+            android:id="@+id/action_tambahPekerjaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPekerjaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.EditPekerjaanFragment"
+        android:label="fragment_edit_pekerjaan"
+        tools:layout="@layout/fragment_edit_pekerjaan" >
+        <action
+            android:id="@+id/action_editPekerjaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/praLoginFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.loginRegister.PraLoginFragment"
+        android:label="fragment_pralogin"
+        tools:layout="@layout/fragment_pralogin" >
+        <action
+            android:id="@+id/action_praLoginFragment_to_loginPerusahaanFragment"
+            app:destination="@id/loginPerusahaanFragment" />
+        <action
+            android:id="@+id/action_praLoginFragment_to_loginKaryawanFragment"
+            app:destination="@id/loginKaryawanFragment" />
+        <action
+            android:id="@+id/action_praLoginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_praLoginFragment_to_homePerusahaanFragment"
+            app:destination="@id/homePerusahaanFragment" />
+        <action
+            android:id="@+id/action_praLoginFragment_to_homeKaryawanFragment"
+            app:destination="@id/homeKaryawanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginPerusahaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.loginRegister.LoginPerusahaanFragment"
+        android:label="fragment_login_perusahaan"
+        tools:layout="@layout/fragment_login_perusahaan" >
+        <action
+            android:id="@+id/action_loginPerusahaanFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginPerusahaanFragment_to_homePerusahaanFragment"
+            app:destination="@id/homePerusahaanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.loginRegister.LoginKaryawanFragment"
+        android:label="fragment_login_karyawan"
+        tools:layout="@layout/fragment_login_karyawan" >
+        <action
+            android:id="@+id/action_loginKaryawanFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginKaryawanFragment_to_homeKaryawanFragment"
+            app:destination="@id/homeKaryawanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.loginRegister.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="org.d3ifcool.jobmonitoring.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.home.HomeKaryawanFragment"
+        android:label="fragment_home_karyawan"
+        tools:layout="@layout/fragment_home_karyawan" >
+        <action
+            android:id="@+id/action_homeKaryawanFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
+    </fragment>
 </navigation>

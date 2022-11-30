@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutPekerjaan"
+    android:id="@+id/layoutPekerjaanPerusahaan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/collider_tambah_pekerjaan"
+                    android:id="@+id/pk_collider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -43,30 +43,33 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <Button
-                        android:id="@+id/button_tambah_pekerjaan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="44dp"
+                        android:id="@+id/pk_button"
+                        android:text="@string/pk_button_pekerjaan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="16dp"
+                        android:background="@drawable/pick_background_menu"
                         android:fontFamily="@font/nunito_semibold"
-                        android:text="@string/button_tambah_pekerjaan"
+                        android:textColor="#FFFFFF"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/menu_pekerjaan"
+                        app:layout_constraintStart_toEndOf="@+id/pk_pekerjaan"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
                     <ImageView
-                        android:id="@+id/img_menu_pekerjaan"
+                        android:id="@+id/pk_img"
                         android:layout_width="48dp"
                         android:layout_height="44dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
-                        android:contentDescription="@string/img_menu_pekerjaan"
+                        android:contentDescription="@string/pk_img_pekerjaan"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -74,85 +77,83 @@
                         tools:ignore="ImageContrastCheck" />
 
                     <TextView
-                        android:id="@+id/menu_pekerjaan"
+                        android:id="@+id/pk_pekerjaan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:text="@string/pk_pekerjaan"
                         android:fontFamily="@font/nunito_semibold"
-                        android:text="@string/menu_pekerjaan"
                         android:textColor="#515151"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/img_menu_pekerjaan"
+                        app:layout_constraintStart_toEndOf="@+id/pk_img"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.32999998" />
 
                     <TextView
-                        android:id="@+id/jumlah_pekerjaan"
+                        android:id="@+id/pk_jumlah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/pk_jumlah_pekerjaan"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/nunito_semibold"
-                        android:text="@string/jumlah_pekerjaan"
                         android:textColor="#515151"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/img_menu_pekerjaan"
-                        app:layout_constraintTop_toBottomOf="@+id/menu_pekerjaan"
+                        app:layout_constraintStart_toEndOf="@+id/pk_img"
+                        app:layout_constraintTop_toBottomOf="@+id/pk_pekerjaan"
                         app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_pekerjaan"
+                    android:id="@+id/pk_search"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_marginEnd="24dp"
                     android:background="@drawable/pick_background_menu"
                     app:iconifiedByDefault="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/spinner"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan"
+                    app:layout_constraintTop_toBottomOf="@+id/pk_collider"
                     app:queryBackground="@color/transparant"
-                    app:queryHint="@string/search_hint_pekerjaan">
+                    app:queryHint="@string/pk_search">
 
 
                 </androidx.appcompat.widget.SearchView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/spinner"
+                    android:id="@+id/pk_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/search_pekerjaan"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/pick_background_menu"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan"
-                    android:background="@drawable/pick_background_menu">
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pk_search">
 
 
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/status"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:contentDescription="@string/spinner"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="@string/pk_spinner"
+                        android:entries="@array/pk_status"
                         android:fontFamily="@font/nunito_semibold"
-                        android:minHeight="35dp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:entries="@array/status"
-
-                        tools:ignore="TouchTargetSizeCheck">
-
-                    </androidx.appcompat.widget.AppCompatSpinner>
+                        tools:ignore="TouchTargetSizeCheck"></androidx.appcompat.widget.AppCompatSpinner>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

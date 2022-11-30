@@ -9,19 +9,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditDivisiBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.d3ifcool.jobmonitoring.model.DivisiModel
+
 
 class EditDivisiFragment : Fragment() {
 
-    private val api by lazy { ApiRetrofit().endpoint }
     private var _binding: FragmentEditDivisiBinding? = null
     private val binding get() = _binding!!
+
+    val database = Firebase.database
+    val dbRef = database.getReference("Perusahaan")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,17 +31,14 @@ class EditDivisiFragment : Fragment() {
     ): View? {
 
         _binding = FragmentEditDivisiBinding.inflate(inflater, container, false)
-        setFL()
+        set()
         return binding.root
     }
 
-    private fun setFL() {
+    private fun set() {
         setFragmentResultListener("divisi") { requestKey, bundle ->
             val result = bundle.getString("divisi")
-            binding.textNamaDivisiDalamForm.setText(result)
-        }
-        setFragmentResultListener("id") { requestKey, bundle ->
-            val result = bundle.getString("id")
+            binding.edFormNamaDivisi.setText(result)
         }
     }
 
@@ -50,45 +49,32 @@ class EditDivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editDivisi()
-        binding.editDivisi.setOnRefreshListener {
-            binding.editDivisi.isRefreshing = false
-        }
 
+        binding.layoutEditDivisi.setOnRefreshListener {
+            binding.layoutEditDivisi.isRefreshing = false
+        }
+        binding.edButtonSimpan.setOnClickListener {
+            if (binding.edFormNamaDivisi.text.isEmpty()){
+                binding.edFormNamaDivisi.setError("Nama divisi tidak boleh kosong")
+                binding.edFormNamaDivisi.requestFocus()
+            } else {
+                editDivisi()
+            }
+        }
     }
 
     private fun editDivisi() {
-        setFragmentResultListener("id2") { requestKey, bundle ->
-            val result = bundle.getString("id2")
-            binding.buttonEditDivisiForm.setOnClickListener {
-                api.update(result!!, binding.textNamaDivisiDalamForm.text.toString())
-                    .enqueue(object : Callback<SubmitDivisiModel> {
-                        override fun onResponse(
-                            call: Call<SubmitDivisiModel>,
-                            response: Response<SubmitDivisiModel>
-                        ) {
-                            if (response.isSuccessful) {
-                                Toast.makeText(
-                                    context, "Perubahan Berhasil",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                                findNavController().navigate(R.id.action_editDivisiFragment_to_divisiFragment)
-                            } else
-                                Toast.makeText(
-                                    context, "Perubahan Gagal",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                        }
-
-                        override fun onFailure(call: Call<SubmitDivisiModel>, t: Throwable) {
-                            Toast.makeText(
-                                context, "Perubahan Gagal",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    })
+        setFragmentResultListener("id") { requestKey, bundle ->
+            val result = bundle.getString("id")
+            val user = Firebase.auth.currentUser
+            val name = user?.displayName
+            val divisi = DivisiModel(result!!,binding.edFormNamaDivisi.text.toString())
+            dbRef.child(name!!).child("Divisi").child(result).setValue(divisi).addOnCompleteListener{
+                Toast.makeText(activity,"Divisi Berhasil Diubah", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_editDivisiFragment_to_divisiFragment)
+            }.addOnFailureListener{ tast ->
+                Toast.makeText(activity,"Gagal Mengubah Divisi${tast.message}", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 }

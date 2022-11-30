@@ -1,155 +1,294 @@
 <resources>
-    <string name="app_name">JobMonitoring</string>
+    <string name="app_name">Job-Monitoring</string>
 
+    <!--Home Perusahaan-->
     <string name="img_profil_perusahaan">img_profil_perusahaan</string>
     <string name="nama_profil_perusahaan">Nama Perusahaan</string>
     <string name="alamat_perusahaan">Bandung, Jawa barat, Indonesia</string>
-    <string name="jumlah_divisi">0</string>
-    <string name="tambah_divisi">Tambah Divisi</string>
-    <string name="Edit_divisi">Simpan</string>
-    <string name="edit_divisi">Edit Divisi</string>
-    <string name="divisi_icon_edit">divisi_icon_edit</string>
-
-    <string name="text_forum_nama_divisi">Nama Divisi</string>
-    <string name="search_hint">Cari Divisi ...</string>
-    <string name="menu_edit_divisi">Edit Divisi</string>
-    <string name="menu_delete_divisi">Delete Divisi</string>
-    <string name="pesan_hapus_divisi">Hapus Divisi?</string>
+    <string name="text_apps_menu">Apps</string>
     <string name="menu_divisi">Divisi</string>
     <string name="menu_karyawan">Karyawan</string>
     <string name="menu_presensi">Presensi</string>
     <string name="menu_pekerjaan">Pekerjaan</string>
     <string name="menu_pengaturan">Pengaturan</string>
-
     <string name="img_menu_divisi">img_menu_divisi</string>
     <string name="img_menu_karyawan">img_menu_karyawan</string>
     <string name="img_menu_presensi">img_menu_presensi</string>
     <string name="img_menu_pekerjaan">img_menu_pekerjaan</string>
     <string name="img_menu_pengaturan">img_menu_pengaturan</string>
-    <string name="text_apps_menu">Apps</string>
 
-    <string name="button_edit_Pekerjaan">Simpan</string>
-    <string name="edit_pekerjaan">Edit Pekerjaan</string>
-    <string name="pesan_hapus_pekerjaan">Hapus Pekerjaan?</string>
-    <string name="menu_edit_pekerjaan">Edit Pekerjaan</string>
-    <string name="menu_delete_pekerjaan">Delete Pekerjaan</string>
-    <string name="icon_titik3">icon_titik3</string>
-    <string name="img_profil">img_profil</string>
-    <string name="button_tambah_pekerjaan">+ Pekerjaan</string>
-    <string name="jumlah_pekerjaan">0</string>
-    <string name="search_hint_pekerjaan">Cari Pekerjaan ...</string>
-    <string name="status">Status</string>
-    <string name="spinner">spinner</string>
-    <string name="tambah_pekerjaan">Tambah Pekerjaan</string>
-    <string name="text_forum_nama_pekerjaan">Nama Pekerjaan</string>
-    <string name="text_forum_text_pekerjaan">Deskripsi Pekerjaan</string>
-    <string name="pilih_karyawan">Karyawan</string>
+    <!--Home Karyawan-->
+    <string name="hk_img_profil_karyawan">img_profil_karyawan</string>
+    <string name="hk_nama_karyawan">Nama Karyawan</string>
+    <string name="hk_text_apps_menu">Apps</string>
+    <string name="hk_menu_presensi">Presensi</string>
+    <string name="hk_img_menu_presensi">img_menu_presensi</string>
+    <string name="hk_menu_pekerjaan">Pekerjaan</string>
+    <string name="hk_img_menu_pekerjaan">img_menu_pekerjaan</string>
+    <string name="hk_menu_pengaturan">Pengaturan</string>
+    <string name="hk_img_menu_pengaturan">img_menu_pengaturan</string>
 
-    <string-array name="status">
+
+    <!--Divisi Perusahaan-->
+    <string name="dp_button_divisi">Tambah Divisi</string>
+    <string name="dp_img_divisi">img_divisi</string>
+    <string name="dp_divisi">Divisi</string>
+    <string name="dp_jumlah_divisi">0</string>
+    <string name="dp_search">Cari Divisi …</string>
+
+    <!--Adapter Divisi-->
+    <string name="dp_titik3">icon_titik3</string>
+    <string name="dp_nama_divisi">Android Developer</string>
+
+    <!--Tambah Divisi-->
+    <string name="td_judul">Tambah Divisi</string>
+    <string name="td_nama_divisi">Nama Divisi</string>
+    <string name="td_isiform_nama_divisi">Nama Divisi</string>
+    <string name="td_button_tambahdivisi">Tambah Divisi</string>
+
+    <!--Edit Divisi-->
+    <string name="ed_edit_divisi">Edit Divisi</string>
+    <string name="ed_nama_divisi">Nama Divisi</string>
+    <string name="ed_isiform_nama_divisi">Nama Divisi</string>
+    <string name="ed_button_simpan">Simpan</string>
+
+    <!--Menu Divisi-->
+    <string name="menu_edit_divisi">Edit Divisi</string>
+    <string name="menu_delete_divisi">Hapus Divisi</string>
+    <string name="pesan_hapus_divisi">Hapus Divisi?</string>
+
+    <!--Pekerjaan Perusahaan-->
+    <string name="pk_button_pekerjaan">Tambah Pekerjaan</string>
+    <string name="pk_img_pekerjaan">img_pekerjaan</string>
+    <string name="pk_pekerjaan">Pekerjaan</string>
+    <string name="pk_jumlah_pekerjaan">0</string>
+    <string name="pk_search">Cari Pekerjaan …</string>
+    <string name="pk_spinner">spinner</string>
+    <string-array name="pk_status">
         <item>Pilih Status</item>
         <item>Selesai</item>
-        <item>Berjalan</item>
+        <item>Belum selesai</item>
     </string-array>
 
-    <string-array name="karyawan">
+    <!--Adapter Pekerjaan-->
+    <string name="pk_img_profil">img_profil</string>
+    <string name="pk_titik3">icon_titik3</string>
+    <string name="pk_selesai">Selesai</string>
+    <string name="pk_belumselesai">Belum Selesai</string>
+    <string name="pk_pekerjaanselesai">Layout Login</string>
+    <string name="pk_pekerjaanbelumselesai">Layout Dashboard</string>
+    <string name="pk_namaselesai">Papa Zola</string>
+    <string name="pk_namabelumselessai">Boboboy</string>
+
+    <!--Tambah Pekerjaan-->
+    <string name="tp_judul">Tambah Pekerjaan</string>
+    <string name="tp_nama_pekerjaan">Nama Pekerjaan</string>
+    <string name="tp_isiform_nama_pekerjaan">Nama Pekerjaan</string>
+    <string name="tp_desc_pekerjaan">Deskripsi Pekerjaan</string>
+    <string name="tp_isiform_desc_pekerjaan">Desc…</string>
+    <string name="tp_pilih_karyawan">Karyawan</string>
+    <string name="tp_spinner">spinner</string>
+    <string name="tp_button_tambahpekerjaan">Tambah Pekerjaan</string>
+    <string-array name="tp_karyawan">
+        <item>Pilih Karyawan</item>
         <item>papa zola</item>
         <item>tukiman</item>
     </string-array>
 
-
-
-
-
-<!--Menu Karyawan-->
-    <string name="jumlah_karyawan">0</string>
-    <string name="button_tambah_karyawan">+ Karyawan</string>
-    <string name="search_hint_karyawan">Cari Karyawan ...</string>
-
-
-    <string-array name="pilih_divisi">
-        <item>Pilih Divisi</item>
-        <item>Android </item>
+    <!--Edit Pekerjaan-->
+    <string name="ep_judul">Edit Pekerjaan</string>
+    <string name="ep_nama_pekerjaan">Nama Pekerjaan</string>
+    <string name="ep_isiform_nama_pekerjaan">Nama Pekerjaan</string>
+    <string name="ep_desc_pekerjaan">Deskripsi Pekerjaan</string>
+    <string name="ep_isiform_desc_pekerjaan">Desc…</string>
+    <string name="ep_pilih_karyawan">Karyawan</string>
+    <string name="ep_spinner">spinner</string>
+    <string name="ep_button_simpan">Simpan</string>
+    <string-array name="ep_karyawan">
+        <item>Pilih Karyawan</item>
+        <item>papa zola</item>
+        <item>tukiman</item>
     </string-array>
 
-    <string name="divisi_android">Android Developer</string>
-    <string name="data_karyawan1">Data Karyawan 1</string>
-    <string name="nama_karyawan">Nama Karyawan</string>
-    <string name="email_karyawan">E-Mail Karyawan</string>
-    <string name="data_divisi_karyawan">Data Divisi Karyawan</string>
+    <!--Menu Pekerjaan-->
+    <string name="menu_edit_pekerjaan">Edit Pekerjaan</string>
+    <string name="menu_delete_pekerjaan">Hapus Pekerjaan</string>
+    <string name="pesan_hapus_pekerjaan">Hapus Pekerjaan?</string>
 
+    <!--Karyawan Perusahaan-->
+    <string name="kp_button_karyawan">Tambah Karyawan</string>
+    <string name="kp_img_karyawan">img_karyawan</string>
+    <string name="kp_Karyawan">Karyawan</string>
+    <string name="kp_jumlah_karyawan">0</string>
+    <string name="kp_search">Cari Karyawan …</string>
+    <string-array name="kp_pilih_divisi">
+        <item>Pilih Divisi</item>
+        <item>Android </item>
+        <item>Web</item>
+    </string-array>
+    <string name="kp_spinner">spinner</string>
 
-<!--Menu Tambah Karyawan-->
-    <string name="menu_tambah_karyawan">Tambah Karyawan</string>
-    <string name="text_nama_karyawan">Nama Karyawan</string>
-    <string name="text_form_nama_karyawan">Nama</string>
-    <string name="text_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+    <!--Adapter Karyawan-->
+    <string name="kp_img_profil">img_profil</string>
+    <string name="kp_titik3">icon_titik3</string>
+    <string name="kp_nama_divisi">Android Developer</string>
+    <string name="kp_nama">Papa Zola</string>
+    <string name="kp_email">papazola@gmail.com</string>
 
-    <string name="text_jenis_kelamin">Jenis Kelamin</string>
-    <string-array name="text_form_jenis_kelamin">Jenis Kelamin
+    <!--Tambah Karyawan-->
+    <string name="tk_judul">Tambah Karyawan</string>
+    <string name="tk_nama_karyawan">Nama Karyawan</string>
+    <string name="tk_isiform_nama_karyawan">Nama Karyawan</string>
+    <string name="tk_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+    <string name="tk_isiform_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+    <string name="tk_jenis_kelamin_karyawan">Jenis Kelamin</string>
+    <string-array name="tk_isiform_jenis_kelamin">
+        <item>Jenis Kelamin</item>
         <item>Laki-Laki</item>
         <item>Perempuan</item>
     </string-array>
-
-    <string name="text_alamat_karyawan">Alamat Karyawan</string>
-    <string name="text_form_alamat_karyawan">Alamat</string>
-    <string name="text_no_handphone_karyawan">No. Handphone Karyawan</string>
-    <string name="text_form_no_handphone_karyawan">No. Handphone</string>
-
-    <string name="text_pilih_divisi">Pilih Divisi Karyawan</string>
-    <string-array name="text_form_pilih_divisi">Dvisi
+    <string name="tk_alamat_karyawan">Alamat Karyawan</string>
+    <string name="tk_isiform_alamat_karyawan">Alamat</string>
+    <string name="tk_nohp_karyawan">No Handphone Karyawan</string>
+    <string name="tk_isiform_nohp_karyawan">No. Handphone</string>
+    <string name="tk_pilih_divisi_karyawan">Pilih Divisi Karyawan</string>
+    <string-array name="tk_isiform_pilih_divisi">
+        <item>Pilih Divisi</item>
         <item>Android</item>
         <item>Web Developer</item>
     </string-array>
+    <string name="tk_email_karyawan">Email Karyawan</string>
+    <string name="tk_isiform_karyawan">Email Karyawan</string>
+    <string name="tk_password_karyawan">Password Karyawan</string>
+    <string name="tk_isiform_password_karyawan">Password</string>
+    <string name="tk_button_simpan">Tambah Karyawan</string>
+    <string name="tk_img_mata">img_mata</string>
 
-    <string name="text_email_karyawan">E-mail Karyawan</string>
-    <string name="text_form_email_karyawan">Email</string>
-    <string name="text_password_karyawan">Password Karyawan</string>
-    <string name="text_form_password_karyawan">Password</string>
-    <string name="simpan_data">Simpan</string>
+    <!--Edit Karyawan-->
+    <string name="ek_judul">Edit Karyawan</string>
+    <string name="ek_button_gantipassword">Ganti Password</string>
+    <string name="ek_nama_karyawan">Nama Karyawan</string>
+    <string name="ek_isiform_nama_karyawan">Nama Karyawan</string>
+    <string name="ek_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+    <string name="ek_isiform_tanggallahir_karyawan">Tanggal Lahir Karyawan</string>
+    <string name="ek_jenis_kelamin_karyawan">Jenis Kelamin</string>
+    <string-array name="ek_isiform_jenis_kelamin">
+        <item>Jenis Kelamin</item>
+        <item>Laki-Laki</item>
+        <item>Perempuan</item>
+    </string-array>
+    <string name="ek_alamat_karyawan">Alamat Karyawan</string>
+    <string name="ek_isiform_alamat_karyawan">Alamat Karyawan</string>
+    <string name="ek_nohp_karyawan">No Handphone Karyawan</string>
+    <string name="ek_isiform_nohp_karyawan">No. Handphone</string>
+    <string name="ek_pilih_divisi_karyawan">Pilih Divisi Karyawan</string>
+    <string-array name="ek_isiform_pilih_divisi">
+        <item>Pilih Divisi</item>
+        <item>Android</item>
+        <item>Web Developer</item>
+    </string-array>
+    <string name="ek_email_karyawan">Email Karyawan</string>
+    <string name="ek_isiform_karyawan">Email Karyawan</string>
+    <string name="ek_password_karyawan">Password Karyawan</string>
+    <string name="ek_isiform_password_karyawan">Password</string>
+    <string name="ek_button_simpan">Simpan</string>
 
-<!--Menu Edit Karyawan-->
-    <string name="ganti_password">Ganti Password</string>
+    <!--Menu Karyawan-->
     <string name="menu_edit_karyawan">Edit Karyawan</string>
-    <string name="text_edit_nama_karyawan">Nama</string>
-    <string name="text_edit_tanggallahir">Nama</string>
-    <string name="text_edit_jenis_kelamin">Nama</string>
-    <string name="text_edit_alamat_karyawan">Nama</string>
-    <string name="text_edit_no_handphone_karyawan">Nama</string>
-    <string name="text_edit_pilih_divisi">Nama</string>
-    <string name="text_edit_email_karyawan">Nama</string>
-
-<!--Menu Ganti Password-->
-    <string name="menu_ganti_password">Ganti Password</string>
-    <string name="text_password_lama">Password Lama</string>
-    <string name="text_password_baru1">Password Baru</string>
-    <string name="text_password_baru2">Password Baru</string>
-
     <string name="menu_delete_karyawan">Hapus Karyawan</string>
-    <string name="pesan_hapus_karyawan">Hapus Data Karyawan?</string>
+    <string name="pesan_hapus_karyawan">Hapus Karyawan?</string>
 
 
-    <string name="button_edit_presensi">Simpan</string>
-    <string name="edit_presensi">Edit Presensi</string>
-    <string name="pesan_hapus_presensi">Hapus Presensi?</string>
-    <string name="menu_edit_presensi">Edit Presensi</string>
-    <string name="menu_delete_presensi">Delete Presensi</string>
-    <string name="button_tambah_presensi">+ Presensi</string>
-    <string name="jumlah_presensi">0</string>
-    <string name="search_hint_presensi">Cari Presensi ...</string>
-    <string name="tambah_presensi">Simpan</string>
-    <string name="text_forum_nama_presensi">Tanggal Presensi</string>
-    <string name="text_forum_text_presensi">Deskripsi Presensi</string>
-    <string name="pilih_waktu">Waktu</string>
-    <string name="pilih_divisi">Cari Nama Divisi</string>
-    <string name="papa_zola">Papa Zola</string>
-    <string name="catatan">Catatan</string>
-    <string name="waktu">07-10-2022</string>
+    <!--Ganti Password-->
+    <string name="gp_judul">Ganti Password</string>
+    <string name="gp_password_lama">Password Lama</string>
+    <string name="gp_isiform_password_lama">Masukan Password Lama</string>
+    <string name="gp_password_baru1">Password Baru</string>
+    <string name="gp_isiform_password_baru1">Masukan Password Lama</string>
+    <string name="gp_password_baru2">Password Baru</string>
+    <string name="gp_isiform_password_baru2">Masukan Password Lama</string>
+    <string name="gp_button_simpan">Simpan</string>
+    <string name="gp_img_mata1">img_mata</string>
+    <string name="gp_img_mata2">img_mata</string>
+    <string name="gp_img_mata3">img_mata</string>
 
-
-    <string-array name="status_hadir">
+    <!--Presensi Perusahaan-->
+    <string name="pp_button_presensi">Tambah Presensi</string>
+    <string name="pp_img_presensi">img_Presensi</string>
+    <string name="pp_presensi">Presensi</string>
+    <string name="pp_jumlah_presensi">0</string>
+    <string name="pp_search">Cari Presensi …</string>
+    <string-array name="pp_status_hadir">
         <item>Status Hadir</item>
         <item>Hadir</item>
         <item>Tidak Hadir</item>
     </string-array>
+    <string name="pp_spinner">spinner</string>
+
+    <!--Adapter Presensi-->
+    <string name="pp_tanggal">07/10/2022</string>
+    <string name="pp_img_profil">img_profil</string>
+    <string name="pp_hadir">Hadir</string>
+    <string name="pp_tidakhadir">Tidak Hadir</string>
+    <string name="pp_namahadir">Papa Zola</string>
+    <string name="pp_namatidakhadir">Boboboy</string>
+
+    <!--Tambah Presensi-->
+    <string name="pp_judul">Tambah Presensi</string>
+    <string name="pp_tanggalpresensi">Tanggal Presensi</string>
+    <string name="pp_isiform_tanggalpresesnsi">Tanggal Presensi</string>
+    <string name="pp_waktu">Waktu</string>
+    <string name="pp_isiform_waktu">00:00</string>
+    <string name="pp_button_simpan">Simpan</string>
+
+    <!--Presensi Karyawan-->
+    <string name="catatan">Catatan</string>
+    <string name="papa_zola">Papa Zola</string>
+
+    <!--Pra Login-->
+    <string name="pl_logo">logo</string>
+    <string name="pl_login">Pilih Login</string>
+    <string name="pl_text">* Untuk akun karyawan dibuat atau didaftarkan oleh perusahaan, anda tidak bisa membuat akun karyawan sendiri</string>
+    <string name="pl_button_perusahaan">Perusahaan</string>
+    <string name="pl_button_karyawan">Karyawan</string>
+    <string name="pl_belumregis">Belum punya akun perusahaan?</string>
+    <string name="pl_regis">Daftar</string>
+
+    <!--Login Karyawan-->
+    <string name="lk_logo">logo</string>
+    <string name="lk_login">Login Karyawan</string>
+    <string name="lk_perusahaan">Perusahaan</string>
+    <string name="lk_email">Email</string>
+    <string name="lk_password">Password</string>
+    <string name="lk_isiform_perusahaan">Perusahaan</string>
+    <string name="lk_isiform_email">Email</string>
+    <string name="lk_isiform_password">Password</string>
+    <string name="lk_button_login">login</string>
+    <string name="lk_belumregis">Belum punya akun perusahaan?</string>
+    <string name="lk_regis">Daftar</string>
+
+    <!--Login Perusahaan-->
+    <string name="lp_logo">logo</string>
+    <string name="lp_login">Login Perusahaan</string>
+    <string name="lp_email">Email</string>
+    <string name="lp_password">Password</string>
+    <string name="lp_isiform_email">Email</string>
+    <string name="lp_isiform_password">Password</string>
+    <string name="lp_button_login">login</string>
+    <string name="lp_belumregis">Belum punya akun perusahaan?</string>
+    <string name="lp_regis">Daftar</string>
+
+    <!--Register-->
+    <string name="rg_logo">logo</string>
+    <string name="rg_nama_perusahaan">Nama Perusahaan</string>
+    <string name="rg_isiform_nama_perusahaan">Nama Perusahaan</string>
+    <string name="rg_register">Daftar Perusahaan</string>
+    <string name="rg_email">Email</string>
+    <string name="rg_password">Password</string>
+    <string name="rg_isiform_email">Email</string>
+    <string name="rg_isiform_password">Password</string>
+    <string name="rg_button_daftar">Daftar</string>
+    <string name="rg_punyaakun">Sudah punya akun?</string>
+    <string name="rg_login">Masuk</string>
 
 </resources>

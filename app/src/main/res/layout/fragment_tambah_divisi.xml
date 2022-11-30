@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tambahDivisi"
+    android:id="@+id/layoutTambahDivisi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pick_background_1"
@@ -22,38 +22,38 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_tambah_divisi"
+                android:id="@+id/td_judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:text="@string/td_judul"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/tambah_divisi"
                 android:textColor="#515151"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/text_forum_nama_divisi"
+                android:id="@+id/td_nama_divisi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
+                android:text="@string/td_nama_divisi"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/text_forum_nama_divisi"
                 android:textColor="#515151"
                 android:textSize="12sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/collider_form_nama_divisi"
+                android:id="@+id/td_coll_nama_divisi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_nama_divisi_dalam_form"
+                    android:id="@+id/td_form_nama_divisi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -63,10 +63,12 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/text_forum_nama_divisi"
+                    android:hint="@string/td_isiform_nama_divisi"
+                    android:fontFamily="@font/nunito_semibold"
                     android:inputType="textPersonName"
+                    android:padding="2dp"
                     android:textColorHint="#6F6F6F"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -75,15 +77,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/button_tambah_divisi_form"
+                android:id="@+id/td_button_tambah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginBottom="16dp"
+                android:text="@string/td_button_tambahdivisi"
+                android:background="@drawable/pick_background_menu"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/tambah_divisi"
-                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:backgroundTint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

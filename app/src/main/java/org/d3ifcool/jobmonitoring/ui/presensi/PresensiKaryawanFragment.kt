@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiKaryawanBinding
-import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPresensiBinding
 
 class PresensiKaryawanFragment : Fragment() {
 

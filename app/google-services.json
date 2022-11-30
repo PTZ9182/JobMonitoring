@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "638295672421",
+    "project_id": "job-monitoring-f5d49",
+    "storage_bucket": "job-monitoring-f5d49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638295672421:android:4b4f28f363c6855d8ce88c",
+        "android_client_info": {
+          "package_name": "org.d3ifcool.jobmonitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638295672421-knsp6pr0u97tlojkjeiltkkaf41pe2dh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.d3ifcool.jobmonitoring",
+            "certificate_hash": "ffcd472f15525a0960184ba74b8d35815acd2c1d"
+          }
+        },
+        {
+          "client_id": "638295672421-pavl3dhnl5i5h2i4c5cfto6rv73i1ctv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB29G0xb4BIyz_ovA6DeMP6GevZvy9_TDU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638295672421-pavl3dhnl5i5h2i4c5cfto6rv73i1ctv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

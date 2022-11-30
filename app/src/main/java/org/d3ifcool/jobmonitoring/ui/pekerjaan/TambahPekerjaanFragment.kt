@@ -9,24 +9,28 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
-import org.d3ifcool.jobmonitoring.data.ListKaryawanPekerjaanModel
-import org.d3ifcool.jobmonitoring.data.PekerjaanModel
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPekerjaanBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.d3ifcool.jobmonitoring.model.DivisiModel
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
+import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 
 class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private val api by lazy { ApiRetrofit().endpoint }
-    private var _binding: FragmentTambahPekerjaanBinding?= null
+    private var _binding: FragmentTambahPekerjaanBinding? = null
     private val binding get() = _binding!!
 
-    private var listIdKaryawana = ArrayList<Int>()
-    private var listKaryawana = ArrayList<String>()
+    val database = Firebase.database
+    val dbRef = database.getReference("Perusahaan")
 
+    private var listIdKaryawan = ArrayList<String>()
+    private var listKaryawan = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +39,11 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         _binding = FragmentTambahPekerjaanBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onStart() {
+        listKaryawan()
+        super.onStart()
     }
 
 
@@ -46,73 +55,62 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        tambahPekerjaan()
-        listKaryawan()
 
         binding.layoutTambahPekerjaan.setOnRefreshListener {
             binding.layoutTambahPekerjaan.isRefreshing = false
         }
+        binding.tpButtonTambah.setOnClickListener {
+            if (binding.tpFormNamaPekerjaan.text.isEmpty()){
+                binding.tpFormNamaPekerjaan.setError("Nama pekerjaan tidak boleh kosong")
+                binding.tpFormNamaPekerjaan.requestFocus()
+            } else if (binding.tpFormDescPekerjaan.text.isEmpty()){
+                binding.tpFormDescPekerjaan.setError("Deskripsi tidak boleh kosong")
+                binding.tpFormDescPekerjaan.requestFocus()
+            } else {
+                tambahPekerjaan()
+            }
+        }
     }
 
-    private fun tambahPekerjaan() {
-        binding.buttonTambahPekerjaan.setOnClickListener {
-
-            var perusahaan =
-                if (binding.textNamaDalamFormPekerjaan.text.isNotEmpty()) {
-                    api.createPekerjaan(binding.textNamaDalamFormPekerjaan.text.toString(),
-                        binding.textDeskripsiDalamFormPekerjaan.text.toString(),"telkom",binding.listKaryawan.getSelectedItem().toString())
-                        .enqueue(object : Callback<PekerjaanModel> {
-                            override fun onResponse(
-                                call: Call<PekerjaanModel>,
-                                response: Response<PekerjaanModel>
-                            ) {
-                                if (response.isSuccessful) {
-                                    Toast.makeText(
-                                        activity, "Pekerjaan Berhasil Dibuat",
-                                        Toast.LENGTH_LONG).show()
-                                    findNavController().navigate(R.id.action_tambahPekerjaanFragment_to_pekerjaanFragment)
-                                } else
-                                    Toast.makeText(
-                                        activity, "Gagal",
-                                        Toast.LENGTH_LONG).show()
-                            }
-
-                            override fun onFailure(call: Call<PekerjaanModel>, t: Throwable) {
-
-                            }
-                        })
-                } else {
-                    Toast.makeText(
-                        activity, "Nama Pekerjaan Tidak Boleh Kosong",
-                        Toast.LENGTH_LONG).show()
-                }
-
+    private fun tambahPekerjaan(){
+        val idPekerjaan = dbRef.push().key!!
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val pekerjaan = PekerjaanModel(
+            idPekerjaan,
+            binding.tpFormNamaPekerjaan.text.toString(),
+            binding.tpFormDescPekerjaan.text.toString(),
+            binding.tpListKaryawan.selectedItem.toString())
+        dbRef.child(name!!).child("Pekerjaan").child(idPekerjaan).setValue(pekerjaan).addOnCompleteListener{
+            Toast.makeText(activity,"Pekerjaan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_tambahPekerjaanFragment_to_pekerjaanFragment)
+        }.addOnFailureListener{ tast ->
+            Toast.makeText(activity,"Gagal menambahkan Pekerjaan${tast.message}", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun listKaryawan(){
-        api.listKaryawan().enqueue(object : Callback<ListKaryawanPekerjaanModel> {
-            override fun onResponse(call: Call<ListKaryawanPekerjaanModel>, response: Response<ListKaryawanPekerjaanModel>) {
-                if (response.isSuccessful) {
-                    val listData = response.body()!!.list_karyawan_pekerjaan
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val dbRef = database.getReference("Karyawan").child(name!!)
+        dbRef.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(KaryawanModel::class.java)
+                        listKaryawan.add(datas!!.namaKaryawan)
 
-                    listData?.forEach{
-                        listIdKaryawana.add(it.id)
-                        listKaryawana.add(it.nama_karyawan)
                     }
-
-                    binding.listKaryawan.onItemSelectedListener = this@TambahPekerjaanFragment
-                    val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_dropdown_item,listKaryawana)
-                    binding.listKaryawan.adapter = adapter
+                    binding.tpListKaryawan.onItemSelectedListener = this@TambahPekerjaanFragment
+                    val adapter = ArrayAdapter(requireContext(),
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listKaryawan)
+                    binding.tpListKaryawan.adapter = adapter
                 }
             }
-
-            override fun onFailure(call: Call<ListKaryawanPekerjaanModel>, t: Throwable) {
-                Toast.makeText(
-                    activity, "Gagal Memuat",
-                    Toast.LENGTH_LONG
-                ).show()
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
             }
+
         })
     }
 

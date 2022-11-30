@@ -4,34 +4,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/layoutTambahPresensi"
     android:background="@drawable/pick_background_1"
     android:orientation="vertical"
     tools:context=".ui.presensi.TambahPresensiFragment">
 
     <TextView
-        android:id="@+id/text_judul_pekerjaan"
+        android:id="@+id/pp_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/tambah_presensi"
+        android:text="@string/pp_judul"
         android:textColor="#515151"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/text_pekerjaan"
+        android:id="@+id/pp_tanggalpresesnsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/text_forum_nama_presensi"
+        android:text="@string/pp_tanggalpresensi"
         android:textColor="#515151"
         android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/collider_form_nama_pekerjaan"
+        android:id="@+id/pp_coll_tanggalpresensi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -43,11 +44,11 @@
         app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan">
 
         <EditText
-            android:id="@+id/editTextDate3"
+            android:id="@+id/pp_isiform_tanggalpresensi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="20"
-            android:hint="dd/mmmm/yy"
+            android:hint="@string/pp_isiform_tanggalpresesnsi"
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,20 +57,20 @@
 
 
     <TextView
-        android:id="@+id/text_waktu"
+        android:id="@+id/pp_waktu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/pilih_waktu"
+        android:text="@string/pp_waktu"
         android:textColor="#515151"
         android:textSize="12sp" />
 
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/spinner"
+        android:id="@+id/pp_coll_waktu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -82,11 +83,11 @@
 
 
         <EditText
-            android:id="@+id/editTextTime"
+            android:id="@+id/pp_isiform_waktu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="20"
-            android:hint="00 : 00"
+            android:hint="@string/pp_isiform_waktu"
             android:inputType="time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,14 +96,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button_tambah_pekerjaan"
+        android:id="@+id/pp_button_simpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/tambah_presensi"
+        android:text="@string/pp_button_simpan"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

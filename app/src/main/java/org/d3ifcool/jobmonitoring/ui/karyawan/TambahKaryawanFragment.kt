@@ -10,22 +10,27 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
-import org.d3ifcool.jobmonitoring.data.KaryawanModel
-import org.d3ifcool.jobmonitoring.data.ListDivisiModel
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahKaryawanBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.d3ifcool.jobmonitoring.model.DivisiModel
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
+
 
 class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private val api by lazy { ApiRetrofit().endpoint }
     private var _binding: FragmentTambahKaryawanBinding? = null
     private val binding get() = _binding!!
 
-    private var listIdDivisi = ArrayList<Int>()
+    val database = Firebase.database
+    val dbRef = database.getReference("Karyawan")
+
+    private var listIdDivisi = ArrayList<String>()
     private var listDivisi = ArrayList<String>()
 
     override fun onCreateView(
@@ -38,6 +43,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onStart() {
+        listDivisi()
         super.onStart()
     }
 
@@ -49,84 +55,91 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tambahKaryawan()
-        listDivisi()
+
         binding.layoutTambahKaryawan.setOnRefreshListener {
             binding.layoutTambahKaryawan.isRefreshing = false
         }
+
+        binding.tkButtonSimpan.setOnClickListener {
+            if (binding.tkFormNama.text.isEmpty()){
+                binding.tkFormNama.setError("Nama tidak boleh kosong")
+                binding.tkFormNama.requestFocus()
+            } else if (binding.tkFormTanggallahir.text.isEmpty()){
+                binding.tkFormTanggallahir.setError("Tanggal lahir tidak boleh kosong")
+                binding.tkFormTanggallahir.requestFocus()
+            } else if (binding.tkFormJeniskelamin.selectedItem.equals("Jenis Kelamin")){
+                Toast.makeText(context, "Pilih jenis kelamin", Toast.LENGTH_SHORT).show()
+                binding.tkFormJeniskelamin.requestFocus()
+            } else if (binding.tkFormAlamat.text.isEmpty()){
+                binding.tkFormAlamat.setError("Alamat tidak boleh kosong")
+                binding.tkFormAlamat.requestFocus()
+            } else if (binding.tkFormNohp.text.isEmpty()){
+                binding.tkFormNohp.setError("No.Handphone tidak boleh kosong")
+                binding.tkFormNohp.requestFocus()
+            } else if (binding.tkFormPilihdivisi.selectedItem.equals("Pilih Divisi")){
+                Toast.makeText(context, "Pilih divisi", Toast.LENGTH_SHORT).show()
+                binding.tkFormPilihdivisi.requestFocus()
+            } else if (binding.tkFormEmail.text.isEmpty()){
+                binding.tkFormEmail.setError("Email tidak boleh kosong")
+                binding.tkFormEmail.requestFocus()
+            }else if (binding.tkFormPassword.text.isEmpty()){
+                binding.tkFormPassword.setError("Password tidak boleh kosong")
+                binding.tkFormPassword.requestFocus()
+            } else if (binding.tkFormPassword.text.length < 8 ){
+                binding.tkFormPassword.setError("Password minimal 8 character")
+                binding.tkFormPassword.requestFocus()
+            } else {
+                tambahKaryawan()
+            }
+        }
     }
 
-    private fun tambahKaryawan() {
-        binding.buttonSimpanDataForm.setOnClickListener {
-
-            if (binding.textNamaKaryawanDalamForm.text.isNotEmpty() &&
-                    binding.tanggallahirDalamForm.text.isNotEmpty() &&
-                    binding.textAlamatKaryawanDalamForm.text.isNotEmpty() &&
-                    binding.textNoHandphoneKaryawanDalamForm.text.isNotEmpty() &&
-                    binding.textEmailKaryawanDalamForm.text.isNotEmpty() &&
-                    binding.textPasswordKaryawanDalamForm.text.isNotEmpty()) {
-                api.createKaryawan(
-                    binding.textNamaKaryawanDalamForm.text.toString(),
-                    binding.tanggallahirDalamForm.text.toString(),
-                    binding.spJeniskelamin.getSelectedItem().toString(),
-                    binding.textAlamatKaryawanDalamForm.text.toString(),
-                    binding.textNoHandphoneKaryawanDalamForm.text.toString(),
-                    binding.spPilihdivisi.getSelectedItem().toString(),
-                    binding.textEmailKaryawanDalamForm.text.toString(),
-                    binding.textPasswordKaryawanDalamForm.text.toString(),"telkom")
-                    .enqueue(object : Callback<KaryawanModel> {
-                        override fun onResponse(
-                            call: Call<KaryawanModel>,
-                            response: Response<KaryawanModel>
-                        ) {
-                            if (response.isSuccessful) {
-                                Toast.makeText(
-                                    activity, "Karyawan Berhasil Dibuat",
-                                    Toast.LENGTH_LONG).show()
-                                findNavController().navigate(R.id.action_tambahKaryawanFragment_to_karyawanFragment)
-                            } else
-                                Toast.makeText(
-                                    activity, "Gagal",
-                                    Toast.LENGTH_LONG).show()
-                        }
-
-                        override fun onFailure(call: Call<KaryawanModel>, t: Throwable) {
-
-                        }
-                    })
-            } else {
-                Toast.makeText(
-                    activity, "Data Tidak Boleh Kosong",
-                    Toast.LENGTH_LONG).show()
+    private fun tambahKaryawan(){
+        val idKaryawan = dbRef.push().key!!
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val karyawan = KaryawanModel(
+            idKaryawan,
+            binding.tkFormNama.text.toString(),
+            binding.tkFormTanggallahir.text.toString(),
+            binding.tkFormJeniskelamin.selectedItem.toString(),
+            binding.tkFormAlamat.text.toString(),
+            binding.tkFormNohp.text.toString(),
+            binding.tkFormPilihdivisi.selectedItem.toString(),
+            binding.tkFormEmail.text.toString(),
+            binding.tkFormPassword.text.toString())
+        if (name != null) {
+            dbRef.child(name).child(idKaryawan).setValue(karyawan).addOnCompleteListener{
+                Toast.makeText(activity,"Karyawan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_tambahKaryawanFragment_to_karyawanFragment)
+            }.addOnFailureListener{ tast ->
+                Toast.makeText(activity,"Gagal menambahkan Karyawan${tast.message}", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
     private fun listDivisi(){
-        api.listDivisi().enqueue(object : Callback<ListDivisiModel> {
-            override fun onResponse(call: Call<ListDivisiModel>, response: Response<ListDivisiModel>) {
-                if (response.isSuccessful) {
-                    val listData = response.body()!!.tabel_divisi
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
+        dbRef.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(DivisiModel::class.java)
+                        listDivisi.add(datas!!.divisi)
 
-                    listData?.forEach{
-                        listIdDivisi.add(it.id)
-                        listDivisi.add(it.divisi)
                     }
-
-                    binding.spPilihdivisi.onItemSelectedListener = this@TambahKaryawanFragment
+                    binding.tkFormPilihdivisi.onItemSelectedListener = this@TambahKaryawanFragment
                     val adapter = ArrayAdapter(requireContext(),
                         androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listDivisi)
-                    binding.spPilihdivisi.adapter = adapter
+                    binding.tkFormPilihdivisi.adapter = adapter
                 }
             }
-
-            override fun onFailure(call: Call<ListDivisiModel>, t: Throwable) {
-                Toast.makeText(
-                    activity, "Gagal Memuat",
-                    Toast.LENGTH_LONG
-                ).show()
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
             }
+
         })
     }
 

@@ -22,38 +22,38 @@
             android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text_judul_pekerjaan"
+        android:id="@+id/tp_judul"
+        android:text="@string/tp_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_bold"
-        android:text="@string/tambah_pekerjaan"
         android:textColor="#515151"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/text_pekerjaan"
+        android:id="@+id/tp_nama_pekerjaan"
+        android:text="@string/tp_nama_pekerjaan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/text_forum_nama_pekerjaan"
         android:textColor="#515151"
         android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/collider_form_nama_pekerjaan"
+        android:id="@+id/tp_coll_nama_pekerjaan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/pick_background_menu">
 
         <EditText
-            android:id="@+id/text_nama_dalam_form_pekerjaan"
+            android:id="@+id/tp_form_nama_pekerjaan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -62,10 +62,12 @@
             android:layout_marginBottom="8dp"
             android:background="@color/transparant"
             android:ems="10"
-            android:hint="@string/text_forum_nama_pekerjaan"
+            android:hint="@string/tp_isiform_nama_pekerjaan"
+            android:fontFamily="@font/nunito_semibold"
             android:inputType="textPersonName"
+            android:padding="2dp"
             android:textColorHint="#6F6F6F"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,103 +77,118 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/text_deskripsi_pekerjaan"
+        android:id="@+id/tp_desc"
+        android:text="@string/tp_desc_pekerjaan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/text_forum_text_pekerjaan"
+        android:textColor="#515151"
+        android:textSize="12sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/tp_coll_desc_pekerjaan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/pick_background_menu">
+
+                <EditText
+                    android:id="@+id/tp_form_desc_pekerjaan"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:background="@color/transparant"
+                    android:ems="10"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:hint="@string/tp_isiform_desc_pekerjaan"
+                    android:inputType="textMultiLine"
+                    android:padding="2dp"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tp_karyawan"
+        android:text="@string/tp_pilih_karyawan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_semibold"
         android:textColor="#515151"
         android:textSize="12sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/collider_form_deskripsi_pekerjaan"
+        android:id="@+id/tp_spinner"
         android:layout_width="match_parent"
-        android:layout_height="154dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/pick_background_menu">
 
-        <EditText
-            android:id="@+id/text_deskripsi_dalam_form_pekerjaan"
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/tp_list_karyawan"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@color/transparant"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:autofillHints=""
+            android:contentDescription="@string/tp_spinner"
             android:ems="10"
-            android:hint="@string/text_forum_text_pekerjaan"
-            android:inputType="textMultiLine"
+            android:entries="@array/tp_karyawan"
+            android:fontFamily="@font/nunito_light"
+            android:minHeight="35dp"
             android:textColorHint="#6F6F6F"
-            android:textSize="14sp"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck"
-            android:autofillHints="" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/text_karyawan_pekerjaan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="@string/pilih_karyawan"
-        android:textColor="#515151"
-        android:textSize="12sp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/pick_background_menu"
-        app:layout_constraintBottom_toBottomOf="@+id/search_pekerjaan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan">
-
-
-
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/list_karyawan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/spinner"
-            android:fontFamily="@font/nunito_light"
-            android:minHeight="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:entries="@array/karyawan"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="TouchTargetSizeCheck">
 
         </androidx.appcompat.widget.AppCompatSpinner>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/button_tambah_pekerjaan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:text="@string/tambah_pekerjaan"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
+            <Button
+                android:id="@+id/tp_button_tambah"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/pick_background_menu"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/tp_button_tambahpekerjaan"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:backgroundTint="@color/orange"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck,DuplicateSpeakableTextCheck" />
         </LinearLayout>
     </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

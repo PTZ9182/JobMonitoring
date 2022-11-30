@@ -1,10 +1,9 @@
 package org.d3ifcool.jobmonitoring.ui.divisi
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -14,23 +13,25 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.AdapterDivisi
-import org.d3ifcool.jobmonitoring.data.DivisiModel
-import org.d3ifcool.jobmonitoring.data.SubmitDivisiModel
+import org.d3ifcool.jobmonitoring.adapter.DivisiAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentDivisiBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.d3ifcool.jobmonitoring.model.DivisiModel
 
 
 class DivisiFragment : Fragment() {
 
-    private val api by lazy { ApiRetrofit().endpoint }
-    private lateinit var divisiAdapter: AdapterDivisi
     private var _binding: FragmentDivisiBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var divisiAdapter: DivisiAdapter
+
+    private val data = arrayListOf<DivisiModel>()
+    val database = Firebase.database
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,8 +43,8 @@ class DivisiFragment : Fragment() {
     }
 
     override fun onStart() {
+        getDivisi()
         super.onStart()
-        getNode()
     }
 
     override fun onDestroyView() {
@@ -54,9 +55,16 @@ class DivisiFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        divisiAdapter = AdapterDivisi(arrayListOf(), object : AdapterDivisi.OnAdapterListener {
+        binding.layoutDivisiPerusahaan.setOnRefreshListener {
+            binding.layoutDivisiPerusahaan.isRefreshing = false
+        }
 
-            override fun popupMenus(divisi: DivisiModel.Data, v: View) {
+        binding.dpButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_divisiFragment_to_tambahDivisiFragment)
+        }
+
+        divisiAdapter = DivisiAdapter(arrayListOf(),object : DivisiAdapter.OnAdapterListener{
+            override fun popupMenus(divisi: DivisiModel, v: View) {
                 val popupMenus = PopupMenu(context, v)
                 popupMenus.inflate(R.menu.divisi_menu)
                 popupMenus.setOnMenuItemClickListener {
@@ -68,10 +76,10 @@ class DivisiFragment : Fragment() {
                                 bundleOf("divisi" to td_divisi)
                             )
 
-                            val td_id2 = divisi.id
+                            val id = divisi.id
                             setFragmentResult(
-                                "id2",
-                                bundleOf("id2" to td_id2)
+                                "id",
+                                bundleOf("id" to id)
                             )
 
                             findNavController().navigate(R.id.action_divisiFragment_to_editDivisiFragment)
@@ -81,27 +89,17 @@ class DivisiFragment : Fragment() {
                             AlertDialog.Builder(context).apply {
                                 setMessage(R.string.pesan_hapus_divisi)
                                 setPositiveButton("HAPUS") { _, _ ->
-                                    api.delete(divisi.id!!)
-                                        .enqueue(object : Callback<SubmitDivisiModel> {
-                                            override fun onResponse(
-                                                call: Call<SubmitDivisiModel>,
-                                                response: Response<SubmitDivisiModel>
-                                            ) {
-                                                if (response.isSuccessful) {
-                                                    Toast.makeText(
-                                                        activity, "Divisi Telah Dihapus",
-                                                        Toast.LENGTH_LONG).show()
-                                                    getNode()
-                                                } else
-                                                    Toast.makeText(
-                                                        activity, "Gagal",
-                                                        Toast.LENGTH_LONG).show()
-                                            }
-
-                                            override fun onFailure(call: Call<SubmitDivisiModel>, t: Throwable) {
-
-                                            }
-                                        })
+                                    val user = Firebase.auth.currentUser
+                                    val name = user?.displayName
+                                    val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi").child(divisi.id)
+                                    val task = dbRef.removeValue()
+                                    task.addOnSuccessListener{
+                                        Toast.makeText(activity,"Divisi Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                                        getDivisi()
+                                    }.addOnFailureListener{ tast ->
+                                        Toast.makeText(activity,"Gagal Menghapus Divisi${tast.message}", Toast.LENGTH_SHORT).show()
+                                        getDivisi()
+                                    }
 
                                 }
                                 setNegativeButton("Batal") { dialog, _ ->
@@ -123,35 +121,27 @@ class DivisiFragment : Fragment() {
             adapter = divisiAdapter
             setHasFixedSize(true)
         }
-        binding.layoutDivisi.setOnRefreshListener {
-            getNode()
-            binding.layoutDivisi.isRefreshing = false
-        }
 
-        binding.buttonTambahDivisi.setOnClickListener {
-            it.findNavController().navigate(R.id.action_divisiFragment_to_tambahDivisiFragment)
-        }
     }
-
-    private fun getNode() {
-        api.data().enqueue(object : Callback<DivisiModel> {
-            override fun onResponse(call: Call<DivisiModel>, response: Response<DivisiModel>) {
-                if (response.isSuccessful) {
-                    val listData = response.body()!!.tabel_divisi
-
-                    divisiAdapter.setData(listData)
-                    binding.jumlahDivisi.text = listData.size.toString()
+    private fun getDivisi(){
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
+        dbRef.addValueEventListener(object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                data.clear()
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(DivisiModel::class.java)
+                        data.add(datas!!)
+                    }
+                    divisiAdapter.setData(data)
                 }
             }
-
-            override fun onFailure(call: Call<DivisiModel>, t: Throwable) {
-                Toast.makeText(
-                    activity, "Gagal Memuat",
-                    Toast.LENGTH_LONG
-                ).show()
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
             }
+
         })
     }
-
 }
-

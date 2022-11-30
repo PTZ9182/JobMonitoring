@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -12,21 +14,32 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.AdapterKaryawan
-import org.d3ifcool.jobmonitoring.api.ApiRetrofit
-import org.d3ifcool.jobmonitoring.data.KaryawanModel
+import org.d3ifcool.jobmonitoring.adapter.KaryawanAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.d3ifcool.jobmonitoring.model.DivisiModel
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 
-class KaryawanFragment : Fragment() {
+class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private val api by lazy { ApiRetrofit().endpoint }
-    private lateinit var karyawanAdapter: AdapterKaryawan
     private var _binding: FragmentKaryawanBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var karyawanAdapter: KaryawanAdapter
+
+    private var listIdDivisi = ArrayList<String>()
+    private var listDivisi = ArrayList<String>()
+
+    private val data = arrayListOf<KaryawanModel>()
+    val database = Firebase.database
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +47,8 @@ class KaryawanFragment : Fragment() {
     ): View? {
 
         _binding = FragmentKaryawanBinding.inflate(inflater, container, false)
+        getKaryawan()
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        getNode()
     }
 
 
@@ -50,62 +59,65 @@ class KaryawanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        listDivisi()
 
-        karyawanAdapter = AdapterKaryawan(arrayListOf(),object : AdapterKaryawan.OnAdapterListener {
-            override fun popupMenus(karyawan: KaryawanModel.Data, v: View) {
+        binding.layoutKaryawanPerusahaan.setOnRefreshListener {
+            binding.layoutKaryawanPerusahaan.isRefreshing = false
+        }
+        binding.kpButton.setOnClickListener {
+            it.findNavController().navigate(R.id.action_karyawanFragment_to_tambahKaryawanFragment)
+        }
+        karyawanAdapter = KaryawanAdapter(arrayListOf(),object : KaryawanAdapter.OnAdapterListener{
+            override fun popupMenus(karyawan: KaryawanModel, v: View) {
                 val popupMenus = PopupMenu(context, v)
                 popupMenus.inflate(R.menu.karyawan_menu)
                 popupMenus.setOnMenuItemClickListener {
                     when (it.itemId) {
                         R.id.edit_Karyawan -> {
-                            val kid = karyawan.id
+                            val id = karyawan.id
                             setFragmentResult(
                                 "id",
-                                bundleOf("id" to kid)
+                                bundleOf("id" to id)
                             )
-
-                            val kNkaryawan = karyawan.nama_karyawan
+                            val namaKaryawan = karyawan.namaKaryawan
                             setFragmentResult(
-                                "nama_karyawan",
-                                bundleOf("nama_karyawan" to kNkaryawan)
+                                "namaKaryawan",
+                                bundleOf("namaKaryawan" to namaKaryawan)
                             )
-                            val kTLahir = karyawan.tanggal_lahir
+                            val tanggallahir = karyawan.tanggallahir
                             setFragmentResult(
-                                "tanggal_lahir",
-                                bundleOf("tanggal_lahir" to kTLahir)
+                                "tanggallahir",
+                                bundleOf("tanggallahir" to tanggallahir)
                             )
-
-                            val kJkelamin = karyawan.jenis_kelamin
+                            val jenisKelamin = karyawan.jenisKelamin
                             setFragmentResult(
-                                "jenis_kelamin",
-                                bundleOf("jenis_kelamin" to kJkelamin)
+                                "jenisKelamin",
+                                bundleOf("jenisKelamin" to jenisKelamin)
                             )
-                            val kAlamat = karyawan.alamat
+                            val alamat = karyawan.alamat
                             setFragmentResult(
                                 "alamat",
-                                bundleOf("alamat" to kAlamat)
+                                bundleOf("alamat" to alamat)
                             )
-
-                            val kNHp = karyawan.no_hp
+                            val nohandphone = karyawan.nohandphone
                             setFragmentResult(
-                                "no_hp",
-                                bundleOf("no_hp" to kNHp)
+                                "nohandphone",
+                                bundleOf("nohandphone" to nohandphone)
                             )
-                            val kDivisi = karyawan.divisi
+                            val divisi = karyawan.divisi
                             setFragmentResult(
                                 "divisi",
-                                bundleOf("divisi" to kDivisi)
+                                bundleOf("divisi" to divisi)
                             )
-
-                            val kEmail = karyawan.email
+                            val email = karyawan.email
                             setFragmentResult(
                                 "email",
-                                bundleOf("email" to kEmail)
+                                bundleOf("email" to email)
                             )
-                            val kPassword = karyawan.password
+                            val password = karyawan.password
                             setFragmentResult(
                                 "password",
-                                bundleOf("password" to kPassword)
+                                bundleOf("password" to password)
                             )
                             findNavController().navigate(R.id.action_karyawanFragment_to_editKaryawanFragment)
                             true
@@ -114,27 +126,17 @@ class KaryawanFragment : Fragment() {
                             AlertDialog.Builder(context).apply {
                                 setMessage(R.string.pesan_hapus_karyawan)
                                 setPositiveButton("HAPUS") { _, _ ->
-                                    api.deleteKaryawan(karyawan.id!!)
-                                        .enqueue(object : Callback<KaryawanModel> {
-                                            override fun onResponse(
-                                                call: Call<KaryawanModel>,
-                                                response: Response<KaryawanModel>
-                                            ) {
-                                                if (response.isSuccessful) {
-                                                    Toast.makeText(
-                                                        activity, "Karyawan Telah Dihapus",
-                                                        Toast.LENGTH_LONG).show()
-                                                    getNode()
-                                                } else
-                                                    Toast.makeText(
-                                                        activity, "Gagal",
-                                                        Toast.LENGTH_LONG).show()
-                                            }
-
-                                            override fun onFailure(call: Call<KaryawanModel>, t: Throwable) {
-
-                                            }
-                                        })
+                                    val user = Firebase.auth.currentUser
+                                    val name = user?.displayName
+                                    val dbRef = database.getReference("Karyawan").child(name!!).child(karyawan.id)
+                                    val task = dbRef.removeValue()
+                                    task.addOnSuccessListener{
+                                        Toast.makeText(activity,"Karyawan Berhasil Dihapus", Toast.LENGTH_SHORT).show()
+                                        getKaryawan()
+                                    }.addOnFailureListener{ tast ->
+                                        Toast.makeText(activity,"Gagal Menghapus Karyawan${tast.message}", Toast.LENGTH_SHORT).show()
+                                        getKaryawan()
+                                    }
 
                                 }
                                 setNegativeButton("Batal") { dialog, _ ->
@@ -152,41 +154,64 @@ class KaryawanFragment : Fragment() {
 
         })
         with(binding.recyclerView) {
-            addItemDecoration(
-                androidx.recyclerview.widget.DividerItemDecoration(
-                    context,
-                    androidx.recyclerview.widget.RecyclerView.VERTICAL
-                )
-            )
+            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
             adapter = karyawanAdapter
             setHasFixedSize(true)
         }
-        binding.layoutKaryawan.setOnRefreshListener {
-            getNode()
-            binding.layoutKaryawan.isRefreshing = false
-        }
-        binding.buttonTambahKaryawan.setOnClickListener {
-            it.findNavController().navigate(R.id.action_karyawanFragment_to_tambahKaryawanFragment)
-        }
+
     }
-
-    private fun getNode() {
-        api.dataKaryawan().enqueue(object : Callback<KaryawanModel> {
-            override fun onResponse(call: Call<KaryawanModel>, response: Response<KaryawanModel>) {
-                if (response.isSuccessful) {
-                    val listData = response.body()!!.tabel_karyawan
-
-                    karyawanAdapter.setData(listData)
-                    binding.jumlahKaryawan.text = listData.size.toString()
+    private fun getKaryawan(){
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val dbRef = database.getReference("Karyawan").child(name!!)
+        dbRef.addValueEventListener(object  : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                data.clear()
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(KaryawanModel::class.java)
+                        data.add(datas!!)
+                    }
+                    karyawanAdapter.setData(data)
                 }
             }
-
-            override fun onFailure(call: Call<KaryawanModel>, t: Throwable) {
-                Toast.makeText(
-                    activity, "Gagal Memuat",
-                    Toast.LENGTH_LONG
-                ).show()
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
             }
+
         })
+    }
+
+    private fun listDivisi(){
+        val user = Firebase.auth.currentUser
+        val name = user?.displayName
+        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
+        dbRef.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(DivisiModel::class.java)
+                        listDivisi.add(datas!!.divisi)
+
+                    }
+                    binding.kpPilihDivisi.onItemSelectedListener = this@KaryawanFragment
+                    val adapter = ArrayAdapter(requireContext(),
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listDivisi)
+                    binding.kpPilihDivisi.adapter = adapter
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        p0?.getItemAtPosition(p2)
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }
