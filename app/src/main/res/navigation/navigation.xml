@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homePerusahaanFragment_to_praLoginFragment"
             app:destination="@id/praLoginFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_pengaturanFragment"
+            app:destination="@id/pengaturanFragment" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"
@@ -227,6 +230,9 @@
         <action
             android:id="@+id/action_homeKaryawanFragment_to_karyawanPekerjaanFragment"
             app:destination="@id/karyawanPekerjaanFragment" />
+        <action
+            android:id="@+id/action_homeKaryawanFragment_to_pengaturanKaryawanFragment"
+            app:destination="@id/pengaturanKaryawanFragment" />
     </fragment>
     <fragment
         android:id="@+id/karyawanPekerjaanFragment"
@@ -312,4 +318,38 @@
         android:name="org.d3ifcool.jobmonitoring.ui.pekerjaan.PekerjaanDetailFragment"
         android:label="fragment_pekerjaan_detail"
         tools:layout="@layout/fragment_pekerjaan_detail" />
+    <fragment
+        android:id="@+id/pengaturanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.PengaturanFragment"
+        android:label="fragment_pengaturan"
+        tools:layout="@layout/fragment_pengaturan" >
+        <action
+            android:id="@+id/action_pengaturanFragment_to_gantiPasswordPerusahaanFragment"
+            app:destination="@id/gantiPasswordPerusahaanFragment" />
+        <action
+            android:id="@+id/action_pengaturanFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
+        <action
+            android:id="@+id/action_pengaturanFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gantiPasswordPerusahaanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.GantiPasswordPerusahaanFragment"
+        android:label="fragment_ganti_password_perusahaan"
+        tools:layout="@layout/fragment_ganti_password_perusahaan" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/pengaturanKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.PengaturanKaryawanFragment"
+        android:label="fragment_pengaturan_karyawan"
+        tools:layout="@layout/fragment_pengaturan_karyawan" >
+        <action
+            android:id="@+id/action_pengaturanKaryawanFragment_to_praLoginFragment"
+            app:destination="@id/praLoginFragment" />
+    </fragment>
 </navigation>

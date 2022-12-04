@@ -70,8 +70,7 @@ class HomePerusahaanFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_presensiFragment)
         }
         binding.coliderMenuPengaturan.setOnClickListener {
-            Firebase.auth.signOut()
-            findNavController().navigate(R.id.action_homePerusahaanFragment_to_praLoginFragment)
+            it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_pengaturanFragment)
         }
     }
 }

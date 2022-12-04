@@ -348,4 +348,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Pengaturan Perusahaan-->
+    <string name="perusahaan">Nama Perusahaan</string>
+    <string name="alamatperusahaan">Alamat Perusahaan</string>
+    <string name="nohp">No Handphone</string>
+    <string name="Emailperusahaan">Email</string>
+    <string name="simpan_data">Simpan Data</string>
+
 </resources>
