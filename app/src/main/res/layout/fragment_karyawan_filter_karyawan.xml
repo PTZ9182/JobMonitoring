@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutPekerjaanPerusahaan"
+    android:id="@+id/layoutKaryawanFilterKaryawan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.pekerjaan.PekerjaanFragment">
+    tools:context=".ui.karyawan.KaryawanFilterKaryawanFragment">
 
 
     <ScrollView
@@ -30,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/pk_collider"
+                    android:id="@+id/kpkp_collider"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -43,14 +42,14 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <Button
-                        android:id="@+id/pk_button"
-                        android:text="@string/pk_button_pekerjaan"
+                        android:id="@+id/kpkp_button"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="16dp"
+                        android:text="@string/kp_button_karyawan"
                         android:background="@drawable/pick_background_menu"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="#FFFFFF"
@@ -58,59 +57,57 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/pk_pekerjaan"
+                        app:layout_constraintStart_toEndOf="@+id/kpkp_karyawan"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
                     <ImageView
-                        android:id="@+id/pk_img"
+                        android:id="@+id/kpkp_img"
                         android:layout_width="48dp"
                         android:layout_height="44dp"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="8dp"
-                        android:contentDescription="@string/pk_img_pekerjaan"
+                        android:contentDescription="@string/kp_img_karyawan"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_pekerjaan"
+                        app:srcCompat="@drawable/ic_karyawan"
                         tools:ignore="ImageContrastCheck" />
 
                     <TextView
-                        android:id="@+id/pk_pekerjaan"
+                        android:id="@+id/kpkp_karyawan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="@string/pk_pekerjaan"
+                        android:text="@string/kp_Karyawan"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="#515151"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/pk_img"
+                        app:layout_constraintStart_toEndOf="@+id/kpkp_img"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.32999998" />
 
                     <TextView
-                        android:id="@+id/pk_jumlah"
+                        android:id="@+id/kpkp_jumlah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pk_jumlah_pekerjaan"
+                        android:text="@string/kp_jumlah_karyawan"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/nunito_semibold"
                         android:textColor="#515151"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/pk_img"
-                        app:layout_constraintTop_toBottomOf="@+id/pk_pekerjaan"
+                        app:layout_constraintStart_toEndOf="@+id/kpkp_img"
+                        app:layout_constraintTop_toBottomOf="@+id/kpkp_karyawan"
                         app:layout_constraintVertical_bias="0.0" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/pk_search"
+                    android:id="@+id/kpkp_search"
                     android:layout_width="0dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="24dp"
@@ -120,31 +117,31 @@
                     android:background="@drawable/pick_background_menu"
                     app:iconifiedByDefault="false"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/pk_coll_fillter"
+                    app:layout_constraintEnd_toStartOf="@+id/kpkp_coll_fillter"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/pk_collider"
+                    app:layout_constraintTop_toBottomOf="@+id/kpkp_collider"
                     app:queryBackground="@color/transparant"
-                    app:queryHint="@string/pk_search">
+                    app:queryHint="@string/kp_search">
 
 
                 </androidx.appcompat.widget.SearchView>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/pk_coll_fillter"
+                    android:id="@+id/kpkp_coll_fillter"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/pick_background_menu"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/pk_search"
-                    app:layout_constraintTop_toBottomOf="@+id/pk_collider">
+                    app:layout_constraintStart_toEndOf="@+id/kpkp_search"
+                    app:layout_constraintTop_toBottomOf="@+id/kpkp_collider">
 
                     <ImageView
-                        android:id="@+id/pk_filter"
+                        android:id="@+id/kpkp_filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@string/pk_filter"
+                        android:contentDescription="@string/kp_filter"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,7 +165,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                 tools:itemCount="8"
-                tools:listitem="@layout/adapter_pekerjaan" >
+                tools:listitem="@layout/adapter_karyawan">
 
             </androidx.recyclerview.widget.RecyclerView>
 

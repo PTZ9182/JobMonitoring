@@ -277,7 +277,7 @@
                     android:ems="10"
                     android:hint="@string/ek_isiform_nohp_karyawan"
                     android:fontFamily="@font/nunito_semibold"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
                     android:textSize="16sp"

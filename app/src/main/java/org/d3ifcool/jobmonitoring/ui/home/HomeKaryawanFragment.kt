@@ -54,6 +54,9 @@ class HomeKaryawanFragment : Fragment() {
             pref.prefClear()
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_praLoginFragment)
         }
+        binding.hkCollPekerjaan.setOnClickListener {
+            findNavController().navigate(R.id.action_homeKaryawanFragment_to_karyawanPekerjaanFragment)
+        }
     }
 
 

@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -25,18 +24,14 @@ import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.adapter.KaryawanAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanBinding
-import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 
-class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class KaryawanFragment : Fragment(){
 
     private var _binding: FragmentKaryawanBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var karyawanAdapter: KaryawanAdapter
-
-    private var listIdDivisi = ArrayList<String>()
-    private var listDivisi = ArrayList<String>()
 
     private val data = arrayListOf<KaryawanModel>()
     val database = Firebase.database
@@ -47,10 +42,13 @@ class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
 
         _binding = FragmentKaryawanBinding.inflate(inflater, container, false)
-        getKaryawan()
         return binding.root
     }
 
+    override fun onStart() {
+        getKaryawan()
+        super.onStart()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -59,13 +57,15 @@ class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listDivisi()
 
         binding.layoutKaryawanPerusahaan.setOnRefreshListener {
             binding.layoutKaryawanPerusahaan.isRefreshing = false
         }
         binding.kpButton.setOnClickListener {
             it.findNavController().navigate(R.id.action_karyawanFragment_to_tambahKaryawanFragment)
+        }
+        binding.kpCollFillter.setOnClickListener {
+            findNavController().navigate(R.id.action_karyawanFragment_to_karyawanFilterFragment)
         }
         karyawanAdapter = KaryawanAdapter(arrayListOf(),object : KaryawanAdapter.OnAdapterListener{
             override fun popupMenus(karyawan: KaryawanModel, v: View) {
@@ -152,6 +152,55 @@ class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 popupMenus.show()
             }
 
+            override fun profil(karyawan: KaryawanModel, v: View) {
+                val id = karyawan.id
+                setFragmentResult(
+                    "id",
+                    bundleOf("id" to id)
+                )
+                val namaKaryawan = karyawan.namaKaryawan
+                setFragmentResult(
+                    "namaKaryawan",
+                    bundleOf("namaKaryawan" to namaKaryawan)
+                )
+                val tanggallahir = karyawan.tanggallahir
+                setFragmentResult(
+                    "tanggallahir",
+                    bundleOf("tanggallahir" to tanggallahir)
+                )
+                val jenisKelamin = karyawan.jenisKelamin
+                setFragmentResult(
+                    "jenisKelamin",
+                    bundleOf("jenisKelamin" to jenisKelamin)
+                )
+                val alamat = karyawan.alamat
+                setFragmentResult(
+                    "alamat",
+                    bundleOf("alamat" to alamat)
+                )
+                val nohandphone = karyawan.nohandphone
+                setFragmentResult(
+                    "nohandphone",
+                    bundleOf("nohandphone" to nohandphone)
+                )
+                val divisi = karyawan.divisi
+                setFragmentResult(
+                    "divisi",
+                    bundleOf("divisi" to divisi)
+                )
+                val email = karyawan.email
+                setFragmentResult(
+                    "email",
+                    bundleOf("email" to email)
+                )
+                val password = karyawan.password
+                setFragmentResult(
+                    "password",
+                    bundleOf("password" to password)
+                )
+                findNavController().navigate(R.id.action_karyawanFragment_to_profilKaryawan)
+            }
+
         })
         with(binding.recyclerView) {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
@@ -163,7 +212,7 @@ class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun getKaryawan(){
         val user = Firebase.auth.currentUser
         val name = user?.displayName
-        val dbRef = database.getReference("Karyawan").child(name!!)
+        val dbRef = database.getReference("Karyawan").child(name!!).orderByChild("namaKaryawan")
         dbRef.addValueEventListener(object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
@@ -180,38 +229,5 @@ class KaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
 
         })
-    }
-
-    private fun listDivisi(){
-        val user = Firebase.auth.currentUser
-        val name = user?.displayName
-        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
-        dbRef.addValueEventListener(object  : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for (datasnap in snapshot.children){
-                        val datas = datasnap.getValue(DivisiModel::class.java)
-                        listDivisi.add(datas!!.divisi)
-
-                    }
-                    binding.kpPilihDivisi.onItemSelectedListener = this@KaryawanFragment
-                    val adapter = ArrayAdapter(requireContext(),
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listDivisi)
-                    binding.kpPilihDivisi.adapter = adapter
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-            }
-
-        })
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        p0?.getItemAtPosition(p2)
-    }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("Not yet implemented")
     }
 }

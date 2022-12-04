@@ -126,7 +126,7 @@ class DivisiFragment : Fragment() {
     private fun getDivisi(){
         val user = Firebase.auth.currentUser
         val name = user?.displayName
-        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
+        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi").orderByChild("divisi")
         dbRef.addValueEventListener(object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()

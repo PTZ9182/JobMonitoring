@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanBinding
+import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 
 class KaryawanAdapter (
@@ -22,6 +23,7 @@ class KaryawanAdapter (
         val karyawan: KaryawanModel = data[position]
         holder.bind(karyawan)
         holder.menu.setOnClickListener { listener.popupMenus(karyawan,it) }
+        holder.coll.setOnClickListener { listener.profil(karyawan, it) }
     }
 
     override fun getItemCount()= data.size
@@ -35,6 +37,7 @@ class KaryawanAdapter (
             itemBinding.kpDivisi.text = karyawan.divisi
         }
         val menu = itemBinding.kpTiti3
+        val coll = itemBinding.collKaryawan
     }
 
     public fun setData(datas: List<KaryawanModel>) {
@@ -46,6 +49,7 @@ class KaryawanAdapter (
     interface OnAdapterListener{
 
         fun popupMenus(karyawan : KaryawanModel, v : View)
+        fun profil(karyawan : KaryawanModel, v : View)
 
     }
 

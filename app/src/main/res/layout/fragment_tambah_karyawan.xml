@@ -65,8 +65,8 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/tk_isiform_nama_karyawan"
                     android:fontFamily="@font/nunito_semibold"
+                    android:hint="@string/tk_isiform_nama_karyawan"
                     android:inputType="textPersonName"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
@@ -75,7 +75,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -114,8 +114,8 @@
                     android:drawableEnd="@drawable/ic_baseline_date_range"
                     android:ems="10"
                     android:focusable="true"
-                    android:hint="@string/tk_isiform_tanggallahir_karyawan"
                     android:fontFamily="@font/nunito_semibold"
+                    android:hint="@string/tk_isiform_tanggallahir_karyawan"
                     android:inputType="date"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
@@ -124,7 +124,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -166,7 +166,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -199,9 +199,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:autofillHints=""
                     android:background="@android:color/transparent"
-                    android:ems="10"
                     android:hint="@string/tk_isiform_alamat_karyawan"
                     android:fontFamily="@font/nunito_semibold"
                     android:inputType="textMultiLine"
@@ -212,7 +210,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -245,12 +244,10 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:autofillHints=""
                     android:background="@android:color/transparent"
-                    android:ems="10"
                     android:hint="@string/tk_isiform_nohp_karyawan"
                     android:fontFamily="@font/nunito_semibold"
-                    android:inputType="phone"
+                    android:inputType="number"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
                     android:textSize="16sp"
@@ -258,7 +255,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck"
+                    android:importantForAutofill="no" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -336,8 +334,8 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/tk_isiform_karyawan"
                     android:fontFamily="@font/nunito_semibold"
+                    android:hint="@string/tk_isiform_karyawan"
                     android:inputType="textEmailAddress"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
@@ -346,7 +344,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -382,8 +380,8 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/tk_isiform_password_karyawan"
                     android:fontFamily="@font/nunito_semibold"
+                    android:hint="@string/tk_isiform_password_karyawan"
                     android:inputType="textPassword"
                     android:padding="2dp"
                     android:textColorHint="#6F6F6F"
@@ -391,7 +389,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TouchTargetSizeCheck" />
 
                 <ImageView
                     android:id="@+id/show_password_button"
@@ -416,9 +415,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
-                android:text="@string/tk_button_simpan"
                 android:background="@drawable/pick_background_menu"
                 android:fontFamily="@font/nunito_semibold"
+                android:text="@string/tk_button_simpan"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 app:backgroundTint="@color/orange"
@@ -426,7 +425,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck,TextContrastCheck" />
         </LinearLayout>
     </ScrollView>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

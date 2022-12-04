@@ -6,114 +6,124 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/pk_status_selesai"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pk_coll_pekerjaan"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#00C853"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pk_titik3"
-        app:layout_constraintEnd_toStartOf="@+id/pk_titik3"
-        app:layout_constraintTop_toTopOf="@+id/pk_titik3"
-        tools:ignore="TextContrastCheck"
-        tools:text="@string/pk_selesai" />
-
-    <ImageView
-        android:id="@+id/pk_titik3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/pk_titik3"
-        android:paddingStart="20dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_titik3" />
-
-    <TextView
-        android:id="@+id/pk_nama_karyawan_selesai"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pk_status_selesai"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/pk_namaselesai" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/pk_pekerjaan_selesai"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pk_status_selesai"
-        app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_selesai"
-        app:layout_constraintTop_toTopOf="@+id/pk_status_selesai"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/pk_pekerjaanselesai" />
+        <TextView
+            android:id="@+id/pk_status_selesai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#00C853"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pk_titik3"
+            app:layout_constraintEnd_toStartOf="@+id/pk_titik3"
+            app:layout_constraintTop_toTopOf="@+id/pk_titik3"
+            tools:ignore="TextContrastCheck"
+            tools:text="@string/pk_selesai" />
 
-    <TextView
-        android:id="@+id/pk_status_belumselesai"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#F6894C"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pk_titik3"
-        app:layout_constraintEnd_toStartOf="@+id/pk_titik3"
-        app:layout_constraintTop_toTopOf="@+id/pk_titik3"
-        tools:ignore="TextContrastCheck"
-        tools:text="@string/pk_belumselesai" />
+        <ImageView
+            android:id="@+id/pk_titik3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/pk_titik3"
+            android:paddingStart="20dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_titik3" />
+
+        <TextView
+            android:id="@+id/pk_nama_karyawan_selesai"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pk_status_selesai"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/pk_namaselesai" />
+
+        <TextView
+            android:id="@+id/pk_pekerjaan_selesai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pk_status_selesai"
+            app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_selesai"
+            app:layout_constraintTop_toTopOf="@+id/pk_status_selesai"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/pk_pekerjaanselesai" />
+
+        <TextView
+            android:id="@+id/pk_status_belumselesai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#F6894C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pk_titik3"
+            app:layout_constraintEnd_toStartOf="@+id/pk_titik3"
+            app:layout_constraintTop_toTopOf="@+id/pk_titik3"
+            tools:ignore="TextContrastCheck"
+            tools:text="@string/pk_belumselesai" />
 
 
-    <TextView
-        android:id="@+id/pk_nama_karyawan_belumselesai"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/pk_namabelumselessai" />
+        <TextView
+            android:id="@+id/pk_nama_karyawan_belumselesai"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/pk_namabelumselessai" />
 
-    <TextView
-        android:id="@+id/pk_pekerjaan_belumselesai"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/pk_status_belumselesai"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_belumselesai"
-        app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@string/pk_pekerjaanbelumselesai" />
+        <TextView
+            android:id="@+id/pk_pekerjaan_belumselesai"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/pk_status_belumselesai"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_belumselesai"
+            app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@string/pk_pekerjaanbelumselesai" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

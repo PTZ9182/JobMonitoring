@@ -22,6 +22,7 @@ class PekerjaanAdapter (
         val pekerjaan: PekerjaanModel = datas[position]
         holder.bind(pekerjaan)
         holder.menu.setOnClickListener { listener.popupMenus(pekerjaan,it) }
+        holder.coll.setOnClickListener { listener.detail(pekerjaan,it) }
     }
 
     override fun getItemCount()= datas.size
@@ -42,6 +43,7 @@ class PekerjaanAdapter (
             }
         }
         val menu = itemBinding.pkTitik3
+        val coll = itemBinding.pkCollPekerjaan
     }
 
     public fun setData(data: List<PekerjaanModel>) {
@@ -53,6 +55,7 @@ class PekerjaanAdapter (
     interface OnAdapterListener{
 
         fun popupMenus(pekerjaan : PekerjaanModel, v : View)
+        fun detail(pekerjaan : PekerjaanModel, v : View)
 
     }
 }

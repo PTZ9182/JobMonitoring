@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutProfilKaryawan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.ProfilKaryawan">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/pick_background_menu_atas">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/hpk_img"
+                    android:layout_width="97dp"
+                    android:layout_height="88dp"
+                    android:layout_marginTop="24dp"
+                    android:contentDescription="@string/hpk_img"
+                    android:src="@drawable/profil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/hpk_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/hpk_nama"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_img"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/hpk_alamatprofil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/hpk_textAlamat"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_nama"
+                    tools:ignore="TextContrastCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/hpk_divisi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_divisi"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textDivisi"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textDivisi"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textDivisi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textDivisi"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_divisi"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/hpk_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_email"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textEmail"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textEmail"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textEmail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textEmail"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_email"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_textDivisi" />
+
+                <TextView
+                    android:id="@+id/hpk_tanggal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_tanggal"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textTanggal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textTanggal"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textTanggal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textTanggal"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_tanggal"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_textEmail" />
+
+                <TextView
+                    android:id="@+id/hpk_jk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_jk"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textJk"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textJk"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textJk"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textJk"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_jk"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_textTanggal" />
+
+                <TextView
+                    android:id="@+id/hpk_nohp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_nohp"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textNohp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textNohp"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textNohp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textNohp"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_nohp"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_textJk" />
+
+                <TextView
+                    android:id="@+id/hpk_alamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/hpk_alamat"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/hpk_textAlamat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/hpk_textAlamat"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/hpk_textAlamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:gravity="right"
+                    android:text="@string/hpk_textAlamat"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/hpk_alamat"
+                    app:layout_constraintTop_toBottomOf="@+id/hpk_textNohp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

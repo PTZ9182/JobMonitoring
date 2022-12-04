@@ -63,7 +63,7 @@
     <string name="pk_pekerjaan">Pekerjaan</string>
     <string name="pk_jumlah_pekerjaan">0</string>
     <string name="pk_search">Cari Pekerjaan …</string>
-    <string name="pk_spinner">spinner</string>
+    <string name="pk_filter">filter</string>
     <string-array name="pk_status">
         <item>Pilih Status</item>
         <item>Selesai</item>
@@ -90,10 +90,9 @@
     <string name="tp_spinner">spinner</string>
     <string name="tp_button_tambahpekerjaan">Tambah Pekerjaan</string>
     <string-array name="tp_karyawan">
-        <item>Pilih Karyawan</item>
-        <item>papa zola</item>
-        <item>tukiman</item>
+        <item>Tidak ada karyawan</item>
     </string-array>
+    <string name="tp_pilihDivisi">Pilih Divisi</string>
 
     <!--Edit Pekerjaan-->
     <string name="ep_judul">Edit Pekerjaan</string>
@@ -126,7 +125,7 @@
         <item>Android </item>
         <item>Web</item>
     </string-array>
-    <string name="kp_spinner">spinner</string>
+    <string name="kp_filter">Filter</string>
 
     <!--Adapter Karyawan-->
     <string name="kp_img_profil">img_profil</string>
@@ -197,6 +196,54 @@
     <string name="menu_edit_karyawan">Edit Karyawan</string>
     <string name="menu_delete_karyawan">Hapus Karyawan</string>
     <string name="pesan_hapus_karyawan">Hapus Karyawan?</string>
+
+    <!--Karyawan Filter-->
+    <string name="fk_filter">Filter</string>
+    <string name="fk_berdasarkandivisi">Berdasarkan Divisi</string>
+    <string name="fk_nama_divisi">Android Developer</string>
+
+    <!--Pekerjaan Filter-->
+    <string name="ppfk_filter">Filter</string>
+    <string name="ppfk_berdasarkandivisi">Berdasarkan Divisi</string>
+    <string name="ppfk_nama_divisi">Android Developer</string>
+
+    <!--Pekerjaan Filter-->
+    <string name="pfk_filter">Filter</string>
+    <string name="pfk_berdasarkanstatus">- Berdasarkan Status</string>
+    <string name="pfk_divisi">Divisi</string>
+    <string name="pfk_semuastatus">Semua Status</string>
+    <string name="pfk_selesai">Status Selesai</string>
+    <string name="pfk_belumselesai">Status Belum Selesai</string>
+
+    <!--Deatil Pekerjaan-->
+    <string name="dpp_pekerjaan">Detail Pekerjaan</string>
+    <string name="ddp_divisi">Divisi :</string>
+    <string name="ddp_isidivisi">Android Developer</string>
+    <string name="ddp_nama">Karyawan :</string>
+    <string name="ddp_isinama">Papa Zola</string>
+    <string name="ddp_namapekerjaan">Judul Pekerjaan :</string>
+    <string name="ddp_isinamapekerjaan">Membuat Danau Toba</string>
+    <string name="ddp_desc">Deskripsi :</string>
+    <string name="ddp_isidesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+    <string name="ddp_status">Status :</string>
+    <string name="ddp_isistatusselesai">Selesai</string>
+    <string name="ddp_isistatusbelumselesai">Belum Selesai</string>
+
+    <!--Profil Karyawan-->
+    <string name="hpk_img">img</string>
+    <string name="hpk_nama">Papa Zola</string>
+    <string name="hpk_divisi">Divisi :</string>
+    <string name="hpk_textDivisi">Android Developer</string>
+    <string name="hpk_email">Email :</string>
+    <string name="hpk_textEmail">papazola@gmail.com</string>
+    <string name="hpk_tanggal">Tanggal Lahir :</string>
+    <string name="hpk_textTanggal">06/12/01</string>
+    <string name="hpk_jk">Jenis Kelamin :</string>
+    <string name="hpk_textJk">Laki-Laki</string>
+    <string name="hpk_nohp">No.Handphone :</string>
+    <string name="hpk_textNohp">082124169616</string>
+    <string name="hpk_alamat">Alamat :</string>
+    <string name="hpk_textAlamat">Bandung, Jawa barat,Indonesia</string>
 
 
     <!--Ganti Password-->
@@ -290,5 +337,15 @@
     <string name="rg_button_daftar">Daftar</string>
     <string name="rg_punyaakun">Sudah punya akun?</string>
     <string name="rg_login">Masuk</string>
+
+    <!--Adapter Karyawan Pekerjaan-->
+    <string name="kpk_img_profil">img_profil</string>
+    <string name="kpk_titik3">icon_titik3</string>
+    <string name="kpk_selesai">Selesai</string>
+    <string name="kpk_belumselesai">Belum Selesai</string>
+    <string name="kpk_pekerjaanselesai">Layout Login</string>
+    <string name="kpk_pekerjaanbelumselesai">Layout Dashboard</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

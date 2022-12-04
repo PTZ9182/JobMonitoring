@@ -2,6 +2,7 @@ package org.d3ifcool.jobmonitoring.ui.loginRegister
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
@@ -26,6 +28,7 @@ class RegisterFragment : Fragment() {
 
     lateinit var nDialog: ProgressDialog
     lateinit var auth: FirebaseAuth
+
     val database = Firebase.database
     val dbRef = database.getReference("Perusahaan")
 
@@ -103,9 +106,9 @@ class RegisterFragment : Fragment() {
                             if (name != null) {
                                 dbRef.child(name).child(idPer).setValue(peusahaan)
                                     .addOnCompleteListener {
-                                        //Toast.makeText(activity,"", Toast.LENGTH_SHORT).show()
+                                        Log.i("Register","Berhasil")
                                     }.addOnFailureListener { tast ->
-                                    //Toast.makeText(activity,"", Toast.LENGTH_SHORT).show()
+                                        Log.i("Register","Gagal")
                                 }
                             }
                             nDialog.cancel()

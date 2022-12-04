@@ -157,7 +157,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private fun listDivisi(){
         val user = Firebase.auth.currentUser
         val name = user?.displayName
-        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi")
+        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi").orderByChild("divisi")
         dbRef.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -167,8 +167,11 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
                     }
                     binding.ekFormPilihdivisi.onItemSelectedListener = this@EditKaryawanFragment
-                    val adapter = ArrayAdapter(requireContext(),
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listDivisi)
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                        listDivisi
+                    )
                     binding.ekFormPilihdivisi.adapter = adapter
                 }
             }

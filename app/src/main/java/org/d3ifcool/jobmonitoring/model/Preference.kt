@@ -9,6 +9,9 @@ class Preference(context: Context) {
     private val TAG_APP = "app"
     private val TAG_PERUSAHAAN = "perusahaan"
     private val TAG_KEY = "key"
+    private val TAG_FILKAR = "filterkaryawan"
+    private val TAG_PEKDIV = "filter berdasarkan divisi"
+    private val TAG_STATT = "status divisi"
 
     private val pref : SharedPreferences = context.getSharedPreferences(TAG_APP, Context.MODE_PRIVATE)
 
@@ -27,6 +30,18 @@ class Preference(context: Context) {
     var prefkey: String?
         get() = pref.getString(TAG_KEY,"")
         set(value) = pref.edit().putString(TAG_KEY,value).apply()
+
+    var preffilkar: String?
+        get() = pref.getString(TAG_FILKAR,"")
+        set(value) = pref.edit().putString(TAG_FILKAR,value).apply()
+
+    var prefpekdiv: String?
+        get() = pref.getString(TAG_PEKDIV,"")
+        set(value) = pref.edit().putString(TAG_PEKDIV,value).apply()
+
+    var prefstatt: String?
+        get() = pref.getString(TAG_STATT,"")
+        set(value) = pref.edit().putString(TAG_STATT,value).apply()
 
     fun prefClear(){
         pref.edit().remove(TAG_STATUS).apply()

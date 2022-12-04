@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPekerjaanFilter"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.pekerjaan.PekerjaanFilterFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/pfk_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/pfk_filter"
+                android:textColor="#515151"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pfk_bedasarkanstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/pfk_berdasarkanstatus"
+                android:textColor="#515151"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/pfk_divisi"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_filter" />
+
+            <TextView
+                android:id="@+id/pfk_divisi"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/pfk_divisi"
+                android:textColor="#515151"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_filter" />
+
+            <View
+                android:id="@+id/view"
+                style="@style/Divider"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_bedasarkanstatus" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pfk_coll_semuastatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <TextView
+                    android:id="@+id/pfk_semuastatus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/pfk_semuastatus" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@id/view2"
+                style="@style/Divider"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_coll_semuastatus"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pfk_coll_selesai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                <TextView
+                    android:id="@+id/pfk_selesai"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/pfk_selesai" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                android:id="@id/view3"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_coll_selesai"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pfk_coll_belumselesai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparant"
+                app:layout_constraintTop_toBottomOf="@+id/view3">
+
+                <TextView
+                    android:id="@+id/pfk_belumselesai"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="#515151"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="@string/pfk_belumselesai" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                style="@style/Divider"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_coll_belumselesai"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
