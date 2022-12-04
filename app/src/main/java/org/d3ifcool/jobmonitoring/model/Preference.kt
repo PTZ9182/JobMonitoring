@@ -12,6 +12,14 @@ class Preference(context: Context) {
     private val TAG_FILKAR = "filterkaryawan"
     private val TAG_PEKDIV = "filter berdasarkan divisi"
     private val TAG_STATT = "status divisi"
+    private val TAG_NAMEKAR = "nama karyawan"
+
+    //pekerjaan karyawan set
+    private val TAG_KPID = "id"
+    private val TAG_KPDIV = "divisi"
+    private val TAG_KPNP = "namapekerjaan"
+    private val TAG_KPDESC = "desc"
+    private val TAG_KPDNK = "namakaryawan"
 
     private val pref : SharedPreferences = context.getSharedPreferences(TAG_APP, Context.MODE_PRIVATE)
 
@@ -42,6 +50,30 @@ class Preference(context: Context) {
     var prefstatt: String?
         get() = pref.getString(TAG_STATT,"")
         set(value) = pref.edit().putString(TAG_STATT,value).apply()
+
+    var prefnamekar: String?
+        get() = pref.getString(TAG_NAMEKAR,"")
+        set(value) = pref.edit().putString(TAG_NAMEKAR,value).apply()
+
+    var prefkpid: String?
+        get() = pref.getString(TAG_KPID,"")
+        set(value) = pref.edit().putString(TAG_KPID,value).apply()
+
+    var prefkpdiv: String?
+        get() = pref.getString(TAG_KPDIV,"")
+        set(value) = pref.edit().putString(TAG_KPDIV,value).apply()
+
+    var prefkpnp: String?
+        get() = pref.getString(TAG_KPNP,"")
+        set(value) = pref.edit().putString(TAG_KPNP,value).apply()
+
+    var prefkpdesc: String?
+        get() = pref.getString(TAG_KPDESC,"")
+        set(value) = pref.edit().putString(TAG_KPDESC,value).apply()
+
+    var prefkpdnk: String?
+        get() = pref.getString(TAG_KPDNK,"")
+        set(value) = pref.edit().putString(TAG_KPDNK,value).apply()
 
     fun prefClear(){
         pref.edit().remove(TAG_STATUS).apply()

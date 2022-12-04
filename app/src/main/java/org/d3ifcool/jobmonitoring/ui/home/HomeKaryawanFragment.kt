@@ -70,7 +70,8 @@ class HomeKaryawanFragment : Fragment() {
                 Log.i("firebase", "onDataChange: $snapshot")
                 if (snapshot.exists()) {
                     binding.hkNamaProfilKaryawan.text = snapshot.child("namaKaryawan").value as CharSequence?
-                    binding.hkAlamatKaryawan.text = pref.prefperusahaan
+                    binding.hkAlamatKaryawan.text = snapshot.child("alamat").value as CharSequence?
+                    pref.prefnamekar = (snapshot.child("namaKaryawan").value as CharSequence?).toString()
                 } else {
                     Log.i("firebase", "Tidak ada data")
                 }
