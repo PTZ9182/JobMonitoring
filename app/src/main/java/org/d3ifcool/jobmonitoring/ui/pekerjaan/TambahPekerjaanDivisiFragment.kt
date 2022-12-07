@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
+import android.app.PendingIntent
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment

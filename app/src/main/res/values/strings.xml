@@ -355,4 +355,8 @@
     <string name="Emailperusahaan">Email</string>
     <string name="simpan_data">Simpan Data</string>
 
+    <!--Pengaturan Karyawan-->
+    <string name="karyawan">Nama Karyawan</string>
+    <string name="alamatkaryawan">Alamat Karyawan</string>
+
 </resources>

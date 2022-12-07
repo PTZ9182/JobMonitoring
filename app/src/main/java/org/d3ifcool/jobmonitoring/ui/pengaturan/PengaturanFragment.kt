@@ -1,6 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +15,17 @@ import org.d3ifcool.jobmonitoring.databinding.FragmentPengaturanBinding
 
 class PengaturanFragment : Fragment(){
 
+    private var _binding: FragmentPengaturanBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentPengaturanBinding.inflate(layoutInflater)
+        _binding = FragmentPengaturanBinding.inflate(inflater, container, false)
+
 
         binding.editProfile.setOnClickListener {
             it.findNavController().navigate(R.id.action_pengaturanFragment_to_editProfileFragment)

@@ -351,5 +351,13 @@
         <action
             android:id="@+id/action_pengaturanKaryawanFragment_to_praLoginFragment"
             app:destination="@id/praLoginFragment" />
+        <action
+            android:id="@+id/action_pengaturanKaryawanFragment_to_editProfileKaryawanFragment"
+            app:destination="@id/editProfileKaryawanFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editProfileKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.EditProfileKaryawanFragment"
+        android:label="fragment_edit_profile_karyawan"
+        tools:layout="@layout/fragment_edit_profile_karyawan" />
 </navigation>

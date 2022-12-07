@@ -2,6 +2,7 @@ package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,11 @@ import org.d3ifcool.jobmonitoring.databinding.FragmentEditProfileBinding
 
 
 class EditProfileFragment : Fragment() {
-    //private lateinit var TextView: TextView
-    //private lateinit var imageView: CircleImageView
+
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var ImageUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,33 +27,15 @@ class EditProfileFragment : Fragment() {
     ): View? {
 
         _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        binding.alamatPerusahaan.setOnClickListener {
+            selectPicture()
+        }
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    //companion object{
-        //val IMAGE_REQUEST_CODE = 100
-    //}
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        //TextView.setOnClickListener {
-            //pickImageGallery()
-
-        //}
-
-
 
         binding.buttonSimpanDataPengaturan.setOnClickListener {
             val namaperusahaan = binding.textPasswordLamaDalamForm.text.toString()
@@ -98,17 +82,21 @@ class EditProfileFragment : Fragment() {
     }
 
 
-    //private fun pickImageGallery() {
-        //val intent = Intent(Intent.ACTION_PICK)
-        //intent.type = "image/*"
-        //startActivityForResult(intent, IMAGE_REQUEST_CODE)
-    //}
+    private fun selectPicture() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+
+        startActivityForResult(intent, 100)
+    }
 
 
-    //override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        //super.onActivityResult(requestCode, resultCode, data)
-        //if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
-            //imageView.setImageURI(data?.data)
-        //}
-    //}
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == RESULT_OK) {
+            ImageUri = data?.data!!
+            binding.imgProfilPerusahaan.setImageURI(ImageUri)
+        }
+    }
 }
