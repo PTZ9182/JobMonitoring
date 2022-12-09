@@ -31,7 +31,6 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val database = Firebase.database
     val dbRef = database.getReference("Karyawan")
 
-    private var listIdDivisi = ArrayList<String>()
     private var listDivisi = ArrayList<String>()
 
     override fun onCreateView(

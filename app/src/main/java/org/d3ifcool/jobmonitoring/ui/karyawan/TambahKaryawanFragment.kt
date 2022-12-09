@@ -111,7 +111,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         if (name != null) {
             dbRef.child(name).child(idKaryawan).setValue(karyawan).addOnCompleteListener{
                 Toast.makeText(activity,"Karyawan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_tambahKaryawanFragment_to_karyawanFragment)
+                findNavController().popBackStack()
             }.addOnFailureListener{ tast ->
                 Toast.makeText(activity,"Gagal menambahkan Karyawan${tast.message}", Toast.LENGTH_SHORT).show()
             }
@@ -145,6 +145,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         p0?.getItemAtPosition(p2)
+
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

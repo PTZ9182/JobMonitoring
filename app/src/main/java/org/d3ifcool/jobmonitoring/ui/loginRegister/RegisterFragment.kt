@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
@@ -27,8 +26,8 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var nDialog: ProgressDialog
-    lateinit var auth: FirebaseAuth
 
+    lateinit var auth: FirebaseAuth
     val database = Firebase.database
     val dbRef = database.getReference("Perusahaan")
 
@@ -39,10 +38,6 @@ class RegisterFragment : Fragment() {
 
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
     }
 
     override fun onDestroyView() {
@@ -67,6 +62,7 @@ class RegisterFragment : Fragment() {
         binding.rgLogin.setOnClickListener {
             it.findNavController().navigate(R.id.action_registerFragment_to_praLoginFragment)
         }
+
         binding.rgButtonDaftar.setOnClickListener {
             if (binding.rgIsiformNamaPerusahaan.text.isEmpty()) {
                 binding.rgIsiformNamaPerusahaan.setError("Nama Perusahaan tidak boleh kosong")
@@ -98,13 +94,13 @@ class RegisterFragment : Fragment() {
                 user!!.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val idPer = dbRef.push().key!!
+                            val id = user.uid
                             val name = user.displayName
-                            val peusahaan = PerusahaanModel(idPer, binding.rgIsiformNamaPerusahaan.text.toString(),
+                            val perusahaan = PerusahaanModel(id, binding.rgIsiformNamaPerusahaan.text.toString(),
                                 binding.rgIsiformEmail.text.toString(),binding.rgIsiformPassword.text.toString()
                             )
                             if (name != null) {
-                                dbRef.child(name).child(idPer).setValue(peusahaan)
+                                dbRef.child(id).child(name).setValue(perusahaan)
                                     .addOnCompleteListener {
                                         Log.i("Register","Berhasil")
                                     }.addOnFailureListener { tast ->
