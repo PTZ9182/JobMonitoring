@@ -1,6 +1,7 @@
 package org.d3ifcool.jobmonitoring.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanPekerjaanBinding
@@ -8,6 +9,7 @@ import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 
 class KaryawanPekerjaanAdapter (
     val datas: ArrayList<PekerjaanModel>,
+    val listener : OnAdapterListener,
 
     ) : RecyclerView.Adapter<KaryawanPekerjaanAdapter.ViewHolder>() {
 
@@ -19,6 +21,7 @@ class KaryawanPekerjaanAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val pekerjaan: PekerjaanModel = datas[position]
         holder.bind(pekerjaan)
+        holder.coll.setOnClickListener { listener.detail(pekerjaan, it) }
     }
 
     override fun getItemCount()= datas.size
@@ -36,11 +39,18 @@ class KaryawanPekerjaanAdapter (
                 itemBinding.kpkPekerjaanBelumselesai.text = pekerjaan.nama_pekerjaan
             }
         }
+        val coll = itemBinding.kpkCollPekerjaan
     }
 
     public fun setData(data: List<PekerjaanModel>) {
         datas.clear()
         datas.addAll(data)
         notifyDataSetChanged()
+    }
+
+    interface OnAdapterListener{
+
+        fun detail(pekerjaan : PekerjaanModel, v : View)
+
     }
 }

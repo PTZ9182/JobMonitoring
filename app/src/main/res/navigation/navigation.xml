@@ -238,7 +238,11 @@
         android:id="@+id/karyawanPekerjaanFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.menuKaryawan.KaryawanPekerjaanFragment"
         android:label="fragment_karyawan_pekerjaan"
-        tools:layout="@layout/fragment_karyawan_pekerjaan" />
+        tools:layout="@layout/fragment_karyawan_pekerjaan" >
+        <action
+            android:id="@+id/action_karyawanPekerjaanFragment_to_karyawanPekerjaanDetail"
+            app:destination="@id/karyawanPekerjaanDetail" />
+    </fragment>
     <fragment
         android:id="@+id/karyawanFilterFragment"
         android:name="org.d3ifcool.jobmonitoring.ui.karyawan.KaryawanFilterFragment"
