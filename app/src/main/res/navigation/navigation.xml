@@ -241,7 +241,7 @@
         tools:layout="@layout/fragment_karyawan_pekerjaan" >
         <action
             android:id="@+id/action_karyawanPekerjaanFragment_to_karyawanPekerjaanDetail"
-            app:destination="@id/karyawanPekerjaanDetail" />
+            app:destination="@+id/karyawanPekerjaanDetail" />
     </fragment>
     <fragment
         android:id="@+id/karyawanFilterFragment"
@@ -364,4 +364,9 @@
         android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.EditProfileKaryawanFragment"
         android:label="fragment_edit_profile_karyawan"
         tools:layout="@layout/fragment_edit_profile_karyawan" />
+    <fragment
+        android:id="@+id/karyawanPekerjaanDetail"
+        android:name="org.d3ifcool.jobmonitoring.ui.menuKaryawan.KaryawanPekerjaanDetail"
+        android:label="fragment_karyawan_pekerjaan_detail"
+        tools:layout="@layout/fragment_karyawan_pekerjaan_detail" />
 </navigation>
