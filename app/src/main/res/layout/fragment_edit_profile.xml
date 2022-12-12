@@ -1,7 +1,7 @@
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/homeeditprofile"
+    android:id="@+id/editProfilePerusahaan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5F1FF"
@@ -25,45 +25,32 @@
                 android:background="@drawable/pick_background_menu_atas">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_profil_perusahaan"
+                    android:id="@+id/img_perusahaan"
                     android:layout_width="97dp"
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
-                    android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:contentDescription="@string/p_img_perusahaan"
+                    android:src="@drawable/profilperusahaan"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ImageContrastCheck" />
 
-                <TextView
-                    android:id="@+id/nama_profil_perusahaan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="@string/nama_profil_perusahaan"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
-                    tools:ignore="TextContrastCheck" />
 
                 <TextView
-                    android:id="@+id/alamat_perusahaan"
+                    android:id="@+id/edit_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/nunito"
-                    android:text="EDIT"
+                    android:text="@string/p_alamat_perusahaan"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
+                    app:layout_constraintTop_toBottomOf="@+id/img_perusahaan"
                     tools:ignore="TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,18 +73,18 @@
 
 
             <TextView
-                android:id="@+id/text_editnamaperusahaan"
+                android:id="@+id/namaperusahaan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/perusahaan"
+                android:text="@string/p_textnamaperusahaan"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_editnamaperusahaan2"
+                android:id="@+id/coll_namaperusahaan"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -106,7 +93,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_password_lama_dalam_form"
+                    android:id="@+id/isiform_namaperusahaan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -116,9 +103,10 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="Nama Perusahaan"
+                    android:hint="@string/p_nama_perusahaan"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
+                    android:inputType="textPersonName"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -128,18 +116,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/text_alamatperusahaan1"
+                android:id="@+id/alamatperusahaan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/alamatperusahaan"
+                android:text="@string/p_textalamatperusahaan"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_alamatperusahaan2"
+                android:id="@+id/coll_alamatperusahaan"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -148,7 +136,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_password_baru1_dalam_form"
+                    android:id="@+id/isiform_alamatperusahaan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -158,9 +146,10 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="Alamat Perusahaan"
+                    android:hint="@string/p_textalamatperusahaan"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
+                    android:inputType="textMultiLine"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -170,18 +159,18 @@
 
 
             <TextView
-                android:id="@+id/text_nohp"
+                android:id="@+id/nohp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/nohp"
+                android:text="@string/p_textnohp"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/collider_text_form_password2_baru"
+                android:id="@+id/coll_nohp"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -190,7 +179,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_nohp2"
+                    android:id="@+id/isiform_nohp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -200,7 +189,7 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="No Handphone"
+                    android:hint="@string/p_textnohp"
                     android:inputType="number"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
@@ -212,18 +201,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/text_email1"
+                android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/Emailperusahaan"
+                android:text="@string/p_textemail"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_email2"
+                android:id="@+id/coll_email"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -232,7 +221,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_email3"
+                    android:id="@+id/isiform_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -242,7 +231,7 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/Emailperusahaan"
+                    android:hint="@string/p_textemail"
                     android:inputType="textEmailAddress"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
@@ -254,14 +243,14 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
-                android:id="@+id/button_simpan_data_pengaturan"
+                android:id="@+id/button_simpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/simpan_data"
+                android:text="@string/p_simpan"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

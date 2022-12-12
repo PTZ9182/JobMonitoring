@@ -27,16 +27,6 @@ class PekerjaanFilterFragment : Fragment(){
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -47,18 +37,19 @@ class PekerjaanFilterFragment : Fragment(){
         binding.layoutPekerjaanFilter.setOnRefreshListener {
             binding.layoutPekerjaanFilter.isRefreshing = false
         }
-        binding.pfkDivisi.setText(pref.preffilkar)
+
+        binding.pfkDivisi.text = pref.prefdivisipekerjaan
 
         binding.pfkCollSelesai.setOnClickListener {
-            pref.prefstatt = "1"
+            pref.prefstatuspekerjaan = "1"
             findNavController().navigate(R.id.action_pekerjaanFilterFragment_to_pekerjaanFilterPekerjaanFragment)
         }
         binding.pfkCollBelumselesai.setOnClickListener {
-            pref.prefstatt = "0"
+            pref.prefstatuspekerjaan = "0"
             findNavController().navigate(R.id.action_pekerjaanFilterFragment_to_pekerjaanFilterPekerjaanFragment)
         }
         binding.pfkCollSemuastatus.setOnClickListener {
-            pref.prefstatt = "semua"
+            pref.prefstatuspekerjaan = "semua"
             findNavController().navigate(R.id.action_pekerjaanFilterFragment_to_pekerjaanFilterPekerjaanFragment)
         }
 

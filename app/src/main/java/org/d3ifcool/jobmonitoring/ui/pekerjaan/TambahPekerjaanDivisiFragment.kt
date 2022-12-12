@@ -1,6 +1,5 @@
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
-import android.app.PendingIntent
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,8 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.KaryawanFilterAdapter
-import org.d3ifcool.jobmonitoring.databinding.FragmentKarayawanFilterBinding
+import org.d3ifcool.jobmonitoring.adapter.PekerjaanFilterDivisiAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPekerjaanDivisiBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -29,10 +27,10 @@ class TambahPekerjaanDivisiFragment : Fragment() {
     private var _binding: FragmentTambahPekerjaanDivisiBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var divisiAdapter: KaryawanFilterAdapter
-    private lateinit var pref: Preference
-    private val data = arrayListOf<DivisiModel>()
     val database = Firebase.database
+    private lateinit var pref: Preference
+    private lateinit var divisiAdapter: PekerjaanFilterDivisiAdapter
+    private val data = arrayListOf<DivisiModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,21 +38,13 @@ class TambahPekerjaanDivisiFragment : Fragment() {
     ): View? {
 
         _binding = FragmentTambahPekerjaanDivisiBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
         getDivisi()
-        super.onStart()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -63,10 +53,10 @@ class TambahPekerjaanDivisiFragment : Fragment() {
             binding.layoutKaryawanFilter.isRefreshing = false
         }
 
-        divisiAdapter = KaryawanFilterAdapter(arrayListOf(),object : KaryawanFilterAdapter.OnAdapterListener {
+        divisiAdapter = PekerjaanFilterDivisiAdapter(arrayListOf(),object : PekerjaanFilterDivisiAdapter.OnAdapterListener {
 
             override fun filter(divisi: DivisiModel, v: View) {
-                pref.prefpekdiv = divisi.divisi
+                pref.prefdivisipekerjaan = divisi.divisi
                 findNavController().navigate(R.id.action_tambahPekerjaanDivisiFragment_to_tambahPekerjaanFragment)
 
             }
@@ -80,8 +70,8 @@ class TambahPekerjaanDivisiFragment : Fragment() {
 
     private fun getDivisi() {
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
-        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi").orderByChild("divisi")
+        val idPerusahaan = user?.uid
+        val dbRef = database.getReference("Divisi").child(idPerusahaan!!).orderByChild("divisi")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
@@ -91,6 +81,9 @@ class TambahPekerjaanDivisiFragment : Fragment() {
                         data.add(datas!!)
                     }
                     divisiAdapter.setData(data)
+                    binding.emptyView.visibility = View.GONE
+                } else {
+                    binding.emptyView.visibility = View.VISIBLE
                 }
             }
 

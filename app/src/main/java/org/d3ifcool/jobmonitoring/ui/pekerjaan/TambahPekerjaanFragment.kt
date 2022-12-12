@@ -18,7 +18,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPekerjaanBinding
-import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -27,11 +26,10 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private var _binding: FragmentTambahPekerjaanBinding? = null
     private val binding get() = _binding!!
-    private lateinit var pref: Preference
-    val database = Firebase.database
-    val dbRef = database.getReference("Perusahaan")
 
-    private var listIdKaryawan = ArrayList<String>()
+    val database = Firebase.database
+    val dbRef = database.getReference("Pekerjaan")
+    private lateinit var pref: Preference
     private var listKaryawan = ArrayList<String>()
 
     override fun onCreateView(
@@ -40,34 +38,24 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
 
         _binding = FragmentTambahPekerjaanBinding.inflate(inflater, container, false)
+        listKaryawan()
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        listKaryawan()
 
         binding.layoutTambahPekerjaan.setOnRefreshListener {
             binding.layoutTambahPekerjaan.isRefreshing = false
         }
         binding.tpButtonTambah.setOnClickListener {
             if (binding.tpFormNamaPekerjaan.text.isEmpty()){
-                binding.tpFormNamaPekerjaan.setError("Nama pekerjaan tidak boleh kosong")
+                binding.tpFormNamaPekerjaan.error = "Nama pekerjaan tidak boleh kosong"
                 binding.tpFormNamaPekerjaan.requestFocus()
             } else if (binding.tpFormDescPekerjaan.text.isEmpty()){
-                binding.tpFormDescPekerjaan.setError("Deskripsi tidak boleh kosong")
+                binding.tpFormDescPekerjaan.error = "Deskripsi tidak boleh kosong"
                 binding.tpFormDescPekerjaan.requestFocus()
-            } else if (binding.tpListKaryawan.selectedItem.equals("Tidak ada karyawan")){
+            } else if (binding.tpListKaryawan.selectedItem.equals("Pilih Karyawan")){
                 Toast.makeText(context, "Karyawan Tidak tersedia", Toast.LENGTH_SHORT).show()
                 binding.tpListKaryawan.requestFocus()
             } else {
@@ -80,18 +68,18 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
-        val div = pref.prefpekdiv
         val idPekerjaan = dbRef.push().key!!
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
+        val idPerusahaan = user?.uid
+        val divisi = pref.prefdivisipekerjaan
         val pekerjaan = PekerjaanModel(
-            idPekerjaan, div!!,
+            idPekerjaan, divisi!!,
             binding.tpFormNamaPekerjaan.text.toString(),
             binding.tpFormDescPekerjaan.text.toString(),
             binding.tpListKaryawan.selectedItem.toString())
-        dbRef.child(name!!).child("Pekerjaan").child(idPekerjaan).setValue(pekerjaan).addOnCompleteListener{
+        dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan).addOnCompleteListener{
             Toast.makeText(activity,"Pekerjaan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_tambahPekerjaanFragment_to_pekerjaanFragment)
+            findNavController().popBackStack()
         }.addOnFailureListener{ tast ->
             Toast.makeText(activity,"Gagal menambahkan Pekerjaan${tast.message}", Toast.LENGTH_SHORT).show()
         }
@@ -101,20 +89,24 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
-        val div = pref.prefpekdiv
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
-        val dbRef = database.getReference("Karyawan").child(name!!).orderByChild("divisi").equalTo(div)
+        val idPerusahaan = user?.uid
+        val divisi = pref.prefdivisipekerjaan
+        val dbRef = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("divisi").equalTo(divisi)
         dbRef.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                listKaryawan.clear()
                 if(snapshot.exists()){
                     for (datasnap in snapshot.children){
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         listKaryawan.add(datas!!.namaKaryawan)
                     }
                     binding.tpListKaryawan.onItemSelectedListener = this@TambahPekerjaanFragment
-                    val adapter = ArrayAdapter(requireContext(),
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listKaryawan)
+                    val adapter = context?.let {
+                        ArrayAdapter(
+                            it,
+                            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,listKaryawan)
+                    }
                     binding.tpListKaryawan.adapter = adapter
                 }
             }

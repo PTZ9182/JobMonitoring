@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanFilterBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 
-class KaryawanFilterAdapter (
+class KaryawanFilterAdapter(
     val data: ArrayList<DivisiModel>,
-    val listener : OnAdapterListener,
+    val listener: OnAdapterListener,
 
     ) : RecyclerView.Adapter<KaryawanFilterAdapter.ViewHolder>() {
 

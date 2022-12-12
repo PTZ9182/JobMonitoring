@@ -2,27 +2,24 @@ package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_ganti_password_perusahaan.*
-import org.d3ifcool.jobmonitoring.databinding.FragmentGantiPasswordPerusahaanBinding
-import org.d3ifcool.jobmonitoring.model.PerusahaanModel
+import org.d3ifcool.jobmonitoring.databinding.FragmentGantiPasswordAkunKaryawanBinding
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
-class GantiPasswordPerusahaanFragment : Fragment() {
+class GantiPasswordAkunKaryawanFragment : Fragment() {
 
-    private var _binding: FragmentGantiPasswordPerusahaanBinding? = null
+    private var _binding: FragmentGantiPasswordAkunKaryawanBinding? = null
     private val binding get() = _binding!!
 
     val database = Firebase.database
-    val dbRef = database.getReference("Perusahaan")
+    val dbRef = database.getReference("Karyawan")
     private lateinit var pref: Preference
 
     override fun onCreateView(
@@ -30,7 +27,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentGantiPasswordPerusahaanBinding.inflate(inflater, container, false)
+        _binding = FragmentGantiPasswordAkunKaryawanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,47 +39,47 @@ class GantiPasswordPerusahaanFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.buttonSimpanDataForm.setOnClickListener {
-            if (binding.gpIsiformPasswordLama.text.isEmpty()){
+            if (binding.gpIsiformPasswordLama.text.isEmpty()) {
                 binding.gpIsiformPasswordLama.error = "Masukan password"
                 binding.gpIsiformPasswordLama.requestFocus()
-            } else if (binding.gpIsiformPasswordBaru1.text.isEmpty()){
+            } else if (binding.gpIsiformPasswordBaru1.text.isEmpty()) {
                 binding.gpIsiformPasswordBaru1.error = "Masukan password"
                 binding.gpIsiformPasswordBaru1.requestFocus()
-            } else if (binding.gpIsiformPasswordBaru1.text.length <= 8 ){
+            } else if (binding.gpIsiformPasswordBaru1.text.length <= 8) {
                 binding.gpIsiformPasswordBaru1.error = "Password Minimal 8 karakter"
                 binding.gpIsiformPasswordBaru1.requestFocus()
-            }else if (binding.gpIsiformPasswordBaru2.text.isEmpty()){
+            } else if (binding.gpIsiformPasswordBaru2.text.isEmpty()) {
                 binding.gpIsiformPasswordBaru2.error = "Masukan password"
                 binding.gpIsiformPasswordBaru2.requestFocus()
-            } else if(binding.gpIsiformPasswordBaru1.text.toString() == binding.gpIsiformPasswordLama.text.toString()) {
+            } else if (binding.gpIsiformPasswordBaru1.text.toString() == binding.gpIsiformPasswordLama.text.toString()) {
                 binding.gpIsiformPasswordBaru1.error = "Password harus berbeda"
                 binding.gpIsiformPasswordBaru1.requestFocus()
-            } else if (binding.gpIsiformPasswordLama.text.toString() != pref.prefpasswordperusahaan){
+            } else if (binding.gpIsiformPasswordLama.text.toString() != pref.prefpassworduser) {
                 binding.gpIsiformPasswordLama.error = "Password Salah!"
                 binding.gpIsiformPasswordLama.requestFocus()
-            } else if (binding.gpIsiformPasswordBaru1.text.toString() != binding.gpIsiformPasswordBaru2.text.toString()){
+            } else if (binding.gpIsiformPasswordBaru1.text.toString() != binding.gpIsiformPasswordBaru2.text.toString()) {
                 binding.gpIsiformPasswordBaru2.error = "Password harus sesuai"
                 binding.gpIsiformPasswordBaru2.requestFocus()
-            } else{
-                val user = Firebase.auth.currentUser
+            } else {
+
                 val newPassword = binding.gpIsiformPasswordBaru1.text.toString()
-                pref.prefpasswordperusahaan = newPassword
-                val alamat = pref.prefalamatperusahaan
-                val nohp = pref.prefnohpperusahaan
-                user!!.updatePassword(newPassword)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Log.i("task","sukses")
-                        }
-                        val perusahaan = PerusahaanModel(user.uid, user.displayName!!, user.email!!, newPassword, alamat, nohp)
-                        dbRef.child(user.uid).setValue(perusahaan)
-                            .addOnCompleteListener {
-                                Log.i("pass", "Berhasil")
-                            }.addOnFailureListener { tast ->
-                                Log.i("pss", "Gagal")
-                            }
+                val idPerusahaan = pref.prefidperusahaanuser
+                pref.prefpassworduser = newPassword
+                val id = pref.prefiduser
+                val nama = pref.prefnamauser
+                val tanggallahir = pref.preftanggallahiruser
+                val jeniskelamin = pref.prefjeniskelaminuser
+                val alamat = pref.prefalamatuser
+                val nohp = pref.prefnohpuser
+                val divisi = pref.prefdivisiuser
+                val email = pref.prefemailuser
+
+                val user = KaryawanModel(id!!, nama!!, tanggallahir!!, jeniskelamin!!, alamat!!, nohp!!,divisi!!,email!!,pref.prefpassworduser!!
+                )
+                dbRef.child(idPerusahaan!!).child(id!!).setValue(user)
+                    .addOnCompleteListener {
                         Toast.makeText(context, "Password berhasil diubah", Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener{
+                    }.addOnFailureListener { tast ->
                         Toast.makeText(context, "Gagal merubah password", Toast.LENGTH_SHORT).show()
                     }
             }

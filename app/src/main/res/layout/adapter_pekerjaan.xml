@@ -70,7 +70,7 @@
             android:textColor="#515151"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pk_status_selesai"
+            app:layout_constraintEnd_toStartOf="@+id/pk_status_belumselesai"
             app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_selesai"
             app:layout_constraintTop_toTopOf="@+id/pk_status_selesai"
             app:layout_constraintVertical_bias="0.0"
@@ -90,38 +90,6 @@
             tools:text="@string/pk_belumselesai" />
 
 
-        <TextView
-            android:id="@+id/pk_nama_karyawan_belumselesai"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/nunito_semibold"
-            android:textColor="#515151"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="@string/pk_namabelumselessai" />
-
-        <TextView
-            android:id="@+id/pk_pekerjaan_belumselesai"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/nunito_semibold"
-            android:textColor="#515151"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pk_status_belumselesai"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/pk_nama_karyawan_belumselesai"
-            app:layout_constraintTop_toTopOf="@+id/pk_status_belumselesai"
-            app:layout_constraintVertical_bias="0.0"
-            tools:text="@string/pk_pekerjaanbelumselesai" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

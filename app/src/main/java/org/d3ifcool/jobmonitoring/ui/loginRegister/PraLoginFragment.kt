@@ -20,6 +20,7 @@ class PraLoginFragment : Fragment() {
 
     private var _binding: FragmentPraloginBinding? = null
     private val binding get() = _binding!!
+
     lateinit var auth: FirebaseAuth
     private lateinit var pref: Preference
 
@@ -32,18 +33,29 @@ class PraLoginFragment : Fragment() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            reloadPerusahaan();
+            Log.i("perusahaan : ", currentUser.toString());
+        } else if (pref.prefstatus) {
+            reloadKaryawan()
+            Log.i("karyawan", "Login");
+        } else {
+            Log.i("karyawan", "Gagal Login");
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        auth = Firebase.auth
+
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
-
-        auth = Firebase.auth
 
         binding.praLoginPragment.setOnRefreshListener {
             binding.praLoginPragment.isRefreshing = false
@@ -66,19 +78,5 @@ class PraLoginFragment : Fragment() {
 
     private fun reloadPerusahaan(){
         findNavController().navigate(R.id.action_praLoginFragment_to_homePerusahaanFragment)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            reloadPerusahaan();
-            Log.i("a user is logged in: ", currentUser.toString());
-        } else if (pref.prefstatus) {
-            reloadKaryawan()
-        } else {
-            Log.i("Username", "there is no user");
-
-        }
     }
 }

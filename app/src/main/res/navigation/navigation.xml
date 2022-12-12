@@ -258,14 +258,17 @@
         android:label="fragment_karyawan_filter_karyawan"
         tools:layout="@layout/fragment_karyawan_filter_karyawan" >
         <action
-            android:id="@+id/action_karyawanFilterKaryawanFragment_to_editKaryawanFragment"
-            app:destination="@id/editKaryawanFragment" />
-        <action
             android:id="@+id/action_karyawanFilterKaryawanFragment_to_karyawanFilterFragment"
             app:destination="@id/karyawanFilterFragment" />
         <action
             android:id="@+id/action_karyawanFilterKaryawanFragment_to_profilKaryawan"
             app:destination="@id/profilKaryawan" />
+        <action
+            android:id="@+id/action_karyawanFilterKaryawanFragment_to_tambahKaryawanFragment"
+            app:destination="@id/tambahKaryawanFragment" />
+        <action
+            android:id="@+id/action_karyawanFilterKaryawanFragment_to_editKaryawanFragment"
+            app:destination="@id/editKaryawanFragment" />
     </fragment>
     <fragment
         android:id="@+id/profilKaryawan"
@@ -358,6 +361,9 @@
         <action
             android:id="@+id/action_pengaturanKaryawanFragment_to_editProfileKaryawanFragment"
             app:destination="@id/editProfileKaryawanFragment" />
+        <action
+            android:id="@+id/action_pengaturanKaryawanFragment_to_gantiPasswordAkunKaryawanFragment"
+            app:destination="@id/gantiPasswordAkunKaryawanFragment" />
     </fragment>
     <fragment
         android:id="@+id/editProfileKaryawanFragment"
@@ -369,4 +375,9 @@
         android:name="org.d3ifcool.jobmonitoring.ui.menuKaryawan.KaryawanPekerjaanDetail"
         android:label="fragment_karyawan_pekerjaan_detail"
         tools:layout="@layout/fragment_karyawan_pekerjaan_detail" />
+    <fragment
+        android:id="@+id/gantiPasswordAkunKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.GantiPasswordAkunKaryawanFragment"
+        android:label="fragment_ganti_password_akun_karyawan"
+        tools:layout="@layout/fragment_ganti_password_akun_karyawan" />
 </navigation>

@@ -45,12 +45,6 @@ class KaryawanPekerjaanFragment: Fragment() {
 
     }
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -64,27 +58,13 @@ class KaryawanPekerjaanFragment: Fragment() {
                 context = requireActivity()
                 pref = Preference(context)
 
-                val nama_pekerjaan = pekerjaan.nama_pekerjaan
-                setFragmentResult(
-                    "nama_pekerjaan",
-                    bundleOf("nama_pekerjaan" to nama_pekerjaan)
-                )
-                val deskripsi = pekerjaan.deskripsi
-                setFragmentResult(
-                    "deskripsi",
-                    bundleOf("deskripsi" to deskripsi)
-                )
+                pref.prefnamapekerjaanuser = pekerjaan.nama_pekerjaan
+                pref.prefdeskripsipekerjaanuser = pekerjaan.deskripsi
+                pref.prefstatuspekerjaanuser = pekerjaan.status
 
-                val status = pekerjaan.status
-                setFragmentResult(
-                    "status",
-                    bundleOf("status" to status)
-                )
-                pref.prefkpid = pekerjaan.id
-                pref.prefkpdiv = pekerjaan.divisi
-                pref.prefkpnp = pekerjaan.nama_pekerjaan
-                pref.prefkpdesc = pekerjaan.deskripsi
-                pref.prefkpdnk = pekerjaan.karyawan
+                pref.prefidpekerjaanuser = pekerjaan.id
+                pref.prefdivisipekerjaanuser = pekerjaan.divisi
+                pref.prefkaryawanpekerjaanuser = pekerjaan.karyawan
                 findNavController().navigate(R.id.action_karyawanPekerjaanFragment_to_karyawanPekerjaanDetail)
             }
         })
@@ -104,8 +84,9 @@ class KaryawanPekerjaanFragment: Fragment() {
         val context: Context
         context = requireActivity()
         pref = Preference(context)
-        val name = pref.prefnamekar
-        val dbRef = database.getReference("Perusahaan").child(pref.prefperusahaan!!).child("Pekerjaan").orderByChild("karyawan").equalTo(name)
+        val name = pref.prefnamauser
+        val idperushaan =pref.prefidperusahaanuser
+        val dbRef = database.getReference("Pekerjaan").child(idperushaan!!).orderByChild("karyawan").equalTo(name)
         dbRef.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
@@ -116,6 +97,10 @@ class KaryawanPekerjaanFragment: Fragment() {
                         data.add(datas!!)
                     }
                     karyawanPekerjaanAdapter.setData(data)
+                    binding.emptyView.visibility = View.GONE
+                } else {
+                    karyawanPekerjaanAdapter.setData(data)
+                    binding.emptyView.visibility = View.VISIBLE
                 }
             }
             override fun onCancelled(error: DatabaseError) {

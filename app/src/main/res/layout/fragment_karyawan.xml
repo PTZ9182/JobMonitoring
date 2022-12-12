@@ -116,6 +116,7 @@
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/pick_background_menu"
                     app:iconifiedByDefault="false"
+                    app:actionViewClass="androidx.appcompat.widget.SearchView"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/kp_coll_fillter"
                     app:layout_constraintStart_toStartOf="parent"
@@ -168,6 +169,21 @@
                 tools:listitem="@layout/adapter_karyawan">
 
             </androidx.recyclerview.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/emptyView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/karyawan_tidak_ada_data"
+                android:textColor="#515151"
+                android:textSize="14sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

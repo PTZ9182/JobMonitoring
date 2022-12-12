@@ -2,14 +2,11 @@ package org.d3ifcool.jobmonitoring.ui.karyawan
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +17,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.DivisiAdapter
 import org.d3ifcool.jobmonitoring.adapter.KaryawanFilterAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentKarayawanFilterBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
@@ -31,10 +27,10 @@ class KaryawanFilterFragment : Fragment() {
     private var _binding: FragmentKarayawanFilterBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var divisiAdapter: KaryawanFilterAdapter
-    private lateinit var pref: Preference
-    private val data = arrayListOf<DivisiModel>()
     val database = Firebase.database
+    private lateinit var pref: Preference
+    private lateinit var divisiAdapter: KaryawanFilterAdapter
+    private val data = arrayListOf<DivisiModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,42 +38,37 @@ class KaryawanFilterFragment : Fragment() {
     ): View? {
 
         _binding = FragmentKarayawanFilterBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
         getDivisi()
-        super.onStart()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val contextt : Context
+
+        val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
-        divisiAdapter = KaryawanFilterAdapter(arrayListOf(),object : KaryawanFilterAdapter.OnAdapterListener {
-            override fun filter(divisi: DivisiModel, v: View) {
-                pref.preffilkar = divisi.divisi
+
+        divisiAdapter =
+            KaryawanFilterAdapter(arrayListOf(), object : KaryawanFilterAdapter.OnAdapterListener {
+                override fun filter(divisi: DivisiModel, v: View) {
+                    pref.preffilterkaryawan = divisi.divisi
                     findNavController().navigate(R.id.action_karyawanFilterFragment_to_karyawanFilterKaryawanFragment)
 
-            }
-        })
-                with(binding.recyclerView) {
-                    addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
-                    adapter = divisiAdapter
-                    setHasFixedSize(true)
                 }
+            })
+        with(binding.recyclerView) {
+            addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
+            adapter = divisiAdapter
+            setHasFixedSize(true)
+        }
     }
 
     private fun getDivisi() {
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
-        val dbRef = database.getReference("Perusahaan").child(name!!).child("Divisi").orderByChild("divisi")
+        val idPerusahaan = user?.uid
+        val dbRef =
+            database.getReference("Divisi").child(idPerusahaan!!).orderByChild("divisi")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
@@ -87,6 +78,9 @@ class KaryawanFilterFragment : Fragment() {
                         data.add(datas!!)
                     }
                     divisiAdapter.setData(data)
+                    binding.emptyView.visibility = View.GONE
+                } else{
+                    binding.emptyView.visibility = View.VISIBLE
                 }
             }
 

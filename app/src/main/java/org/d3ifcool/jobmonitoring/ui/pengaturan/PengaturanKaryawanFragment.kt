@@ -1,6 +1,7 @@
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,11 +26,20 @@ class PengaturanKaryawanFragment : Fragment(){
 
         val binding = FragmentPengaturanBinding.inflate(layoutInflater)
 
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+
         binding.editProfile.setOnClickListener {
             it.findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_editProfileKaryawanFragment)
         }
 
+        binding.gantiProfilePassword.setOnClickListener {
+            findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_gantiPasswordAkunKaryawanFragment)
+        }
+
         binding.logout.setOnClickListener{
+            pref.prefClear()
             Firebase.auth.signOut()
             findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_praLoginFragment)
         }

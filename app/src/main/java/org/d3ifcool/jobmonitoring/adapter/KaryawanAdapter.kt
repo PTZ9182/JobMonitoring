@@ -1,11 +1,14 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanBinding
-import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 
 class KaryawanAdapter (
@@ -32,9 +35,16 @@ class KaryawanAdapter (
     class ViewHolder(private val itemBinding: AdapterKaryawanBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
         fun bind(karyawan: KaryawanModel) {
+            val storage: FirebaseStorage = Firebase.storage
             itemBinding.kpNama.text = karyawan.namaKaryawan
             itemBinding.kpEmail.text = karyawan.email
             itemBinding.kpDivisi.text = karyawan.divisi
+            val storageRef = storage.getReference("images").child("Karyawan").child(karyawan.id).child("profil")
+            storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+                itemBinding.kpImg.setImageBitmap(bitmap)
+            }.addOnFailureListener {
+            }
         }
         val menu = itemBinding.kpTiti3
         val coll = itemBinding.collKaryawan

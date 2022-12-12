@@ -392,20 +392,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TouchTargetSizeCheck" />
 
-                <ImageView
-                    android:id="@+id/show_password_button"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:alpha=".5"
-                    android:src="@drawable/ic_baseline_remove_red_eye_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/tk_form_password"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/tk_form_password"
-                    app:layout_constraintVertical_bias="0.45"
-                    android:contentDescription="@string/tk_img_mata" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--    Tombol Simpan-->
             <Button
@@ -420,7 +408,6 @@
                 android:text="@string/tk_button_simpan"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                app:backgroundTint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

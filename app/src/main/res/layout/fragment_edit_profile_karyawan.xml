@@ -21,83 +21,68 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="-30dp"
                 android:background="@drawable/pick_background_menu_atas">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_profil_karyawan"
-                    android:layout_width="97dp"
-                    android:layout_height="88dp"
-                    android:layout_marginTop="24dp"
-                    android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@mipmap/ic_launcher_round"
+                <TextView
+                    android:id="@+id/edit_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="@string/k_editprofil"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_karyawan"
+                    android:layout_width="97dp"
+                    android:layout_height="88dp"
+                    android:layout_marginTop="16dp"
+                    android:contentDescription="@string/k_img_perusahaan"
+                    android:src="@drawable/profil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_profil"
                     tools:ignore="ImageContrastCheck" />
 
-                <TextView
-                    android:id="@+id/nama_profil_perusahaan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="@string/nama_profil_perusahaan"
-                    android:textColor="#FFFFFF"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profil_karyawan"
-                    tools:ignore="TextContrastCheck" />
 
                 <TextView
-                    android:id="@+id/alamat_karyawan"
+                    android:id="@+id/edit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="EDIT"
+                    android:text="@string/k_edit"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
+                    app:layout_constraintTop_toBottomOf="@+id/img_karyawan"
                     tools:ignore="TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/pick_background_cekung">
-
-                <TextView
-                    android:id="@+id/t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <TextView
-                android:id="@+id/text_editnamakaryawan"
+                android:id="@+id/nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/karyawan"
+                android:text="@string/k_nama"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_editnamaperusahaan2"
+                android:id="@+id/coll_nama"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -106,7 +91,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_nama_karyawan"
+                    android:id="@+id/isiform_nama"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -116,7 +101,8 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="Nama Karyawan"
+                    android:hint="@string/k_nama"
+                    android:inputType="textPersonName"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -128,18 +114,18 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/text_alamatperusahaan1"
+                android:id="@+id/tanggallahir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/alamatkaryawan"
+                android:text="@string/k_tanggallahir"
                 android:textColor="#515151"
                 android:textSize="11sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/text_alamatperusahaan2"
+                android:id="@+id/coll_tanggallahir"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_marginStart="16dp"
@@ -148,7 +134,7 @@
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
-                    android:id="@+id/text_alamatkaryawan1"
+                    android:id="@+id/isiform_tanggallahir"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -158,50 +144,177 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="Alamat karawan"
+                    android:hint="@string/k_tanggallahir"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <TextView
-                android:id="@+id/text_nohp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/nunito_semibold"
-                android:text="@string/nohp"
-                android:textColor="#515151"
-                android:textSize="11sp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/collider_text_form_password2_baru"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/pick_background_menu">
-
-                <EditText
-                    android:id="@+id/text_nohpkaryawan2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:autofillHints=""
-                    android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="No Handphone"
                     android:inputType="number"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/jeniskelamin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/k_jeniskelamin"
+                android:textColor="#515151"
+                android:textSize="11sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/coll_jeniskelamin"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/pick_background_menu">
+
+                <EditText
+                    android:id="@+id/isiform_jeniskelamin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="@string/k_jeniskelamin"
+                    android:inputType="textPersonName"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/k_alamat"
+                android:textColor="#515151"
+                android:textSize="11sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/coll_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/pick_background_menu">
+
+                <EditText
+                    android:id="@+id/isiform_alamat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="@string/k_alamat"
+                    android:inputType="textMultiLine"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/nohp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/k_nohp"
+                android:textColor="#515151"
+                android:textSize="11sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/coll_nohp"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/pick_background_menu">
+
+                <EditText
+                    android:id="@+id/isiform_nohp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="@string/k_nohp"
+                    android:inputType="number"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/k_email"
+                android:textColor="#515151"
+                android:textSize="11sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/coll_email"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/pick_background_menu">
+
+                <EditText
+                    android:id="@+id/isiform_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:autofillHints=""
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:hint="@string/k_email"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="#6F6F6F"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -219,7 +332,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/simpan_data"
+                android:text="@string/k_simpan"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

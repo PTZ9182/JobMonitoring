@@ -90,7 +90,7 @@
     <string name="tp_spinner">spinner</string>
     <string name="tp_button_tambahpekerjaan">Tambah Pekerjaan</string>
     <string-array name="tp_karyawan">
-        <item>Tidak ada karyawan</item>
+        <item>Pilih Karyawan</item>
     </string-array>
     <string name="tp_pilihDivisi">Pilih Divisi</string>
 
@@ -153,8 +153,6 @@
     <string name="tk_pilih_divisi_karyawan">Pilih Divisi Karyawan</string>
     <string-array name="tk_isiform_pilih_divisi">
         <item>Pilih Divisi</item>
-        <item>Android</item>
-        <item>Web Developer</item>
     </string-array>
     <string name="tk_email_karyawan">Email Karyawan</string>
     <string name="tk_isiform_karyawan">Email Karyawan</string>
@@ -183,8 +181,6 @@
     <string name="ek_pilih_divisi_karyawan">Pilih Divisi Karyawan</string>
     <string-array name="ek_isiform_pilih_divisi">
         <item>Pilih Divisi</item>
-        <item>Android</item>
-        <item>Web Developer</item>
     </string-array>
     <string name="ek_email_karyawan">Email Karyawan</string>
     <string name="ek_isiform_karyawan">Email Karyawan</string>
@@ -255,9 +251,6 @@
     <string name="gp_password_baru2">Password Baru</string>
     <string name="gp_isiform_password_baru2">Masukan Password Lama</string>
     <string name="gp_button_simpan">Simpan</string>
-    <string name="gp_img_mata1">img_mata</string>
-    <string name="gp_img_mata2">img_mata</string>
-    <string name="gp_img_mata3">img_mata</string>
 
     <!--Presensi Perusahaan-->
     <string name="pp_button_presensi">Tambah Presensi</string>
@@ -349,17 +342,39 @@
     <!--Karyawan Detail Pekerjaan-->
     <string name="kdp_judul">Membuat Layout</string>
     <string name="kdp_desc">Deskripsi :</string>
+    <string name="kdp_Progress">Progres Pekerjaan :</string>
+    <string name="kdp_persen">0%</string>
     <string name="kdp_isidesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
     <string name="kdp_selesai">Selesai</string>
-    <!--Pengaturan Perusahaan-->
-    <string name="perusahaan">Nama Perusahaan</string>
-    <string name="alamatperusahaan">Alamat Perusahaan</string>
-    <string name="nohp">No Handphone</string>
-    <string name="Emailperusahaan">Email</string>
-    <string name="simpan_data">Simpan Data</string>
 
     <!--Pengaturan Karyawan-->
     <string name="karyawan">Nama Karyawan</string>
     <string name="alamatkaryawan">Alamat Karyawan</string>
 
+    <!--Pengaturan Perushaan-->
+    <string name="p_img_perusahaan">img_profil_perusahaan</string>
+    <string name="p_nama_perusahaan">Nama Perusahaan</string>
+    <string name="p_alamat_perusahaan">EDIT</string>
+    <string name="p_textnamaperusahaan">Nama Perusahaan</string>
+    <string name="p_textalamatperusahaan">Alamat Perusahaan</string>
+    <string name="p_textnohp">No Handphone</string>
+    <string name="p_textemail">Email</string>
+    <string name="p_simpan">Simpan</string>
+
+    <!--Pengaturan Karyawan-->
+    <string name="k_editprofil">Edit Profil</string>
+    <string name="k_img_perusahaan">img_profil_karyawan</string>
+    <string name="k_edit">EDIT</string>
+    <string name="k_nama">Nama</string>
+    <string name="k_tanggallahir">Tanggal Lahir</string>
+    <string name="k_jeniskelamin">Jenis Kelamin</string>
+    <string name="k_alamat">Alamat</string>
+    <string name="k_nohp">No Handphone</string>
+    <string name="k_email">Email</string>
+    <string name="k_simpan">Simpan</string>
+
+    <string name="divisi_tidak_ada_data">Data Divisi Kosong</string>
+    <string name="karyawan_tidak_ada_data">Data Karyawan Kosong</string>
+    <string name="pekerjaan_tidak_ada_data">Data Pekerjaan Kosong</string>
+    <string name="pekerjaan_user_tidak_ada_data">Pekerjaan Kosong</string>
 </resources>

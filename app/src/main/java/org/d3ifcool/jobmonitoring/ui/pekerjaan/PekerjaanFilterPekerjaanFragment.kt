@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -28,15 +26,15 @@ import org.d3ifcool.jobmonitoring.databinding.FragmentPekerjaanFilterPekerjaanBi
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
-class PekerjaanFilterPekerjaanFragment: Fragment() {
+class PekerjaanFilterPekerjaanFragment : Fragment() {
 
     private var _binding: FragmentPekerjaanFilterPekerjaanBinding? = null
     private val binding get() = _binding!!
+
+    val database = Firebase.database
     private lateinit var pref: Preference
     private lateinit var pekerjaanAdapter: PekerjaanAdapter
-
     private val data = arrayListOf<PekerjaanModel>()
-    val database = Firebase.database
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,18 +42,8 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
     ): View? {
 
         _binding = FragmentPekerjaanFilterPekerjaanBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onStart() {
         getPekerjaan()
-        super.onStart()
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -74,49 +62,23 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
             findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFilterDivisiFragment)
         }
 
-        pekerjaanAdapter = PekerjaanAdapter(arrayListOf(), object : PekerjaanAdapter.OnAdapterListener {
+        pekerjaanAdapter =
+            PekerjaanAdapter(arrayListOf(), object : PekerjaanAdapter.OnAdapterListener {
                 override fun popupMenus(pekerjaan: PekerjaanModel, v: View) {
                     val contextt: Context
                     contextt = requireActivity()
                     pref = Preference(contextt)
-
                     val popupMenus = PopupMenu(context, v)
                     popupMenus.inflate(R.menu.pekerjaan_menu)
                     popupMenus.setOnMenuItemClickListener {
                         when (it.itemId) {
                             R.id.edit_pekerjaan -> {
-                                val id = pekerjaan.id
-                                setFragmentResult(
-                                    "id",
-                                    bundleOf("id" to id)
-                                )
-                                val divisi = pekerjaan.divisi
-                                setFragmentResult(
-                                    "divisi",
-                                    bundleOf("divisi" to divisi)
-                                )
-                                val nama_pekerjaan = pekerjaan.nama_pekerjaan
-                                setFragmentResult(
-                                    "nama_pekerjaan",
-                                    bundleOf("nama_pekerjaan" to nama_pekerjaan)
-                                )
-                                val deskripsi = pekerjaan.deskripsi
-                                setFragmentResult(
-                                    "deskripsi",
-                                    bundleOf("deskripsi" to deskripsi)
-                                )
-                                val karyawan = pekerjaan.karyawan
-                                setFragmentResult(
-                                    "karyawan",
-                                    bundleOf("karyawan" to karyawan)
-                                )
-                                val status = pekerjaan.status
-                                setFragmentResult(
-                                    "status",
-                                    bundleOf("status" to status)
-                                )
-
-                                pref.prefpekdiv = pekerjaan.divisi
+                                pref.prefidpekerjaan = pekerjaan.id
+                                pref.prefdivisipekerjaan = pekerjaan.divisi
+                                pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
+                                pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
+                                pref.prefkaryawanpekerjaan = pekerjaan.karyawan
+                                pref.prefstatuspekerjaan = pekerjaan.status
                                 findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_editPekerjaanFragment)
                                 true
                             }
@@ -125,10 +87,9 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
                                     setMessage(R.string.pesan_hapus_pekerjaan)
                                     setPositiveButton("HAPUS") { _, _ ->
                                         val user = Firebase.auth.currentUser
-                                        val name = user?.displayName
+                                        val idPerusahaan = user?.uid
                                         val dbRef =
-                                            database.getReference("Perusahaan").child(name!!)
-                                                .child("Pekerjaan").child(pekerjaan.id)
+                                            database.getReference("Pekerjaan").child(idPerusahaan!!).child(pekerjaan.id)
                                         val task = dbRef.removeValue()
                                         task.addOnSuccessListener {
                                             Toast.makeText(
@@ -160,42 +121,16 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
                     popupMenus.show()
                 }
 
-            override fun detail(pekerjaan: PekerjaanModel, v: View) {
-                val id = pekerjaan.id
-                setFragmentResult(
-                    "id",
-                    bundleOf("id" to id)
-                )
-                val divisi = pekerjaan.divisi
-                setFragmentResult(
-                    "divisi",
-                    bundleOf("divisi" to divisi)
-                )
-                val nama_pekerjaan = pekerjaan.nama_pekerjaan
-                setFragmentResult(
-                    "nama_pekerjaan",
-                    bundleOf("nama_pekerjaan" to nama_pekerjaan)
-                )
-                val deskripsi = pekerjaan.deskripsi
-                setFragmentResult(
-                    "deskripsi",
-                    bundleOf("deskripsi" to deskripsi)
-                )
-                val karyawan = pekerjaan.karyawan
-                setFragmentResult(
-                    "karyawan",
-                    bundleOf("karyawan" to karyawan)
-                )
-                val status = pekerjaan.status
-                setFragmentResult(
-                    "status",
-                    bundleOf("status" to status)
-                )
-
-                findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanDetailFragment)
-            }
-
-        })
+                override fun detail(pekerjaan: PekerjaanModel, v: View) {
+                    pref.prefidpekerjaan = pekerjaan.id
+                    pref.prefdivisipekerjaan = pekerjaan.divisi
+                    pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
+                    pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
+                    pref.prefkaryawanpekerjaan = pekerjaan.karyawan
+                    pref.prefstatuspekerjaan = pekerjaan.status
+                    findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanDetailFragment)
+                }
+            })
         with(binding.recyclerView) {
             addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
             adapter = pekerjaanAdapter
@@ -209,23 +144,30 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
-        val statt = pref.prefstatt
-        val div = pref.preffilkar
+        val idPeusahaan = user?.uid
+        val status = pref.prefstatuspekerjaan
+        val divisi = pref.prefdivisipekerjaan
 
-        if (statt == "semua") {
-            val dbRef = database.getReference("Perusahaan").child(name!!).child("Pekerjaan")
-                .orderByChild("divisi").equalTo(div)
+        if (status == "semua") {
+            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("divisi").equalTo(divisi)
             dbRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     data.clear()
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PekerjaanModel::class.java)
-                                data.add(datas!!)
-                                Log.i("datas", "Ini $datas")
+                            data.add(datas!!)
+                            Log.i("datas", "Ini $datas")
+                            pref.prefjpekerjaan = data.size
                         }
                         pekerjaanAdapter.setData(data)
+                        if (data.size != 0){
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        }
+
                     }
                 }
 
@@ -235,27 +177,35 @@ class PekerjaanFilterPekerjaanFragment: Fragment() {
 
             })
         } else {
-            val dbRef = database.getReference("Perusahaan").child(name!!).child("Pekerjaan")
-                .orderByChild("status").equalTo(statt)
+            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("status").equalTo(status)
             dbRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     data.clear()
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PekerjaanModel::class.java)
-                            if (datas!!.status == statt && datas!!.divisi == div) {
+                            if (datas!!.status == status && datas.divisi == divisi) {
                                 data.add(datas)
-                                Log.i("datas", "Ini $datas")
+                                pref.prefjpekerjaan = data.size
                             }
                         }
                         pekerjaanAdapter.setData(data)
+                        binding.emptyView.visibility = View.GONE
+                        if (data.size != 0){
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        }
+                    } else {
+                        pekerjaanAdapter.setData(data)
+                        binding.emptyView.visibility = View.VISIBLE
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
                 }
-
             })
         }
     }

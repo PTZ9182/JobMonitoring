@@ -1,20 +1,20 @@
 package org.d3ifcool.jobmonitoring.ui.divisi
 
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditDivisiBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
+import org.d3ifcool.jobmonitoring.model.Preference
 
 
 class EditDivisiFragment : Fragment() {
@@ -23,7 +23,8 @@ class EditDivisiFragment : Fragment() {
     private val binding get() = _binding!!
 
     val database = Firebase.database
-    val dbRef = database.getReference("Perusahaan")
+    val dbRef = database.getReference("Divisi")
+    private lateinit var pref: Preference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,31 +32,25 @@ class EditDivisiFragment : Fragment() {
     ): View? {
 
         _binding = FragmentEditDivisiBinding.inflate(inflater, container, false)
-        set()
         return binding.root
-    }
-
-    private fun set() {
-        setFragmentResultListener("divisi") { requestKey, bundle ->
-            val result = bundle.getString("divisi")
-            binding.edFormNamaDivisi.setText(result)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+
         binding.layoutEditDivisi.setOnRefreshListener {
             binding.layoutEditDivisi.isRefreshing = false
         }
+
+        binding.edFormNamaDivisi.setText(pref.prefdivisi)
+
         binding.edButtonSimpan.setOnClickListener {
-            if (binding.edFormNamaDivisi.text.isEmpty()){
-                binding.edFormNamaDivisi.setError("Nama divisi tidak boleh kosong")
+            if (binding.edFormNamaDivisi.text.isEmpty()) {
+                binding.edFormNamaDivisi.error = "Nama divisi tidak boleh kosong"
                 binding.edFormNamaDivisi.requestFocus()
             } else {
                 editDivisi()
@@ -64,17 +59,19 @@ class EditDivisiFragment : Fragment() {
     }
 
     private fun editDivisi() {
-        setFragmentResultListener("id") { requestKey, bundle ->
-            val result = bundle.getString("id")
-            val user = Firebase.auth.currentUser
-            val name = user?.displayName
-            val divisi = DivisiModel(result!!,binding.edFormNamaDivisi.text.toString())
-            dbRef.child(name!!).child("Divisi").child(result).setValue(divisi).addOnCompleteListener{
-                Toast.makeText(activity,"Divisi Berhasil Diubah", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_editDivisiFragment_to_divisiFragment)
-            }.addOnFailureListener{ tast ->
-                Toast.makeText(activity,"Gagal Mengubah Divisi${tast.message}", Toast.LENGTH_SHORT).show()
-            }
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+        val idDivisi = pref.prefiddivisi
+        val user = Firebase.auth.currentUser
+        val idPerusahaan = user?.uid
+        val divisi = DivisiModel(idDivisi!!, binding.edFormNamaDivisi.text.toString())
+        dbRef.child(idPerusahaan!!).child(idDivisi).setValue(divisi).addOnCompleteListener {
+            Toast.makeText(activity, "Divisi Berhasil Diubah", Toast.LENGTH_SHORT).show()
+            findNavController().popBackStack()
+        }.addOnFailureListener { tast ->
+            Toast.makeText(activity, "Gagal Mengubah Divisi${tast.message}", Toast.LENGTH_SHORT)
+                .show()
         }
     }
 }

@@ -9,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -24,7 +22,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.adapter.KaryawanAdapter
-import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanBinding
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanFilterKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -38,6 +35,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
     private lateinit var pref: Preference
     private val data = arrayListOf<KaryawanModel>()
     val database = Firebase.database
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,17 +43,8 @@ class KaryawanFilterKaryawanFragment : Fragment() {
     ): View? {
 
         _binding = FragmentKaryawanFilterKaryawanBinding.inflate(inflater, container, false)
+        getKaryawan("")
         return binding.root
-    }
-
-    override fun onStart() {
-        getKaryawan()
-        super.onStart()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,11 +55,27 @@ class KaryawanFilterKaryawanFragment : Fragment() {
         }
         binding.kpkpButton.setOnClickListener {
             it.findNavController()
-                .navigate(R.id.action_karyawanFilterKaryawanFragment_to_editKaryawanFragment)
+                .navigate(R.id.action_karyawanFilterKaryawanFragment_to_tambahKaryawanFragment)
         }
         binding.kpkpCollFillter.setOnClickListener {
             findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_karyawanFilterFragment)
         }
+
+        searchView = view.findViewById(R.id.kpkp_search)
+        searchView.clearFocus()
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                getKaryawan(query!!)
+                return false
+            }
+
+            override fun onQueryTextChange(newtext: String?): Boolean {
+                getKaryawan(newtext!!)
+                return false
+            }
+
+        })
+
         karyawanAdapter =
             KaryawanAdapter(arrayListOf(), object : KaryawanAdapter.OnAdapterListener {
                 override fun popupMenus(karyawan: KaryawanModel, v: View) {
@@ -79,51 +84,15 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                     popupMenus.setOnMenuItemClickListener {
                         when (it.itemId) {
                             R.id.edit_Karyawan -> {
-                                val id = karyawan.id
-                                setFragmentResult(
-                                    "id",
-                                    bundleOf("id" to id)
-                                )
-                                val namaKaryawan = karyawan.namaKaryawan
-                                setFragmentResult(
-                                    "namaKaryawan",
-                                    bundleOf("namaKaryawan" to namaKaryawan)
-                                )
-                                val tanggallahir = karyawan.tanggallahir
-                                setFragmentResult(
-                                    "tanggallahir",
-                                    bundleOf("tanggallahir" to tanggallahir)
-                                )
-                                val jenisKelamin = karyawan.jenisKelamin
-                                setFragmentResult(
-                                    "jenisKelamin",
-                                    bundleOf("jenisKelamin" to jenisKelamin)
-                                )
-                                val alamat = karyawan.alamat
-                                setFragmentResult(
-                                    "alamat",
-                                    bundleOf("alamat" to alamat)
-                                )
-                                val nohandphone = karyawan.nohandphone
-                                setFragmentResult(
-                                    "nohandphone",
-                                    bundleOf("nohandphone" to nohandphone)
-                                )
-                                val divisi = karyawan.divisi
-                                setFragmentResult(
-                                    "divisi",
-                                    bundleOf("divisi" to divisi)
-                                )
-                                val email = karyawan.email
-                                setFragmentResult(
-                                    "email",
-                                    bundleOf("email" to email)
-                                )
-                                val password = karyawan.password
-                                setFragmentResult(
-                                    "password",
-                                    bundleOf("password" to password)
-                                )
+                                pref.prefidkaryawan = karyawan.id
+                                pref.prefnamakaryawan = karyawan.namaKaryawan
+                                pref.preftanggallahirkaryawan = karyawan.tanggallahir
+                                pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
+                                pref.prefalamatkaryawan = karyawan.alamat
+                                pref.prefnohpkaryawan = karyawan.nohandphone
+                                pref.prefdivisikaryawan = karyawan.divisi
+                                pref.prefemailkaryawan = karyawan.email
+                                pref.prefpasswordkaryawan = karyawan.password
                                 findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_editKaryawanFragment)
                                 true
                             }
@@ -132,9 +101,10 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                                     setMessage(R.string.pesan_hapus_karyawan)
                                     setPositiveButton("HAPUS") { _, _ ->
                                         val user = Firebase.auth.currentUser
-                                        val name = user?.displayName
-                                        val dbRef = database.getReference("Karyawan").child(name!!)
-                                            .child(karyawan.id)
+                                        val idPerusahaan = user?.uid
+                                        val dbRef =
+                                            database.getReference("Karyawan").child(idPerusahaan!!)
+                                                .child(karyawan.id)
                                         val task = dbRef.removeValue()
                                         task.addOnSuccessListener {
                                             Toast.makeText(
@@ -142,14 +112,12 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                                                 "Karyawan Berhasil Dihapus",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                            getKaryawan()
                                         }.addOnFailureListener { tast ->
                                             Toast.makeText(
                                                 activity,
                                                 "Gagal Menghapus Karyawan${tast.message}",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                            getKaryawan()
                                         }
 
                                     }
@@ -167,51 +135,15 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                 }
 
                 override fun profil(karyawan: KaryawanModel, v: View) {
-                    val id = karyawan.id
-                    setFragmentResult(
-                        "id",
-                        bundleOf("id" to id)
-                    )
-                    val namaKaryawan = karyawan.namaKaryawan
-                    setFragmentResult(
-                        "namaKaryawan",
-                        bundleOf("namaKaryawan" to namaKaryawan)
-                    )
-                    val tanggallahir = karyawan.tanggallahir
-                    setFragmentResult(
-                        "tanggallahir",
-                        bundleOf("tanggallahir" to tanggallahir)
-                    )
-                    val jenisKelamin = karyawan.jenisKelamin
-                    setFragmentResult(
-                        "jenisKelamin",
-                        bundleOf("jenisKelamin" to jenisKelamin)
-                    )
-                    val alamat = karyawan.alamat
-                    setFragmentResult(
-                        "alamat",
-                        bundleOf("alamat" to alamat)
-                    )
-                    val nohandphone = karyawan.nohandphone
-                    setFragmentResult(
-                        "nohandphone",
-                        bundleOf("nohandphone" to nohandphone)
-                    )
-                    val divisi = karyawan.divisi
-                    setFragmentResult(
-                        "divisi",
-                        bundleOf("divisi" to divisi)
-                    )
-                    val email = karyawan.email
-                    setFragmentResult(
-                        "email",
-                        bundleOf("email" to email)
-                    )
-                    val password = karyawan.password
-                    setFragmentResult(
-                        "password",
-                        bundleOf("password" to password)
-                    )
+                    pref.prefidkaryawan = karyawan.id
+                    pref.prefnamakaryawan = karyawan.namaKaryawan
+                    pref.preftanggallahirkaryawan = karyawan.tanggallahir
+                    pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
+                    pref.prefalamatkaryawan = karyawan.alamat
+                    pref.prefnohpkaryawan = karyawan.nohandphone
+                    pref.prefdivisikaryawan = karyawan.divisi
+                    pref.prefemailkaryawan = karyawan.email
+                    pref.prefpasswordkaryawan = karyawan.password
                     findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_profilKaryawan)
                 }
 
@@ -224,32 +156,45 @@ class KaryawanFilterKaryawanFragment : Fragment() {
 
     }
 
-    private fun getKaryawan() {
+    private fun getKaryawan(text: String) {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
-        val filkar = pref.preffilkar
+        val filterkaryawan = pref.preffilterkaryawan
         val user = Firebase.auth.currentUser
-        val name = user?.displayName
+        val idPerusahaan = user?.uid
         val dbRef =
-            database.getReference("Karyawan").child(name!!).orderByChild("divisi").equalTo(filkar)
+            database.getReference("Karyawan").child(idPerusahaan!!)
+                .orderByChild("divisi").equalTo(filterkaryawan)
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
-                        data.add(datas!!)
+                            data.add(datas!!)
+                            pref.prefjkaryawan = data.size
+
                     }
                     karyawanAdapter.setData(data)
-                }
+                    binding.emptyView.visibility = View.GONE
+                    if (data.size != 0) {
+                        binding.kpkpJumlah.text = pref.prefjkaryawan.toString()
+                    } else {
+                        pref.prefjkaryawan = 0
+                        binding.kpkpJumlah.text = pref.prefjkaryawan.toString()
+                    }
+            } else {
+                karyawanAdapter.setData(data)
+                binding.emptyView.visibility = View.VISIBLE
             }
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-            }
+                override fun onCancelled(error: DatabaseError) {
+            Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+        }
 
-        })
-    }
+    })
+}
 
 }

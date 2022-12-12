@@ -182,7 +182,6 @@
                 android:text="@string/tp_button_tambahpekerjaan"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                app:backgroundTint="@color/orange"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

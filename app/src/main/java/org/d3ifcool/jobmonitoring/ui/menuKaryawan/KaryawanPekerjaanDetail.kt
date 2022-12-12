@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_karyawan_pekerjaan_detail.*
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanPekerjaanDetailBinding
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
@@ -23,7 +25,7 @@ class KaryawanPekerjaanDetail : Fragment() {
     private val binding get() = _binding!!
     private lateinit var pref: Preference
     val database = Firebase.database
-    val dbRef = database.getReference("Perusahaan")
+    val dbRef = database.getReference("Pekerjaan")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,64 +33,88 @@ class KaryawanPekerjaanDetail : Fragment() {
     ): View? {
 
         _binding = FragmentKaryawanPekerjaanDetailBinding.inflate(inflater, container, false)
-        set()
         return binding.root
 
-    }
-
-    private fun set() {
-        setFragmentResultListener("nama_pekerjaan") { requestKey, bundle ->
-            val result = bundle.getString("nama_pekerjaan")
-            binding.kdpJudul.setText(result)
-        }
-        setFragmentResultListener("deskripsi") { requestKey, bundle ->
-            val result = bundle.getString("deskripsi")
-            binding.kdpIsidesc.setText(result)
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+
+        binding.kdpJudul.text = pref.prefnamapekerjaanuser
+        binding.kdpIsidesc.text = pref.prefdeskripsipekerjaanuser
+
         binding.layoutKaryawanPekerjaanDetail.setOnRefreshListener {
             binding.layoutKaryawanPekerjaanDetail.isRefreshing = false
         }
 
-        setFragmentResultListener("status") { requestKey, bundle ->
-            val result = bundle.getString("status")
+        var endtPoint = 0
 
-            binding.kdpButton.setOnClickListener {
-                if (result == "0") {
-                    val contextt: Context
-                    contextt = requireActivity()
-                    pref = Preference(contextt)
-                    val per = pref.prefperusahaan
-                    val key = pref.prefkpid
-                    val div = pref.prefkpdiv
-                    val namepeke = pref.prefkpnp
-                    val desc = pref.prefkpdesc
-                    val namekary = pref.prefkpdnk
-                    val status = "1"
-                    val pekerjaan = PekerjaanModel(key!!, div!!, namepeke!!, desc!!, namekary!!, status)
-                    dbRef.child(per!!).child("Pekerjaan").child(key).setValue(pekerjaan)
-                        .addOnCompleteListener {
-                            Toast.makeText(activity, "Pekerjaan Selesai", Toast.LENGTH_SHORT).show()
-                        }.addOnFailureListener { tast ->
-                            Toast.makeText(
-                                activity,
-                                "Gagal",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                } else {
-                    //Toast.makeText(activity, "", Toast.LENGTH_SHORT).show()
+        binding.seekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                binding.kdptextProgress.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+                var starttPoint = 50
+                var strat = 50
+                if (p0 != null) {
+                    seekBar.progress = strat
+                    starttPoint = seekBar.progress
                 }
             }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                if (p0 != null) {
+                    endtPoint = seekBar.progress
+                }
+            }
+
+        })
+
+        val statuss = pref.prefstatuspekerjaanuser
+        binding.kdpButton.setOnClickListener {
+            if (statuss == "0") {
+                val idPerusahaan = pref.prefidperusahaanuser
+                val idPekerjaan = pref.prefidpekerjaanuser
+                val divisi = pref.prefdivisipekerjaanuser
+                val namaPekerjaan = pref.prefnamapekerjaanuser
+                val desc = pref.prefdeskripsipekerjaanuser
+                val namaUser = pref.prefnamauser
+                val status = "1"
+                val pekerjaan = PekerjaanModel(
+                    idPerusahaan!!,
+                    divisi!!,
+                    namaPekerjaan!!,
+                    desc!!,
+                    namaUser!!,
+                    status
+                )
+                dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
+                    .addOnCompleteListener {
+                        findNavController().popBackStack()
+                        Toast.makeText(activity, "Pekerjaan Selesai", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener { tast ->
+                        Toast.makeText(
+                            activity,
+                            "Gagal",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+            } else {
+                Toast.makeText(
+                    activity,
+                    "Anda sudah menyelesaikan pekerjaan ini",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
+
     }
+
 }
+

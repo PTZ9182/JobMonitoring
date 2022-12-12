@@ -31,12 +31,11 @@ class KaryawanPekerjaanAdapter (
         RecyclerView.ViewHolder(itemBinding.root){
         fun bind(pekerjaan: PekerjaanModel) {
             val statuss = pekerjaan.status
+            itemBinding.kpkPekerjaanSelesai.text = pekerjaan.nama_pekerjaan
             if(statuss == "1"){
                 itemBinding.kpkStatusSelesai.text = "Selesai"
-                itemBinding.kpkPekerjaanSelesai.text = pekerjaan.nama_pekerjaan
             } else if (statuss == "0"){
                 itemBinding.kpkStatusBelumselesai.text = "Belum Selesai"
-                itemBinding.kpkPekerjaanBelumselesai.text = pekerjaan.nama_pekerjaan
             }
         }
         val coll = itemBinding.kpkCollPekerjaan
