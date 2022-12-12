@@ -233,6 +233,9 @@
         <action
             android:id="@+id/action_homeKaryawanFragment_to_pengaturanKaryawanFragment"
             app:destination="@id/pengaturanKaryawanFragment" />
+        <action
+            android:id="@+id/action_homeKaryawanFragment_to_tambahPresensiKaryawanFragment"
+            app:destination="@id/tambahPresensiKaryawanFragment" />
     </fragment>
     <fragment
         android:id="@+id/karyawanPekerjaanFragment"
@@ -380,4 +383,9 @@
         android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.GantiPasswordAkunKaryawanFragment"
         android:label="fragment_ganti_password_akun_karyawan"
         tools:layout="@layout/fragment_ganti_password_akun_karyawan" />
+    <fragment
+        android:id="@+id/tambahPresensiKaryawanFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.menuKaryawan.TambahPresensiKaryawanFragment"
+        android:label="fragment_tambah_presensi_karyawan"
+        tools:layout="@layout/fragment_tambah_presensi_karyawan" />
 </navigation>

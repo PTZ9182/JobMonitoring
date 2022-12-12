@@ -1,13 +1,12 @@
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -16,9 +15,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_tambah_karyawan.*
+import kotlinx.android.synthetic.main.fragment_tambah_presensi_karyawan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -42,6 +46,10 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.tkFormTanggallahir.setOnClickListener{
+            openTimeDatePicker(tk_form_tanggallahir)
+        }
 
         binding.layoutTambahKaryawan.setOnRefreshListener {
             binding.layoutTambahKaryawan.isRefreshing = false
@@ -77,6 +85,25 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.tkFormPassword.requestFocus()
             } else {
                 tambahKaryawan()
+            }
+        }
+    }
+
+    private fun openTimeDatePicker(tkFormTanggallahir: EditText) {
+        val tanggalAbsen = Calendar.getInstance()
+        val date = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            tanggalAbsen.set(Calendar.YEAR,year)
+            tanggalAbsen.set(Calendar.MONTH, monthOfYear)
+            tanggalAbsen.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            val strFormatDefault = "dd MMMM yyyy"
+            val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+            tkFormTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
+        }
+        tkFormTanggallahir.setOnClickListener {
+            context?.let { it1 ->
+                DatePickerDialog(
+                    it1,date, tanggalAbsen.get(Calendar.YEAR), tanggalAbsen.get(Calendar.MONTH), tanggalAbsen.get(
+                        Calendar.DAY_OF_MONTH)).show()
             }
         }
     }

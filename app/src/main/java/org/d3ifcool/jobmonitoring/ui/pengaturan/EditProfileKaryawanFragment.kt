@@ -1,6 +1,7 @@
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
@@ -11,16 +12,21 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.fragment_edit_profile_karyawan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditProfileKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.math.tan
 
 
@@ -80,6 +86,10 @@ class EditProfileKaryawanFragment : Fragment() {
             nDialog.cancel()
         }
 
+        binding.isiformTanggallahir.setOnClickListener {
+            openTimeDatePicker(isiform_tanggallahir)
+        }
+
         binding.edit.setOnClickListener {
             selectPicture()
         }
@@ -133,6 +143,25 @@ class EditProfileKaryawanFragment : Fragment() {
                 binding.isiformAlamat.text.toString(),
                 binding.isiformNohp.text.toString(),
                 binding.isiformEmail.text.toString())
+            }
+        }
+    }
+
+    private fun openTimeDatePicker(isiformTanggallahir: EditText) {
+        val tanggalAbsen = Calendar.getInstance()
+        val date = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+            tanggalAbsen.set(Calendar.YEAR,year)
+            tanggalAbsen.set(Calendar.MONTH, monthOfYear)
+            tanggalAbsen.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            val strFormatDefault = "dd MMMM yyyy"
+            val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+            isiformTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
+        }
+        isiformTanggallahir.setOnClickListener {
+            context?.let { it1 ->
+                DatePickerDialog(
+                    it1,date, tanggalAbsen.get(Calendar.YEAR), tanggalAbsen.get(Calendar.MONTH), tanggalAbsen.get(
+                        Calendar.DAY_OF_MONTH)).show()
             }
         }
     }

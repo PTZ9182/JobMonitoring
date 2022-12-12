@@ -81,6 +81,9 @@ class HomeKaryawanFragment : Fragment() {
         binding.hkCollPekerjaan.setOnClickListener {
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_karyawanPekerjaanFragment)
         }
+        binding.hkCollPresensi.setOnClickListener{
+            findNavController().navigate(R.id.action_homeKaryawanFragment_to_tambahPresensiKaryawanFragment)
+        }
     }
 
     private fun getData() {
