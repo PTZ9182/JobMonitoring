@@ -58,7 +58,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                 .navigate(R.id.action_karyawanFilterKaryawanFragment_to_tambahKaryawanFragment)
         }
         binding.kpkpCollFillter.setOnClickListener {
-            findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_karyawanFilterFragment)
+            findNavController().popBackStack()
         }
 
         searchView = view.findViewById(R.id.kpkp_search)

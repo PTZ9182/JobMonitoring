@@ -76,7 +76,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                 .navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_tambahPekerjaanDivisiFragment)
         }
         binding.pkCollFillter.setOnClickListener {
-            findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFilterDivisiFragment)
+            findNavController().popBackStack()
         }
 
         pekerjaanAdapter =

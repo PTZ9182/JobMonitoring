@@ -25,7 +25,8 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_karyawan_pekerjaan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_pekerjaan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_pekerjaan_filter_divisi.xml" value="0.20436083796494228" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_presensi.xml" value="0.4" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_presensi_filter.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/adapter_tambah_pekerjaan_divisi.xml" value="0.20436083796494228" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_divisi.xml" value="0.1" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.264" />
@@ -33,6 +34,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_pekerjaan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_edit_profile_karyawan.xml" value="0.24615384615384617" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_filter_presensi.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_ganti_password.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_ganti_password_akun_karyawan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_ganti_password_perusahaan.xml" value="0.25" />
@@ -45,7 +47,7 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_karyawan_pekerjaan_detail.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_login_karyawan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_login_perusahaan.xml" value="0.2" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan.xml" value="0.2" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan_detail.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan_filter.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pekerjaan_filter_divisi.xml" value="0.20436083796494228" />
@@ -53,8 +55,9 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pengaturan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pengaturan_karyawan.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_pralogin.xml" value="0.264" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_presensi.xml" value="0.264" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_presensi_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_presensi.xml" value="0.4" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_presensi_filter_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_presensi_karyawan.xml" value="0.4" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_profil_karyawan.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_register.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoring/app/src/main/res/layout/fragment_splash.xml" value="0.20521590423257802" />

@@ -43,29 +43,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/papa_zola"
                     android:textColor="#FFFFFF"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
-                    tools:ignore="TextContrastCheck" />
-
-                <TextView
-                    android:id="@+id/alamat_perusahaan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="50dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="@string/alamat_perusahaan"
-                    android:textColor="#FFFFFF"
-                    android:textSize="11sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
+                    app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
                     tools:ignore="TextContrastCheck" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -75,7 +61,8 @@
                 android:id="@+id/text_apps_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/catatan"
                 android:textColor="#515151"
@@ -105,7 +92,6 @@
                 android:id="@+id/colider_pekerjaan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_apps_menu">
@@ -126,81 +112,80 @@
 
                 </TextView>
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_profil_karyawan"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:contentDescription="@string/kp_img_profil"
-                    android:src="@mipmap/ic_launcher_round"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tanggal"
-                    tools:ignore="ImageContrastCheck" />
 
                 <TextView
-                    android:id="@+id/masuk"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:fontFamily="@font/nunito_semibold"
-                    android:textColor="#00C853"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/jam1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/jam1"
-                    tools:ignore="TextContrastCheck"
-                    tools:text="Mauk" />
-
-
-                <TextView
-                    android:id="@+id/jam1"
+                    android:id="@+id/waktu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="32dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:textColor="#515151"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/img_profil_karyawan"
-                    app:layout_constraintEnd_toStartOf="@+id/keluar"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_profil_karyawan"
-                    app:layout_constraintTop_toTopOf="@+id/img_profil_karyawan"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tanggal"
                     app:layout_constraintVertical_bias="0.0"
-                    tools:text="06.30" />
-
+                    android:text="Jam Masuk :" />
 
                 <TextView
-                    android:id="@+id/keluar"
+                    android:id="@+id/jam"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="8dp"
                     android:fontFamily="@font/nunito_semibold"
-                    android:textColor="#F6894C"
+                    android:textColor="#515151"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/masuk"
-                    tools:ignore="TextContrastCheck"
-                    tools:text="Keluar" />
+                    app:layout_constraintBottom_toBottomOf="@+id/waktu"
+                    app:layout_constraintStart_toEndOf="@+id/waktu"
+                    app:layout_constraintTop_toTopOf="@+id/waktu"
+                    android:text="06.30" />
 
                 <TextView
-                    android:id="@+id/jam2"
+                    android:id="@+id/keterangan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:textColor="#515151"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toStartOf="@+id/keluar"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/img_profil_karyawan"
-                    app:layout_constraintTop_toBottomOf="@+id/jam1"
-                    tools:text="16.30" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/waktu"
+                    android:text="Keterangan :" />
+
+                <TextView
+                    android:id="@+id/ket"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="#515151"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/keterangan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/keterangan"
+                    app:layout_constraintTop_toTopOf="@+id/keterangan"
+                    tools:text="Blalallalalala" />
+
+
+                <ImageView
+                    android:id="@+id/imageSelfie"
+                    android:layout_width="332dp"
+                    android:layout_height="185dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_baseline_camera_alt_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ket" />
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

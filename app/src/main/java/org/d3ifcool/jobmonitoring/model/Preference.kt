@@ -33,6 +33,18 @@ class Preference(context: Context) {
     private val TAG_JKARYAWAN = "jumlah karyawan"
     private val TAG_FILTERKARYAWAN = "filter karyawan"
 
+    //PRESENSI
+    private val TAG_IDPRESENSI = "id presensi"
+    private val TAG_IDUSERPRESENSI = "iduser presensi"
+    private val TAG_NAMAPRESENSI = "nama user presensi"
+    private val TAG_DIVISIPRESENSI = "divisi presensi"
+    private val TAG_KETERANGANPRESENSI = "keterangan presensi"
+    private val TAG_WAKTUPRESENSI = "waktu presensi"
+    private val TAG_TANGGALPRESENSI = "tanggal presensi"
+    private val TAG_JPRESENSI = "jumlah presensi"
+    private val TAG_FILTERPRESENSI = "filter presensi"
+    private val TAG_JBUTTONRESENSI = "button presensi"
+
     //PEKERJAAN
     private val TAG_IDPEKERJAAN = "id pekerjaan"
     private val TAG_DIVISIPEKERJAAN = "divisi pekerjaan"
@@ -148,6 +160,47 @@ class Preference(context: Context) {
     var preffilterkaryawan: String?
         get() = pref.getString(TAG_FILTERKARYAWAN,"")
         set(value) = pref.edit().putString(TAG_FILTERKARYAWAN,value).apply()
+
+    //Presensi
+    var prefidpresensi: String?
+        get() = pref.getString(TAG_IDPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_IDPRESENSI,value).apply()
+
+    var prefiduserpresensi: String?
+        get() = pref.getString(TAG_IDUSERPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_IDUSERPRESENSI,value).apply()
+
+    var prefnamauserpresensi: String?
+        get() = pref.getString(TAG_NAMAPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_NAMAPRESENSI,value).apply()
+
+    var prefdivisipresensi: String?
+        get() = pref.getString(TAG_DIVISIPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_DIVISIPRESENSI,value).apply()
+
+    var prefketeranganpresensi: String?
+        get() = pref.getString(TAG_KETERANGANPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_KETERANGANPRESENSI,value).apply()
+
+    var prefwaktupresensi: String?
+        get() = pref.getString(TAG_WAKTUPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_WAKTUPRESENSI,value).apply()
+
+    var preftanggalpresensi: String?
+        get() = pref.getString(TAG_TANGGALPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_TANGGALPRESENSI,value).apply()
+
+    var prefjpresesnsi: Int?
+        get() = pref.getInt(TAG_JPRESENSI,0)
+        set(value) = pref.edit().putInt(TAG_JPRESENSI,value!!).apply()
+
+    var preffilterpresensi: String?
+        get() = pref.getString(TAG_FILTERPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_FILTERPRESENSI,value).apply()
+
+    var prefbuttonpresensi: String?
+        get() = pref.getString(TAG_JBUTTONRESENSI,"")
+        set(value) = pref.edit().putString(TAG_JBUTTONRESENSI,value!!).apply()
 
     //Pekerjaan
     var prefidpekerjaan: String?
@@ -287,6 +340,16 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_KARYAWANPEKERJAAN).apply()
         pref.edit().remove(TAG_JPEKERJAAN).apply()
         pref.edit().remove(TAG_STATUSPEKERJAAN).apply()
+        //PRESENSI
+        pref.edit().remove(TAG_IDPRESENSI).apply()
+        pref.edit().remove(TAG_IDUSERPRESENSI).apply()
+        pref.edit().remove(TAG_NAMAPRESENSI).apply()
+        pref.edit().remove(TAG_DIVISIPRESENSI).apply()
+        pref.edit().remove(TAG_KETERANGANPRESENSI).apply()
+        pref.edit().remove(TAG_WAKTUPRESENSI).apply()
+        pref.edit().remove(TAG_TANGGALPRESENSI).apply()
+        pref.edit().remove(TAG_JPRESENSI).apply()
+        pref.edit().remove(TAG_FILTERPRESENSI).apply()
         //USER KARYAWAN
         pref.edit().remove(TAG_IDPERUSAHAANUSER).apply()
         pref.edit().remove(TAG_PERUSAHAANUSER).apply()

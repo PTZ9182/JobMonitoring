@@ -1,29 +1,27 @@
 package org.d3ifcool.jobmonitoring.ui.menuKaryawan
 
 import android.app.Activity
-import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.fragment_tambah_presensi_karyawan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPresensiKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.Preference
 import org.d3ifcool.jobmonitoring.model.PresensiModel
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TambahPresensiKaryawanFragment : Fragment() {
 
@@ -35,6 +33,8 @@ class TambahPresensiKaryawanFragment : Fragment() {
     val storageRef = storage.getReference("images")
     private lateinit var pref: Preference
     private lateinit var ImageUri: Uri
+    private lateinit var url :String
+    private lateinit var img :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,41 +45,46 @@ class TambahPresensiKaryawanFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.inputTanggal.setOnClickListener {
-            openTimeDatePicker(inputTanggal)
+        val context: Context
+        context = requireActivity()
+        pref = Preference(context)
+
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val date = LocalDateTime.now().format(formatter)
+        binding.inputTanggal.text = date
+        binding.inputNama.text = pref.prefnamauser
+        val setbutton = pref.prefbuttonpresensi
+        if (setbutton == date.toString()){
+            binding.btnAbsen.visibility = View.GONE
+        } else {
+            binding.btnAbsen.visibility = View.VISIBLE
         }
+        url = "img"
+        img = "img"
 
         binding.imageSelfie.setOnClickListener {
             selectPicture()
         }
 
         binding.btnAbsen.setOnClickListener {
-            val namaKaryawan = binding.inputNama.text.toString()
-            val tanggaldanwaktu = binding.inputTanggal.text.toString()
             val keterangan = binding.inputKeterangan.text.toString()
 
-            //Validasi Nama Karyawan
-            if (namaKaryawan.isEmpty()) {
-                binding.inputNama.error = "Nama Karyawan Harus Di isi!!"
-                binding.inputNama.requestFocus()
-                return@setOnClickListener
-            }
-            //Validasi Tanggal dan Waktu
-            else if (tanggaldanwaktu.isEmpty()) {
-                binding.inputTanggal.error = "Tanggal harus Di isi!"
-                binding.inputTanggal.requestFocus()
-                return@setOnClickListener
-            }
             //Validasi Keterangan
-            else if (keterangan.isEmpty()) {
+            if (keterangan.isEmpty()) {
                 binding.inputKeterangan.error = "Keterangan Harus Ada!"
                 binding.inputKeterangan.requestFocus()
                 return@setOnClickListener
             } else {
-                tambahAbsensi(namaKaryawan,tanggaldanwaktu,keterangan,)
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val date = LocalDateTime.now().format(formatter)
+                val formatterr = DateTimeFormatter.ofPattern("HH:mm")
+                val waktu = LocalDateTime.now().format(formatterr)
+                tambahAbsensi(pref.prefnamauser!!,keterangan,waktu.toString(),date.toString())
+                pref.prefbuttonpresensi = date.toString()
             }
         }
     }
@@ -99,50 +104,33 @@ class TambahPresensiKaryawanFragment : Fragment() {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             ImageUri = data?.data!!
             binding.imageSelfie.setImageURI(ImageUri)
+            url = ImageUri.toString()
         }
     }
 
-    private fun openTimeDatePicker(inputTanggal: EditText) {
-        val tanggalAbsen = Calendar.getInstance()
-        val date =
-            DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                tanggalAbsen.set(Calendar.YEAR, year)
-                tanggalAbsen.set(Calendar.MONTH, monthOfYear)
-                tanggalAbsen.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                val strFormatDefault = "dd MMMM yyyy HH:mm"
-                val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-                inputTanggal.setText(simpleDateFormat.format(tanggalAbsen.time))
-            }
-        inputTanggal.setOnClickListener {
-            context?.let { it1 ->
-                DatePickerDialog(
-                    it1,
-                    date,
-                    tanggalAbsen.get(Calendar.YEAR),
-                    tanggalAbsen.get(Calendar.MONTH),
-                    tanggalAbsen.get(
-                        Calendar.DAY_OF_MONTH
-                    )
-                ).show()
-            }
-        }
-    }
 
-    private fun tambahAbsensi(name: String, tanggal: String, keterangan: String){
+    private fun tambahAbsensi(name: String, keterangan: String, waktu: String, tanggal: String){
         val context: Context
         context = requireActivity()
         pref = Preference(context)
         val idPresensi = dbRef.push().key!!
         val idPerusahaan = pref.prefidperusahaanuser
         val idUser = pref.prefiduser
+        val divisi = pref.prefdivisiuser
         val presensi = PresensiModel(
-            idPresensi,name,tanggal,keterangan)
-        dbRef.child(idPerusahaan!!).child(idUser!!).child(idPresensi).setValue(presensi).addOnCompleteListener{
+            idPresensi,idUser!!,name,divisi!!,keterangan,waktu,tanggal)
+        dbRef.child(idPerusahaan!!).child(idPresensi).setValue(presensi).addOnCompleteListener{
             Toast.makeText(activity,"Presensi Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }.addOnFailureListener{ tast ->
             Toast.makeText(activity,"Gagal menambahkan Presensi${tast.message}", Toast.LENGTH_SHORT).show()
         }
-
+        if (img != url) {
+            storageRef.child("Presensi").child(idPerusahaan).child(idUser).child(tanggal)
+                .putFile(ImageUri)
+                .addOnSuccessListener {
+                    Log.i("photo", "Berhasil")
+                }
+        }
     }
 }

@@ -1,8 +1,13 @@
 package org.d3ifcool.jobmonitoring.model
 
-class PresensiModel (
+import java.time.LocalDate
+
+class PresensiModel(
     var id:  String = "",
+    var idUser: String = "",
     var nama: String = "",
-    var tanggal: String = "",
+    var divisi: String = "",
     var keterangan: String = "",
+    var waktu: String = "",
+    var tanggal: String = ""
 )

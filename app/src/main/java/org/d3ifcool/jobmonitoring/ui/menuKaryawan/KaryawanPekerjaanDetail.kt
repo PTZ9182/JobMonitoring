@@ -77,6 +77,11 @@ class KaryawanPekerjaanDetail : Fragment() {
         })
 
         val statuss = pref.prefstatuspekerjaanuser
+        if (statuss == "1"){
+            binding.kdpButton.visibility = View.GONE
+        } else {
+            binding.kdpButton.visibility = View.VISIBLE
+        }
         binding.kdpButton.setOnClickListener {
             if (statuss == "0") {
                 val idPerusahaan = pref.prefidperusahaanuser

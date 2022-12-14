@@ -7,106 +7,84 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/pp_collider"
+        android:id="@+id/coll_presensi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/pp_img"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/pp_img_profil"
+            android:src="@mipmap/ic_launcher_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
+
         <TextView
-            android:id="@+id/pp_tanggal"
+            android:id="@+id/pp_hadir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#00C853"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pp_nama_hadir"
+            app:layout_constraintEnd_toStartOf="@+id/waktu"
+            app:layout_constraintTop_toTopOf="@+id/pp_nama_hadir"
+            tools:ignore="TextContrastCheck"
+            tools:text="@string/pp_hadir" />
+
+        <TextView
+            android:id="@+id/pp_nama_hadir"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:fontFamily="@font/nunito_semibold"
-            android:text="@string/pp_tanggal"
             android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pp_img"
+            app:layout_constraintEnd_toStartOf="@+id/pp_hadir"
+            app:layout_constraintStart_toEndOf="@+id/pp_img"
+            app:layout_constraintTop_toTopOf="@+id/pp_img"
+            tools:text="@string/pp_namahadir" />
+
+        <TextView
+            android:id="@+id/waktu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#515151"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pp_hadir"
+            app:layout_constraintEnd_toEndOf="@+id/pp_tidakhadir"
+            app:layout_constraintTop_toTopOf="@+id/pp_hadir"
+            tools:text="@string/pp_waktuu" />
+
+
+        <TextView
+            android:id="@+id/pp_tidakhadir"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/nunito_semibold"
+            android:textColor="#F6894C"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/pp_nama_hadir"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-        </TextView>
-
+            app:layout_constraintTop_toTopOf="@+id/pp_nama_hadir"
+            tools:ignore="TextContrastCheck"
+            tools:text="@string/pp_tidakhadir" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/pp_img"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/pp_img_profil"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pp_collider"
-        tools:ignore="ImageContrastCheck" />
-
-    <TextView
-        android:id="@+id/pp_hadir"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#00C853"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pp_nama_hadir"
-        app:layout_constraintEnd_toEndOf="@+id/pp_tidakhadir"
-        app:layout_constraintTop_toTopOf="@+id/pp_nama_hadir"
-        tools:ignore="TextContrastCheck"
-        tools:text="@string/pp_hadir" />
-
-    <TextView
-        android:id="@+id/pp_nama_hadir"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pp_img"
-        app:layout_constraintEnd_toStartOf="@+id/pp_tidakhadir"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/pp_img"
-        app:layout_constraintTop_toTopOf="@+id/pp_img"
-        tools:text="@string/pp_namahadir" />
-
-
-    <TextView
-        android:id="@+id/pp_tidakhadir"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#F6894C"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pp_nama_hadir"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pp_nama_hadir"
-        tools:ignore="TextContrastCheck"
-        tools:text="@string/pp_namahadir" />
-
-
-    <TextView
-        android:id="@+id/pp_namatidakhadir"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:fontFamily="@font/nunito_semibold"
-        android:textColor="#515151"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pp_img"
-        app:layout_constraintEnd_toStartOf="@+id/pp_tidakhadir"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/pp_img"
-        app:layout_constraintTop_toTopOf="@+id/pp_img"
-        tools:text="@string/pp_namatidakhadir" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

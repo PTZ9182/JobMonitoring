@@ -59,7 +59,7 @@ class RegisterFragment : Fragment() {
         }
 
         binding.rgLogin.setOnClickListener {
-            it.findNavController().navigate(R.id.action_registerFragment_to_praLoginFragment)
+            findNavController().navigate(R.id.action_registerFragment_to_praLoginFragment)
         }
 
         binding.rgButtonDaftar.setOnClickListener {

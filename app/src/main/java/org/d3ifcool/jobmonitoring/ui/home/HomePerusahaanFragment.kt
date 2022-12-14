@@ -51,6 +51,8 @@ class HomePerusahaanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+
+
         binding.homePerusahaan.setOnRefreshListener {
             binding.homePerusahaan.isRefreshing = false
         }

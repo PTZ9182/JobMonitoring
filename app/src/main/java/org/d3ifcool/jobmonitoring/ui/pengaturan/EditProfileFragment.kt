@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -207,17 +208,18 @@ class EditProfileFragment : Fragment() {
                         }.addOnFailureListener { tast ->
                             Log.i("Update", "Gagal")
                         }
+                    findNavController().popBackStack()
                     Toast.makeText(activity, "Data perusahaan telah diubah.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     Toast.makeText(activity, "Gagal merubah data.", Toast.LENGTH_SHORT)
                         .show()
                 }
-                nDialog.cancel()
             }
         user.updateEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+                    nDialog.cancel()
                     Log.d(TAG, "User email address updated.")
                 } else {
                     Log.d(TAG, "User email gagal diganti.")

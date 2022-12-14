@@ -26,15 +26,16 @@ import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.adapter.PekerjaanAdapter
 import org.d3ifcool.jobmonitoring.adapter.PresensiAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiBinding
+import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiFilterPresensiBinding
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-class PresensiFragment : Fragment() {
+class PresensiFilterPresensiFragment : Fragment() {
 
-    private var _binding: FragmentPresensiBinding? = null
+    private var _binding: FragmentPresensiFilterPresensiBinding? = null
     private val binding get() = _binding!!
 
     val database = Firebase.database
@@ -49,7 +50,7 @@ class PresensiFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentPresensiBinding.inflate(inflater, container, false)
+        _binding = FragmentPresensiFilterPresensiBinding.inflate(inflater, container, false)
         getpresensi("")
         return binding.root
     }
@@ -62,11 +63,11 @@ class PresensiFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
-        binding.layoutPresensiPerusahaan.setOnRefreshListener {
-            binding.layoutPresensiPerusahaan.isRefreshing = false
+        binding.layoutPresensiFilterPresensi.setOnRefreshListener {
+            binding.layoutPresensiFilterPresensi.isRefreshing = false
         }
         binding.pkCollFillter.setOnClickListener {
-            it.findNavController().navigate(R.id.action_presensiFragment_to_presensiFilterFragment)
+            findNavController().popBackStack()
         }
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -100,7 +101,7 @@ class PresensiFragment : Fragment() {
                     pref.prefketeranganpresensi = presensi.keterangan
                     pref.prefwaktupresensi = presensi.waktu
                     pref.preftanggalpresensi = presensi.tanggal
-                    findNavController().navigate(R.id.action_presensiFragment_to_presensiKaryawanFragment)
+                    findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiKaryawanFragment)
                 }
             })
         with(binding.recyclerView) {
@@ -116,6 +117,7 @@ class PresensiFragment : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+        val filter = pref.preffilterpresensi
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter)
         val user = Firebase.auth.currentUser
@@ -128,10 +130,10 @@ class PresensiFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(PresensiModel::class.java)
-                        if (datas!!.tanggal == date) {
+                        if (datas!!.divisi == filter && datas.tanggal!! == date.toString())
                             data.add(datas!!)
                             pref.prefjpresesnsi = data.size
-                        }
+
                     }
                     presensiAdapter.setData(data)
                     binding.emptyView.visibility = View.GONE

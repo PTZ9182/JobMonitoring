@@ -268,10 +268,10 @@
     <!--Adapter Presensi-->
     <string name="pp_tanggal">07/10/2022</string>
     <string name="pp_img_profil">img_profil</string>
-    <string name="pp_hadir">Hadir</string>
-    <string name="pp_tidakhadir">Tidak Hadir</string>
+    <string name="pp_hadir">Masuk</string>
+    <string name="pp_tidakhadir">Tidak masuk</string>
     <string name="pp_namahadir">Papa Zola</string>
-    <string name="pp_namatidakhadir">Boboboy</string>
+    <string name="pp_waktuu">00:00</string>
 
     <!--Tambah Presensi-->
     <string name="pp_judul">Tambah Presensi</string>
@@ -377,4 +377,5 @@
     <string name="karyawan_tidak_ada_data">Data Karyawan Kosong</string>
     <string name="pekerjaan_tidak_ada_data">Data Pekerjaan Kosong</string>
     <string name="pekerjaan_user_tidak_ada_data">Pekerjaan Kosong</string>
+    <string name="presensi_user_tidak_ada_data">Presensi Kosong</string>
 </resources>

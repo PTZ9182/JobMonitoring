@@ -17,6 +17,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -218,6 +219,7 @@ class EditProfileKaryawanFragment : Fragment() {
                 pref.prefalamatuser = alamat
                 pref.prefnohpuser = nohp
                 pref.prefemailuser = email
+                findNavController().popBackStack()
                 Toast.makeText(context, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener { tast ->
                 nDialog.cancel()
