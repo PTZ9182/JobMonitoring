@@ -165,13 +165,14 @@ class KaryawanFilterKaryawanFragment : Fragment() {
         val idPerusahaan = user?.uid
         val dbRef =
             database.getReference("Karyawan").child(idPerusahaan!!)
-                .orderByChild("divisi").equalTo(filterkaryawan)
+                .orderByChild("namaKaryawan").startAt(text).endAt(text + "\uf8ff")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
+                        if (datas!!.divisi == filterkaryawan)
                             data.add(datas!!)
                             pref.prefjkaryawan = data.size
 

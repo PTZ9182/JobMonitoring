@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -35,6 +36,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
     private lateinit var pref: Preference
     private lateinit var pekerjaanAdapter: PekerjaanAdapter
     private val data = arrayListOf<PekerjaanModel>()
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +44,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
     ): View? {
 
         _binding = FragmentPekerjaanFilterPekerjaanBinding.inflate(inflater, container, false)
-        getPekerjaan()
+        getPekerjaan("")
         return binding.root
     }
 
@@ -53,6 +55,21 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
         binding.layoutPekerjaanFilterPekerjaan.setOnRefreshListener {
             binding.layoutPekerjaanFilterPekerjaan.isRefreshing = false
         }
+
+        searchView = view.findViewById(R.id.pk_search)
+        searchView.clearFocus()
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                getPekerjaan(query!!)
+                return false
+            }
+
+            override fun onQueryTextChange(newtext: String?): Boolean {
+                getPekerjaan(newtext!!)
+                return false
+            }
+
+        })
 
         binding.pkButton.setOnClickListener {
             it.findNavController()
@@ -97,14 +114,12 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                                                 "Pekerjaan Berhasil Dihapus",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                            getPekerjaan()
                                         }.addOnFailureListener { tast ->
                                             Toast.makeText(
                                                 activity,
                                                 "Gagal Menghapus Pekerjaan${tast.message}",
                                                 Toast.LENGTH_SHORT
                                             ).show()
-                                            getPekerjaan()
                                         }
 
                                     }
@@ -139,7 +154,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
 
     }
 
-    private fun getPekerjaan() {
+    private fun getPekerjaan(text: String) {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -149,15 +164,15 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
         val divisi = pref.prefdivisipekerjaan
 
         if (status == "semua") {
-            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("divisi").equalTo(divisi)
+            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
             dbRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     data.clear()
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PekerjaanModel::class.java)
+                            if (datas!!.divisi == divisi)
                             data.add(datas!!)
-                            Log.i("datas", "Ini $datas")
                             pref.prefjpekerjaan = data.size
                         }
                         pekerjaanAdapter.setData(data)
@@ -177,7 +192,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
 
             })
         } else {
-            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("status").equalTo(status)
+            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
             dbRef.addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     data.clear()

@@ -38,6 +38,7 @@ class EditProfileFragment : Fragment() {
     private lateinit var pref: Preference
     private lateinit var ImageUri: Uri
     lateinit var nDialog: ProgressDialog
+    private lateinit var url :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,9 +70,11 @@ class EditProfileFragment : Fragment() {
                 binding.isiformEmail.setText(profile.email)
                 binding.isiformAlamatperusahaan.setText(pref.prefalamatperusahaan)
                 binding.isiformNohp.setText(pref.prefnohpperusahaan)
+                url = user.photoUrl.toString()!!
             }
             val id = user.uid
-            val storageReff = storage.getReference("images").child("perusahaan").child(id).child("profil")
+            val storageReff =
+                storage.getReference("images").child("perusahaan").child(id).child("profil")
             storageReff.getBytes(10 * 1024 * 1024).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
                 binding.imgPerusahaan.setImageBitmap(bitmap)
@@ -148,20 +151,7 @@ class EditProfileFragment : Fragment() {
         if (requestCode == 100 && resultCode == RESULT_OK) {
             ImageUri = data?.data!!
             binding.imgPerusahaan.setImageURI(ImageUri)
-
-            val user = Firebase.auth.currentUser
-            val profileUpdates = userProfileChangeRequest {
-                photoUri = Uri.parse(ImageUri.toString())
-            }
-            user!!.updateProfile(profileUpdates)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.i("Update", "Berhasil")
-
-                    } else {
-                        Log.i("Update", "Berhasil")
-                    }
-                }
+            url = ImageUri.toString()
         }
     }
 
@@ -174,6 +164,7 @@ class EditProfileFragment : Fragment() {
 
         val user = Firebase.auth.currentUser
         val id = user!!.uid
+        val img = user.photoUrl.toString()
         val profileUpdates = userProfileChangeRequest {
             displayName = name
             pref.prefalamatperusahaan = alamat
@@ -181,12 +172,27 @@ class EditProfileFragment : Fragment() {
         }
         user.updateProfile(profileUpdates)
             .addOnCompleteListener { task ->
+                nDialog.show()
                 if (task.isSuccessful) {
-                    storageRef.child("perusahaan").child(id).child("profil")
-                        .putFile(user.photoUrl!!)
-                        .addOnSuccessListener {
-                            Log.i("photo", "Berhasil")
+                    if (img != url) {
+                        storageRef.child("perusahaan").child(id).child("profil")
+                            .putFile(ImageUri)
+                            .addOnSuccessListener {
+                                Log.i("photo", "Berhasil")
+                            }
+                        val profileUpdates = userProfileChangeRequest {
+                            photoUri = Uri.parse(ImageUri.toString())
                         }
+                        user!!.updateProfile(profileUpdates)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    Log.i("Update", "Berhasil")
+
+                                } else {
+                                    Log.i("Update", "Berhasil")
+                                }
+                            }
+                    }
                     val perusahaan = PerusahaanModel(
                         id,
                         name,
@@ -201,14 +207,13 @@ class EditProfileFragment : Fragment() {
                         }.addOnFailureListener { tast ->
                             Log.i("Update", "Gagal")
                         }
-                    nDialog.cancel()
                     Toast.makeText(activity, "Data perusahaan telah diubah.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-                    nDialog.cancel()
                     Toast.makeText(activity, "Gagal merubah data.", Toast.LENGTH_SHORT)
                         .show()
                 }
+                nDialog.cancel()
             }
         user.updateEmail(email)
             .addOnCompleteListener { task ->
