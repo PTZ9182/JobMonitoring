@@ -1,11 +1,13 @@
 package org.d3ifcool.jobmonitoring.ui.loginRegister
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -61,6 +63,13 @@ class PraLoginFragment : Fragment() {
             binding.praLoginPragment.isRefreshing = false
         }
 
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+
         binding.dpButtonPerusahaan.setOnClickListener {
             it.findNavController().navigate(R.id.action_praLoginFragment_to_loginPerusahaanFragment)
         }
@@ -78,5 +87,11 @@ class PraLoginFragment : Fragment() {
 
     private fun reloadPerusahaan(){
         findNavController().navigate(R.id.action_praLoginFragment_to_homePerusahaanFragment)
+    }
+    fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 }

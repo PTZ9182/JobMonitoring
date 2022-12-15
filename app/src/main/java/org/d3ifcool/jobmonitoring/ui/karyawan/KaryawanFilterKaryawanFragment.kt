@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -49,6 +50,13 @@ class KaryawanFilterKaryawanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_karyawanFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         binding.layoutKaryawanFilterKaryawan.setOnRefreshListener {
             binding.layoutKaryawanFilterKaryawan.isRefreshing = false

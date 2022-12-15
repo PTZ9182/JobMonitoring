@@ -1,15 +1,17 @@
 package org.d3ifcool.jobmonitoring.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -21,15 +23,13 @@ import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentHomePerusahaanBinding
 import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
-import kotlin.math.log
 
 
 class HomePerusahaanFragment : Fragment() {
 
-    private var backPressedTime = 0L
-
     private var _binding: FragmentHomePerusahaanBinding? = null
     private val binding get() = _binding!!
+    var backPressedTime: Long = 0
 
     val database = Firebase.database
     val storage = Firebase.storage
@@ -53,7 +53,12 @@ class HomePerusahaanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
-
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         binding.homePerusahaan.setOnRefreshListener {
             binding.homePerusahaan.isRefreshing = false
@@ -110,5 +115,12 @@ class HomePerusahaanFragment : Fragment() {
             }
 
         })
+    }
+
+    fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 }

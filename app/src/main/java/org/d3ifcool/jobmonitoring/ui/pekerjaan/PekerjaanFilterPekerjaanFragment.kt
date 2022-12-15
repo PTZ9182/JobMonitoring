@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -76,8 +77,15 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                 .navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_tambahPekerjaanDivisiFragment)
         }
         binding.pkCollFillter.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFilterDivisiFragment)
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         pekerjaanAdapter =
             PekerjaanAdapter(arrayListOf(), object : PekerjaanAdapter.OnAdapterListener {

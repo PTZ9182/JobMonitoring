@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -69,6 +70,13 @@ class PresensiFilterPresensiFragment : Fragment() {
         binding.pkCollFillter.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiFragment)
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter)

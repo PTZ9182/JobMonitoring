@@ -2,6 +2,7 @@ package org.d3ifcool.jobmonitoring.ui.home
 
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
@@ -71,6 +73,13 @@ class HomeKaryawanFragment : Fragment() {
             nDialog.cancel()
         }
 
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                onBackPressed()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+
         binding.homeKaryawan.setOnRefreshListener {
             binding.homeKaryawan.isRefreshing = false
         }
@@ -121,5 +130,11 @@ class HomeKaryawanFragment : Fragment() {
             }
 
         })
+    }
+    fun onBackPressed() {
+        val a = Intent(Intent.ACTION_MAIN)
+        a.addCategory(Intent.CATEGORY_HOME)
+        a.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(a)
     }
 }

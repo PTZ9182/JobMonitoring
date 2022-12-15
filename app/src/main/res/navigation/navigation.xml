@@ -234,6 +234,12 @@
         <action
             android:id="@+id/action_karyawanFilterKaryawanFragment_to_editKaryawanFragment"
             app:destination="@id/editKaryawanFragment" />
+        <action
+            android:id="@+id/action_karyawanFilterKaryawanFragment_to_karyawanFragment"
+            app:destination="@id/karyawanFragment"
+            app:popUpTo="@+id/karyawanFragment"
+            app:popUpToInclusive="true"/>
+
     </fragment>
     <fragment
         android:id="@+id/profilKaryawan"
@@ -281,6 +287,14 @@
         <action
             android:id="@+id/action_pekerjaanFilterPekerjaanFragment_to_pekerjaanDetailFragment"
             app:destination="@id/pekerjaanDetailFragment" />
+        <action
+            android:id="@+id/action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFragment"
+            app:destination="@id/pekerjaanFragment"
+            app:popUpTo="@+id/pekerjaanFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFilterDivisiFragment"
+            app:destination="@id/pekerjaanFilterDivisiFragment" />
     </fragment>
     <fragment
         android:id="@+id/pekerjaanDetailFragment"
@@ -373,5 +387,10 @@
         <action
             android:id="@+id/action_presensiFilterPresensiFragment_to_presensiKaryawanFragment"
             app:destination="@id/presensiKaryawanFragment" />
+        <action
+            android:id="@+id/action_presensiFilterPresensiFragment_to_presensiFragment"
+            app:destination="@id/presensiFragment"
+            app:popUpTo="@+id/presensiFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
