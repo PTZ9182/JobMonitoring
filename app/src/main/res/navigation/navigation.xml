@@ -185,7 +185,7 @@
         tools:layout="@layout/fragment_splash" >
         <action
             android:id="@+id/action_splashFragment_to_praLoginFragment"
-            app:destination="@id/praLoginFragment" />
+            app:destination="@id/praLoginFragment"/>
     </fragment>
     <fragment
         android:id="@+id/homeKaryawanFragment"
@@ -297,7 +297,9 @@
             app:destination="@id/gantiPasswordPerusahaanFragment" />
         <action
             android:id="@+id/action_pengaturanFragment_to_praLoginFragment"
-            app:destination="@id/praLoginFragment" />
+            app:destination="@id/praLoginFragment"
+            app:popUpTo="@+id/praLoginFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_pengaturanFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -319,7 +321,9 @@
         tools:layout="@layout/fragment_pengaturan_karyawan" >
         <action
             android:id="@+id/action_pengaturanKaryawanFragment_to_praLoginFragment"
-            app:destination="@id/praLoginFragment" />
+            app:destination="@id/praLoginFragment"
+            app:popUpTo="@+id/praLoginFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_pengaturanKaryawanFragment_to_editProfileKaryawanFragment"
             app:destination="@id/editProfileKaryawanFragment" />

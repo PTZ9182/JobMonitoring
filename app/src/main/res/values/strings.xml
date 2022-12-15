@@ -247,9 +247,9 @@
     <string name="gp_password_lama">Password Lama</string>
     <string name="gp_isiform_password_lama">Masukan Password Lama</string>
     <string name="gp_password_baru1">Password Baru</string>
-    <string name="gp_isiform_password_baru1">Masukan Password Lama</string>
+    <string name="gp_isiform_password_baru1">Masukan Password Baru</string>
     <string name="gp_password_baru2">Password Baru</string>
-    <string name="gp_isiform_password_baru2">Masukan Password Lama</string>
+    <string name="gp_isiform_password_baru2">Masukan Ulang Password</string>
     <string name="gp_button_simpan">Simpan</string>
 
     <!--Presensi Perusahaan-->

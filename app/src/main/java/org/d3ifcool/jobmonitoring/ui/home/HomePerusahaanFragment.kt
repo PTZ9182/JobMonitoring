@@ -26,6 +26,8 @@ import kotlin.math.log
 
 class HomePerusahaanFragment : Fragment() {
 
+    private var backPressedTime = 0L
+
     private var _binding: FragmentHomePerusahaanBinding? = null
     private val binding get() = _binding!!
 
