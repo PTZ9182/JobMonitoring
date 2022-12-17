@@ -3,6 +3,7 @@ package org.d3ifcool.jobmonitoring.ui.loginRegister
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,8 +64,12 @@ class LoginPerusahaanFragment : Fragment() {
         }
 
         binding.lpButtonLogin.setOnClickListener {
-            if (binding.lpIsiformEmail.text.isEmpty()){
+            val email = binding.lpIsiformEmail.text.toString()
+            if (binding.lpIsiformEmail.text.isEmpty()) {
                 binding.lpIsiformEmail.error = "Masukan Email"
+                binding.lpIsiformEmail.requestFocus()
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                binding.lpIsiformEmail.error = "Email Tidak Valid!!!!"
                 binding.lpIsiformEmail.requestFocus()
             } else if (binding.lpIsiformPassword.text.isEmpty()){
                 binding.lpIsiformPassword.requestFocus()

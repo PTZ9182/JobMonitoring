@@ -3,6 +3,7 @@ package org.d3ifcool.jobmonitoring.ui.karyawan
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,6 +75,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             it.findNavController().navigate(R.id.action_editKaryawanFragment_to_gantiPasswordKaryawanFragment)
         }
         binding.buttonSimpanDataForm.setOnClickListener {
+            val email = binding.ekFormEmail.text.toString()
             if (binding.ekFormNama.text.isEmpty()) {
                 binding.ekFormNama.error = "Nama tidak boleh kosong"
                 binding.ekFormNama.requestFocus()
@@ -94,6 +96,9 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.ekFormPilihdivisi.requestFocus()
             } else if (binding.ekFormEmail.text.isEmpty()) {
                 binding.ekFormEmail.error = "Email tidak boleh kosong"
+                binding.ekFormEmail.requestFocus()
+            } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.ekFormEmail.error = "Email Tidak Valid!!!!"
                 binding.ekFormEmail.requestFocus()
             } else {
                 editKaryawan()

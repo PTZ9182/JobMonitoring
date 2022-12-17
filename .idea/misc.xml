@@ -114,6 +114,13 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/JobMonitoring/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.225" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/prasss/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/prasss/app/src/main/res/menu/divisi_menu.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/drawable/ic_baseline_date_range.xml" value="0.2005" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_home_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_profil_homekaryawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_profil_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_profil_perusahaan.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalaplikasi/app/src/main/res/layout/fragment_tambah_karyawan.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalproject/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.2005" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalproject/app/src/main/res/layout/fragment_presensi.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringfinalproject/app/src/main/res/layout/fragment_tambah_presensi_karyawan.xml" value="0.24895833333333334" />
@@ -130,7 +137,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

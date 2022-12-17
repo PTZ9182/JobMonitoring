@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homePerusahaanFragment_to_pengaturanFragment"
             app:destination="@id/pengaturanFragment" />
+        <action
+            android:id="@+id/action_homePerusahaanFragment_to_profilePerusahaan"
+            app:destination="@id/profilePerusahaan" />
     </fragment>
     <fragment
         android:id="@+id/divisiFragment"
@@ -201,6 +204,9 @@
         <action
             android:id="@+id/action_homeKaryawanFragment_to_tambahPresensiKaryawanFragment"
             app:destination="@id/tambahPresensiKaryawanFragment" />
+        <action
+            android:id="@+id/action_homeKaryawanFragment_to_profileHomeKaryawan"
+            app:destination="@id/profileHomeKaryawan" />
     </fragment>
     <fragment
         android:id="@+id/karyawanPekerjaanFragment"
@@ -393,4 +399,14 @@
             app:popUpTo="@+id/presensiFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/profilePerusahaan"
+        android:name="org.d3ifcool.jobmonitoring.ui.home.ProfilePerusahaan"
+        android:label="fragment_profil_perusahaan"
+        tools:layout="@layout/fragment_profil_perusahaan" />
+    <fragment
+        android:id="@+id/profileHomeKaryawan"
+        android:name="org.d3ifcool.jobmonitoring.ui.home.ProfileHomeKaryawan"
+        android:label="fragment_profil_homekaryawan"
+        tools:layout="@layout/fragment_profil_homekaryawan" />
 </navigation>

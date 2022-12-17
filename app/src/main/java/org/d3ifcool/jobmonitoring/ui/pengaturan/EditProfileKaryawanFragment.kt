@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -100,6 +101,7 @@ class EditProfileKaryawanFragment : Fragment() {
         }
 
         binding.buttonSimpanDataPengaturan.setOnClickListener {
+            val email = binding.isiformEmail.text.toString()
 
             if (binding.isiformNama.text.isEmpty()){
                 binding.isiformNama.error = "Nama Karyawan Harus Di isi!!"
@@ -137,7 +139,11 @@ class EditProfileKaryawanFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            else {
+            if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.isiformEmail.error = "Email Tidak Valid!!!!"
+                binding.isiformEmail.requestFocus()
+
+            } else {
                 edituser(binding.isiformNama.text.toString(),
                 binding.isiformTanggallahir.text.toString(),
                 binding.isiformJeniskelamin.text.toString(),

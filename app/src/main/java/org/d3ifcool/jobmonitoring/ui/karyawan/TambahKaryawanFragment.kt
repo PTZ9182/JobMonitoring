@@ -2,7 +2,10 @@ package org.d3ifcool.jobmonitoring.ui.karyawan
 
 
 import android.app.DatePickerDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +59,19 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.tkButtonSimpan.setOnClickListener {
+            val email = binding.tkFormEmail.text.toString()
+            val password = binding.tkFormPassword.text.toString()
+            val addres = arrayOf(email)
+
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/html"
+
+            intent.putExtra(Intent.EXTRA_EMAIL,addres)
+            intent.putExtra(Intent.EXTRA_SUBJECT,"Selamat Akun anda Telah Terdaftar di aplikasi Job monitoring")
+            intent.putExtra(Intent.EXTRA_TEXT,"Password user : " + password + "" +
+                    "                            \r Nama User : " + email)
+            startActivity(intent)
+
             if (binding.tkFormNama.text.isEmpty()) {
                 binding.tkFormNama.error = "Nama tidak boleh kosong"
                 binding.tkFormNama.requestFocus()
@@ -76,6 +92,9 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                 binding.tkFormPilihdivisi.requestFocus()
             } else if (binding.tkFormEmail.text.isEmpty()) {
                 binding.tkFormEmail.error = "Email tidak boleh kosong"
+                binding.tkFormEmail.requestFocus()
+            } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.tkFormEmail.error = "Email Tidak Valid!!!!"
                 binding.tkFormEmail.requestFocus()
             } else if (binding.tkFormPassword.text.isEmpty()) {
                 binding.tkFormPassword.error = "Password tidak boleh kosong"

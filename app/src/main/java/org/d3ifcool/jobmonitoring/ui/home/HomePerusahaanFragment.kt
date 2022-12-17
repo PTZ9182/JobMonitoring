@@ -79,6 +79,9 @@ class HomePerusahaanFragment : Fragment() {
         binding.coliderMenuPengaturan.setOnClickListener {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_pengaturanFragment)
         }
+        binding.imgProfilPerusahaan.setOnClickListener  {
+            it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_profilePerusahaan)
+        }
 
         val user = Firebase.auth.currentUser
         user?.let {

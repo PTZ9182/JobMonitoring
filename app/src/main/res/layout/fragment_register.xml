@@ -33,7 +33,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:contentDescription="@string/lk_logo"
-                    android:src="@drawable/logojobmonitoring"
+                    android:src="@drawable/logo1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

@@ -14,6 +14,8 @@ class Preference(context: Context) {
     private val TAG_ALAMATPERUSAHAAN = "alamat perusahaan"
     private val TAG_NOHPPERUSAHAAN = "nohp perusahaan"
     private val TAG_IMGPERUSAHAAN = "img perusahaan"
+    private val TAG_NAMAPERUSAHAAN = "nama perusahaan"
+    private val TAG_EMAILPERUSAHAAN = "email perusahaan"
 
     //DIVISI
     private val TAG_IDDIVISI = "id divisi"
@@ -102,6 +104,14 @@ class Preference(context: Context) {
     var prefimgperusahaan: String?
         get() = pref.getString(TAG_IMGPERUSAHAAN,"")
         set(value) = pref.edit().putString(TAG_IMGPERUSAHAAN,value).apply()
+
+    var prefnamaperusahaan: String?
+        get() = pref.getString(TAG_NAMAPERUSAHAAN,"")
+        set(value) = pref.edit().putString(TAG_NAMAPERUSAHAAN,value).apply()
+
+    var prefemailperusahaan: String?
+        get() = pref.getString(TAG_EMAILPERUSAHAAN,"")
+        set(value) = pref.edit().putString(TAG_EMAILPERUSAHAAN,value).apply()
 
     //Divisi
     var prefiddivisi: String?
@@ -350,6 +360,7 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_TANGGALPRESENSI).apply()
         pref.edit().remove(TAG_JPRESENSI).apply()
         pref.edit().remove(TAG_FILTERPRESENSI).apply()
+        pref.edit().remove(TAG_JBUTTONRESENSI).apply()
         //USER KARYAWAN
         pref.edit().remove(TAG_IDPERUSAHAANUSER).apply()
         pref.edit().remove(TAG_PERUSAHAANUSER).apply()

@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -133,6 +134,13 @@ class EditProfileFragment : Fragment() {
                 binding.isiformEmail.error = "Email Harus Di isi!!"
                 binding.isiformEmail.requestFocus()
                 return@setOnClickListener
+            }
+
+            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.isiformEmail.error = "Email Tidak Valid!!!!"
+                binding.isiformEmail.requestFocus()
+
+
             } else {
                 editperusahaan(namaperusahaan, alamatperusahaan, nohandphone, email)
             }

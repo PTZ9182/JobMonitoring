@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,11 +64,15 @@ class RegisterFragment : Fragment() {
         }
 
         binding.rgButtonDaftar.setOnClickListener {
+            val email = binding.rgIsiformEmail.text.toString()
             if (binding.rgIsiformNamaPerusahaan.text.isEmpty()) {
                 binding.rgIsiformNamaPerusahaan.setError("Nama Perusahaan tidak boleh kosong")
                 binding.rgIsiformNamaPerusahaan.requestFocus()
             } else if (binding.rgIsiformEmail.text.isEmpty()) {
                 binding.rgIsiformEmail.error = "Email tidak boleh kosong"
+                binding.rgIsiformEmail.requestFocus()
+            } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                binding.rgIsiformEmail.error = "Email Tidak Valid!!!!"
                 binding.rgIsiformEmail.requestFocus()
             } else if (binding.rgIsiformPassword.text.isEmpty()) {
                 binding.rgIsiformPassword.error = "Password tidak boleh kosong"

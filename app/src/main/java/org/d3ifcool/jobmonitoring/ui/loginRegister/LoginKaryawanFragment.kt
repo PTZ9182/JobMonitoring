@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,11 +78,15 @@ class LoginKaryawanFragment : Fragment() {
         }
 
         binding.lkButtonLogin.setOnClickListener {
+            val email = binding.lkIsiformEmail.text.toString()
             if (binding.lkIsiformPerusahaan.text.toString().isEmpty()){
                 binding.lkIsiformPerusahaan.error = "Perusahaan tidak boleh kosong"
                 binding.lkIsiformPerusahaan.requestFocus()
-            } else if (binding.lkIsiformEmail.text.toString().isEmpty()){
+            } else if (binding.lkIsiformEmail.text.toString().isEmpty()) {
                 binding.lkIsiformEmail.error = "Email tidak boleh kosong"
+                binding.lkIsiformEmail.requestFocus()
+            }else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                binding.lkIsiformEmail.error = "Email Tidak Valid!!!!"
                 binding.lkIsiformEmail.requestFocus()
             }else if (binding.lkIsiformPassword.text.toString().isEmpty()){
                 binding.lkIsiformPassword.error = "Password tidak boleh kosong"

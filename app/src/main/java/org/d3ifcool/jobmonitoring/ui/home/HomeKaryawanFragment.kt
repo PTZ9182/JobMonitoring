@@ -93,6 +93,9 @@ class HomeKaryawanFragment : Fragment() {
         binding.hkCollPresensi.setOnClickListener{
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_tambahPresensiKaryawanFragment)
         }
+        binding.hkImgProfilKaryawan.setOnClickListener {
+            findNavController().navigate(R.id.action_homeKaryawanFragment_to_profileHomeKaryawan)
+        }
     }
 
     private fun getData() {
