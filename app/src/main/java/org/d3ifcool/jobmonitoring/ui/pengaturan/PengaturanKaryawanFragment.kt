@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentPengaturanBinding
+import org.d3ifcool.jobmonitoring.databinding.FragmentPengaturanKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.Preference
 
 class PengaturanKaryawanFragment : Fragment(){
@@ -24,21 +25,21 @@ class PengaturanKaryawanFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentPengaturanBinding.inflate(layoutInflater)
+        val binding = FragmentPengaturanKaryawanBinding.inflate(layoutInflater)
 
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
 
-        binding.editProfile.setOnClickListener {
+        binding.constraintLayout4.setOnClickListener {
             it.findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_editProfileKaryawanFragment)
         }
 
-        binding.gantiProfilePassword.setOnClickListener {
+        binding.constraintLayout3.setOnClickListener {
             findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_gantiPasswordAkunKaryawanFragment)
         }
 
-        binding.logout.setOnClickListener{
+        binding.constraintLayout2.setOnClickListener{
             pref.prefClear()
             Firebase.auth.signOut()
             findNavController().navigate(R.id.action_pengaturanKaryawanFragment_to_praLoginFragment)

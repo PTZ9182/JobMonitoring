@@ -14,8 +14,6 @@ class Preference(context: Context) {
     private val TAG_ALAMATPERUSAHAAN = "alamat perusahaan"
     private val TAG_NOHPPERUSAHAAN = "nohp perusahaan"
     private val TAG_IMGPERUSAHAAN = "img perusahaan"
-    private val TAG_NAMAPERUSAHAAN = "nama perusahaan"
-    private val TAG_EMAILPERUSAHAAN = "email perusahaan"
 
     //DIVISI
     private val TAG_IDDIVISI = "id divisi"
@@ -49,12 +47,14 @@ class Preference(context: Context) {
 
     //PEKERJAAN
     private val TAG_IDPEKERJAAN = "id pekerjaan"
+    private val TAG_IDUSERPEKERJAAN = "id user pekerjaan"
     private val TAG_DIVISIPEKERJAAN = "divisi pekerjaan"
     private val TAG_NAMAPEKERJAAN = "nama pekerjaan"
     private val TAG_DESKRIPSIPEKERJAAN = "deskripsi pekerjaan"
     private val TAG_KARYAWANPEKERJAAN = "karyawan pekerjaan"
     private val TAG_JPEKERJAAN = "jumlah pekerjaan"
     private val TAG_STATUSPEKERJAAN = "status pekerjaan"
+    private val TAG_PROGRESSPEKERJAAN = "progress pekerjaan"
 
     //USER KARYAWAN
     private val TAG_IDPERUSAHAANUSER = "id perusahaan user"
@@ -81,8 +81,8 @@ class Preference(context: Context) {
     private val pref : SharedPreferences = context.getSharedPreferences(TAG_APP, Context.MODE_PRIVATE)
 
     var prefstatus:Boolean
-    get() = pref.getBoolean(TAG_STATUS,false)
-    set(value) = pref.edit().putBoolean(TAG_STATUS,value).apply()
+        get() = pref.getBoolean(TAG_STATUS,false)
+        set(value) = pref.edit().putBoolean(TAG_STATUS,value).apply()
 
     var preflevel: String?
         get() = pref.getString(TAG_LEVEL,"")
@@ -104,14 +104,6 @@ class Preference(context: Context) {
     var prefimgperusahaan: String?
         get() = pref.getString(TAG_IMGPERUSAHAAN,"")
         set(value) = pref.edit().putString(TAG_IMGPERUSAHAAN,value).apply()
-
-    var prefnamaperusahaan: String?
-        get() = pref.getString(TAG_NAMAPERUSAHAAN,"")
-        set(value) = pref.edit().putString(TAG_NAMAPERUSAHAAN,value).apply()
-
-    var prefemailperusahaan: String?
-        get() = pref.getString(TAG_EMAILPERUSAHAAN,"")
-        set(value) = pref.edit().putString(TAG_EMAILPERUSAHAAN,value).apply()
 
     //Divisi
     var prefiddivisi: String?
@@ -217,6 +209,10 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_IDPEKERJAAN,"")
         set(value) = pref.edit().putString(TAG_IDPEKERJAAN,value).apply()
 
+    var prefiduserpekerjaan: String?
+        get() = pref.getString(TAG_IDUSERPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_IDUSERPEKERJAAN,value).apply()
+
     var prefdivisipekerjaan: String?
         get() = pref.getString(TAG_DIVISIPEKERJAAN,"")
         set(value) = pref.edit().putString(TAG_DIVISIPEKERJAAN,value).apply()
@@ -236,6 +232,10 @@ class Preference(context: Context) {
     var prefstatuspekerjaan: String?
         get() = pref.getString(TAG_STATUSPEKERJAAN,"")
         set(value) = pref.edit().putString(TAG_STATUSPEKERJAAN,value).apply()
+
+    var prefprogresspekerjaan: String?
+        get() = pref.getString(TAG_PROGRESSPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_PROGRESSPEKERJAAN,value).apply()
 
     var prefjpekerjaan: Int?
         get() = pref.getInt(TAG_JPEKERJAAN,0)
@@ -344,12 +344,14 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_FILTERKARYAWAN).apply()
         //PEKERJAAN
         pref.edit().remove(TAG_IDPEKERJAAN).apply()
+        pref.edit().remove(TAG_IDUSERPEKERJAAN).apply()
         pref.edit().remove(TAG_DIVISIPEKERJAAN).apply()
         pref.edit().remove(TAG_NAMAPEKERJAAN).apply()
         pref.edit().remove(TAG_DESKRIPSIPEKERJAAN).apply()
         pref.edit().remove(TAG_KARYAWANPEKERJAAN).apply()
         pref.edit().remove(TAG_JPEKERJAAN).apply()
         pref.edit().remove(TAG_STATUSPEKERJAAN).apply()
+        pref.edit().remove(TAG_PROGRESSPEKERJAAN).apply()
         //PRESENSI
         pref.edit().remove(TAG_IDPRESENSI).apply()
         pref.edit().remove(TAG_IDUSERPRESENSI).apply()
@@ -360,7 +362,6 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_TANGGALPRESENSI).apply()
         pref.edit().remove(TAG_JPRESENSI).apply()
         pref.edit().remove(TAG_FILTERPRESENSI).apply()
-        pref.edit().remove(TAG_JBUTTONRESENSI).apply()
         //USER KARYAWAN
         pref.edit().remove(TAG_IDPERUSAHAANUSER).apply()
         pref.edit().remove(TAG_PERUSAHAANUSER).apply()
@@ -381,5 +382,6 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_DESKRIPSIPEKERJAANUSER).apply()
         pref.edit().remove(TAG_KARYAWANPEKERJAANUSER).apply()
         pref.edit().remove(TAG_STATUSPEKERJAANUSER).apply()
+        pref.edit().remove(TAG_JBUTTONRESENSI).apply()
     }
 }

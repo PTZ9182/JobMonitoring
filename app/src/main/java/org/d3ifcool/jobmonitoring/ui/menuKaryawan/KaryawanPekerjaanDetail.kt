@@ -2,6 +2,7 @@ package org.d3ifcool.jobmonitoring.ui.menuKaryawan
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class KaryawanPekerjaanDetail : Fragment() {
     private lateinit var pref: Preference
     val database = Firebase.database
     val dbRef = database.getReference("Pekerjaan")
+    var starttPoint = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,52 +53,93 @@ class KaryawanPekerjaanDetail : Fragment() {
             binding.layoutKaryawanPekerjaanDetail.isRefreshing = false
         }
 
-        var endtPoint = 0
-
-        binding.seekBar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
-                binding.kdptextProgress.text = progress.toString()
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-                var starttPoint = 50
-                var strat = 50
-                if (p0 != null) {
-                    seekBar.progress = strat
-                    starttPoint = seekBar.progress
+        starttPoint = pref.prefprogresspekerjaan!!.toInt()
+        progressbar()
+        binding.kdpTambah.setOnClickListener {
+            if (starttPoint <= 90) {
+                starttPoint += 10
+                progressbar()
+                if (starttPoint == 100) {
+                    binding.kdpButton.visibility = View.VISIBLE
+                    binding.kdpButtonn.visibility = View.GONE
+                } else {
+                    binding.kdpButton.visibility = View.GONE
+                    binding.kdpButtonn.visibility = View.VISIBLE
                 }
             }
+        }
 
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-                if (p0 != null) {
-                    endtPoint = seekBar.progress
+        binding.kdpKurang.setOnClickListener {
+            if (starttPoint >= 10) {
+                starttPoint -= 10
+                progressbar()
+                if (starttPoint == 100) {
+                    binding.kdpButton.visibility = View.VISIBLE
+                    binding.kdpButtonn.visibility = View.GONE
+                } else {
+                    binding.kdpButton.visibility = View.GONE
+                    binding.kdpButtonn.visibility = View.VISIBLE
                 }
             }
-
-        })
+        }
+        binding.kdptextProgress.text = seekBar.progress.toString()
 
         val statuss = pref.prefstatuspekerjaanuser
-        if (statuss == "1"){
+        if (statuss == "1") {
             binding.kdpButton.visibility = View.GONE
+            binding.kdpTambah.visibility = View.GONE
+            binding.kdpKurang.visibility = View.GONE
+            binding.kdpButtonn.visibility = View.GONE
         } else {
-            binding.kdpButton.visibility = View.VISIBLE
+            binding.kdpTambah.visibility = View.VISIBLE
+            binding.kdpKurang.visibility = View.VISIBLE
+        }
+
+        binding.kdpButtonn.setOnClickListener {
+            val idPerusahaan = pref.prefidperusahaanuser
+            val iduser = pref.prefiduser
+            val idPekerjaan = pref.prefidpekerjaanuser
+            val divisi = pref.prefdivisipekerjaanuser
+            val namaPekerjaan = pref.prefnamapekerjaanuser
+            val desc = pref.prefdeskripsipekerjaanuser
+            val namaUser = pref.prefkaryawanpekerjaanuser
+            val status = "0"
+            val pekerjaan = PekerjaanModel(
+                idPekerjaan!!,iduser!!,
+                divisi!!,
+                namaPekerjaan!!,
+                desc!!,
+                namaUser!!, starttPoint,
+                status
+            )
+            dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
+                .addOnCompleteListener {
+                    findNavController().popBackStack()
+                    Toast.makeText(activity, "Update Progress selesai", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener { tast ->
+                    Toast.makeText(
+                        activity,
+                        "Gagal",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
         }
         binding.kdpButton.setOnClickListener {
             if (statuss == "0") {
                 val idPerusahaan = pref.prefidperusahaanuser
                 val idPekerjaan = pref.prefidpekerjaanuser
+                val iduser = pref.prefiduser
                 val divisi = pref.prefdivisipekerjaanuser
                 val namaPekerjaan = pref.prefnamapekerjaanuser
                 val desc = pref.prefdeskripsipekerjaanuser
-                val namaUser = pref.prefnamauser
+                val namaUser = pref.prefkaryawanpekerjaanuser
                 val status = "1"
                 val pekerjaan = PekerjaanModel(
-                    idPerusahaan!!,
+                    idPekerjaan!!,iduser!!,
                     divisi!!,
                     namaPekerjaan!!,
                     desc!!,
-                    namaUser!!,
+                    namaUser!!, starttPoint,
                     status
                 )
                 dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
@@ -121,5 +164,9 @@ class KaryawanPekerjaanDetail : Fragment() {
 
     }
 
+    fun progressbar() {
+        seekBar.progress = starttPoint
+        binding.kdptextProgress.text = seekBar.progress.toString()
+    }
 }
 

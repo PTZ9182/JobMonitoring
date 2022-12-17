@@ -72,7 +72,6 @@ class EditProfileKaryawanFragment : Fragment() {
 
         binding.isiformNama.setText(pref.prefnamauser)
         binding.isiformTanggallahir.setText(pref.preftanggallahiruser)
-        binding.isiformJeniskelamin.setText(pref.prefjeniskelaminuser)
         binding.isiformAlamat.setText(pref.prefalamatuser)
         binding.isiformNohp.setText(pref.prefnohpuser)
         binding.isiformEmail.setText(pref.prefemailuser)
@@ -115,7 +114,7 @@ class EditProfileKaryawanFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (binding.jeniskelamin.text.isEmpty()){
+            if (binding.isiformJeniskelamin.selectedItem.equals("Jenis Kelamin")){
                 binding.jeniskelamin.error = "Jenis kelamin Harus Di isi!!"
                 binding.jeniskelamin.requestFocus()
                 return@setOnClickListener
@@ -146,7 +145,7 @@ class EditProfileKaryawanFragment : Fragment() {
             } else {
                 edituser(binding.isiformNama.text.toString(),
                 binding.isiformTanggallahir.text.toString(),
-                binding.isiformJeniskelamin.text.toString(),
+                binding.isiformJeniskelamin.selectedItem.toString(),
                 binding.isiformAlamat.text.toString(),
                 binding.isiformNohp.text.toString(),
                 binding.isiformEmail.text.toString())

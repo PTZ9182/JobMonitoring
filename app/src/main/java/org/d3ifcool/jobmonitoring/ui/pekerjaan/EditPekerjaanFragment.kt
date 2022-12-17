@@ -30,6 +30,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val dbRef = database.getReference("Pekerjaan")
     private lateinit var pref: Preference
     private var listKaryawan = ArrayList<String>()
+    private var listidKaryawan = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,15 +75,17 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         pref = Preference(contextt)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
+        var iduser = pref.prefiduserpekerjaan
         val idPekerjaan = pref.prefidpekerjaan
         val divisi = pref.prefdivisipekerjaan
         val status = pref.prefstatuspekerjaan
+        val progress = pref.prefprogresspekerjaan
         val pekerjaan = PekerjaanModel(
-            idPekerjaan!!,
+            idPekerjaan!!,iduser!!,
             divisi!!,
             binding.epIsiformNamaPekerjaan.text.toString(),
             binding.epIsiformDescPekerjaan.text.toString(),
-            binding.epListKaryawan.selectedItem.toString(),
+            binding.epListKaryawan.selectedItem.toString(),progress!!.toInt(),
             status!!
         )
         dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan)
@@ -121,6 +124,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         listKaryawan.add(datas!!.namaKaryawan)
+                        listidKaryawan.add(datas!!.id)
 
                     }
                     binding.epListKaryawan.onItemSelectedListener = this@EditPekerjaanFragment
@@ -143,7 +147,11 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val contextt : Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
         p0?.getItemAtPosition(p2)
+        pref.prefiduserpekerjaan = listidKaryawan[p2]
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

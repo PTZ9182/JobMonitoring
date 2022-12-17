@@ -77,7 +77,7 @@
     <string name="pk_belumselesai">Belum Selesai</string>
     <string name="pk_pekerjaanselesai">Layout Login</string>
     <string name="pk_pekerjaanbelumselesai">Layout Dashboard</string>
-    <string name="pk_namaselesai">Papa Zola</string>
+    <string name="pk_namaselesai">Android</string>
     <string name="pk_namabelumselessai">Boboboy</string>
 
     <!--Tambah Pekerjaan-->
@@ -224,6 +224,9 @@
     <string name="ddp_status">Status :</string>
     <string name="ddp_isistatusselesai">Selesai</string>
     <string name="ddp_isistatusbelumselesai">Belum Selesai</string>
+    <string name="ddp_progress">Progeress :</string>
+    <string name="ddp_textprogress">0</string>
+    <string name="ddp_presen">%</string>
 
     <!--Profil Karyawan-->
     <string name="hpk_img">img</string>
@@ -257,7 +260,7 @@
     <string name="pp_img_presensi">img_Presensi</string>
     <string name="pp_presensi">Presensi</string>
     <string name="pp_jumlah_presensi">0</string>
-    <string name="pp_search">Cari Presensi …</string>
+    <string name="pp_search">Cari Karyawan …</string>
     <string-array name="pp_status_hadir">
         <item>Status Hadir</item>
         <item>Hadir</item>
@@ -342,10 +345,14 @@
     <!--Karyawan Detail Pekerjaan-->
     <string name="kdp_judul">Membuat Layout</string>
     <string name="kdp_desc">Deskripsi :</string>
-    <string name="kdp_Progress">Progres Pekerjaan :</string>
-    <string name="kdp_persen">0%</string>
+    <string name="kdp_Progress">Progress Pekerjaan :</string>
+    <string name="kdp_persen">0</string>
+    <string name="kdp_persenn">%</string>
     <string name="kdp_isidesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
     <string name="kdp_selesai">Selesai</string>
+    <string name="kdp_update">Progress</string>
+    <string name="kdp_tambah">+</string>
+    <string name="kdp_kurang">-</string>
 
     <!--Pengaturan Karyawan-->
     <string name="karyawan">Nama Karyawan</string>

@@ -39,6 +39,7 @@ class PekerjaanDetailFragment : Fragment() {
         binding.ddpIsinama.text = pref.prefkaryawanpekerjaan
         binding.ddpIsinamapekerjaan.text = pref.prefnamapekerjaan
         binding.ddpIsidesc.text = pref.prefdeskripsipekerjaan
+        binding.ddpTextprogress.text = pref.prefprogresspekerjaan.toString()
         val status = pref.prefstatuspekerjaan
         if (status == "1"){
             binding.ddpIsistatus.text = "Selesai"

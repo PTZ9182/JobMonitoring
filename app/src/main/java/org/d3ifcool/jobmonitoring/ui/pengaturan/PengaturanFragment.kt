@@ -38,13 +38,13 @@ class PengaturanFragment : Fragment(){
         contextt = requireActivity()
         pref = Preference(contextt)
 
-        binding.editProfile.setOnClickListener {
+        binding.constraintLayout4.setOnClickListener {
             it.findNavController().navigate(R.id.action_pengaturanFragment_to_editProfileFragment)
         }
-        binding.gantiProfilePassword.setOnClickListener{
+        binding.constraintLayout3.setOnClickListener{
             it.findNavController().navigate(R.id.action_pengaturanFragment_to_gantiPasswordPerusahaanFragment)
         }
-        binding.logout.setOnClickListener{
+        binding.constraintLayout2.setOnClickListener{
             pref.prefClear()
             Firebase.auth.signOut()
             findNavController().navigate(R.id.action_pengaturanFragment_to_praLoginFragment)

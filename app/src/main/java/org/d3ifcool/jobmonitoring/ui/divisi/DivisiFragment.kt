@@ -155,6 +155,8 @@ class DivisiFragment : Fragment() {
                     binding.dpJumlah.text = pref.prefjdivisi.toString()
                     binding.emptyView.visibility = View.GONE
                 } else {
+                    pref.prefjdivisi = 0
+                    binding.dpJumlah.text = pref.prefjdivisi.toString()
                     divisiAdapter.setData(data)
                     binding.emptyView.visibility = View.VISIBLE
                 }

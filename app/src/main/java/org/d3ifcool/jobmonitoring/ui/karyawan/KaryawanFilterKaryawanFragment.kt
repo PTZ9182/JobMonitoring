@@ -56,7 +56,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                 findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_karyawanFragment)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         binding.layoutKaryawanFilterKaryawan.setOnRefreshListener {
             binding.layoutKaryawanFilterKaryawan.isRefreshing = false
@@ -182,7 +182,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         if (datas!!.divisi == filterkaryawan)
                             data.add(datas!!)
-                            pref.prefjkaryawan = data.size
+                        pref.prefjkaryawan = data.size
 
                     }
                     karyawanAdapter.setData(data)
@@ -192,18 +192,21 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                     } else {
                         pref.prefjkaryawan = 0
                         binding.kpkpJumlah.text = pref.prefjkaryawan.toString()
+                        binding.emptyView.visibility = View.VISIBLE
                     }
-            } else {
-                karyawanAdapter.setData(data)
-                binding.emptyView.visibility = View.VISIBLE
+                } else {
+                    pref.prefjkaryawan = 0
+                    binding.kpkpJumlah.text = pref.prefjkaryawan.toString()
+                    karyawanAdapter.setData(data)
+                    binding.emptyView.visibility = View.VISIBLE
+                }
             }
-        }
 
-                override fun onCancelled(error: DatabaseError) {
-            Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-        }
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+            }
 
-    })
-}
+        })
+    }
 
 }

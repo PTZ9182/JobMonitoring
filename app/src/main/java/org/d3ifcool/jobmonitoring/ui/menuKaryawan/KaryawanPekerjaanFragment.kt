@@ -57,18 +57,17 @@ class KaryawanPekerjaanFragment: Fragment() {
                 val context: Context
                 context = requireActivity()
                 pref = Preference(context)
-
-                pref.prefnamapekerjaanuser = pekerjaan.nama_pekerjaan
-                pref.prefdeskripsipekerjaanuser = pekerjaan.deskripsi
-                pref.prefstatuspekerjaanuser = pekerjaan.status
-
                 pref.prefidpekerjaanuser = pekerjaan.id
                 pref.prefdivisipekerjaanuser = pekerjaan.divisi
+                pref.prefnamapekerjaanuser = pekerjaan.nama_pekerjaan
+                pref.prefdeskripsipekerjaanuser = pekerjaan.deskripsi
                 pref.prefkaryawanpekerjaanuser = pekerjaan.karyawan
+                pref.prefprogresspekerjaan = pekerjaan.progress.toString()
+                pref.prefstatuspekerjaanuser = pekerjaan.status
                 findNavController().navigate(R.id.action_karyawanPekerjaanFragment_to_karyawanPekerjaanDetail)
             }
         })
-                with(binding.recyclerView) {
+        with(binding.recyclerView) {
             addItemDecoration(
                 androidx.recyclerview.widget.DividerItemDecoration(
                     context,
@@ -84,9 +83,9 @@ class KaryawanPekerjaanFragment: Fragment() {
         val context: Context
         context = requireActivity()
         pref = Preference(context)
-        val name = pref.prefnamauser
         val idperushaan =pref.prefidperusahaanuser
-        val dbRef = database.getReference("Pekerjaan").child(idperushaan!!).orderByChild("karyawan").equalTo(name)
+        val iduser = pref.prefiduser
+        val dbRef = database.getReference("Pekerjaan").child(idperushaan!!).orderByChild("iduser").equalTo(iduser)
         dbRef.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()

@@ -170,8 +170,11 @@ class KaryawanFragment : Fragment(){
                     } else {
                         pref.prefjkaryawan = 0
                         binding.kpJumlah.text = pref.prefjkaryawan.toString()
+                        binding.emptyView.visibility = View.VISIBLE
                     }
                 } else {
+                    pref.prefjkaryawan = 0
+                    binding.kpJumlah.text = pref.prefjkaryawan.toString()
                     karyawanAdapter.setData(data)
                     binding.emptyView.visibility = View.VISIBLE
                 }

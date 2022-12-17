@@ -31,7 +31,7 @@ class PekerjaanAdapter (
     class ViewHolder(private val itemBinding: AdapterPekerjaanBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
         fun bind(pekerjaan: PekerjaanModel) {
-            itemBinding.pkNamaKaryawanSelesai.text = pekerjaan.karyawan
+            itemBinding.pkNamaKaryawanSelesai.text = pekerjaan.divisi
             itemBinding.pkPekerjaanSelesai.text = pekerjaan.nama_pekerjaan
             val statuss = pekerjaan.status
             if(statuss == "1"){

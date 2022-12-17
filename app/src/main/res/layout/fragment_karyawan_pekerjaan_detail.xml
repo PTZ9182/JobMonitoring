@@ -29,7 +29,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:textColor="#515151"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -55,7 +55,7 @@
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:textColor="#515151"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view"
@@ -66,14 +66,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:textColor="#515151"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/kdp_desc"
+                app:layout_constraintTop_toBottomOf="@+id/kdp_desc"
                 tools:text="@string/kdp_isidesc" />
 
             <View
@@ -107,17 +107,42 @@
                 android:id="@+id/kdptext_progress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginStart="8dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:text="@string/kdp_persen"
-                android:visibility="gone"
                 android:textColor="#515151"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/kdp_pprogress"
+                app:layout_constraintStart_toEndOf="@+id/kdp_pprogress"
+                app:layout_constraintTop_toTopOf="@+id/kdp_pprogress" />
+
+            <TextView
+                android:id="@+id/kdp_pprogress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/kdp_Progress"
+                android:textColor="#515151"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kdp_progress" />
+
+            <TextView
+                android:id="@+id/kdptext_progresss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:gravity=""
+                android:text="@string/kdp_persenn"
+                android:textColor="#515151"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/kdptext_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/kdptext_progress"
+                app:layout_constraintTop_toTopOf="@+id/kdptext_progress" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -125,29 +150,78 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:visibility="gone"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/kdptext_progress" />
 
-
             <Button
-                android:id="@+id/kdp_button"
+                android:id="@+id/kdp_tambah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/kdp_tambah"
+                android:textColor="#515151"
+                android:textSize="14sp"
+                android:backgroundTint="#F0F6FB"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/seekBar"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+            <Button
+                android:id="@+id/kdp_kurang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/kdp_kurang"
+                android:textColor="#515151"
+                android:textSize="14sp"
+                android:backgroundTint="#F0F6FB"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/kdp_tambah"
+                app:layout_constraintStart_toEndOf="@+id/kdp_tambah"
+                app:layout_constraintTop_toTopOf="@+id/kdp_tambah"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+
+            <Button
+                android:id="@+id/kdp_buttonn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/pick_background_menu"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/kdp_selesai"
+                android:text="@string/kdp_update"
                 android:textColor="#FFFFFF"
                 android:textSize="12sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seekBar"
+                app:layout_constraintTop_toBottomOf="@+id/kdp_tambah"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+            <Button
+                android:id="@+id/kdp_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/pick_background_menu"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="@string/kdp_selesai"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/kdp_tambah"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
 

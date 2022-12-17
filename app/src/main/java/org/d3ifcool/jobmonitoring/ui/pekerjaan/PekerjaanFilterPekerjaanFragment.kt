@@ -104,6 +104,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                                 pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
                                 pref.prefkaryawanpekerjaan = pekerjaan.karyawan
                                 pref.prefstatuspekerjaan = pekerjaan.status
+                                pref.prefprogresspekerjaan = pekerjaan.progress.toString()
                                 findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_editPekerjaanFragment)
                                 true
                             }
@@ -151,6 +152,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                     pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
                     pref.prefkaryawanpekerjaan = pekerjaan.karyawan
                     pref.prefstatuspekerjaan = pekerjaan.status
+                    pref.prefprogresspekerjaan = pekerjaan.progress.toString()
                     findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanDetailFragment)
                 }
             })
@@ -189,8 +191,14 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                         } else {
                             pref.prefjpekerjaan = 0
                             binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            binding.emptyView.visibility = View.VISIBLE
                         }
 
+                    } else {
+                        pref.prefjpekerjaan = 0
+                        binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        pekerjaanAdapter.setData(data)
+                        binding.emptyView.visibility = View.VISIBLE
                     }
                 }
 
@@ -219,10 +227,13 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                         } else {
                             pref.prefjpekerjaan = 0
                             binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            binding.emptyView.visibility = View.VISIBLE
                         }
                     } else {
-                        pekerjaanAdapter.setData(data)
-                        binding.emptyView.visibility = View.VISIBLE
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.VISIBLE
                     }
                 }
 

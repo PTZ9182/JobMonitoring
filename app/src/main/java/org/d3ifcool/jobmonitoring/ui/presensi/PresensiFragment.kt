@@ -135,7 +135,13 @@ class PresensiFragment : Fragment() {
                     }
                     presensiAdapter.setData(data)
                     binding.emptyView.visibility = View.GONE
-                    binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                    if (data.size != 0){
+                        binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                    } else {
+                        pref.prefjpekerjaan = 0
+                        binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                        binding.emptyView.visibility = View.VISIBLE
+                    }
                 } else {
                     presensiAdapter.setData(data)
                     pref.prefjpresesnsi = 0

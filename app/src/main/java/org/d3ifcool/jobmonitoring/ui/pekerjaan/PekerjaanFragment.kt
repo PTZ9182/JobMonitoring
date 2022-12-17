@@ -93,6 +93,7 @@ class PekerjaanFragment : Fragment() {
                             pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
                             pref.prefkaryawanpekerjaan = pekerjaan.karyawan
                             pref.prefstatuspekerjaan = pekerjaan.status
+                            pref.prefprogresspekerjaan = pekerjaan.progress.toString()
                             findNavController().navigate(R.id.action_pekerjaanFragment_to_editPekerjaanFragment)
                             true
                         }
@@ -131,6 +132,7 @@ class PekerjaanFragment : Fragment() {
                 pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
                 pref.prefkaryawanpekerjaan = pekerjaan.karyawan
                 pref.prefstatuspekerjaan = pekerjaan.status
+                pref.prefprogresspekerjaan = pekerjaan.progress.toString()
                 findNavController().navigate(R.id.action_pekerjaanFragment_to_pekerjaanDetailFragment)
             }
         })
@@ -164,8 +166,11 @@ class PekerjaanFragment : Fragment() {
                     } else {
                         pref.prefjpekerjaan = 0
                         binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                        binding.emptyView.visibility = View.VISIBLE
                     }
                 } else {
+                    pref.prefjpekerjaan = 0
+                    binding.pkJumlah.text = pref.prefjpekerjaan.toString()
                     pekerjaanAdapter.setData(data)
                     binding.emptyView.visibility = View.VISIBLE
                 }
