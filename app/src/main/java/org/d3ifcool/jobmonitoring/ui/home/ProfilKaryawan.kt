@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.home
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle

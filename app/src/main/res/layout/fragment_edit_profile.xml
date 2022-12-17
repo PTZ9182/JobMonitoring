@@ -21,7 +21,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="-30dp"
                 android:background="@drawable/pick_background_menu_atas">
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -30,7 +29,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/p_img_perusahaan"
-                    android:src="@drawable/profilperusahaan"
+                    android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +41,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito"
                     android:text="@string/p_alamat_perusahaan"
                     android:textColor="#FFFFFF"
@@ -55,45 +54,30 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/pick_background_cekung">
-
-                <TextView
-                    android:id="@+id/t"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <TextView
                 android:id="@+id/namaperusahaan"
+                android:text="@string/p_textnamaperusahaan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/p_textnamaperusahaan"
                 android:textColor="#515151"
-                android:textSize="11sp" />
+                android:textSize="12sp"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/coll_namaperusahaan"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
                     android:id="@+id/isiform_namaperusahaan"
+                    android:hint="@string/p_nama_perusahaan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -103,10 +87,11 @@
                     android:autofillHints=""
                     android:background="@android:color/transparent"
                     android:ems="10"
-                    android:hint="@string/p_nama_perusahaan"
-                    android:textColorHint="#6F6F6F"
-                    android:textSize="12sp"
+                    android:padding="2dp"
+                    android:fontFamily="@font/nunito_semibold"
                     android:inputType="textPersonName"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -117,39 +102,40 @@
 
             <TextView
                 android:id="@+id/alamatperusahaan"
+                android:text="@string/p_textalamatperusahaan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/p_textalamatperusahaan"
                 android:textColor="#515151"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/coll_alamatperusahaan"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
                     android:id="@+id/isiform_alamatperusahaan"
+                    android:ems="10"
+                    android:hint="@string/p_textalamatperusahaan"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:autofillHints=""
                     android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="@string/p_textalamatperusahaan"
-                    android:textColorHint="#6F6F6F"
-                    android:textSize="12sp"
+                    android:fontFamily="@font/nunito_semibold"
                     android:inputType="textMultiLine"
+                    android:padding="2dp"
+                    android:textColorHint="#6F6F6F"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -160,98 +146,60 @@
 
             <TextView
                 android:id="@+id/nohp"
+                android:text="@string/p_textnohp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/p_textnohp"
                 android:textColor="#515151"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/coll_nohp"
                 android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
                 android:background="@drawable/pick_background_menu">
 
                 <EditText
                     android:id="@+id/isiform_nohp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:autofillHints=""
-                    android:background="@android:color/transparent"
                     android:ems="10"
                     android:hint="@string/p_textnohp"
-                    android:inputType="number"
-                    android:textColorHint="#6F6F6F"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/nunito_semibold"
-                android:text="@string/p_textemail"
-                android:textColor="#515151"
-                android:textSize="11sp" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/coll_email"
-                android:layout_width="match_parent"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/pick_background_menu">
-
-                <EditText
-                    android:id="@+id/isiform_email"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:autofillHints=""
                     android:background="@android:color/transparent"
-                    android:ems="10"
-                    android:hint="@string/p_textemail"
-                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:inputType="number"
+                    android:padding="2dp"
                     android:textColorHint="#6F6F6F"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <Button
                 android:id="@+id/button_simpan"
+                android:text="@string/p_simpan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/pick_background_menu"
                 android:fontFamily="@font/nunito_semibold"
-                android:text="@string/p_simpan"
-                android:textSize="12sp"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"

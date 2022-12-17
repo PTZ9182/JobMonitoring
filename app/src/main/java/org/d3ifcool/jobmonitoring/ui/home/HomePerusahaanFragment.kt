@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.home
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -29,7 +30,6 @@ class HomePerusahaanFragment : Fragment() {
 
     private var _binding: FragmentHomePerusahaanBinding? = null
     private val binding get() = _binding!!
-    var backPressedTime: Long = 0
 
     val database = Firebase.database
     val storage = Firebase.storage
@@ -48,6 +48,7 @@ class HomePerusahaanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val contextt : Context
         contextt = requireActivity()
@@ -90,13 +91,14 @@ class HomePerusahaanFragment : Fragment() {
                 binding.alamatPerusahaan.text = pref.prefalamatperusahaan
             }
         }
+
         val id = user!!.uid
         val storageRef = storage.getReference("images").child("perusahaan").child(id).child("profil")
         storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.imgProfilPerusahaan.setImageBitmap(bitmap)
-        }.addOnFailureListener {
 
+        }.addOnFailureListener {
         }
 
 

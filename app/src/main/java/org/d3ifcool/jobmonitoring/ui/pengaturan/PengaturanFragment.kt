@@ -44,6 +44,9 @@ class PengaturanFragment : Fragment(){
         binding.constraintLayout3.setOnClickListener{
             it.findNavController().navigate(R.id.action_pengaturanFragment_to_gantiPasswordPerusahaanFragment)
         }
+        binding.constraintLayout5.setOnClickListener {
+            findNavController().navigate(R.id.action_pengaturanFragment_to_gantiEmailFragment)
+        }
         binding.constraintLayout2.setOnClickListener{
             pref.prefClear()
             Firebase.auth.signOut()

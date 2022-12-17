@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.divisi
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ class TambahDivisiFragment : Fragment() {
 
     val database = Firebase.database
     val dbRef = database.getReference("Divisi")
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +34,12 @@ class TambahDivisiFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         binding.layoutTambahDivisi.setOnRefreshListener {
             binding.layoutTambahDivisi.isRefreshing = false
@@ -48,14 +56,17 @@ class TambahDivisiFragment : Fragment() {
     }
 
     private fun tambahDivisi() {
+        nDialog.show()
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
         val idDivisi = dbRef.push().key!!
         val divisi = DivisiModel(idDivisi, binding.tdFormNamaDivisi.text.toString())
         dbRef.child(idPerusahaan!!).child(idDivisi).setValue(divisi).addOnCompleteListener {
+            nDialog.cancel()
             Toast.makeText(activity, "Divisi Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }.addOnFailureListener { tast ->
+            nDialog.cancel()
             Toast.makeText(activity, "Gagal menambahkan Divisi${tast.message}", Toast.LENGTH_SHORT).show()
         }
 

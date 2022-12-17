@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
     val database = Firebase.database
     val dbRef = database.getReference("Perusahaan")
     private lateinit var pref: Preference
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,12 @@ class GantiPasswordPerusahaanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         val contextt: Context
         contextt = requireActivity()
@@ -65,6 +73,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
                 binding.gpIsiformPasswordBaru2.error = "Password harus sesuai"
                 binding.gpIsiformPasswordBaru2.requestFocus()
             } else{
+                nDialog.show()
                 val user = Firebase.auth.currentUser
                 val newPassword = binding.gpIsiformPasswordBaru1.text.toString()
                 pref.prefpasswordperusahaan = newPassword
@@ -82,9 +91,11 @@ class GantiPasswordPerusahaanFragment : Fragment() {
                             }.addOnFailureListener { tast ->
                                 Log.i("pss", "Gagal")
                             }
+                        nDialog.cancel()
                         findNavController().popBackStack()
                         Toast.makeText(context, "Password berhasil diubah", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener{
+                        nDialog.cancel()
                         Toast.makeText(context, "Gagal merubah password", Toast.LENGTH_SHORT).show()
                     }
             }

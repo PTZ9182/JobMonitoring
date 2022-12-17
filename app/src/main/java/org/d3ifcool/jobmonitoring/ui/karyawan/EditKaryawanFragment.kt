@@ -1,6 +1,7 @@
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Patterns
@@ -36,6 +37,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val dbRef = database.getReference("Karyawan")
     private lateinit var pref: Preference
     private var listDivisi = ArrayList<String>()
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +52,12 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         binding.ekFormTanggallahir.setOnClickListener {
             openTimeDatePicker(ek_form_tanggallahir)
@@ -126,6 +134,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun editKaryawan() {
+        nDialog.show()
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -143,10 +152,12 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
         dbRef.child(idPerusahaan!!).child(pref.prefidkaryawan!!).setValue(karyawan)
             .addOnCompleteListener {
+                nDialog.cancel()
                 Toast.makeText(activity, "Data Karyawan Berhasil Diubah", Toast.LENGTH_SHORT)
                     .show()
                 findNavController().popBackStack()
             }.addOnFailureListener { tast ->
+                nDialog.cancel()
                 Toast.makeText(
                     activity,
                     "Gagal Mengubah Data Karyawan${tast.message}",

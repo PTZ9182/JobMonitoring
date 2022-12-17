@@ -81,6 +81,7 @@ class LoginPerusahaanFragment : Fragment() {
     }
 
     private fun login(email:String, password:String ) {
+        nDialog.show()
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)

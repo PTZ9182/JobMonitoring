@@ -36,7 +36,6 @@ class HomeKaryawanFragment : Fragment() {
     val storage = Firebase.storage
     private lateinit var pref: Preference
     private val data = arrayListOf<KaryawanModel>()
-    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,21 +55,12 @@ class HomeKaryawanFragment : Fragment() {
         context = requireActivity()
         pref = Preference(context)
 
-        nDialog = ProgressDialog(activity)
-        nDialog.setMessage("Tunggu..")
-        nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
-        nDialog.setCancelable(true)
-
-        nDialog.show()
         val id = pref.prefiduser
         val storageRef = storage.getReference("images").child("Karyawan").child(id!!).child("profil")
         storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.hkImgProfilKaryawan.setImageBitmap(bitmap)
-            nDialog.cancel()
         }.addOnFailureListener {
-            nDialog.cancel()
         }
 
         val callback = object : OnBackPressedCallback(true) {

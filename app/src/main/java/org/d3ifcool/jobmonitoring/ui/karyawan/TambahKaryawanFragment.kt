@@ -2,6 +2,7 @@ package org.d3ifcool.jobmonitoring.ui.karyawan
 
 
 import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -36,6 +37,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val database = Firebase.database
     val dbRef = database.getReference("Karyawan")
     private var listDivisi = ArrayList<String>()
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +51,12 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         binding.tkFormTanggallahir.setOnClickListener{
             openTimeDatePicker(tk_form_tanggallahir)
@@ -66,10 +74,10 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/html"
 
+            val user = Firebase.auth.currentUser
             intent.putExtra(Intent.EXTRA_EMAIL,addres)
             intent.putExtra(Intent.EXTRA_SUBJECT,"Selamat Akun anda Telah Terdaftar di aplikasi Job monitoring")
-            intent.putExtra(Intent.EXTRA_TEXT,"Password user : " + password + "" +
-                    "                            \r Nama User : " + email)
+            intent.putExtra(Intent.EXTRA_TEXT," Nama Perusahaan :\t ${user!!.displayName} \n Email user :\t $email \n Password :\t $password ")
             startActivity(intent)
 
             if (binding.tkFormNama.text.isEmpty()) {
@@ -128,6 +136,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun tambahKaryawan() {
+        nDialog.show()
         val idKaryawan = dbRef.push().key!!
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
@@ -143,9 +152,11 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.tkFormPassword.text.toString()
         )
         dbRef.child(idPerusahaan!!).child(idKaryawan).setValue(karyawan).addOnCompleteListener {
+            nDialog.cancel()
             Toast.makeText(activity, "Karyawan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }.addOnFailureListener { tast ->
+            nDialog.cancel()
             Toast.makeText(
                 activity,
                 "Gagal menambahkan Karyawan${tast.message}",

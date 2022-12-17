@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -25,6 +26,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
     val database = Firebase.database
     val dbRef = database.getReference("Karyawan")
     private lateinit var pref: Preference
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,12 @@ class GantiPasswordKaryawanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         val contextt: Context
         contextt = requireActivity()
@@ -65,6 +73,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
                 binding.gpIsiformPasswordBaru2.error = "Password harus sesuai"
                 binding.gpIsiformPasswordBaru2.requestFocus()
             } else {
+                nDialog.show()
                 val contextt: Context
                 contextt = requireActivity()
                 pref = Preference(contextt)
@@ -84,9 +93,11 @@ class GantiPasswordKaryawanFragment : Fragment() {
                 dbRef.child(idPerusahaan!!).child(pref.prefidkaryawan!!).setValue(karyawan)
                     .addOnCompleteListener {
                         pref.prefpasswordkaryawan = newpassword
+                        nDialog.cancel()
                         Toast.makeText(activity, "Password karyawan Berhasil Diubah", Toast.LENGTH_SHORT).show()
                         findNavController().popBackStack()
                     }.addOnFailureListener { tast ->
+                        nDialog.cancel()
                         Toast.makeText(activity, "Gagal Mengubah Password Karyawan${tast.message}",Toast.LENGTH_SHORT).show()
                     }
             }

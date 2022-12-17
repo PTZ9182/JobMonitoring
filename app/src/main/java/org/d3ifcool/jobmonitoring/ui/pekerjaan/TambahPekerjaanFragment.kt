@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -33,6 +34,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var pref: Preference
     private var listKaryawan = ArrayList<String>()
     private var listidKaryawan = ArrayList<String>()
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,12 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         binding.layoutTambahPekerjaan.setOnRefreshListener {
             binding.layoutTambahPekerjaan.isRefreshing = false
@@ -67,6 +75,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun tambahPekerjaan(){
+        nDialog.show()
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -81,9 +90,11 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.tpFormDescPekerjaan.text.toString(),
             binding.tpListKaryawan.selectedItem.toString())
         dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan).addOnCompleteListener{
+            nDialog.cancel()
             Toast.makeText(activity,"Pekerjaan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }.addOnFailureListener{ tast ->
+            nDialog.cancel()
             Toast.makeText(activity,"Gagal menambahkan Pekerjaan${tast.message}", Toast.LENGTH_SHORT).show()
         }
     }

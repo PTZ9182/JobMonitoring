@@ -323,6 +323,9 @@
         <action
             android:id="@+id/action_pengaturanFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_pengaturanFragment_to_gantiEmailFragment"
+            app:destination="@id/gantiEmailFragment" />
     </fragment>
     <fragment
         android:id="@+id/gantiPasswordPerusahaanFragment"
@@ -409,4 +412,9 @@
         android:name="org.d3ifcool.jobmonitoring.ui.home.ProfileHomeKaryawan"
         android:label="fragment_profil_homekaryawan"
         tools:layout="@layout/fragment_profil_homekaryawan" />
+    <fragment
+        android:id="@+id/gantiEmailFragment"
+        android:name="org.d3ifcool.jobmonitoring.ui.pengaturan.GantiEmailFragment"
+        android:label="fragment_ganti_email"
+        tools:layout="@layout/fragment_ganti_email" />
 </navigation>

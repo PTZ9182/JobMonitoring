@@ -120,7 +120,7 @@ class LoginKaryawanFragment : Fragment() {
     }
 
     private fun login(id:String){
-
+        nDialog.show()
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)

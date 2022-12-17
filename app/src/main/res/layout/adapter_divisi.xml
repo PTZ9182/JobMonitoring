@@ -31,7 +31,7 @@
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/nunito_semibold"
         android:textColor="#515151"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/dp_titik3"
         app:layout_constraintStart_toStartOf="parent"

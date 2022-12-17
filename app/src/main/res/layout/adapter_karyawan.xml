@@ -22,7 +22,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/kp_img_profil"
-            android:src="@drawable/profil"
+            android:src="@mipmap/ic_launcher_round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

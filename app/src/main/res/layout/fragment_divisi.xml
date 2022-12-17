@@ -48,7 +48,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="16dp"
-                        android:background="@drawable/pick_background_menu"
+                        android:background="@drawable/pick_background_button"
                         android:fontFamily="@font/nunito_semibold"
                         android:text="@string/dp_button_divisi"
                         android:textColor="#FFFFFF"

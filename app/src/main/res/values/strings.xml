@@ -255,6 +255,16 @@
     <string name="gp_isiform_password_baru2">Masukan Ulang Password</string>
     <string name="gp_button_simpan">Simpan</string>
 
+    <!--Ganti Email-->
+    <string name="ge_judul">Ganti Email</string>
+    <string name="ge_email_lama">Email Lama</string>
+    <string name="ge_isiform_email_lama">Masukan Email Lama</string>
+    <string name="ge_email_baru1">Email Baru</string>
+    <string name="ge_isiform_email_baru1">Masukan Email Baru</string>
+    <string name="ge_email_baru2">Email Baru</string>
+    <string name="ge_isiform_email_baru2">Masukan Ulang Email</string>
+    <string name="ge_button_simpan">Simpan</string>
+
     <!--Presensi Perusahaan-->
     <string name="pp_button_presensi">Tambah Presensi</string>
     <string name="pp_img_presensi">img_Presensi</string>

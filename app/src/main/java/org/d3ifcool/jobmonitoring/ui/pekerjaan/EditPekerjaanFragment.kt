@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,6 +32,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var pref: Preference
     private var listKaryawan = ArrayList<String>()
     private var listidKaryawan = ArrayList<String>()
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +46,12 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         val contextt: Context
         contextt = requireActivity()
@@ -70,6 +78,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun editPekerjaan() {
+        nDialog.show()
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -90,6 +99,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         )
         dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan)
             .addOnCompleteListener {
+                nDialog.cancel()
                 Toast.makeText(
                     activity,
                     "Data Karyawan Pekerjaan Diubah",
@@ -98,6 +108,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     .show()
                 findNavController().popBackStack()
             }.addOnFailureListener { tast ->
+                nDialog.cancel()
                 Toast.makeText(
                     activity,
                     "Gagal Mengubah Data Pekerjaan${tast.message}",

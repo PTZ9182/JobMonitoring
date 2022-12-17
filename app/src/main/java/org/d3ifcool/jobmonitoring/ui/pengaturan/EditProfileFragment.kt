@@ -69,7 +69,6 @@ class EditProfileFragment : Fragment() {
             nDialog.show()
             for (profile in it.providerData) {
                 binding.isiformNamaperusahaan.setText(profile.displayName)
-                binding.isiformEmail.setText(profile.email)
                 binding.isiformAlamatperusahaan.setText(pref.prefalamatperusahaan)
                 binding.isiformNohp.setText(pref.prefnohpperusahaan)
                 url = user.photoUrl.toString()!!
@@ -98,7 +97,6 @@ class EditProfileFragment : Fragment() {
             val namaperusahaan = binding.isiformNamaperusahaan.text.toString()
             val alamatperusahaan = binding.isiformAlamatperusahaan.text.toString()
             val nohandphone = binding.isiformNohp.text.toString()
-            val email = binding.isiformEmail.text.toString()
 
             //Validasi Nama Perusahaan
             if (namaperusahaan.isEmpty()) {
@@ -127,22 +125,10 @@ class EditProfileFragment : Fragment() {
                 binding.isiformNohp.error = "NoHandphone Minimal 8 angka!!"
                 binding.isiformNohp.requestFocus()
                 return@setOnClickListener
-            }
-
-            //Validasi Email
-            if (email.isEmpty()) {
-                binding.isiformEmail.error = "Email Harus Di isi!!"
-                binding.isiformEmail.requestFocus()
-                return@setOnClickListener
-            }
-
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                binding.isiformEmail.error = "Email Tidak Valid!!!!"
-                binding.isiformEmail.requestFocus()
 
 
             } else {
-                editperusahaan(namaperusahaan, alamatperusahaan, nohandphone, email)
+                editperusahaan(namaperusahaan, alamatperusahaan, nohandphone)
             }
         }
     }
@@ -164,7 +150,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun editperusahaan(name: String, alamat: String, nohp: String, email: String) {
+    private fun editperusahaan(name: String, alamat: String, nohp: String) {
         nDialog.show()
 
         val contextt: Context
@@ -205,7 +191,7 @@ class EditProfileFragment : Fragment() {
                     val perusahaan = PerusahaanModel(
                         id,
                         name,
-                        email,
+                        user.email!!,
                         pref.prefpasswordperusahaan!!,
                         alamat,
                         nohp
@@ -216,22 +202,16 @@ class EditProfileFragment : Fragment() {
                         }.addOnFailureListener { tast ->
                             Log.i("Update", "Gagal")
                         }
+                    nDialog.cancel()
                     findNavController().popBackStack()
                     Toast.makeText(activity, "Data perusahaan telah diubah.", Toast.LENGTH_SHORT)
                         .show()
                 } else {
+                    nDialog.cancel()
                     Toast.makeText(activity, "Gagal merubah data.", Toast.LENGTH_SHORT)
                         .show()
                 }
-            }
-        user.updateEmail(email)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    nDialog.cancel()
-                    Log.d(TAG, "User email address updated.")
-                } else {
-                    Log.d(TAG, "User email gagal diganti.")
-                }
+                nDialog.cancel()
             }
     }
 }

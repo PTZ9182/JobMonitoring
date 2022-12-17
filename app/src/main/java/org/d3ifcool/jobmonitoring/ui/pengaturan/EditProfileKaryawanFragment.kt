@@ -216,14 +216,13 @@ class EditProfileKaryawanFragment : Fragment() {
         )
         dbRef.child(idPerusahaan!!).child(idUser).setValue(user)
             .addOnCompleteListener {
-
-                nDialog.cancel()
                 pref.prefnamauser = nama
                 pref.preftanggallahiruser = tanggallahir
                 pref.prefjeniskelaminuser = jeniskelamin
                 pref.prefalamatuser = alamat
                 pref.prefnohpuser = nohp
                 pref.prefemailuser = email
+                nDialog.cancel()
                 findNavController().popBackStack()
                 Toast.makeText(context, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
             }.addOnFailureListener { tast ->

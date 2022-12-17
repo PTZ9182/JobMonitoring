@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
     val database = Firebase.database
     val dbRef = database.getReference("Karyawan")
     private lateinit var pref: Preference
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,12 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         val contextt: Context
         contextt = requireActivity()
@@ -62,7 +70,7 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
                 binding.gpIsiformPasswordBaru2.error = "Password harus sesuai"
                 binding.gpIsiformPasswordBaru2.requestFocus()
             } else {
-
+                nDialog.show()
                 val newPassword = binding.gpIsiformPasswordBaru1.text.toString()
                 val idPerusahaan = pref.prefidperusahaanuser
                 pref.prefpassworduser = newPassword
@@ -79,9 +87,11 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
                 )
                 dbRef.child(idPerusahaan!!).child(id!!).setValue(user)
                     .addOnCompleteListener {
+                        nDialog.cancel()
                         findNavController().popBackStack()
                         Toast.makeText(context, "Password berhasil diubah", Toast.LENGTH_SHORT).show()
                     }.addOnFailureListener { tast ->
+                        nDialog.cancel()
                         Toast.makeText(context, "Gagal merubah password", Toast.LENGTH_SHORT).show()
                     }
             }

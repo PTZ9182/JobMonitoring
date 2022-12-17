@@ -9,6 +9,7 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomePerusahaanFragment">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@drawable/profilperusahaan"
+                    android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
