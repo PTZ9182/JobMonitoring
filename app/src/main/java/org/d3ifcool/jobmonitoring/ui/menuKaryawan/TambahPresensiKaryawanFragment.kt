@@ -14,10 +14,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPresensiKaryawanBinding
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.LocalDateTime
@@ -53,10 +57,25 @@ class TambahPresensiKaryawanFragment : Fragment() {
         context = requireActivity()
         pref = Preference(context)
 
+        pref.prefidperusahaanuser
+        binding.inputNama.text = pref.prefnamauser
+        val dbReff = database.getReference("Karyawan").child(pref.prefidperusahaanuser!!).orderByChild("id").equalTo(pref.prefiduser)
+        dbReff.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(KaryawanModel::class.java)
+                        binding.inputNama.text = datas!!.namaKaryawan
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter)
         binding.inputTanggal.text = date
-        binding.inputNama.text = pref.prefnamauser
+
         val setbutton = pref.prefbuttonpresensi
         if (setbutton == date.toString()){
             binding.btnAbsen.visibility = View.GONE
@@ -83,7 +102,7 @@ class TambahPresensiKaryawanFragment : Fragment() {
                 val date = LocalDateTime.now().format(formatter)
                 val formatterr = DateTimeFormatter.ofPattern("HH:mm")
                 val waktu = LocalDateTime.now().format(formatterr)
-                tambahAbsensi(pref.prefnamauser!!,keterangan,waktu.toString(),date.toString())
+                tambahAbsensi(keterangan,waktu.toString(),date.toString())
                 pref.prefbuttonpresensi = date.toString()
             }
         }
@@ -109,16 +128,16 @@ class TambahPresensiKaryawanFragment : Fragment() {
     }
 
 
-    private fun tambahAbsensi(name: String, keterangan: String, waktu: String, tanggal: String){
+    private fun tambahAbsensi(keterangan: String, waktu: String, tanggal: String){
         val context: Context
         context = requireActivity()
         pref = Preference(context)
         val idPresensi = dbRef.push().key!!
         val idPerusahaan = pref.prefidperusahaanuser
         val idUser = pref.prefiduser
-        val divisi = pref.prefdivisiuser
+        val iddivisi = pref.prefiddivisiuser
         val presensi = PresensiModel(
-            idPresensi,idUser!!,name,divisi!!,keterangan,waktu,tanggal)
+            idPresensi,idUser!!,iddivisi!!,keterangan,waktu,tanggal)
         dbRef.child(idPerusahaan!!).child(idPresensi).setValue(presensi).addOnCompleteListener{
             Toast.makeText(activity,"Presensi Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()

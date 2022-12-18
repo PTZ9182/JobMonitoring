@@ -13,7 +13,6 @@ class Preference(context: Context) {
     private val TAG_PASSWORDPERUSAHAAN = "password perusahaan"
     private val TAG_ALAMATPERUSAHAAN = "alamat perusahaan"
     private val TAG_NOHPPERUSAHAAN = "nohp perusahaan"
-    private val TAG_IMGPERUSAHAAN = "img perusahaan"
 
     //DIVISI
     private val TAG_IDDIVISI = "id divisi"
@@ -27,17 +26,16 @@ class Preference(context: Context) {
     private val TAG_JENISKELAMINKARYAWAN = "jenis kelamin karyawan"
     private val TAG_ALAMATKARYAWAN = "alamat karyawan"
     private val TAG_NOHPKARYAWAN = "nohp karyawan"
-    private val TAG_DIVISIKARYAWAN = "divisi karyawan"
     private val TAG_EMAILKARYAWAN = "email karyawan"
     private val TAG_PASSWORDKARYAWAN = "password karyawan"
     private val TAG_JKARYAWAN = "jumlah karyawan"
     private val TAG_FILTERKARYAWAN = "filter karyawan"
+    private val TAG_IDDIVISIKARYAWAN = "id divisi karyawan"
 
     //PRESENSI
     private val TAG_IDPRESENSI = "id presensi"
-    private val TAG_IDUSERPRESENSI = "iduser presensi"
-    private val TAG_NAMAPRESENSI = "nama user presensi"
-    private val TAG_DIVISIPRESENSI = "divisi presensi"
+    private val TAG_IDKARYAWANPRESENSI = "id karyawan presensi"
+    private val TAG_IDDIVISIPRESENSI = "id divisi presensi"
     private val TAG_KETERANGANPRESENSI = "keterangan presensi"
     private val TAG_WAKTUPRESENSI = "waktu presensi"
     private val TAG_TANGGALPRESENSI = "tanggal presensi"
@@ -47,14 +45,13 @@ class Preference(context: Context) {
 
     //PEKERJAAN
     private val TAG_IDPEKERJAAN = "id pekerjaan"
-    private val TAG_IDUSERPEKERJAAN = "id user pekerjaan"
-    private val TAG_DIVISIPEKERJAAN = "divisi pekerjaan"
+    private val TAG_IDKARYAWANPEKERJAAN = "id karyawan pekerjaan"
+    private val TAG_IDDIVISIPEKERJAAN = "ID divisi pekerjaan"
     private val TAG_NAMAPEKERJAAN = "nama pekerjaan"
     private val TAG_DESKRIPSIPEKERJAAN = "deskripsi pekerjaan"
-    private val TAG_KARYAWANPEKERJAAN = "karyawan pekerjaan"
-    private val TAG_JPEKERJAAN = "jumlah pekerjaan"
-    private val TAG_STATUSPEKERJAAN = "status pekerjaan"
     private val TAG_PROGRESSPEKERJAAN = "progress pekerjaan"
+    private val TAG_STATUSPEKERJAAN = "status pekerjaan"
+    private val TAG_JPEKERJAAN = "jumlah pekerjaan"
 
     //USER KARYAWAN
     private val TAG_IDPERUSAHAANUSER = "id perusahaan user"
@@ -65,17 +62,18 @@ class Preference(context: Context) {
     private val TAG_JENISKELAMINUSER = "jenis kelamin user"
     private val TAG_ALAMATUSER = "alamat user"
     private val TAG_NOHPUSER = "nohp user"
-    private val TAG_DIVISIUSER = "divisi user"
+    private val TAG_IDDIVISIUSER = "divisi user"
     private val TAG_EMAILUSER = "email user"
     private val TAG_PASSWORDUSER = "password user"
     private val TAG_IMGUSER = "img user"
 
     //USER PEKERJAAN
     private val TAG_IDPEKERJAANUSER = "id pekerjaan user"
-    private val TAG_DIVISIPEKERJAANUSER = "divisi pekerjaan user"
+    private val TAG_IDKARYAWANPEKERJAANUSER = "id karyawan pekerjaan user"
+    private val TAG_IDDIVISIPEKERJAANUSER = "id divisi pekerjaan user"
     private val TAG_NAMAPEKERJAANUSER = "nama pekerjaan user"
     private val TAG_DESKRIPSIPEKERJAANUSER = "deskripsi pekerjaan user"
-    private val TAG_KARYAWANPEKERJAANUSER = "karyawan pekerjaan user"
+    private val TAG_PROGRESSPEKERJAANUSER = "progress pekerjaan user"
     private val TAG_STATUSPEKERJAANUSER = "status pekerjaan user"
 
     private val pref : SharedPreferences = context.getSharedPreferences(TAG_APP, Context.MODE_PRIVATE)
@@ -100,10 +98,6 @@ class Preference(context: Context) {
     var prefnohpperusahaan: String?
         get() = pref.getString(TAG_NOHPPERUSAHAAN,"")
         set(value) = pref.edit().putString(TAG_NOHPPERUSAHAAN,value).apply()
-
-    var prefimgperusahaan: String?
-        get() = pref.getString(TAG_IMGPERUSAHAAN,"")
-        set(value) = pref.edit().putString(TAG_IMGPERUSAHAAN,value).apply()
 
     //Divisi
     var prefiddivisi: String?
@@ -143,9 +137,9 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_NOHPKARYAWAN,"")
         set(value) = pref.edit().putString(TAG_NOHPKARYAWAN,value).apply()
 
-    var prefdivisikaryawan: String?
-        get() = pref.getString(TAG_DIVISIKARYAWAN,"")
-        set(value) = pref.edit().putString(TAG_DIVISIKARYAWAN,value).apply()
+    var prefiddivisikaryawan: String?
+        get() = pref.getString(TAG_IDDIVISIKARYAWAN,"")
+        set(value) = pref.edit().putString(TAG_IDDIVISIKARYAWAN,value).apply()
 
     var prefemailkaryawan: String?
         get() = pref.getString(TAG_EMAILKARYAWAN,"")
@@ -168,17 +162,13 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_IDPRESENSI,"")
         set(value) = pref.edit().putString(TAG_IDPRESENSI,value).apply()
 
-    var prefiduserpresensi: String?
-        get() = pref.getString(TAG_IDUSERPRESENSI,"")
-        set(value) = pref.edit().putString(TAG_IDUSERPRESENSI,value).apply()
+    var prefidkaryawanpresensi: String?
+        get() = pref.getString(TAG_IDKARYAWANPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_IDKARYAWANPRESENSI,value).apply()
 
-    var prefnamauserpresensi: String?
-        get() = pref.getString(TAG_NAMAPRESENSI,"")
-        set(value) = pref.edit().putString(TAG_NAMAPRESENSI,value).apply()
-
-    var prefdivisipresensi: String?
-        get() = pref.getString(TAG_DIVISIPRESENSI,"")
-        set(value) = pref.edit().putString(TAG_DIVISIPRESENSI,value).apply()
+    var prefiddivisipresensi: String?
+        get() = pref.getString(TAG_IDDIVISIPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_IDDIVISIPRESENSI,value).apply()
 
     var prefketeranganpresensi: String?
         get() = pref.getString(TAG_KETERANGANPRESENSI,"")
@@ -209,13 +199,13 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_IDPEKERJAAN,"")
         set(value) = pref.edit().putString(TAG_IDPEKERJAAN,value).apply()
 
-    var prefiduserpekerjaan: String?
-        get() = pref.getString(TAG_IDUSERPEKERJAAN,"")
-        set(value) = pref.edit().putString(TAG_IDUSERPEKERJAAN,value).apply()
+    var prefidkaryawanpekerjaan: String?
+        get() = pref.getString(TAG_IDKARYAWANPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_IDKARYAWANPEKERJAAN,value).apply()
 
-    var prefdivisipekerjaan: String?
-        get() = pref.getString(TAG_DIVISIPEKERJAAN,"")
-        set(value) = pref.edit().putString(TAG_DIVISIPEKERJAAN,value).apply()
+    var prefiddivisipekerjaan: String?
+        get() = pref.getString(TAG_IDDIVISIPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_IDDIVISIPEKERJAAN,value).apply()
 
     var prefnamapekerjaan: String?
         get() = pref.getString(TAG_NAMAPEKERJAAN,"")
@@ -224,10 +214,6 @@ class Preference(context: Context) {
     var prefdeskripsipekerjaan: String?
         get() = pref.getString(TAG_DESKRIPSIPEKERJAAN,"")
         set(value) = pref.edit().putString(TAG_DESKRIPSIPEKERJAAN,value).apply()
-
-    var prefkaryawanpekerjaan: String?
-        get() = pref.getString(TAG_KARYAWANPEKERJAAN,"")
-        set(value) = pref.edit().putString(TAG_KARYAWANPEKERJAAN,value).apply()
 
     var prefstatuspekerjaan: String?
         get() = pref.getString(TAG_STATUSPEKERJAAN,"")
@@ -274,9 +260,9 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_NOHPUSER,"")
         set(value) = pref.edit().putString(TAG_NOHPUSER,value).apply()
 
-    var prefdivisiuser: String?
-        get() = pref.getString(TAG_DIVISIUSER,"")
-        set(value) = pref.edit().putString(TAG_DIVISIUSER,value).apply()
+    var prefiddivisiuser: String?
+        get() = pref.getString(TAG_IDDIVISIUSER,"")
+        set(value) = pref.edit().putString(TAG_IDDIVISIUSER,value).apply()
 
     var prefemailuser: String?
         get() = pref.getString(TAG_EMAILUSER,"")
@@ -295,9 +281,13 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_IDPEKERJAANUSER,"")
         set(value) = pref.edit().putString(TAG_IDPEKERJAANUSER,value).apply()
 
-    var prefdivisipekerjaanuser: String?
-        get() = pref.getString(TAG_DIVISIPEKERJAANUSER,"")
-        set(value) = pref.edit().putString(TAG_DIVISIPEKERJAANUSER,value).apply()
+    var prefidkaryawanpekerjaanuser: String?
+        get() = pref.getString(TAG_IDKARYAWANPEKERJAANUSER,"")
+        set(value) = pref.edit().putString(TAG_IDKARYAWANPEKERJAANUSER,value).apply()
+
+    var prefiddivisipekerjaanuser: String?
+        get() = pref.getString(TAG_IDDIVISIPEKERJAANUSER,"")
+        set(value) = pref.edit().putString(TAG_IDDIVISIPEKERJAANUSER,value).apply()
 
     var prefnamapekerjaanuser: String?
         get() = pref.getString(TAG_NAMAPEKERJAANUSER,"")
@@ -306,10 +296,6 @@ class Preference(context: Context) {
     var prefdeskripsipekerjaanuser: String?
         get() = pref.getString(TAG_DESKRIPSIPEKERJAANUSER,"")
         set(value) = pref.edit().putString(TAG_DESKRIPSIPEKERJAANUSER,value).apply()
-
-    var prefkaryawanpekerjaanuser: String?
-        get() = pref.getString(TAG_KARYAWANPEKERJAANUSER,"")
-        set(value) = pref.edit().putString(TAG_KARYAWANPEKERJAANUSER,value).apply()
 
     var prefstatuspekerjaanuser: String?
         get() = pref.getString(TAG_STATUSPEKERJAANUSER,"")
@@ -325,7 +311,6 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_PASSWORDPERUSAHAAN).apply()
         pref.edit().remove(TAG_ALAMATPERUSAHAAN).apply()
         pref.edit().remove(TAG_NOHPPERUSAHAAN).apply()
-        pref.edit().remove(TAG_IMGPERUSAHAAN).apply()
         //DIVISI
         pref.edit().remove(TAG_IDDIVISI).apply()
         pref.edit().remove(TAG_DIVISI).apply()
@@ -337,26 +322,24 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_JENISKELAMINKARYAWAN).apply()
         pref.edit().remove(TAG_ALAMATKARYAWAN).apply()
         pref.edit().remove(TAG_NOHPKARYAWAN).apply()
-        pref.edit().remove(TAG_DIVISIKARYAWAN).apply()
         pref.edit().remove(TAG_EMAILKARYAWAN).apply()
         pref.edit().remove(TAG_PASSWORDKARYAWAN).apply()
         pref.edit().remove(TAG_JKARYAWAN).apply()
         pref.edit().remove(TAG_FILTERKARYAWAN).apply()
+        pref.edit().remove(TAG_IDDIVISIKARYAWAN).apply()
         //PEKERJAAN
         pref.edit().remove(TAG_IDPEKERJAAN).apply()
-        pref.edit().remove(TAG_IDUSERPEKERJAAN).apply()
-        pref.edit().remove(TAG_DIVISIPEKERJAAN).apply()
+        pref.edit().remove(TAG_IDKARYAWANPEKERJAAN).apply()
+        pref.edit().remove(TAG_IDDIVISIPEKERJAAN).apply()
         pref.edit().remove(TAG_NAMAPEKERJAAN).apply()
         pref.edit().remove(TAG_DESKRIPSIPEKERJAAN).apply()
-        pref.edit().remove(TAG_KARYAWANPEKERJAAN).apply()
-        pref.edit().remove(TAG_JPEKERJAAN).apply()
-        pref.edit().remove(TAG_STATUSPEKERJAAN).apply()
         pref.edit().remove(TAG_PROGRESSPEKERJAAN).apply()
+        pref.edit().remove(TAG_STATUSPEKERJAAN).apply()
+        pref.edit().remove(TAG_JPEKERJAAN).apply()
         //PRESENSI
         pref.edit().remove(TAG_IDPRESENSI).apply()
-        pref.edit().remove(TAG_IDUSERPRESENSI).apply()
-        pref.edit().remove(TAG_NAMAPRESENSI).apply()
-        pref.edit().remove(TAG_DIVISIPRESENSI).apply()
+        pref.edit().remove(TAG_IDKARYAWANPRESENSI).apply()
+        pref.edit().remove(TAG_IDDIVISIPRESENSI).apply()
         pref.edit().remove(TAG_KETERANGANPRESENSI).apply()
         pref.edit().remove(TAG_WAKTUPRESENSI).apply()
         pref.edit().remove(TAG_TANGGALPRESENSI).apply()
@@ -371,17 +354,19 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_JENISKELAMINUSER).apply()
         pref.edit().remove(TAG_ALAMATUSER).apply()
         pref.edit().remove(TAG_NOHPUSER).apply()
-        pref.edit().remove(TAG_DIVISIUSER).apply()
+        pref.edit().remove(TAG_IDDIVISIUSER).apply()
         pref.edit().remove(TAG_EMAILUSER).apply()
         pref.edit().remove(TAG_PASSWORDUSER).apply()
         pref.edit().remove(TAG_IMGUSER).apply()
         //USER PEKERJAAN
         pref.edit().remove(TAG_IDPEKERJAANUSER).apply()
-        pref.edit().remove(TAG_DIVISIPEKERJAANUSER).apply()
+        pref.edit().remove(TAG_IDKARYAWANPEKERJAANUSER).apply()
+        pref.edit().remove(TAG_IDDIVISIPEKERJAANUSER).apply()
         pref.edit().remove(TAG_NAMAPEKERJAANUSER).apply()
         pref.edit().remove(TAG_DESKRIPSIPEKERJAANUSER).apply()
-        pref.edit().remove(TAG_KARYAWANPEKERJAANUSER).apply()
+        pref.edit().remove(TAG_PROGRESSPEKERJAANUSER).apply()
         pref.edit().remove(TAG_STATUSPEKERJAANUSER).apply()
+
         pref.edit().remove(TAG_JBUTTONRESENSI).apply()
     }
 }

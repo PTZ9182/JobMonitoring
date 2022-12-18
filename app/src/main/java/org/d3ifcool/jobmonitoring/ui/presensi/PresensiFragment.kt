@@ -94,9 +94,8 @@ class PresensiFragment : Fragment() {
             PresensiAdapter(arrayListOf(), object : PresensiAdapter.OnAdapterListener {
                 override fun presensidata(presensi: PresensiModel, v: View) {
                     pref.prefidpresensi = presensi.id
-                    pref.prefiduserpresensi = presensi.idUser
-                    pref.prefnamauserpresensi = presensi.nama
-                    pref.prefdivisipresensi = presensi.divisi
+                    pref.prefidkaryawanpresensi = presensi.idkaryawan
+                    pref.prefiddivisipresensi = presensi.iddivisi
                     pref.prefketeranganpresensi = presensi.keterangan
                     pref.prefwaktupresensi = presensi.waktu
                     pref.preftanggalpresensi = presensi.tanggal
@@ -120,7 +119,7 @@ class PresensiFragment : Fragment() {
         val date = LocalDateTime.now().format(formatter)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
-        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("nama")
+        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("waktu")
             .startAt(text).endAt(text + "\uf8ff")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -79,16 +79,15 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
-        val idPekerjaan = dbRef.push().key!!
-        var iduser = pref.prefiduserpekerjaan
         val user = Firebase.auth.currentUser
+        val idPekerjaan = dbRef.push().key!!
         val idPerusahaan = user?.uid
-        val divisi = pref.prefdivisipekerjaan
+        var idkaryawan = pref.prefidkaryawanpekerjaan
+        val iddivisi = pref.prefiddivisipekerjaan
         val pekerjaan = PekerjaanModel(
-            idPekerjaan,iduser!!, divisi!!,
+            idPekerjaan,idkaryawan!!, iddivisi!!,
             binding.tpFormNamaPekerjaan.text.toString(),
-            binding.tpFormDescPekerjaan.text.toString(),
-            binding.tpListKaryawan.selectedItem.toString())
+            binding.tpFormDescPekerjaan.text.toString(),)
         dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan).addOnCompleteListener{
             nDialog.cancel()
             Toast.makeText(activity,"Pekerjaan Berhasil Ditambahkan", Toast.LENGTH_SHORT).show()
@@ -105,8 +104,8 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         pref = Preference(contextt)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
-        val divisi = pref.prefdivisipekerjaan
-        val dbRef = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("divisi").equalTo(divisi)
+        val iddivisi = pref.prefiddivisipekerjaan
+        val dbRef = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("iddivisi").equalTo(iddivisi)
         dbRef.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listKaryawan.clear()
@@ -137,7 +136,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         contextt = requireActivity()
         pref = Preference(contextt)
         p0?.getItemAtPosition(p2)
-        pref.prefiduserpekerjaan = listidKaryawan[p2]
+        pref.prefidkaryawanpekerjaan = listidKaryawan[p2]
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

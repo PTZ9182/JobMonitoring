@@ -98,7 +98,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                                 pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
                                 pref.prefalamatkaryawan = karyawan.alamat
                                 pref.prefnohpkaryawan = karyawan.nohandphone
-                                pref.prefdivisikaryawan = karyawan.divisi
+                                pref.prefiddivisikaryawan= karyawan.iddivisi
                                 pref.prefemailkaryawan = karyawan.email
                                 pref.prefpasswordkaryawan = karyawan.password
                                 findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_editKaryawanFragment)
@@ -149,7 +149,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                     pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
                     pref.prefalamatkaryawan = karyawan.alamat
                     pref.prefnohpkaryawan = karyawan.nohandphone
-                    pref.prefdivisikaryawan = karyawan.divisi
+                    pref.prefiddivisikaryawan= karyawan.iddivisi
                     pref.prefemailkaryawan = karyawan.email
                     pref.prefpasswordkaryawan = karyawan.password
                     findNavController().navigate(R.id.action_karyawanFilterKaryawanFragment_to_profilKaryawan)
@@ -180,7 +180,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
-                        if (datas!!.divisi == filterkaryawan)
+                        if (datas!!.iddivisi == filterkaryawan)
                             data.add(datas!!)
                         pref.prefjkaryawan = data.size
 

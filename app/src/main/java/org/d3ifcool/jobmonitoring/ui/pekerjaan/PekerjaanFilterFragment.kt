@@ -38,7 +38,7 @@ class PekerjaanFilterFragment : Fragment(){
             binding.layoutPekerjaanFilter.isRefreshing = false
         }
 
-        binding.pfkDivisi.text = pref.prefdivisipekerjaan
+        binding.pfkDivisi.text = pref.preffilterkaryawan
 
         binding.pfkCollSelesai.setOnClickListener {
             pref.prefstatuspekerjaan = "1"

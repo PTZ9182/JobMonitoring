@@ -7,7 +7,7 @@ class KaryawanModel (
     var jenisKelamin: String = "",
     var alamat: String = "",
     var nohandphone: String = "",
-    var divisi: String = "",
+    var iddivisi: String = "",
     var email: String = "",
     var password: String = "",
     var level: String = "user"

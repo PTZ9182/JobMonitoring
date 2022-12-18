@@ -1,14 +1,21 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.AdapterPresensiBinding
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -35,12 +42,28 @@ class PresensiAdapter (
 
     class ViewHolder(private val itemBinding: AdapterPresensiBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
+        @SuppressLint("SetTextI18n")
         fun bind(presensi: PresensiModel) {
             val storage: FirebaseStorage = Firebase.storage
-            itemBinding.ppNamaHadir.text = presensi.nama
+            val database = Firebase.database
+            val user = Firebase.auth.currentUser
+            val idPerusahaan = user?.uid
+            val dbReff = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("id").equalTo(presensi.idkaryawan)
+            dbReff.addValueEventListener(object  : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        for (datasnap in snapshot.children){
+                            val datas = datasnap.getValue(KaryawanModel::class.java)
+                            itemBinding.ppNamaHadir.text = datas!!.namaKaryawan
+                        }
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                }
+            })
             itemBinding.ppHadir.text = "Masuk :"
             itemBinding.waktu.text = presensi.waktu
-            val storageRef = storage.getReference("images").child("Karyawan").child(presensi.idUser).child("profil")
+            val storageRef = storage.getReference("images").child("Karyawan").child(presensi.idkaryawan).child("profil")
             storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
                 itemBinding.ppImg.setImageBitmap(bitmap)

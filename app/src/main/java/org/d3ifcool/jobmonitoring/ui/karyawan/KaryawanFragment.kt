@@ -91,7 +91,7 @@ class KaryawanFragment : Fragment(){
                             pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
                             pref.prefalamatkaryawan = karyawan.alamat
                             pref.prefnohpkaryawan = karyawan.nohandphone
-                            pref.prefdivisikaryawan = karyawan.divisi
+                            pref.prefiddivisikaryawan= karyawan.iddivisi
                             pref.prefemailkaryawan = karyawan.email
                             pref.prefpasswordkaryawan = karyawan.password
                             findNavController().navigate(R.id.action_karyawanFragment_to_editKaryawanFragment)
@@ -132,7 +132,7 @@ class KaryawanFragment : Fragment(){
                 pref.prefjeniskelaminkaryawan = karyawan.jenisKelamin
                 pref.prefalamatkaryawan = karyawan.alamat
                 pref.prefnohpkaryawan = karyawan.nohandphone
-                pref.prefdivisikaryawan = karyawan.divisi
+                pref.prefiddivisikaryawan= karyawan.iddivisi
                 pref.prefemailkaryawan = karyawan.email
                 pref.prefpasswordkaryawan = karyawan.password
                 findNavController().navigate(R.id.action_karyawanFragment_to_profilKaryawan)

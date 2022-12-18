@@ -3,6 +3,7 @@ package org.d3ifcool.jobmonitoring.ui.karyawan
 
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_tambah_presensi_karyawan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
+import org.d3ifcool.jobmonitoring.model.Preference
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,6 +39,8 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val database = Firebase.database
     val dbRef = database.getReference("Karyawan")
     private var listDivisi = ArrayList<String>()
+    private var listidDivisi = ArrayList<String>()
+    private lateinit var pref: Preference
     lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
@@ -136,6 +140,9 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun tambahKaryawan() {
+        val contextt : Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
         nDialog.show()
         val idKaryawan = dbRef.push().key!!
         val user = Firebase.auth.currentUser
@@ -147,7 +154,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.tkFormJeniskelamin.selectedItem.toString(),
             binding.tkFormAlamat.text.toString(),
             binding.tkFormNohp.text.toString(),
-            binding.tkFormPilihdivisi.selectedItem.toString(),
+            pref.prefiddivisikaryawan!!,
             binding.tkFormEmail.text.toString(),
             binding.tkFormPassword.text.toString()
         )
@@ -176,6 +183,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(DivisiModel::class.java)
                         listDivisi.add(datas!!.divisi)
+                        listidDivisi.add(datas!!.id)
 
                     }
                     binding.tkFormPilihdivisi.onItemSelectedListener = this@TambahKaryawanFragment
@@ -198,7 +206,11 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val contextt : Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
         p0?.getItemAtPosition(p2)
+        pref.prefiddivisikaryawan = listidDivisi[p2]
 
     }
 

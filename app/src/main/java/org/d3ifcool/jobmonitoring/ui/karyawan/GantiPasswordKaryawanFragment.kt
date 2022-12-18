@@ -87,7 +87,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
                     pref.prefjeniskelaminkaryawan!!,
                     pref.prefalamatkaryawan!!,
                     pref.prefnohpkaryawan!!,
-                    pref.prefdivisikaryawan!!,
+                    pref.prefiddivisikaryawan!!,
                     pref.prefemailkaryawan!!, newpassword
                 )
                 dbRef.child(idPerusahaan!!).child(pref.prefidkaryawan!!).setValue(karyawan)

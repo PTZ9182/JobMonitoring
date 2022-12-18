@@ -18,6 +18,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
             android:text="Ganti Email"
             style="@style/Toolbar.Homeperusahaan"/>
     </androidx.appcompat.widget.Toolbar>

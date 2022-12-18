@@ -33,6 +33,7 @@
                     style="@style/Toolbar.Homeperusahaan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
                     android:text="Pekerjaan" />
             </androidx.appcompat.widget.Toolbar>
 
@@ -178,15 +179,15 @@
                 android:id="@+id/kdp_tambah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:backgroundTint="#F0F6FB"
                 android:fontFamily="@font/nunito_semibold"
                 android:text="@string/kdp_tambah"
                 android:textColor="#515151"
                 android:textSize="14sp"
-                android:backgroundTint="#F0F6FB"
                 android:visibility="visible"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBar"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
@@ -195,7 +196,7 @@
                 android:id="@+id/kdp_kurang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="192dp"
+                android:layout_marginStart="24dp"
                 android:backgroundTint="#F0F6FB"
                 android:fontFamily="@font/nunito_semibold"
                 android:text="@string/kdp_kurang"
@@ -203,7 +204,7 @@
                 android:textSize="14sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/kdp_tambah"
-                app:layout_constraintStart_toEndOf="@+id/kdp_tambah"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/kdp_tambah"
                 app:layout_constraintVertical_bias="0.0"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />

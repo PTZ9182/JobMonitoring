@@ -10,9 +10,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiKaryawanBinding
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
 class PresensiKaryawanFragment : Fragment() {
@@ -22,6 +27,7 @@ class PresensiKaryawanFragment : Fragment() {
 
     val storage = Firebase.storage
     lateinit var auth: FirebaseAuth
+    val database = Firebase.database
     private lateinit var pref: Preference
     lateinit var nDialog: ProgressDialog
 
@@ -47,7 +53,7 @@ class PresensiKaryawanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
         val user = Firebase.auth.currentUser
-        var idUser = pref.prefiduserpresensi
+        var idUser = pref.prefidkaryawanpresensi
         var idPerusahaan = user!!.uid
         var tanggal = pref.preftanggalpresensi
 
@@ -72,7 +78,19 @@ class PresensiKaryawanFragment : Fragment() {
             nDialog.cancel()
         }
 
-        binding.namaProfilPerusahaan.text = pref.prefnamauserpresensi
+        val dbReff = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefidkaryawanpresensi)
+        dbReff.addValueEventListener(object  : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for (datasnap in snapshot.children){
+                        val datas = datasnap.getValue(KaryawanModel::class.java)
+                        binding.namaProfilPerusahaan.text = datas!!.namaKaryawan
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
         binding.jam.text = pref.prefwaktupresensi
         binding.ket.text = pref.prefketeranganpresensi
         binding.tanggal.text = pref.preftanggalpresensi

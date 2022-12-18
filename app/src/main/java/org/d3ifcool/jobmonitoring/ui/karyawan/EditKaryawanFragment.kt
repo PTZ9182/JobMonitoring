@@ -37,6 +37,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     val dbRef = database.getReference("Karyawan")
     private lateinit var pref: Preference
     private var listDivisi = ArrayList<String>()
+    private var listidDivisi = ArrayList<String>()
     lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
@@ -147,7 +148,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             binding.ekFormJeniskelamin.selectedItem.toString(),
             binding.ekFormAlamat.text.toString(),
             binding.ekFormNohp.text.toString(),
-            binding.ekFormPilihdivisi.selectedItem.toString(),
+            pref.prefiddivisikaryawan!!,
             binding.ekFormEmail.text.toString(), pref.prefpasswordkaryawan!!
         )
         dbRef.child(idPerusahaan!!).child(pref.prefidkaryawan!!).setValue(karyawan)
@@ -178,6 +179,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(DivisiModel::class.java)
                         listDivisi.add(datas!!.divisi)
+                        listidDivisi.add(datas!!.id)
 
                     }
                     binding.ekFormPilihdivisi.onItemSelectedListener = this@EditKaryawanFragment
@@ -200,7 +202,11 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val contextt : Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
         p0?.getItemAtPosition(p2)
+        pref.prefiddivisikaryawan = listidDivisi[p2]
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

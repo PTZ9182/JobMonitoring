@@ -51,7 +51,8 @@ class PekerjaanFilterDivisiFragment : Fragment() {
 
         divisiAdapter = PekerjaanFilterDivisiAdapter(arrayListOf(),object : PekerjaanFilterDivisiAdapter.OnAdapterListener {
             override fun filter(divisi: DivisiModel, v: View) {
-                pref.prefdivisipekerjaan = divisi.divisi
+                pref.prefiddivisipekerjaan = divisi.id
+                pref.preffilterkaryawan = divisi.divisi
                 findNavController().navigate(R.id.action_pekerjaanFilterDivisiFragment_to_pekerjaanFilterFragment)
             }
         })

@@ -8,10 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.FragmentProfilKaryawanBinding
+import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
 class ProfilKaryawan : Fragment() {
@@ -42,14 +48,29 @@ class ProfilKaryawan : Fragment() {
 
         binding.hpkNama.text = pref.prefnamakaryawan
         binding.hpkAlamatprofil.text = pref.prefalamatkaryawan
-
-        binding.hpkTextDivisi.text = pref.prefdivisikaryawan
         binding.hpkTextEmail.text = pref.prefemailkaryawan
         binding.hpkTextTanggal.text = pref.preftanggallahirkaryawan
         binding.hpkTextJk.text = pref.prefjeniskelaminkaryawan
         binding.hpkTextNohp.text = pref.prefnohpkaryawan
         binding.hpkTextAlamat.text = pref.prefalamatkaryawan
 
+        val database = Firebase.database
+        val user = Firebase.auth.currentUser
+        val idPerusahaan = user?.uid
+        val dbRef =
+            database.getReference("Divisi").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefiddivisikaryawan)
+        dbRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (datasnap in snapshot.children) {
+                        val datas = datasnap.getValue(DivisiModel::class.java)
+                        binding.hpkTextDivisi.text = datas!!.divisi
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
         val storageRef = storage.getReference("images").child("Karyawan").child(pref.prefidkaryawan!!).child("profil")
         storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)

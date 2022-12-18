@@ -99,12 +99,12 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                         when (it.itemId) {
                             R.id.edit_pekerjaan -> {
                                 pref.prefidpekerjaan = pekerjaan.id
-                                pref.prefdivisipekerjaan = pekerjaan.divisi
+                                pref.prefidkaryawanpekerjaan = pekerjaan.idkaryawan
+                                pref.prefiddivisipekerjaan = pekerjaan.iddivisi
                                 pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
                                 pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
-                                pref.prefkaryawanpekerjaan = pekerjaan.karyawan
-                                pref.prefstatuspekerjaan = pekerjaan.status
                                 pref.prefprogresspekerjaan = pekerjaan.progress.toString()
+                                pref.prefstatuspekerjaan = pekerjaan.status
                                 findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_editPekerjaanFragment)
                                 true
                             }
@@ -147,12 +147,12 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
 
                 override fun detail(pekerjaan: PekerjaanModel, v: View) {
                     pref.prefidpekerjaan = pekerjaan.id
-                    pref.prefdivisipekerjaan = pekerjaan.divisi
+                    pref.prefidkaryawanpekerjaan = pekerjaan.idkaryawan
+                    pref.prefiddivisipekerjaan = pekerjaan.iddivisi
                     pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
                     pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
-                    pref.prefkaryawanpekerjaan = pekerjaan.karyawan
-                    pref.prefstatuspekerjaan = pekerjaan.status
                     pref.prefprogresspekerjaan = pekerjaan.progress.toString()
+                    pref.prefstatuspekerjaan = pekerjaan.status
                     findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanDetailFragment)
                 }
             })
@@ -171,7 +171,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
         val user = Firebase.auth.currentUser
         val idPeusahaan = user?.uid
         val status = pref.prefstatuspekerjaan
-        val divisi = pref.prefdivisipekerjaan
+        val iddivisi = pref.prefiddivisipekerjaan
 
         if (status == "semua") {
             val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
@@ -181,7 +181,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PekerjaanModel::class.java)
-                            if (datas!!.divisi == divisi)
+                            if (datas!!.iddivisi == iddivisi)
                             data.add(datas!!)
                             pref.prefjpekerjaan = data.size
                         }
@@ -215,7 +215,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PekerjaanModel::class.java)
-                            if (datas!!.status == status && datas.divisi == divisi) {
+                            if (datas!!.status == status && datas.iddivisi == iddivisi) {
                                 data.add(datas)
                                 pref.prefjpekerjaan = data.size
                             }

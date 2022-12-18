@@ -105,8 +105,6 @@
     <string name="ep_button_simpan">Simpan</string>
     <string-array name="ep_karyawan">
         <item>Pilih Karyawan</item>
-        <item>papa zola</item>
-        <item>tukiman</item>
     </string-array>
 
     <!--Menu Pekerjaan-->

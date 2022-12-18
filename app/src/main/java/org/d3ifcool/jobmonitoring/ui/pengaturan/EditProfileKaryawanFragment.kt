@@ -200,7 +200,7 @@ class EditProfileKaryawanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
         val idUser = pref.prefiduser
-        val divisi = pref.prefdivisiuser
+        val divisi = pref.prefiddivisiuser
         val pass = pref.prefpassworduser
         val idPerusahaan = pref.prefidperusahaanuser
 

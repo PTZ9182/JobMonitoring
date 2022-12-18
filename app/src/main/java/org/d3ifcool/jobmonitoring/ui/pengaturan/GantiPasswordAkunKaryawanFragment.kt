@@ -80,7 +80,7 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
                 val jeniskelamin = pref.prefjeniskelaminuser
                 val alamat = pref.prefalamatuser
                 val nohp = pref.prefnohpuser
-                val divisi = pref.prefdivisiuser
+                val divisi = pref.prefiddivisiuser
                 val email = pref.prefemailuser
 
                 val user = KaryawanModel(id!!, nama!!, tanggallahir!!, jeniskelamin!!, alamat!!, nohp!!,divisi!!,email!!,pref.prefpassworduser!!

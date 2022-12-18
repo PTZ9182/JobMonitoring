@@ -99,17 +99,16 @@ class KaryawanPekerjaanDetail : Fragment() {
             val idPerusahaan = pref.prefidperusahaanuser
             val iduser = pref.prefiduser
             val idPekerjaan = pref.prefidpekerjaanuser
-            val divisi = pref.prefdivisipekerjaanuser
+            val iddivisi = pref.prefiddivisipekerjaanuser
             val namaPekerjaan = pref.prefnamapekerjaanuser
             val desc = pref.prefdeskripsipekerjaanuser
-            val namaUser = pref.prefkaryawanpekerjaanuser
             val status = "0"
             val pekerjaan = PekerjaanModel(
                 idPekerjaan!!,iduser!!,
-                divisi!!,
+                iddivisi!!,
                 namaPekerjaan!!,
                 desc!!,
-                namaUser!!, starttPoint,
+                starttPoint,
                 status
             )
             dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
@@ -127,19 +126,17 @@ class KaryawanPekerjaanDetail : Fragment() {
         binding.kdpButton.setOnClickListener {
             if (statuss == "0") {
                 val idPerusahaan = pref.prefidperusahaanuser
-                val idPekerjaan = pref.prefidpekerjaanuser
                 val iduser = pref.prefiduser
-                val divisi = pref.prefdivisipekerjaanuser
+                val idPekerjaan = pref.prefidpekerjaanuser
+                val iddivisi = pref.prefiddivisipekerjaanuser
                 val namaPekerjaan = pref.prefnamapekerjaanuser
                 val desc = pref.prefdeskripsipekerjaanuser
-                val namaUser = pref.prefkaryawanpekerjaanuser
                 val status = "1"
                 val pekerjaan = PekerjaanModel(
                     idPekerjaan!!,iduser!!,
-                    divisi!!,
+                    iddivisi!!,
                     namaPekerjaan!!,
-                    desc!!,
-                    namaUser!!, starttPoint,
+                    desc!!, starttPoint,
                     status
                 )
                 dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)

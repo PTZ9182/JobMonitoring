@@ -88,12 +88,12 @@ class PekerjaanFragment : Fragment() {
                     when (it.itemId) {
                         R.id.edit_pekerjaan -> {
                             pref.prefidpekerjaan = pekerjaan.id
-                            pref.prefdivisipekerjaan = pekerjaan.divisi
+                            pref.prefidkaryawanpekerjaan = pekerjaan.idkaryawan
+                            pref.prefiddivisipekerjaan = pekerjaan.iddivisi
                             pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
                             pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
-                            pref.prefkaryawanpekerjaan = pekerjaan.karyawan
-                            pref.prefstatuspekerjaan = pekerjaan.status
                             pref.prefprogresspekerjaan = pekerjaan.progress.toString()
+                            pref.prefstatuspekerjaan = pekerjaan.status
                             findNavController().navigate(R.id.action_pekerjaanFragment_to_editPekerjaanFragment)
                             true
                         }
@@ -127,12 +127,12 @@ class PekerjaanFragment : Fragment() {
 
             override fun detail(pekerjaan: PekerjaanModel, v: View) {
                 pref.prefidpekerjaan = pekerjaan.id
-                pref.prefdivisipekerjaan = pekerjaan.divisi
+                pref.prefidkaryawanpekerjaan = pekerjaan.idkaryawan
+                pref.prefiddivisipekerjaan = pekerjaan.iddivisi
                 pref.prefnamapekerjaan = pekerjaan.nama_pekerjaan
                 pref.prefdeskripsipekerjaan = pekerjaan.deskripsi
-                pref.prefkaryawanpekerjaan = pekerjaan.karyawan
-                pref.prefstatuspekerjaan = pekerjaan.status
                 pref.prefprogresspekerjaan = pekerjaan.progress.toString()
+                pref.prefstatuspekerjaan = pekerjaan.status
                 findNavController().navigate(R.id.action_pekerjaanFragment_to_pekerjaanDetailFragment)
             }
         })

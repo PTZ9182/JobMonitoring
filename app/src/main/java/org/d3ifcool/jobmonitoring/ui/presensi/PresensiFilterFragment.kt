@@ -53,7 +53,7 @@ class PresensiFilterFragment : Fragment() {
 
         divisiAdapter = PresensiFilterAdapter(arrayListOf(), object : PresensiFilterAdapter.OnAdapterListener {
                 override fun filter(divisi: DivisiModel, v: View) {
-                    pref.preffilterpresensi = divisi.divisi
+                    pref.preffilterpresensi = divisi.id
                     findNavController().navigate(R.id.action_presensiFilterFragment_to_presensiFilterPresensiFragment)
                 }
             })

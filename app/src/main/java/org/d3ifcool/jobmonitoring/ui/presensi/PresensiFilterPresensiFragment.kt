@@ -103,9 +103,8 @@ class PresensiFilterPresensiFragment : Fragment() {
             PresensiAdapter(arrayListOf(), object : PresensiAdapter.OnAdapterListener {
                 override fun presensidata(presensi: PresensiModel, v: View) {
                     pref.prefidpresensi = presensi.id
-                    pref.prefiduserpresensi = presensi.idUser
-                    pref.prefnamauserpresensi = presensi.nama
-                    pref.prefdivisipresensi = presensi.divisi
+                    pref.prefidkaryawanpresensi = presensi.idkaryawan
+                    pref.prefiddivisipresensi = presensi.iddivisi
                     pref.prefketeranganpresensi = presensi.keterangan
                     pref.prefwaktupresensi = presensi.waktu
                     pref.preftanggalpresensi = presensi.tanggal
@@ -130,7 +129,7 @@ class PresensiFilterPresensiFragment : Fragment() {
         val date = LocalDateTime.now().format(formatter)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
-        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("nama")
+        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("waktu")
             .startAt(text).endAt(text + "\uf8ff")
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -138,7 +137,7 @@ class PresensiFilterPresensiFragment : Fragment() {
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(PresensiModel::class.java)
-                        if (datas!!.divisi == filter && datas.tanggal!! == date.toString())
+                        if (datas!!.iddivisi == filter && datas.tanggal!! == date.toString())
                             data.add(datas!!)
                             pref.prefjpresesnsi = data.size
 

@@ -106,7 +106,7 @@ class HomeKaryawanFragment : Fragment() {
                                 pref.prefjeniskelaminuser = datas.jenisKelamin
                                 pref.prefalamatuser = datas.alamat
                                 pref.prefnohpuser = datas.nohandphone
-                                pref.prefdivisiuser = datas.divisi
+                                pref.prefiddivisiuser = datas.iddivisi
                                 pref.prefemailuser = datas.email
                                 pref.prefpassworduser = datas.password
                             }

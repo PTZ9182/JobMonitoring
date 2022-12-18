@@ -49,7 +49,6 @@ class HomePerusahaanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val contextt : Context
         contextt = requireActivity()
         pref = Preference(contextt)
@@ -88,7 +87,6 @@ class HomePerusahaanFragment : Fragment() {
         user?.let {
             for (profile in it.providerData) {
                 binding.namaProfilPerusahaan.text = profile.displayName
-                binding.alamatPerusahaan.text = pref.prefalamatperusahaan
             }
         }
 
@@ -112,6 +110,7 @@ class HomePerusahaanFragment : Fragment() {
                         data.add(datas!!)
                         pref.prefnohpperusahaan = datas.nohp
                         pref.prefalamatperusahaan = datas.alamat
+                        binding.alamatPerusahaan.text = pref.prefalamatperusahaan
                     }
                 }
             }

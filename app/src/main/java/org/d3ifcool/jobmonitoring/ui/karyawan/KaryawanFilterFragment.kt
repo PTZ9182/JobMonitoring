@@ -52,7 +52,7 @@ class KaryawanFilterFragment : Fragment() {
         divisiAdapter =
             KaryawanFilterAdapter(arrayListOf(), object : KaryawanFilterAdapter.OnAdapterListener {
                 override fun filter(divisi: DivisiModel, v: View) {
-                    pref.preffilterkaryawan = divisi.divisi
+                    pref.preffilterkaryawan = divisi.id
                     findNavController().navigate(R.id.action_karyawanFilterFragment_to_karyawanFilterKaryawanFragment)
 
                 }
