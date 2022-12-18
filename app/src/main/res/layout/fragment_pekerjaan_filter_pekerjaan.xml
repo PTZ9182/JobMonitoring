@@ -29,6 +29,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Toolbar.Homeperusahaan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pekerjaan" />
+                </androidx.appcompat.widget.Toolbar>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pk_collider"
                     android:layout_width="match_parent"
@@ -40,11 +57,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                     <Button
                         android:id="@+id/pk_button"
-                        android:text="@string/pk_button_pekerjaan"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -53,6 +69,7 @@
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/pick_background_button"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/pk_button_pekerjaan"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,8 +98,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="@string/pk_pekerjaan"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/pk_pekerjaan"
                         android:textColor="#515151"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -96,9 +113,9 @@
                         android:id="@+id/pk_jumlah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/pk_jumlah_pekerjaan"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/pk_jumlah_pekerjaan"
                         android:textColor="#515151"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

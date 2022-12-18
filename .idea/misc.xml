@@ -188,10 +188,48 @@
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringjadi/app/src/main/res/layout/fragment_pralogin.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringjadi/app/src/main/res/layout/fragment_splash.xml" value="0.25" />
         <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringjadi/app/src/main/res/layout/fragment_tambah_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_divisi.xml" value="0.16259057971014493" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_edit_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_edit_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_edit_pekerjaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_edit_profile.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_edit_profile_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_ganti_email.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_ganti_password.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_ganti_password_akun_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_ganti_password_perusahaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_home_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_home_perusahaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_karayawan_filter.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_karyawan_filter_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_karyawan_pekerjaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_karyawan_pekerjaan_detail.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_login_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pekerjaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pekerjaan_detail.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pekerjaan_filter.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pekerjaan_filter_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pekerjaan_filter_pekerjaan.xml" value="0.1621376811594203" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pengaturan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_pengaturan_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_presensi_filter.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_presensi_filter_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_presensi_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_profil_homekaryawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_profil_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_profil_perusahaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_karyawan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_pekerjaan.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_pekerjaan_divisi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_presensi.xml" value="0.25" />
+        <entry key="..\:/Users/LENOVO/AndroidStudioProjects/44-mobpro-izm-44gab3-trustmonitoringtherealfinal/app/src/main/res/layout/fragment_tambah_presensi_karyawan.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

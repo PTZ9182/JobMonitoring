@@ -9,6 +9,23 @@
     android:orientation="vertical"
     tools:context=".ui.presensi.TambahPresensiFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/Toolbar.Homeperusahaan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Presensi" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/pp_judul"
         android:layout_width="wrap_content"

@@ -28,6 +28,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Toolbar.Homeperusahaan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Karyawan" />
+                </androidx.appcompat.widget.Toolbar>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/kp_collider"
                     android:layout_width="match_parent"
@@ -37,9 +54,9 @@
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/pick_background_menu"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                     <Button
                         android:id="@+id/kp_button"
@@ -49,9 +66,9 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="16dp"
-                        android:text="@string/kp_button_karyawan"
                         android:background="@drawable/pick_background_button"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/kp_button_karyawan"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,8 +97,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="@string/kp_Karyawan"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/kp_Karyawan"
                         android:textColor="#515151"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,9 +110,9 @@
                         android:id="@+id/kp_jumlah"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/kp_jumlah_karyawan"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/nunito_semibold"
+                        android:text="@string/kp_jumlah_karyawan"
                         android:textColor="#515151"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

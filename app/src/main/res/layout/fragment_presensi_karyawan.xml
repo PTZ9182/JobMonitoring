@@ -26,16 +26,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/title"
+                        style="@style/Toolbar.Homeperusahaan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Presensi" />
+                </androidx.appcompat.widget.Toolbar>
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_profil_perusahaan"
                     android:layout_width="97dp"
                     android:layout_height="88dp"
-                    android:layout_marginTop="24dp"
                     android:contentDescription=""
                     android:src="@mipmap/ic_launcher_round"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar"
                     tools:ignore="ImageContrastCheck" />
 
                 <TextView

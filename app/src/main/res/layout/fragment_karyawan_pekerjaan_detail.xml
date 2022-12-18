@@ -19,20 +19,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/blue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/title"
+                    style="@style/Toolbar.Homeperusahaan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pekerjaan" />
+            </androidx.appcompat.widget.Toolbar>
+
 
             <TextView
                 android:id="@+id/kdp_judul"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 android:fontFamily="@font/nunito_semibold"
                 android:textColor="#515151"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
                 tools:text="@string/kdp_judul" />
 
             <View
@@ -144,6 +161,8 @@
                 app:layout_constraintStart_toEndOf="@+id/kdptext_progress"
                 app:layout_constraintTop_toTopOf="@+id/kdptext_progress" />
 
+
+
             <SeekBar
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
@@ -171,22 +190,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/seekBar"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
+
             <Button
                 android:id="@+id/kdp_kurang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="192dp"
+                android:backgroundTint="#F0F6FB"
                 android:fontFamily="@font/nunito_semibold"
                 android:text="@string/kdp_kurang"
                 android:textColor="#515151"
                 android:textSize="14sp"
-                android:backgroundTint="#F0F6FB"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="@+id/kdp_tambah"
                 app:layout_constraintStart_toEndOf="@+id/kdp_tambah"
                 app:layout_constraintTop_toTopOf="@+id/kdp_tambah"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
-
 
             <Button
                 android:id="@+id/kdp_buttonn"
