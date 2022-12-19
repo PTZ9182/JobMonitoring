@@ -51,11 +51,11 @@ class ProfileHomeKaryawan : Fragment() {
         binding.hppkTextJk.text = pref.prefjeniskelaminuser
         binding.hppkTextNohp.text = pref.prefnohpuser
         binding.hppkTextAlamat.text = pref.prefalamatuser
+        val divisi = pref.prefiddivisiuser
 
-        val user = Firebase.auth.currentUser
-        val idPerusahaan = user?.uid
+        val idperusahaan = pref.prefidperusahaanuser
         val dbRef =
-            database.getReference("Divisi").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefiddivisiuser)
+            database.getReference("Divisi").child(idperusahaan!!).orderByChild("id").equalTo(divisi)
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

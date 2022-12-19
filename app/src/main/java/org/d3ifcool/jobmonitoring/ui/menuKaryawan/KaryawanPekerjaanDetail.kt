@@ -1,6 +1,10 @@
 package org.d3ifcool.jobmonitoring.ui.menuKaryawan
 
+import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,15 +12,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.fragment_home_karyawan.*
 import kotlinx.android.synthetic.main.fragment_karyawan_pekerjaan_detail.*
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanPekerjaanDetailBinding
+import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
@@ -27,6 +35,10 @@ class KaryawanPekerjaanDetail : Fragment() {
     private lateinit var pref: Preference
     val database = Firebase.database
     val dbRef = database.getReference("Pekerjaan")
+    val storage = Firebase.storage
+    val storageRef = storage.getReference("images")
+    private lateinit var ImageUri: Uri
+    lateinit var nDialog: ProgressDialog
     var starttPoint = 0
 
     override fun onCreateView(
@@ -45,6 +57,12 @@ class KaryawanPekerjaanDetail : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
 
         binding.kdpJudul.text = pref.prefnamapekerjaanuser
         binding.kdpIsidesc.text = pref.prefdeskripsipekerjaanuser
@@ -84,6 +102,10 @@ class KaryawanPekerjaanDetail : Fragment() {
         }
         binding.kdptextProgress.text = seekBar.progress.toString()
 
+        binding.constraintLayout6.setOnClickListener {
+            selectPicture()
+        }
+
         val statuss = pref.prefstatuspekerjaanuser
         if (statuss == "1") {
             binding.kdpButton.visibility = View.GONE
@@ -96,6 +118,7 @@ class KaryawanPekerjaanDetail : Fragment() {
         }
 
         binding.kdpButtonn.setOnClickListener {
+            buktifoto()
             val idPerusahaan = pref.prefidperusahaanuser
             val iduser = pref.prefiduser
             val idPekerjaan = pref.prefidpekerjaanuser
@@ -124,6 +147,7 @@ class KaryawanPekerjaanDetail : Fragment() {
                 }
         }
         binding.kdpButton.setOnClickListener {
+            buktifoto()
             if (statuss == "0") {
                 val idPerusahaan = pref.prefidperusahaanuser
                 val iduser = pref.prefiduser
@@ -164,6 +188,45 @@ class KaryawanPekerjaanDetail : Fragment() {
     fun progressbar() {
         seekBar.progress = starttPoint
         binding.kdptextProgress.text = seekBar.progress.toString()
+    }
+    private fun selectPicture() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            ImageUri = data?.data!!
+            binding.imageSelfie.setImageURI(ImageUri)
+            val contextt: Context
+            contextt = requireActivity()
+            pref = Preference(contextt)
+            pref.prefimguserpekerjaan = ImageUri.toString()
+        }
+    }
+
+    private fun buktifoto() {
+        nDialog.show()
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+        val idUser = pref.prefiduser
+        val idPekerjaan = pref.prefidpekerjaanuser
+        val idPerusahaan = pref.prefidperusahaanuser
+
+        storageRef.child("Pekerjaan").child(idPerusahaan!!).child(idUser!!).child(idPekerjaan!!).child("bukti")
+            .putFile(pref.prefimguserpekerjaan!!.toUri())
+            .addOnSuccessListener {
+                nDialog.cancel()
+                Log.i("photo", "Berhasil")
+            } .addOnFailureListener {
+                nDialog.cancel()
+            }
+        nDialog.cancel()
     }
 }
 

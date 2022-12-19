@@ -1,7 +1,9 @@
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.FragmentPekerjaanDetailBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
@@ -28,6 +31,8 @@ class PekerjaanDetailFragment : Fragment() {
     private val binding get() = _binding!!
     val database = Firebase.database
     private lateinit var pref: Preference
+    val storage = Firebase.storage
+    lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +50,13 @@ class PekerjaanDetailFragment : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+
+        nDialog = ProgressDialog(activity)
+        nDialog.setMessage("Tunggu..")
+        nDialog.setTitle("Sedang memuat")
+        nDialog.setIndeterminate(false)
+        nDialog.setCancelable(true)
+
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
         val iddivisi = pref.prefiddivisipekerjaan
@@ -84,6 +96,19 @@ class PekerjaanDetailFragment : Fragment() {
             binding.ddpIsistatus.text = "Selesai"
         } else {
             binding.ddpIsistatusbelumseselai.text = "Belum Selesai"
+        }
+
+        val idPekerjaan = pref.prefidpekerjaan
+        val idKaryawan = pref.prefidkaryawanpekerjaan
+        nDialog.show()
+        val storageRefff =
+            storage.getReference("images").child("Pekerjaan").child(idPerusahaan).child(idKaryawan!!).child(idPekerjaan!!).child("bukti")
+        storageRefff.getBytes(10 * 1024 * 1024).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
+            binding.imageSelfie.setImageBitmap(bitmap)
+            nDialog.cancel()
+        }.addOnFailureListener {
+            nDialog.cancel()
         }
 
         binding.layoutPekerjaanDetail.setOnRefreshListener {

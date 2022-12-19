@@ -75,6 +75,7 @@ class Preference(context: Context) {
     private val TAG_DESKRIPSIPEKERJAANUSER = "deskripsi pekerjaan user"
     private val TAG_PROGRESSPEKERJAANUSER = "progress pekerjaan user"
     private val TAG_STATUSPEKERJAANUSER = "status pekerjaan user"
+    private val TAG_IMGUSERPEKERJAAN = "img user pekerjaan"
 
     private val pref : SharedPreferences = context.getSharedPreferences(TAG_APP, Context.MODE_PRIVATE)
 
@@ -300,6 +301,10 @@ class Preference(context: Context) {
     var prefstatuspekerjaanuser: String?
         get() = pref.getString(TAG_STATUSPEKERJAANUSER,"")
         set(value) = pref.edit().putString(TAG_STATUSPEKERJAANUSER,value).apply()
+
+    var prefimguserpekerjaan: String?
+        get() = pref.getString(TAG_IMGUSERPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_IMGUSERPEKERJAAN,value).apply()
     //
 
 
@@ -366,6 +371,7 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_DESKRIPSIPEKERJAANUSER).apply()
         pref.edit().remove(TAG_PROGRESSPEKERJAANUSER).apply()
         pref.edit().remove(TAG_STATUSPEKERJAANUSER).apply()
+        pref.edit().remove(TAG_IMGUSERPEKERJAAN).apply()
 
         pref.edit().remove(TAG_JBUTTONRESENSI).apply()
     }

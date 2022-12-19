@@ -223,6 +223,7 @@
     <string name="ddp_isistatusselesai">Selesai</string>
     <string name="ddp_isistatusbelumselesai">Belum Selesai</string>
     <string name="ddp_progress">Progeress :</string>
+    <string name="ddp_bukti">Bukti Pekerjaan :</string>
     <string name="ddp_textprogress">0</string>
     <string name="ddp_presen">%</string>
 
@@ -354,6 +355,7 @@
     <string name="kdp_judul">Membuat Layout</string>
     <string name="kdp_desc">Deskripsi :</string>
     <string name="kdp_Progress">Progress Pekerjaan :</string>
+    <string name="kdp_Bukti">Bukti Pekerjaan :</string>
     <string name="kdp_persen">0</string>
     <string name="kdp_persenn">%</string>
     <string name="kdp_isidesc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
