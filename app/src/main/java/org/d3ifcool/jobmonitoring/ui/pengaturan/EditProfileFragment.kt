@@ -14,6 +14,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -58,6 +60,11 @@ class EditProfileFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.editProfilePerusahaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.editProfilePerusahaan.isRefreshing = false
+        }
+
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
@@ -83,10 +90,6 @@ class EditProfileFragment : Fragment() {
             }.addOnFailureListener {
                 nDialog.cancel()
             }
-        }
-
-        binding.editProfilePerusahaan.setOnRefreshListener {
-            binding.editProfilePerusahaan.isRefreshing = false
         }
 
         binding.editImg.setOnClickListener {

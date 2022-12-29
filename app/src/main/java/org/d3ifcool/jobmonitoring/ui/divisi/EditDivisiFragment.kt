@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -51,6 +53,7 @@ class EditDivisiFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.layoutEditDivisi.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutEditDivisi.isRefreshing = false
         }
 

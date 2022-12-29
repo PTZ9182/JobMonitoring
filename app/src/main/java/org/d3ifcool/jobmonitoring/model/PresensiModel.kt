@@ -7,6 +7,7 @@ class PresensiModel(
     var idkaryawan: String = "",
     var iddivisi: String = "",
     var keterangan: String = "",
-    var waktu: String = "",
+    var waktumasuk: String = "",
+    var waktukeluar: String = "",
     var tanggal: String = ""
 )

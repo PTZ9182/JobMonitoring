@@ -17,8 +17,6 @@ import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.AdapterPresensiBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PresensiModel
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 class PresensiAdapter (
     val data: ArrayList<PresensiModel>,
@@ -62,7 +60,7 @@ class PresensiAdapter (
                 }
             })
             itemBinding.ppHadir.text = "Masuk :"
-            itemBinding.waktu.text = presensi.waktu
+            itemBinding.waktu.text = presensi.waktumasuk
             val storageRef = storage.getReference("images").child("Karyawan").child(presensi.idkaryawan).child("profil")
             storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)

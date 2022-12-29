@@ -11,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
@@ -55,6 +57,11 @@ class HomeKaryawanFragment : Fragment() {
         context = requireActivity()
         pref = Preference(context)
 
+        binding.homeKaryawan.setOnRefreshListener{
+            activity?.let { recreate(it) }
+            binding.homeKaryawan.isRefreshing = false
+        }
+
         val id = pref.prefiduser
         val storageRef = storage.getReference("images").child("Karyawan").child(id!!).child("profil")
         storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
@@ -70,10 +77,6 @@ class HomeKaryawanFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
-        binding.homeKaryawan.setOnRefreshListener {
-            binding.homeKaryawan.isRefreshing = false
-        }
-
         binding.hkCollPengaturan.setOnClickListener {
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_pengaturanKaryawanFragment)
         }
@@ -81,7 +84,7 @@ class HomeKaryawanFragment : Fragment() {
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_karyawanPekerjaanFragment)
         }
         binding.hkCollPresensi.setOnClickListener{
-            findNavController().navigate(R.id.action_homeKaryawanFragment_to_tambahPresensiKaryawanFragment)
+            findNavController().navigate(R.id.action_homeKaryawanFragment_to_presensiDateFragment)
         }
         binding.hkImgProfilKaryawan.setOnClickListener {
             findNavController().navigate(R.id.action_homeKaryawanFragment_to_profileHomeKaryawan)

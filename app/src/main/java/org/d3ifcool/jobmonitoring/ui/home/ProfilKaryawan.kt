@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -46,13 +48,18 @@ class ProfilKaryawan : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
-        binding.hpkNama.text = pref.prefnamakaryawan
-        binding.hpkAlamatprofil.text = pref.prefalamatkaryawan
-        binding.hpkTextEmail.text = pref.prefemailkaryawan
-        binding.hpkTextTanggal.text = pref.preftanggallahirkaryawan
-        binding.hpkTextJk.text = pref.prefjeniskelaminkaryawan
-        binding.hpkTextNohp.text = pref.prefnohpkaryawan
-        binding.hpkTextAlamat.text = pref.prefalamatkaryawan
+        binding.layoutProfilHomeKaryawan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutProfilHomeKaryawan.isRefreshing = false
+        }
+
+        binding.hppkNama.text = pref.prefnamakaryawan
+        binding.hppkAlamatprofil.text = pref.prefalamatkaryawan
+        binding.hppkTextEmail.text = pref.prefemailkaryawan
+        binding.hppkTextTanggal.text = pref.preftanggallahirkaryawan
+        binding.hppkTextJk.text = pref.prefjeniskelaminkaryawan
+        binding.hppkTextNohp.text = pref.prefnohpkaryawan
+        binding.hppkTextAlamat.text = pref.prefalamatkaryawan
 
         val database = Firebase.database
         val user = Firebase.auth.currentUser
@@ -64,7 +71,7 @@ class ProfilKaryawan : Fragment() {
                 if (snapshot.exists()) {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(DivisiModel::class.java)
-                        binding.hpkTextDivisi.text = datas!!.divisi
+                        binding.hppkTextDivisi.text = datas!!.divisi
                     }
                 }
             }
@@ -74,11 +81,8 @@ class ProfilKaryawan : Fragment() {
         val storageRef = storage.getReference("images").child("Karyawan").child(pref.prefidkaryawan!!).child("profil")
         storageRef.getBytes(10 * 1024 * 1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
-            binding.hpkImg.setImageBitmap(bitmap)
+            binding.hppkImg.setImageBitmap(bitmap)
         }.addOnFailureListener {
-        }
-        binding.layoutProfilKaryawan.setOnRefreshListener {
-            binding.layoutProfilKaryawan.isRefreshing = false
         }
     }
 }

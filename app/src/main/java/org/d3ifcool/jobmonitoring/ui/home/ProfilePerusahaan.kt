@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,6 +41,10 @@ class ProfilePerusahaan : Fragment(){
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.layoutProfilPerusahaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutProfilPerusahaan.isRefreshing = false
+        }
 
         val user = Firebase.auth.currentUser
         user?.let {
@@ -56,9 +62,6 @@ class ProfilePerusahaan : Fragment(){
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.hppImg.setImageBitmap(bitmap)
         }.addOnFailureListener {
-        }
-        binding.layoutProfilPerusahaan.setOnRefreshListener {
-            binding.layoutProfilPerusahaan.isRefreshing = false
         }
     }
 }

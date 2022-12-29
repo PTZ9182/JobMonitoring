@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -44,6 +46,11 @@ class ProfileHomeKaryawan : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.layoutProfilHomeKaryawan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutProfilHomeKaryawan.isRefreshing = false
+        }
+
         binding.hppkNama.text = pref.prefnamauser
         binding.hppkAlamatprofil.text = pref.prefalamatuser
         binding.hppkTextEmail.text = pref.prefemailuser
@@ -73,9 +80,6 @@ class ProfileHomeKaryawan : Fragment() {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.hppkImg.setImageBitmap(bitmap)
         }.addOnFailureListener {
-        }
-        binding.layoutProfilHomeKaryawan.setOnRefreshListener {
-            binding.layoutProfilHomeKaryawan.isRefreshing = false
         }
     }
 }

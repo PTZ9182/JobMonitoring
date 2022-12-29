@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.d3ifcool.jobmonitoring.R
@@ -35,8 +37,10 @@ class PekerjaanFilterFragment : Fragment(){
         pref = Preference(contextt)
 
         binding.layoutPekerjaanFilter.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutPekerjaanFilter.isRefreshing = false
         }
+        binding.pfkBedasarkaryawan.text = pref.prefnamakaryawanpekerjaan
 
         binding.pfkDivisi.text = pref.preffilterkaryawan
 

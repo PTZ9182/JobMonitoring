@@ -59,14 +59,27 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_semibold"
                 android:text="@string/pfk_berdasarkanstatus"
                 android:textColor="#515151"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/pfk_divisi"
+                app:layout_constraintStart_toEndOf="@+id/pfk_bedasarkaryawan"
                 app:layout_constraintTop_toBottomOf="@+id/pfk_filter" />
+
+            <TextView
+                android:id="@+id/pfk_bedasarkaryawan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:textColor="#515151"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@+id/pfk_divisi"
+                app:layout_constraintTop_toBottomOf="@+id/pfk_filter"
+                tools:text="" />
 
             <TextView
                 android:id="@+id/pfk_divisi"
@@ -74,10 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_semibold"
                 android:text="@string/pfk_divisi"
                 android:textColor="#515151"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/pfk_filter" />
 

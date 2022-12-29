@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
@@ -98,11 +99,9 @@ class TambahPresensiKaryawanFragment : Fragment() {
                 binding.inputKeterangan.requestFocus()
                 return@setOnClickListener
             } else {
-                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                val date = LocalDateTime.now().format(formatter)
                 val formatterr = DateTimeFormatter.ofPattern("HH:mm")
                 val waktu = LocalDateTime.now().format(formatterr)
-                tambahAbsensi(keterangan,waktu.toString(),date.toString())
+                tambahAbsensi(keterangan,waktu.toString())
                 pref.prefbuttonpresensi = date.toString()
             }
         }
@@ -128,7 +127,7 @@ class TambahPresensiKaryawanFragment : Fragment() {
     }
 
 
-    private fun tambahAbsensi(keterangan: String, waktu: String, tanggal: String){
+    private fun tambahAbsensi(keterangan: String, waktu: String){
         val context: Context
         context = requireActivity()
         pref = Preference(context)
@@ -136,8 +135,9 @@ class TambahPresensiKaryawanFragment : Fragment() {
         val idPerusahaan = pref.prefidperusahaanuser
         val idUser = pref.prefiduser
         val iddivisi = pref.prefiddivisiuser
+        val tanggal = pref.preftanggaljpresensi
         val presensi = PresensiModel(
-            idPresensi,idUser!!,iddivisi!!,keterangan,waktu,tanggal)
+            idPresensi,idUser!!,iddivisi!!,keterangan,waktu,"-",tanggal!!)
         dbRef.child(idPerusahaan!!).child(idPresensi).setValue(presensi).addOnCompleteListener{
             Toast.makeText(activity,"Presensi Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()

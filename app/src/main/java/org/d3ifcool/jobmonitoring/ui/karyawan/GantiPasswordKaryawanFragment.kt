@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -49,6 +50,8 @@ class GantiPasswordKaryawanFragment : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+
+        binding.gpIsiformPasswordLama.setText(pref.prefpasswordkaryawan)
 
         binding.buttonSimpanDataForm.setOnClickListener {
             if (binding.gpIsiformPasswordLama.text.isEmpty()) {

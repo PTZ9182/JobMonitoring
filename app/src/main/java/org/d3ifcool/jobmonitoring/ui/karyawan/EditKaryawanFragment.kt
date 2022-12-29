@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -60,6 +62,11 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nDialog.setIndeterminate(false)
         nDialog.setCancelable(true)
 
+        binding.layoutEditKaryawan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutEditKaryawan.isRefreshing = false
+        }
+
         binding.ekFormTanggallahir.setOnClickListener {
             openTimeDatePicker(ek_form_tanggallahir)
         }
@@ -76,12 +83,10 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //binding.ekFormPilihdivisi.getItemAtPosition(pref.prefdivisikaryawan!!.toInt())
         binding.ekFormEmail.setText(pref.prefemailkaryawan)
 
-        binding.layoutEditKaryawan.setOnRefreshListener {
-            binding.layoutEditKaryawan.isRefreshing = false
-        }
 
         binding.ekGantipassword.setOnClickListener {
-            it.findNavController().navigate(R.id.action_editKaryawanFragment_to_gantiPasswordKaryawanFragment)
+            it.findNavController()
+                .navigate(R.id.action_editKaryawanFragment_to_gantiPasswordKaryawanFragment)
         }
         binding.buttonSimpanDataForm.setOnClickListener {
             val email = binding.ekFormEmail.text.toString()
@@ -106,7 +111,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             } else if (binding.ekFormEmail.text.isEmpty()) {
                 binding.ekFormEmail.error = "Email tidak boleh kosong"
                 binding.ekFormEmail.requestFocus()
-            } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 binding.ekFormEmail.error = "Email Tidak Valid!!!!"
                 binding.ekFormEmail.requestFocus()
             } else {
@@ -117,20 +122,25 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private fun openTimeDatePicker(ekFormTanggallahir: EditText) {
         val tanggalAbsen = Calendar.getInstance()
-        val date = DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-            tanggalAbsen.set(Calendar.YEAR,year)
-            tanggalAbsen.set(Calendar.MONTH, monthOfYear)
-            tanggalAbsen.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            val strFormatDefault = "dd MMMM yyyy"
-            val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-            ekFormTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
-        }
-        ekFormTanggallahir.setOnClickListener {
-            context?.let { it1 ->
-                DatePickerDialog(
-                    it1,date, tanggalAbsen.get(Calendar.YEAR), tanggalAbsen.get(Calendar.MONTH), tanggalAbsen.get(
-                        Calendar.DAY_OF_MONTH)).show()
+        val date =
+            DatePickerDialog.OnDateSetListener { _: DatePicker, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                tanggalAbsen.set(Calendar.YEAR, year)
+                tanggalAbsen.set(Calendar.MONTH, monthOfYear)
+                tanggalAbsen.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val strFormatDefault = "dd MMMM yyyy"
+                val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
+                ekFormTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
             }
+        context?.let { it1 ->
+            DatePickerDialog(
+                it1,
+                date,
+                tanggalAbsen.get(Calendar.YEAR),
+                tanggalAbsen.get(Calendar.MONTH),
+                tanggalAbsen.get(
+                    Calendar.DAY_OF_MONTH
+                )
+            ).show()
         }
     }
 
@@ -202,7 +212,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-        val contextt : Context
+        val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
         p0?.getItemAtPosition(p2)

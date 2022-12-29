@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -61,6 +63,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         binding.epIsiformDescPekerjaan.setText(pref.prefdeskripsipekerjaan)
 
         binding.layoutEditPekerjaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutEditPekerjaan.isRefreshing = false
         }
 

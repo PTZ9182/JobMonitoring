@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +52,7 @@ class TambahPekerjaanDivisiFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.layoutKaryawanFilter.setOnRefreshListener {
+                activity?.let { recreate(it) }
             binding.layoutKaryawanFilter.isRefreshing = false
         }
 

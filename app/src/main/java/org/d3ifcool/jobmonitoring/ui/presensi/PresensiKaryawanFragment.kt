@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -48,6 +50,11 @@ class PresensiKaryawanFragment : Fragment() {
         nDialog.setTitle("Sedang memuat")
         nDialog.setIndeterminate(false)
         nDialog.setCancelable(true)
+
+        binding.layoutKaryawanFragment.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutKaryawanFragment.isRefreshing = false
+        }
 
         val contextt: Context
         contextt = requireActivity()
@@ -91,7 +98,8 @@ class PresensiKaryawanFragment : Fragment() {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-        binding.jam.text = pref.prefwaktupresensi
+        binding.jam.text = pref.prefwaktumasukpresensi
+        binding.jamkeluar.text = pref.prefwaktukeluarpresensi
         binding.ket.text = pref.prefketeranganpresensi
         binding.tanggal.text = pref.preftanggalpresensi
 

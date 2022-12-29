@@ -11,6 +11,8 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -59,6 +61,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         binding.layoutKaryawanFilterKaryawan.setOnRefreshListener {
+                activity?.let { recreate(it) }
             binding.layoutKaryawanFilterKaryawan.isRefreshing = false
         }
         binding.kpkpButton.setOnClickListener {

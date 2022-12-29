@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -67,6 +69,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         }
 
         binding.layoutTambahKaryawan.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutTambahKaryawan.isRefreshing = false
         }
 
@@ -130,13 +133,11 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
             tkFormTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
         }
-        tkFormTanggallahir.setOnClickListener {
             context?.let { it1 ->
                 DatePickerDialog(
                     it1,date, tanggalAbsen.get(Calendar.YEAR), tanggalAbsen.get(Calendar.MONTH), tanggalAbsen.get(
                         Calendar.DAY_OF_MONTH)).show()
             }
-        }
     }
 
     private fun tambahKaryawan() {

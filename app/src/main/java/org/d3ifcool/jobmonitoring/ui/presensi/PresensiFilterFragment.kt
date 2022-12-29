@@ -1,11 +1,14 @@
 package org.d3ifcool.jobmonitoring.ui.presensi
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -44,6 +47,7 @@ class PresensiFilterFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,9 +55,21 @@ class PresensiFilterFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.layoutfilterpresensi.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutfilterpresensi.isRefreshing = false
+        }
+
+        if (pref.prefrekaptitlepresensi == "rekap"){
+            binding.title.text = "Rekap Presensi"
+        } else {
+            binding.title.text = "Presensi"
+        }
+
         divisiAdapter = PresensiFilterAdapter(arrayListOf(), object : PresensiFilterAdapter.OnAdapterListener {
                 override fun filter(divisi: DivisiModel, v: View) {
                     pref.preffilterpresensi = divisi.id
+                    pref.prefpembedapresensi = "filter"
                     findNavController().navigate(R.id.action_presensiFilterFragment_to_presensiFilterPresensiFragment)
                 }
             })

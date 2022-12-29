@@ -11,6 +11,8 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -54,6 +56,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
 
 
         binding.layoutPekerjaanFilterPekerjaan.setOnRefreshListener {
+                activity?.let { recreate(it) }
             binding.layoutPekerjaanFilterPekerjaan.isRefreshing = false
         }
 
@@ -77,7 +80,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                 .navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_tambahPekerjaanDivisiFragment)
         }
         binding.pkCollFillter.setOnClickListener {
-            findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanFilterDivisiFragment)
+            findNavController().navigate(R.id.action_pekerjaanFilterPekerjaanFragment_to_pekerjaanKaryawanDivisiFilterFragment)
         }
 
         val callback = object : OnBackPressedCallback(true) {
@@ -172,75 +175,153 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
         val idPeusahaan = user?.uid
         val status = pref.prefstatuspekerjaan
         val iddivisi = pref.prefiddivisipekerjaan
+        val karyawan = pref.prefidkaryawanpekerjaan
+        val pembeda = pref.prefpembedapekerjaan
 
-        if (status == "semua") {
-            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
-            dbRef.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    data.clear()
-                    if (snapshot.exists()) {
-                        for (datasnap in snapshot.children) {
-                            val datas = datasnap.getValue(PekerjaanModel::class.java)
-                            if (datas!!.iddivisi == iddivisi)
-                            data.add(datas!!)
-                            pref.prefjpekerjaan = data.size
-                        }
-                        pekerjaanAdapter.setData(data)
-                        if (data.size != 0){
-                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
-                        } else {
-                            pref.prefjpekerjaan = 0
-                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
-                            binding.emptyView.visibility = View.VISIBLE
-                        }
-
-                    } else {
-                        pref.prefjpekerjaan = 0
-                        binding.pkJumlah.text = pref.prefjpekerjaan.toString()
-                        pekerjaanAdapter.setData(data)
-                        binding.emptyView.visibility = View.VISIBLE
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-                }
-
-            })
-        } else {
-            val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!).orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
-            dbRef.addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    data.clear()
-                    if (snapshot.exists()) {
-                        for (datasnap in snapshot.children) {
-                            val datas = datasnap.getValue(PekerjaanModel::class.java)
-                            if (datas!!.status == status && datas.iddivisi == iddivisi) {
-                                data.add(datas)
+        if (pembeda == "divisi") {
+            if (status == "semua") {
+                val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!)
+                    .orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        data.clear()
+                        if (snapshot.exists()) {
+                            for (datasnap in snapshot.children) {
+                                val datas = datasnap.getValue(PekerjaanModel::class.java)
+                                if (datas!!.iddivisi == iddivisi)
+                                    data.add(datas!!)
                                 pref.prefjpekerjaan = data.size
                             }
-                        }
-                        pekerjaanAdapter.setData(data)
-                        binding.emptyView.visibility = View.GONE
-                        if (data.size != 0){
-                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            pekerjaanAdapter.setData(data)
+                            if (data.size != 0) {
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            } else {
+                                pref.prefjpekerjaan = 0
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                                binding.emptyView.visibility = View.VISIBLE
+                            }
+
                         } else {
-                            pref.prefjpekerjaan = 0
-                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
-                            binding.emptyView.visibility = View.VISIBLE
-                        }
-                    } else {
                             pref.prefjpekerjaan = 0
                             binding.pkJumlah.text = pref.prefjpekerjaan.toString()
                             pekerjaanAdapter.setData(data)
                             binding.emptyView.visibility = View.VISIBLE
+                        }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-                }
-            })
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                    }
+
+                })
+            } else {
+                val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!)
+                    .orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        data.clear()
+                        if (snapshot.exists()) {
+                            for (datasnap in snapshot.children) {
+                                val datas = datasnap.getValue(PekerjaanModel::class.java)
+                                if (datas!!.status == status && datas.iddivisi == iddivisi) {
+                                    data.add(datas)
+                                    pref.prefjpekerjaan = data.size
+                                }
+                            }
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.GONE
+                            if (data.size != 0) {
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            } else {
+                                pref.prefjpekerjaan = 0
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                                binding.emptyView.visibility = View.VISIBLE
+                            }
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.VISIBLE
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                    }
+                })
+            }
+        } else {
+            if (status == "semua") {
+                val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!)
+                    .orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        data.clear()
+                        if (snapshot.exists()) {
+                            for (datasnap in snapshot.children) {
+                                val datas = datasnap.getValue(PekerjaanModel::class.java)
+                                if (datas!!.iddivisi == iddivisi && datas.idkaryawan == karyawan)
+                                    data.add(datas!!)
+                                pref.prefjpekerjaan = data.size
+                            }
+                            pekerjaanAdapter.setData(data)
+                            if (data.size != 0) {
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            } else {
+                                pref.prefjpekerjaan = 0
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                                binding.emptyView.visibility = View.VISIBLE
+                            }
+
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.VISIBLE
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                    }
+
+                })
+            } else {
+                val dbRef = database.getReference("Pekerjaan").child(idPeusahaan!!)
+                    .orderByChild("nama_pekerjaan").startAt(text).endAt(text + "\uf8ff")
+                dbRef.addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        data.clear()
+                        if (snapshot.exists()) {
+                            for (datasnap in snapshot.children) {
+                                val datas = datasnap.getValue(PekerjaanModel::class.java)
+                                if (datas!!.status == status && datas.iddivisi == iddivisi && datas.idkaryawan == karyawan) {
+                                    data.add(datas)
+                                    pref.prefjpekerjaan = data.size
+                                }
+                            }
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.GONE
+                            if (data.size != 0) {
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            } else {
+                                pref.prefjpekerjaan = 0
+                                binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                                binding.emptyView.visibility = View.VISIBLE
+                            }
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.pkJumlah.text = pref.prefjpekerjaan.toString()
+                            pekerjaanAdapter.setData(data)
+                            binding.emptyView.visibility = View.VISIBLE
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                    }
+                })
+            }
         }
     }
 }

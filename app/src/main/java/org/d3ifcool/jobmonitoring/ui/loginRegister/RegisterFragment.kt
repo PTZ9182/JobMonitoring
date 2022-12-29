@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -56,6 +58,7 @@ class RegisterFragment : Fragment() {
         nDialog.setCancelable(true)
 
         binding.register.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.register.isRefreshing = false
         }
 

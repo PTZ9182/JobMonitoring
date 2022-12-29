@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="Home Karyawan"
+                    android:text="Job-Monitoring"
                     style="@style/Toolbar.Homeperusahaan"/>
             </androidx.appcompat.widget.Toolbar>
 
@@ -44,7 +44,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/hk_img_profil_karyawan"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/profil"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:hint=""
+                    tools:text="Papa Zola"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/nunito"
-                    android:hint=""
+                    tools:text="Bandung, Jawa barat, Indonesia"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"

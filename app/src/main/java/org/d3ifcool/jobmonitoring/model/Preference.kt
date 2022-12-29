@@ -3,6 +3,7 @@ package org.d3ifcool.jobmonitoring.model
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
+import android.util.Log
 
 class Preference(context: Context) {
     private val TAG_STATUS = "status"
@@ -32,16 +33,28 @@ class Preference(context: Context) {
     private val TAG_FILTERKARYAWAN = "filter karyawan"
     private val TAG_IDDIVISIKARYAWAN = "id divisi karyawan"
 
+    //JADWAL PRESENSI
+    private val TAG_IDJRESENSI = "id jadwal presensi"
+    private val TAG_TANGGALJPRESENSI = "tanggal jadwal presensi"
+    private val TAG_WAKTUMASUKJPRESENSI = "waktu masuk jadwal presensi"
+    private val TAG_WAKTUKELUARJPRESENSI = "waktu keluar jadwal presensi"
+
     //PRESENSI
     private val TAG_IDPRESENSI = "id presensi"
     private val TAG_IDKARYAWANPRESENSI = "id karyawan presensi"
     private val TAG_IDDIVISIPRESENSI = "id divisi presensi"
     private val TAG_KETERANGANPRESENSI = "keterangan presensi"
-    private val TAG_WAKTUPRESENSI = "waktu presensi"
+    private val TAG_WAKTUMASUKPRESENSI = "waktu masuk presensi"
+    private val TAG_WAKTUKELUARPRESENSI = "waktu keluar presensi"
+    private val TAG_WAKTUMASUKPRESENSILONG = "waktu masuk presensi long"
+    private val TAG_WAKTUKELUARPRESENSILONG = "waktu keluar presensi long"
     private val TAG_TANGGALPRESENSI = "tanggal presensi"
     private val TAG_JPRESENSI = "jumlah presensi"
     private val TAG_FILTERPRESENSI = "filter presensi"
     private val TAG_JBUTTONRESENSI = "button presensi"
+    private val TAG_REKAPTANGGALPRESENSI = "rekap tanggal presensi"
+    private val TAG_REKAPTITLEPRESENSI = "rekap title presensi"
+    private val TAG_PEMBEDAPRESENSI = "pembeda presensi"
 
     //PEKERJAAN
     private val TAG_IDPEKERJAAN = "id pekerjaan"
@@ -52,6 +65,8 @@ class Preference(context: Context) {
     private val TAG_PROGRESSPEKERJAAN = "progress pekerjaan"
     private val TAG_STATUSPEKERJAAN = "status pekerjaan"
     private val TAG_JPEKERJAAN = "jumlah pekerjaan"
+    private val TAG_PEMBEDAPEKERJAAN = "pembeda pekerjaan"
+    private val TAG_NAMAKARYAWANPEKERJAAN = "nama karyawan pekerjaan"
 
     //USER KARYAWAN
     private val TAG_IDPERUSAHAANUSER = "id perusahaan user"
@@ -158,6 +173,23 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_FILTERKARYAWAN,"")
         set(value) = pref.edit().putString(TAG_FILTERKARYAWAN,value).apply()
 
+    //JADWAL PRESENSI
+    var prefidjpresensi: String?
+        get() = pref.getString(TAG_IDJRESENSI,"")
+        set(value) = pref.edit().putString(TAG_IDJRESENSI,value).apply()
+
+    var preftanggaljpresensi: String?
+        get() = pref.getString(TAG_TANGGALJPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_TANGGALJPRESENSI,value).apply()
+
+    var prefwaktumasukjpresensi: String?
+        get() = pref.getString(TAG_WAKTUMASUKJPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_WAKTUMASUKJPRESENSI,value).apply()
+
+    var prefwaktukeluarjpresensi: String?
+        get() = pref.getString(TAG_WAKTUKELUARJPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_WAKTUKELUARJPRESENSI,value).apply()
+
     //Presensi
     var prefidpresensi: String?
         get() = pref.getString(TAG_IDPRESENSI,"")
@@ -175,9 +207,21 @@ class Preference(context: Context) {
         get() = pref.getString(TAG_KETERANGANPRESENSI,"")
         set(value) = pref.edit().putString(TAG_KETERANGANPRESENSI,value).apply()
 
-    var prefwaktupresensi: String?
-        get() = pref.getString(TAG_WAKTUPRESENSI,"")
-        set(value) = pref.edit().putString(TAG_WAKTUPRESENSI,value).apply()
+    var prefwaktumasukpresensi: String?
+        get() = pref.getString(TAG_WAKTUMASUKPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_WAKTUMASUKPRESENSI,value).apply()
+
+    var prefwaktukeluarpresensi: String?
+        get() = pref.getString(TAG_WAKTUKELUARPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_WAKTUKELUARPRESENSI,value).apply()
+
+    var prefwaktumasukpresensilong: Long
+        get() = pref.getLong(TAG_WAKTUMASUKPRESENSILONG,1)
+        set(value) = value?.let { pref.edit().putLong(TAG_WAKTUMASUKPRESENSILONG, it).apply() }!!
+
+    var prefwaktukeluarpresensilong: Long
+        get() = pref.getLong(TAG_WAKTUKELUARPRESENSILONG,1)
+        set(value) = value?.let { pref.edit().putLong(TAG_WAKTUKELUARPRESENSILONG, it).apply() }!!
 
     var preftanggalpresensi: String?
         get() = pref.getString(TAG_TANGGALPRESENSI,"")
@@ -194,6 +238,18 @@ class Preference(context: Context) {
     var prefbuttonpresensi: String?
         get() = pref.getString(TAG_JBUTTONRESENSI,"")
         set(value) = pref.edit().putString(TAG_JBUTTONRESENSI,value!!).apply()
+
+    var prefrekaptanggalpresensi: String?
+        get() = pref.getString(TAG_REKAPTANGGALPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_REKAPTANGGALPRESENSI,value!!).apply()
+
+    var prefrekaptitlepresensi: String?
+        get() = pref.getString(TAG_REKAPTITLEPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_REKAPTITLEPRESENSI,value!!).apply()
+
+    var prefpembedapresensi: String?
+        get() = pref.getString(TAG_PEMBEDAPRESENSI,"")
+        set(value) = pref.edit().putString(TAG_PEMBEDAPRESENSI,value!!).apply()
 
     //Pekerjaan
     var prefidpekerjaan: String?
@@ -227,6 +283,15 @@ class Preference(context: Context) {
     var prefjpekerjaan: Int?
         get() = pref.getInt(TAG_JPEKERJAAN,0)
         set(value) = pref.edit().putInt(TAG_JPEKERJAAN,value!!).apply()
+
+    var prefpembedapekerjaan: String?
+        get() = pref.getString(TAG_PEMBEDAPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_PEMBEDAPEKERJAAN,value).apply()
+
+    var prefnamakaryawanpekerjaan: String?
+        get() = pref.getString(TAG_NAMAKARYAWANPEKERJAAN,"")
+        set(value) = pref.edit().putString(TAG_NAMAKARYAWANPEKERJAAN,value).apply()
+
 
     //USER KARYAWAN
     var prefidperusahaanuser: String?
@@ -346,10 +411,16 @@ class Preference(context: Context) {
         pref.edit().remove(TAG_IDKARYAWANPRESENSI).apply()
         pref.edit().remove(TAG_IDDIVISIPRESENSI).apply()
         pref.edit().remove(TAG_KETERANGANPRESENSI).apply()
-        pref.edit().remove(TAG_WAKTUPRESENSI).apply()
+        pref.edit().remove(TAG_WAKTUMASUKPRESENSI).apply()
+        pref.edit().remove(TAG_WAKTUKELUARPRESENSI).apply()
         pref.edit().remove(TAG_TANGGALPRESENSI).apply()
         pref.edit().remove(TAG_JPRESENSI).apply()
         pref.edit().remove(TAG_FILTERPRESENSI).apply()
+        //JADWAL PRESENSI
+        pref.edit().remove(TAG_IDJRESENSI).apply()
+        pref.edit().remove(TAG_TANGGALJPRESENSI).apply()
+        pref.edit().remove(TAG_WAKTUMASUKJPRESENSI).apply()
+        pref.edit().remove(TAG_WAKTUKELUARJPRESENSI).apply()
         //USER KARYAWAN
         pref.edit().remove(TAG_IDPERUSAHAANUSER).apply()
         pref.edit().remove(TAG_PERUSAHAANUSER).apply()

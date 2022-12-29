@@ -1,17 +1,18 @@
 package org.d3ifcool.jobmonitoring.ui.presensi
 
-import android.app.AlertDialog
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -24,11 +25,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.PekerjaanAdapter
 import org.d3ifcool.jobmonitoring.adapter.PresensiAdapter
-import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiBinding
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiFilterPresensiBinding
-import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.LocalDateTime
@@ -43,7 +41,7 @@ class PresensiFilterPresensiFragment : Fragment() {
     private lateinit var pref: Preference
     private lateinit var presensiAdapter: PresensiAdapter
     private val data = arrayListOf<PresensiModel>()
-    private lateinit var searchView: SearchView
+    var tanggal:String = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -52,10 +50,11 @@ class PresensiFilterPresensiFragment : Fragment() {
     ): View? {
 
         _binding = FragmentPresensiFilterPresensiBinding.inflate(inflater, container, false)
-        getpresensi("")
+        getpresensi()
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -65,39 +64,40 @@ class PresensiFilterPresensiFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.layoutPresensiFilterPresensi.setOnRefreshListener {
+                activity?.let { recreate(it) }
             binding.layoutPresensiFilterPresensi.isRefreshing = false
         }
         binding.pkCollFillter.setOnClickListener {
-            findNavController().popBackStack()
+            it.findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiFilterFragment)
         }
-
+        binding.ppRekap.setOnClickListener {
+            findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiRekapTanggal)
+        }
+        binding.ppButton.setOnClickListener {
+            findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_tambahPresensiFragment)
+        }
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiFragment)
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter)
-        binding.ppTanggal.text = date.toString()
+        if (date.toString() == pref.prefrekaptanggalpresensi){
+            binding.ppTanggal.text = date.toString()
+            tanggal = date.toString()
+        } else {
+            binding.ppTanggal.text = pref.prefrekaptanggalpresensi
+            tanggal = pref.prefrekaptanggalpresensi.toString()
+        }
 
-        searchView = view.findViewById(R.id.pp_search)
-        searchView.clearFocus()
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            @RequiresApi(Build.VERSION_CODES.O)
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                getpresensi(query!!)
-                return false
-            }
-
-            @RequiresApi(Build.VERSION_CODES.O)
-            override fun onQueryTextChange(newtext: String?): Boolean {
-                getpresensi(newtext!!)
-                return false
-            }
-
-        })
+        if (pref.prefrekaptitlepresensi == "rekap"){
+            binding.title.text = "Rekap Presensi"
+        } else {
+            binding.title.text = "Presensi"
+        }
 
         presensiAdapter =
             PresensiAdapter(arrayListOf(), object : PresensiAdapter.OnAdapterListener {
@@ -106,7 +106,8 @@ class PresensiFilterPresensiFragment : Fragment() {
                     pref.prefidkaryawanpresensi = presensi.idkaryawan
                     pref.prefiddivisipresensi = presensi.iddivisi
                     pref.prefketeranganpresensi = presensi.keterangan
-                    pref.prefwaktupresensi = presensi.waktu
+                    pref.prefwaktumasukpresensi = presensi.waktumasuk
+                    pref.prefwaktukeluarpresensi = presensi.waktukeluar
                     pref.preftanggalpresensi = presensi.tanggal
                     findNavController().navigate(R.id.action_presensiFilterPresensiFragment_to_presensiKaryawanFragment)
                 }
@@ -120,49 +121,85 @@ class PresensiFilterPresensiFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getpresensi(text: String) {
+    private fun getpresensi() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
         val filter = pref.preffilterpresensi
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val date = LocalDateTime.now().format(formatter)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
-        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("waktu")
-            .startAt(text).endAt(text + "\uf8ff")
-        dbRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                data.clear()
-                if (snapshot.exists()) {
-                    for (datasnap in snapshot.children) {
-                        val datas = datasnap.getValue(PresensiModel::class.java)
-                        if (datas!!.iddivisi == filter && datas.tanggal!! == date.toString())
-                            data.add(datas!!)
+        val pembeda = pref.prefpembedapresensi
+        if (pembeda == "filter") {
+            val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("waktumasuk")
+            dbRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    data.clear()
+                    if (snapshot.exists()) {
+                        for (datasnap in snapshot.children) {
+                            val datas = datasnap.getValue(PresensiModel::class.java)
+                            if (datas!!.iddivisi == filter && datas.tanggal == tanggal)
+                                data.add(datas)
                             pref.prefjpresesnsi = data.size
 
-                    }
-                    presensiAdapter.setData(data)
-                    binding.emptyView.visibility = View.GONE
-                    if (data.size != 0){
-                        binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                        }
+                        presensiAdapter.setData(data)
+                        binding.emptyView.visibility = View.GONE
+                        if (data.size != 0) {
+                            binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                            binding.emptyView.visibility = View.VISIBLE
+                        }
                     } else {
-                        pref.prefjpekerjaan = 0
+                        presensiAdapter.setData(data)
+                        pref.prefjpresesnsi = 0
                         binding.ppJumlah.text = pref.prefjpresesnsi.toString()
                         binding.emptyView.visibility = View.VISIBLE
                     }
-                } else {
-                    presensiAdapter.setData(data)
-                    pref.prefjpresesnsi = 0
-                    binding.ppJumlah.text = pref.prefjpresesnsi.toString()
-                    binding.emptyView.visibility = View.VISIBLE
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
-            }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                }
 
-        })
+            })
+        } else if (pembeda == "nofilter") {
+            val dbRef =
+                database.getReference("Presensi").child(idPerusahaan!!).orderByChild("waktumasuk")
+            dbRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    data.clear()
+                    if (snapshot.exists()) {
+                        for (datasnap in snapshot.children) {
+                            val datas = datasnap.getValue(PresensiModel::class.java)
+                            if (datas!!.tanggal!! == tanggal)
+                                data.add(datas)
+                            pref.prefjpresesnsi = data.size
+
+                        }
+                        presensiAdapter.setData(data)
+                        binding.emptyView.visibility = View.GONE
+                        if (data.size != 0) {
+                            binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                        } else {
+                            pref.prefjpekerjaan = 0
+                            binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                            binding.emptyView.visibility = View.VISIBLE
+                        }
+                    } else {
+                        presensiAdapter.setData(data)
+                        pref.prefjpresesnsi = 0
+                        binding.ppJumlah.text = pref.prefjpresesnsi.toString()
+                        binding.emptyView.visibility = View.VISIBLE
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(activity, "Gagal Memuat", Toast.LENGTH_LONG).show()
+                }
+
+            })
+        }
     }
 }

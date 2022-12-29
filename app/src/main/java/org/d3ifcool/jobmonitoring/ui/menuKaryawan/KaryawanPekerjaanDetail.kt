@@ -12,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -68,6 +70,7 @@ class KaryawanPekerjaanDetail : Fragment() {
         binding.kdpIsidesc.text = pref.prefdeskripsipekerjaanuser
 
         binding.layoutKaryawanPekerjaanDetail.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutKaryawanPekerjaanDetail.isRefreshing = false
         }
 

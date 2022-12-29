@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -53,6 +55,11 @@ class HomePerusahaanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.homePerusahaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.homePerusahaan.isRefreshing = false
+        }
+
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 onBackPressed()
@@ -60,9 +67,6 @@ class HomePerusahaanFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
-        binding.homePerusahaan.setOnRefreshListener {
-            binding.homePerusahaan.isRefreshing = false
-        }
 
         binding.coliderMenuDivisi.setOnClickListener {
             it.findNavController().navigate(R.id.action_homePerusahaanFragment_to_divisiFragment)

@@ -16,6 +16,8 @@ import android.view.ViewGroup
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -64,6 +66,11 @@ class EditProfileKaryawanFragment : Fragment() {
         context = requireActivity()
         pref = Preference(context)
 
+        binding.homeeditprofile.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.homeeditprofile.isRefreshing = false
+        }
+
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
@@ -93,10 +100,6 @@ class EditProfileKaryawanFragment : Fragment() {
 
         binding.edit.setOnClickListener {
             selectPicture()
-        }
-
-        binding.homeeditprofile.setOnRefreshListener {
-            binding.homeeditprofile.isRefreshing = false
         }
 
         binding.buttonSimpanDataPengaturan.setOnClickListener {
@@ -163,13 +166,12 @@ class EditProfileKaryawanFragment : Fragment() {
             val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
             isiformTanggallahir.setText(simpleDateFormat.format(tanggalAbsen.time))
         }
-        isiformTanggallahir.setOnClickListener {
             context?.let { it1 ->
                 DatePickerDialog(
                     it1,date, tanggalAbsen.get(Calendar.YEAR), tanggalAbsen.get(Calendar.MONTH), tanggalAbsen.get(
                         Calendar.DAY_OF_MONTH)).show()
             }
-        }
+
     }
 
     private fun selectPicture() {

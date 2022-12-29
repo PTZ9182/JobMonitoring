@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -49,10 +51,17 @@ class PekerjaanFilterDivisiFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
 
+        binding.layoutPekerjaanFilterDivisi.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutPekerjaanFilterDivisi.isRefreshing = false
+        }
+
         divisiAdapter = PekerjaanFilterDivisiAdapter(arrayListOf(),object : PekerjaanFilterDivisiAdapter.OnAdapterListener {
             override fun filter(divisi: DivisiModel, v: View) {
                 pref.prefiddivisipekerjaan = divisi.id
                 pref.preffilterkaryawan = divisi.divisi
+                pref.prefpembedapekerjaan = "divisi"
+                pref.prefnamakaryawanpekerjaan = ""
                 findNavController().navigate(R.id.action_pekerjaanFilterDivisiFragment_to_pekerjaanFilterFragment)
             }
         })

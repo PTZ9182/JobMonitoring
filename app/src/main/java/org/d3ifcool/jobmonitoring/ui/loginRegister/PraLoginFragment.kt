@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -60,6 +62,7 @@ class PraLoginFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.praLoginPragment.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.praLoginPragment.isRefreshing = false
         }
 

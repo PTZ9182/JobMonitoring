@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="Home Perusahaan"
+                    android:text="Job-Monitoring"
                     style="@style/Toolbar.Homeperusahaan"/>
             </androidx.appcompat.widget.Toolbar>
 
@@ -47,7 +47,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:src="@drawable/profil"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    android:text="@string/nama_profil_perusahaan"
+                    tools:text="@string/nama_profil_perusahaan"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/nunito"
-                    android:text=""
+                    tools:text="Bandung,Jawab barat, Indonesia"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"

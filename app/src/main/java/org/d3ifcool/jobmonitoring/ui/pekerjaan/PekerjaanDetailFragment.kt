@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.R
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import com.google.firebase.auth.ktx.auth
@@ -50,6 +52,11 @@ class PekerjaanDetailFragment : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+
+        binding.layoutPekerjaanDetail.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutPekerjaanDetail.isRefreshing = false
+        }
 
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
@@ -110,10 +117,5 @@ class PekerjaanDetailFragment : Fragment() {
         }.addOnFailureListener {
             nDialog.cancel()
         }
-
-        binding.layoutPekerjaanDetail.setOnRefreshListener {
-            binding.layoutPekerjaanDetail.isRefreshing = false
-        }
-
     }
 }

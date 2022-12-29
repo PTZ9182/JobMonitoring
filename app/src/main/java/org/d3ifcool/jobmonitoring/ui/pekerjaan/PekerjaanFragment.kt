@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -51,6 +53,7 @@ class PekerjaanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.layoutPekerjaanPerusahaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutPekerjaanPerusahaan.isRefreshing = false
         }
 
@@ -59,7 +62,7 @@ class PekerjaanFragment : Fragment() {
         }
 
         binding.pkCollFillter.setOnClickListener {
-            findNavController().navigate(R.id.action_pekerjaanFragment_to_pekerjaanFilterDivisiFragment)
+            findNavController().navigate(R.id.action_pekerjaanFragment_to_pekerjaanKaryawanDivisiFilterFragment)
         }
 
         searchView = view.findViewById(R.id.pk_search)

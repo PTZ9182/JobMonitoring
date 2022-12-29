@@ -24,28 +24,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
-            android:text="Presensi" />
+            android:text="Tambah Presensi" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/pp_judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/nunito_bold"
         android:text="@string/pp_judul"
-        android:textColor="#515151"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/pp_tanggalpresesnsi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
+        android:textColor="#515151"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/pp_tanggalpresesnsi"
         android:text="@string/pp_tanggalpresensi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_semibold"
         android:textColor="#515151"
         android:textSize="12sp" />
 
@@ -53,21 +53,28 @@
         android:id="@+id/pp_coll_tanggalpresensi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/pick_background_menu"
-        app:layout_constraintBottom_toBottomOf="@+id/search_pekerjaan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan">
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/pick_background_menu">
 
         <TextView
             android:id="@+id/pp_isiform_tanggalpresensi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="20"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparant"
+            android:ems="10"
+            android:fontFamily="@font/nunito_semibold"
             android:hint="@string/pp_isiform_tanggalpresesnsi"
-            android:inputType="date"
+            android:textColor="#000000"
+            android:padding="2dp"
+            android:textColorHint="#6F6F6F"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,38 +82,88 @@
 
 
     <TextView
-        android:id="@+id/pp_waktu"
+        android:id="@+id/pp_waktu_masuk"
+        android:text="@string/pp_waktu_masuk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/pp_waktu"
         android:textColor="#515151"
         android:textSize="12sp" />
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/pp_coll_waktu"
+        android:id="@+id/pp_coll_waktu_masuk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/pick_background_menu"
-        app:layout_constraintBottom_toBottomOf="@+id/search_pekerjaan"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/collider_tambah_pekerjaan">
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/pick_background_menu">
 
 
         <TextView
-            android:id="@+id/pp_isiform_waktu"
-            android:layout_width="wrap_content"
+            android:id="@+id/pp_isiform_waktu_masuk"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="20"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparant"
+            android:ems="10"
+            android:fontFamily="@font/nunito_semibold"
             android:hint="@string/pp_isiform_waktu"
-            android:inputType="time"
+            android:padding="2dp"
+            android:clickable="false"
+            android:textColorHint="#6F6F6F"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/pp_waktu_masuk_keluar"
+        android:text="@string/pp_waktu_keluar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito_semibold"
+        android:textColor="#515151"
+        android:textSize="12sp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pp_coll_waktu_keluar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/pick_background_menu">
+
+
+        <TextView
+            android:id="@+id/pp_isiform_waktu_keluar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/transparant"
+            android:ems="10"
+            android:fontFamily="@font/nunito_semibold"
+            android:hint="@string/pp_isiform_waktu"
+            android:textColor="#000000"
+            android:padding="2dp"
+            android:textColorHint="#6F6F6F"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -115,14 +172,16 @@
 
     <Button
         android:id="@+id/pp_button_simpan"
+        android:text="@string/pp_button_simpan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/pick_background_button"
         android:fontFamily="@font/nunito_semibold"
-        android:text="@string/pp_button_simpan"
-        android:textSize="12sp"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

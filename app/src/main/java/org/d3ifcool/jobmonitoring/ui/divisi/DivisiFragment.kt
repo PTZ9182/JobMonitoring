@@ -1,7 +1,9 @@
 package org.d3ifcool.jobmonitoring.ui.divisi
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.*
 import android.widget.PopupMenu
@@ -21,6 +23,7 @@ import org.d3ifcool.jobmonitoring.databinding.FragmentDivisiBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat.recreate
 
 
 class DivisiFragment : Fragment() {
@@ -52,6 +55,7 @@ class DivisiFragment : Fragment() {
         pref = Preference(contextt)
 
         binding.layoutDivisiPerusahaan.setOnRefreshListener {
+            recreate(requireActivity())
             binding.layoutDivisiPerusahaan.isRefreshing = false
         }
 

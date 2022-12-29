@@ -75,7 +75,6 @@
                         android:text="@string/pp_button_presensi"
                         android:textColor="#FFFFFF"
                         android:textSize="12sp"
-                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
@@ -130,24 +129,23 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/pp_search"
+                <Button
+                    android:id="@+id/pp_rekap"
                     android:layout_width="0dp"
-                    android:layout_height="35dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="24dp"
-                    android:background="@drawable/pick_background_menu"
-                    app:iconifiedByDefault="false"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/pp_button_rekap"
+                    android:textColor="#515151"
+                    android:textSize="12sp"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/pk_coll_fillter"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pp_collider"
-                    app:queryBackground="@color/transparant"
-                    app:queryHint="@string/pp_search">
-
-                </androidx.appcompat.widget.SearchView>
+                    tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/pk_coll_fillter"
@@ -157,7 +155,8 @@
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/pick_background_menu"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/pp_search"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/pp_rekap"
                     app:layout_constraintTop_toBottomOf="@+id/pp_collider">
 
                     <ImageView
@@ -207,6 +206,7 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

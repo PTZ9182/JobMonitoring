@@ -35,23 +35,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="Detail Pekerjaan" />
+                    android:text="Pekerjaan" />
             </androidx.appcompat.widget.Toolbar>
-
-            <TextView
-                android:id="@+id/ddp_detail_pekerjaan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:fontFamily="@font/nunito_semibold"
-                android:text="@string/dpp_pekerjaan"
-                android:textColor="#515151"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,15 +47,13 @@
                 android:background="@color/transparant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ddp_detail_pekerjaan">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
                 <TextView
                     android:id="@+id/ddp_divisi"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:text="@string/ddp_divisi"
                     android:textColor="#515151"
@@ -85,7 +68,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="24dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito_semibold"
@@ -126,7 +108,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:text="@string/ddp_nama"
                     android:textColor="#515151"
@@ -181,7 +162,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/nunito_semibold"
                     android:text="@string/ddp_namapekerjaan"
                     android:textColor="#515151"
@@ -218,7 +198,7 @@
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ddp_coll_namapekerjaan"/>
+                app:layout_constraintTop_toBottomOf="@+id/ddp_coll_namapekerjaan" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ddp_coll_desc"
@@ -408,7 +388,7 @@
                 android:id="@id/view7"
                 style="@style/Divider"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

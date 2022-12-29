@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -48,6 +50,11 @@ class KaryawanFilterFragment : Fragment() {
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
+
+        binding.layoutKaryawanFilter.setOnRefreshListener {
+            activity?.let { recreate(it) }
+            binding.layoutKaryawanFilter.isRefreshing = false
+        }
 
         divisiAdapter =
             KaryawanFilterAdapter(arrayListOf(), object : KaryawanFilterAdapter.OnAdapterListener {

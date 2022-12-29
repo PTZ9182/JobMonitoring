@@ -193,7 +193,7 @@
 
     <!--Karyawan Filter-->
     <string name="fk_filter">Filter</string>
-    <string name="fk_berdasarkandivisi">Berdasarkan Divisi</string>
+    <string name="fk_berdasarkandivisi">Pilih Divisi</string>
     <string name="fk_nama_divisi">Android Developer</string>
 
     <!--Pekerjaan Filter-->
@@ -203,7 +203,7 @@
 
     <!--Pekerjaan Filter-->
     <string name="pfk_filter">Filter</string>
-    <string name="pfk_berdasarkanstatus">- Berdasarkan Status</string>
+    <string name="pfk_berdasarkanstatus">- Pilih Status</string>
     <string name="pfk_divisi">Divisi</string>
     <string name="pfk_semuastatus">Semua Status</string>
     <string name="pfk_selesai">Status Selesai</string>
@@ -222,7 +222,7 @@
     <string name="ddp_status">Status :</string>
     <string name="ddp_isistatusselesai">Selesai</string>
     <string name="ddp_isistatusbelumselesai">Belum Selesai</string>
-    <string name="ddp_progress">Progeress :</string>
+    <string name="ddp_progress">Progress :</string>
     <string name="ddp_bukti">Bukti Pekerjaan :</string>
     <string name="ddp_textprogress">0</string>
     <string name="ddp_presen">%</string>
@@ -266,6 +266,7 @@
 
     <!--Presensi Perusahaan-->
     <string name="pp_button_presensi">Tambah Presensi</string>
+    <string name="pp_button_rekap">Rekap Presensi</string>
     <string name="pp_img_presensi">img_Presensi</string>
     <string name="pp_presensi">Presensi</string>
     <string name="pp_jumlah_presensi">0</string>
@@ -286,11 +287,12 @@
     <string name="pp_waktuu">00:00</string>
 
     <!--Tambah Presensi-->
-    <string name="pp_judul">Tambah Presensi</string>
+    <string name="pp_judul">*Masukan tanggal presensi terlebih dahulu</string>
     <string name="pp_tanggalpresensi">Tanggal Presensi</string>
-    <string name="pp_isiform_tanggalpresesnsi">Tanggal Presensi</string>
-    <string name="pp_waktu">Waktu</string>
-    <string name="pp_isiform_waktu">00:00</string>
+    <string name="pp_isiform_tanggalpresesnsi">yyyy-MM-dd</string>
+    <string name="pp_waktu_masuk">Jam Masuk</string>
+    <string name="pp_waktu_keluar">Jam Keluar</string>
+    <string name="pp_isiform_waktu">00.00</string>
     <string name="pp_button_simpan">Simpan</string>
 
     <!--Presensi Karyawan-->
@@ -395,4 +397,36 @@
     <string name="pekerjaan_tidak_ada_data">Data Pekerjaan Kosong</string>
     <string name="pekerjaan_user_tidak_ada_data">Pekerjaan Kosong</string>
     <string name="presensi_user_tidak_ada_data">Presensi Kosong</string>
+
+    <!--Presensi -->
+    <string name="pr_tanggal">2022-06-20</string>
+    <string name="pr_masuk">00.00</string>
+    <string name="pr_keluar">00.00</string>
+    <string name="pr_strip">-</string>
+    <string name="pr_buttmasuk">Masuk</string>
+    <string name="pr_buttkeluar">Keluar</string>
+    <string name="pr_catatan">Catatan</string>
+
+    <!--Presensi -->
+    <string name="prr_masuk">00.00</string>
+    <string name="prr_keluar">00.00</string>
+    <string name="prr_buttmasuk">Masuk</string>
+    <string name="prr_buttkeluar">Keluar</string>
+    <string name="prr_tanggal">2022-12-06</string>
+
+    <!--Rekap Presensi-->
+    <string name="rkp">Tanggal</string>
+    <string name="rkp_tanggal">20-Desember-2001</string>
+    <string name="rkp_divisi">Divisi</string>
+
+    <!--Pekerjaan filter-->
+    <string name="pkf_karyawan">Karyawan</string>
+    <string name="pkf_karyawann">Karyawan -</string>
+    <string name="pkf_divisi">Divisi</string>
+    <string name="pkf_berdasarkankaryawan">- Pilih karyawan</string>
+    <string name="pkf_daridivisi">Pilih Divisi</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

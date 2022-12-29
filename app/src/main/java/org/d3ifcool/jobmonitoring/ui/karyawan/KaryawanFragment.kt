@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -55,6 +57,7 @@ class KaryawanFragment : Fragment(){
         pref = Preference(contextt)
 
         binding.layoutKaryawanPerusahaan.setOnRefreshListener {
+            activity?.let { recreate(it) }
             binding.layoutKaryawanPerusahaan.isRefreshing = false
         }
         binding.kpButton.setOnClickListener {
