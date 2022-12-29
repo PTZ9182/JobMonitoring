@@ -13,6 +13,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
@@ -25,6 +26,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.fragment_edit_profile_karyawan.*
+import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditProfileKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PerusahaanModel
@@ -82,6 +84,17 @@ class EditProfileKaryawanFragment : Fragment() {
         binding.isiformAlamat.setText(pref.prefalamatuser)
         binding.isiformNohp.setText(pref.prefnohpuser)
         binding.isiformEmail.setText(pref.prefemailuser)
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.tk_isiform_jenis_kelamin,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.isiformJeniskelamin.setAdapter(adapter)
+        if (pref.prefjeniskelaminuser != null) {
+            val spinnerPosition = adapter.getPosition(pref.prefjeniskelaminuser)
+            binding.isiformJeniskelamin.setSelection(spinnerPosition)
+        }
 
         nDialog.show()
         val id = pref.prefiduser

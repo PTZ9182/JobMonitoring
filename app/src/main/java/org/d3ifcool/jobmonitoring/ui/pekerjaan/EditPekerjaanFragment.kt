@@ -20,6 +20,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditPekerjaanBinding
+import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -35,6 +36,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var listKaryawan = ArrayList<String>()
     private var listidKaryawan = ArrayList<String>()
     lateinit var nDialog: ProgressDialog
+    private lateinit var nameKaryawan :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +44,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
 
         _binding = FragmentEditPekerjaanBinding.inflate(inflater, container, false)
+        getKaryawan()
         listKaryawan()
         return binding.root
     }
@@ -121,6 +124,28 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     }
 
+    private fun getKaryawan(){
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+        val user = Firebase.auth.currentUser
+        val idPerusahaan = user?.uid
+        val dbRefd =
+            database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefidkaryawanpekerjaan)
+        dbRefd.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (datasnap in snapshot.children) {
+                        val datas = datasnap.getValue(KaryawanModel::class.java)
+                        nameKaryawan = datas!!.namaKaryawan
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
     private fun listKaryawan() {
         val contextt: Context
         contextt = requireActivity()
@@ -149,6 +174,8 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     }
                     binding.epListKaryawan.adapter = adapter
+                    val spinnerPosition = adapter!!.getPosition(nameKaryawan)
+                    binding.epListKaryawan.setSelection(spinnerPosition)
                 }
             }
 

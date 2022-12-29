@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -28,7 +27,7 @@ import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -41,6 +40,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private var listDivisi = ArrayList<String>()
     private var listidDivisi = ArrayList<String>()
     lateinit var nDialog: ProgressDialog
+    private  lateinit var nameDivisi:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +48,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
 
         _binding = FragmentEditKaryawanBinding.inflate(inflater, container, false)
+        getDivisi()
         listDivisi()
         return binding.root
     }
@@ -77,10 +78,19 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         binding.ekFormNama.setText(pref.prefnamakaryawan)
         binding.ekFormTanggallahir.setText(pref.preftanggallahirkaryawan)
-        //binding.ekFormJeniskelamin.getItemAtPosition(pref.prefjeniskelaminkaryawan!!.toInt())
+        val adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.tk_isiform_jenis_kelamin,
+            android.R.layout.simple_spinner_item
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.ekFormJeniskelamin.setAdapter(adapter)
+        if (pref.prefjeniskelaminkaryawan != null) {
+            val spinnerPosition = adapter.getPosition(pref.prefjeniskelaminkaryawan)
+            binding.ekFormJeniskelamin.setSelection(spinnerPosition)
+        }
         binding.ekFormAlamat.setText(pref.prefalamatkaryawan)
         binding.ekFormNohp.setText(pref.prefnohpkaryawan)
-        //binding.ekFormPilihdivisi.getItemAtPosition(pref.prefdivisikaryawan!!.toInt())
         binding.ekFormEmail.setText(pref.prefemailkaryawan)
 
 
@@ -177,7 +187,32 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
     }
 
+    private fun getDivisi(){
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
+        val user = Firebase.auth.currentUser
+        val idPerusahaan = user?.uid
+        val dbRefd =
+            database.getReference("Divisi").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefiddivisikaryawan)
+        dbRefd.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (datasnap in snapshot.children) {
+                        val datas = datasnap.getValue(DivisiModel::class.java)
+                        nameDivisi = datas!!.divisi
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+    }
+
     private fun listDivisi() {
+        val contextt: Context
+        contextt = requireActivity()
+        pref = Preference(contextt)
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
         val dbRef =
@@ -201,6 +236,8 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                         )
                     }
                     binding.ekFormPilihdivisi.adapter = adapter
+                    val spinnerPosition = adapter!!.getPosition(nameDivisi)
+                    binding.ekFormPilihdivisi.setSelection(spinnerPosition)
                 }
             }
 
