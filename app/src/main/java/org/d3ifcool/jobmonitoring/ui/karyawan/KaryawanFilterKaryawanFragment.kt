@@ -11,7 +11,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -43,7 +42,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentKaryawanFilterKaryawanBinding.inflate(inflater, container, false)
         getKaryawan("")
@@ -184,7 +183,7 @@ class KaryawanFilterKaryawanFragment : Fragment() {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         if (datas!!.iddivisi == filterkaryawan)
-                            data.add(datas!!)
+                            data.add(datas)
                         pref.prefjkaryawan = data.size
 
                     }

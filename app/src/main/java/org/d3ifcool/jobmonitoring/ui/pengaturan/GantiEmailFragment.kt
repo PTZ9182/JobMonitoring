@@ -1,7 +1,8 @@
+@file:Suppress("DEPRECATION", "NAME_SHADOWING")
+
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.ProgressDialog
-import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -33,7 +33,7 @@ class GantiEmailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentGantiEmailBinding.inflate(inflater, container, false)
         return binding.root
@@ -45,7 +45,7 @@ class GantiEmailFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
 
@@ -113,7 +113,7 @@ class GantiEmailFragment : Fragment() {
                         dbRef.child(user.uid).setValue(perusahaan)
                             .addOnCompleteListener {
                                 Log.i("pass", "Berhasil")
-                            }.addOnFailureListener { tast ->
+                            }.addOnFailureListener {
                                 Log.i("pss", "Gagal")
                             }
                         nDialog.cancel()

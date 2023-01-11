@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
 import android.app.DatePickerDialog
@@ -45,7 +47,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditKaryawanBinding.inflate(inflater, container, false)
         getDivisi()
@@ -60,7 +62,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.layoutEditKaryawan.setOnRefreshListener {
@@ -84,7 +86,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
             android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.ekFormJeniskelamin.setAdapter(adapter)
+        binding.ekFormJeniskelamin.adapter = adapter
         if (pref.prefjeniskelaminkaryawan != null) {
             val spinnerPosition = adapter.getPosition(pref.prefjeniskelaminkaryawan)
             binding.ekFormJeniskelamin.setSelection(spinnerPosition)
@@ -224,7 +226,7 @@ class EditKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(DivisiModel::class.java)
                         listDivisi.add(datas!!.divisi)
-                        listidDivisi.add(datas!!.id)
+                        listidDivisi.add(datas.id)
 
                     }
                     binding.ekFormPilihdivisi.onItemSelectedListener = this@EditKaryawanFragment

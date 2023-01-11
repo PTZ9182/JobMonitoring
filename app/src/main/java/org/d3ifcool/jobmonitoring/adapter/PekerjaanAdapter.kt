@@ -14,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.databinding.AdapterPekerjaanBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
-
 class PekerjaanAdapter (
     val datas: ArrayList<PekerjaanModel>,
     val listener : OnAdapterListener,
@@ -69,7 +68,8 @@ class PekerjaanAdapter (
         val coll = itemBinding.pkCollPekerjaan
     }
 
-    public fun setData(data: List<PekerjaanModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: List<PekerjaanModel>) {
         datas.clear()
         datas.addAll(data)
         notifyDataSetChanged()

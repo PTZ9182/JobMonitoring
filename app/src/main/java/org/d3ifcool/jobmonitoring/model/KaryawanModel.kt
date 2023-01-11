@@ -10,5 +10,5 @@ class KaryawanModel (
     var iddivisi: String = "",
     var email: String = "",
     var password: String = "",
-    var level: String = "user"
+
 )

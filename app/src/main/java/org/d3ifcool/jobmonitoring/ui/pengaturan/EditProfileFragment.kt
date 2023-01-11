@@ -1,20 +1,19 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,6 +28,7 @@ import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
 
+@Suppress("NAME_SHADOWING")
 class EditProfileFragment : Fragment() {
 
     private var _binding: FragmentEditProfileBinding? = null
@@ -40,14 +40,14 @@ class EditProfileFragment : Fragment() {
     val dbRef = database.getReference("Perusahaan")
     val storageRef = storage.getReference("images")
     private lateinit var pref: Preference
-    private lateinit var ImageUri: Uri
+    private lateinit var imageUri: Uri
     lateinit var nDialog: ProgressDialog
     private lateinit var url :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         return binding.root
@@ -68,17 +68,17 @@ class EditProfileFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val user = Firebase.auth.currentUser
-        user?.let {
+        user?.let { it ->
             nDialog.show()
             for (profile in it.providerData) {
                 binding.isiformNamaperusahaan.setText(profile.displayName)
                 binding.isiformAlamatperusahaan.setText(pref.prefalamatperusahaan)
                 binding.isiformNohp.setText(pref.prefnohpperusahaan)
-                url = user.photoUrl.toString()!!
+                url = user.photoUrl.toString()
             }
             val id = user.uid
             val storageReff =
@@ -147,9 +147,9 @@ class EditProfileFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 100 && resultCode == RESULT_OK) {
-            ImageUri = data?.data!!
-            binding.imgPerusahaan.setImageURI(ImageUri)
-            url = ImageUri.toString()
+            imageUri = data?.data!!
+            binding.imgPerusahaan.setImageURI(imageUri)
+            url = imageUri.toString()
         }
     }
 
@@ -174,14 +174,14 @@ class EditProfileFragment : Fragment() {
                 if (task.isSuccessful) {
                     if (img != url) {
                         storageRef.child("perusahaan").child(id).child("profil")
-                            .putFile(ImageUri)
+                            .putFile(imageUri)
                             .addOnSuccessListener {
                                 Log.i("photo", "Berhasil")
                             }
                         val profileUpdates = userProfileChangeRequest {
-                            photoUri = Uri.parse(ImageUri.toString())
+                            photoUri = Uri.parse(imageUri.toString())
                         }
-                        user!!.updateProfile(profileUpdates)
+                        user.updateProfile(profileUpdates)
                             .addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
                                     Log.i("Update", "Berhasil")
@@ -202,7 +202,7 @@ class EditProfileFragment : Fragment() {
                     dbRef.child(id).setValue(perusahaan)
                         .addOnCompleteListener {
                             Log.i("Update", "Berhasil")
-                        }.addOnFailureListener { tast ->
+                        }.addOnFailureListener {
                             Log.i("Update", "Gagal")
                         }
                     nDialog.cancel()

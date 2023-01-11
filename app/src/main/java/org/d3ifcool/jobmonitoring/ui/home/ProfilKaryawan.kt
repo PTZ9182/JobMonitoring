@@ -1,6 +1,5 @@
 package org.d3ifcool.jobmonitoring.ui.home
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
@@ -8,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -34,7 +32,7 @@ class ProfilKaryawan : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentProfilKaryawanBinding.inflate(inflater, container, false)
         return binding.root

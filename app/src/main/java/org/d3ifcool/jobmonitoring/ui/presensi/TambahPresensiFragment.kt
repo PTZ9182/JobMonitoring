@@ -32,9 +32,9 @@ class TambahPresensiFragment : Fragment() {
     val database = Firebase.database
     val dbRef = database.getReference("Jadwal_Presensi")
     private lateinit var pref: Preference
-    var yearr = 0
-    var monthh = 0
-    var dayy = 0
+    private var yearr = 0
+    private var monthh = 0
+    private var dayy = 0
 
 
     override fun onCreateView(
@@ -86,7 +86,7 @@ class TambahPresensiFragment : Fragment() {
                 dayy = dayOfMonth
                 val strFormatDefault = "yyyy-MM-dd"
                 val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-                pp_isiform_tanggalpresensi.setText(simpleDateFormat.format(tanggalAbsen.time))
+                pp_isiform_tanggalpresensi.text = simpleDateFormat.format(tanggalAbsen.time)
             }
         context?.let { it1 ->
             DatePickerDialog(
@@ -100,14 +100,14 @@ class TambahPresensiFragment : Fragment() {
         }
     }
 
-    fun getTime(pp_isiform_waktu_masuk: TextView) {
+    private fun getTime(pp_isiform_waktu_masuk: TextView) {
 
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)
 
         val cal = Calendar.getInstance()
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             cal.set(Calendar.YEAR, yearr)
             cal.set(Calendar.MONTH, monthh)
             cal.set(Calendar.DAY_OF_MONTH, dayy)
@@ -116,8 +116,8 @@ class TambahPresensiFragment : Fragment() {
             cal.set(Calendar.SECOND, 0)
             val strFormatDefault = "HH.mm"
             val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-            pref.prefwaktumasukjpresensi = cal.getTimeInMillis().toString()
-            pp_isiform_waktu_masuk.setText(simpleDateFormat.format(cal.time))
+            pref.prefwaktumasukjpresensi = cal.timeInMillis.toString()
+            pp_isiform_waktu_masuk.text = simpleDateFormat.format(cal.time)
         }
         TimePickerDialog(
             context,
@@ -128,7 +128,7 @@ class TambahPresensiFragment : Fragment() {
         ).show()
     }
 
-    fun getTime2(pp_isiform_waktu_masuk: TextView) {
+    private fun getTime2(pp_isiform_waktu_masuk: TextView) {
 
         val contextt: Context
         contextt = requireActivity()
@@ -136,7 +136,7 @@ class TambahPresensiFragment : Fragment() {
 
         val cal = Calendar.getInstance()
 
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
             cal.set(Calendar.YEAR, yearr)
             cal.set(Calendar.MONTH, monthh)
             cal.set(Calendar.DAY_OF_MONTH, dayy)
@@ -145,8 +145,8 @@ class TambahPresensiFragment : Fragment() {
             cal.set(Calendar.SECOND, 0)
             val strFormatDefault = "HH.mm"
             val simpleDateFormat = SimpleDateFormat(strFormatDefault, Locale.getDefault())
-            pref.prefwaktukeluarjpresensi = cal.getTimeInMillis().toString()
-            pp_isiform_waktu_masuk.setText(simpleDateFormat.format(cal.time))
+            pref.prefwaktukeluarjpresensi = cal.timeInMillis.toString()
+            pp_isiform_waktu_masuk.text = simpleDateFormat.format(cal.time)
         }
 
             TimePickerDialog(
@@ -166,9 +166,9 @@ class TambahPresensiFragment : Fragment() {
         val idjadwalPresensi = dbRef.push().key!!
         val idPerusahaan = user!!.uid
         val presensi = JadwalPresensiModel(
-            idjadwalPresensi, tanggal, waktumasuk!!, waktukeluar!!
+            idjadwalPresensi, tanggal, waktumasuk, waktukeluar
         )
-        dbRef.child(idPerusahaan!!).child(tanggal).setValue(presensi).addOnCompleteListener {
+        dbRef.child(idPerusahaan).child(tanggal).setValue(presensi).addOnCompleteListener {
             Toast.makeText(activity, "Presensi Ditambahkan", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }.addOnFailureListener { tast ->

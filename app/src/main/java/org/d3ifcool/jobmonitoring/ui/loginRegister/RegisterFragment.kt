@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.loginRegister
 
 import android.app.ProgressDialog
@@ -9,10 +11,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -25,6 +25,7 @@ import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
 
+@Suppress("NAME_SHADOWING")
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
@@ -40,7 +41,7 @@ class RegisterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -54,7 +55,7 @@ class RegisterFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Membuat akun")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.register.setOnRefreshListener {
@@ -69,7 +70,7 @@ class RegisterFragment : Fragment() {
         binding.rgButtonDaftar.setOnClickListener {
             val email = binding.rgIsiformEmail.text.toString()
             if (binding.rgIsiformNamaPerusahaan.text.isEmpty()) {
-                binding.rgIsiformNamaPerusahaan.setError("Nama Perusahaan tidak boleh kosong")
+                binding.rgIsiformNamaPerusahaan.error = "Nama Perusahaan tidak boleh kosong"
                 binding.rgIsiformNamaPerusahaan.requestFocus()
             } else if (binding.rgIsiformEmail.text.isEmpty()) {
                 binding.rgIsiformEmail.error = "Email tidak boleh kosong"
@@ -94,7 +95,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun register(name: String, email: String, password: String) {
-        nDialog.show();
+        nDialog.show()
         val contextt: Context
         contextt = requireActivity()
         pref = Preference(contextt)

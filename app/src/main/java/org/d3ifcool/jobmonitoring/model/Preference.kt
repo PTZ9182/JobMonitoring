@@ -2,9 +2,6 @@ package org.d3ifcool.jobmonitoring.model
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.net.Uri
-import android.util.Log
-
 class Preference(context: Context) {
     private val TAG_STATUS = "status"
     private val TAG_LEVEL  = "level"
@@ -98,9 +95,6 @@ class Preference(context: Context) {
         get() = pref.getBoolean(TAG_STATUS,false)
         set(value) = pref.edit().putBoolean(TAG_STATUS,value).apply()
 
-    var preflevel: String?
-        get() = pref.getString(TAG_LEVEL,"")
-        set(value) = pref.edit().putString(TAG_LEVEL,value).apply()
 
     //PERUSAHAAN
     var prefpasswordperusahaan: String?
@@ -217,11 +211,11 @@ class Preference(context: Context) {
 
     var prefwaktumasukpresensilong: Long
         get() = pref.getLong(TAG_WAKTUMASUKPRESENSILONG,1)
-        set(value) = value?.let { pref.edit().putLong(TAG_WAKTUMASUKPRESENSILONG, it).apply() }!!
+        set(value) = value.let { pref.edit().putLong(TAG_WAKTUMASUKPRESENSILONG, it).apply() }
 
     var prefwaktukeluarpresensilong: Long
         get() = pref.getLong(TAG_WAKTUKELUARPRESENSILONG,1)
-        set(value) = value?.let { pref.edit().putLong(TAG_WAKTUKELUARPRESENSILONG, it).apply() }!!
+        set(value) = value.let { pref.edit().putLong(TAG_WAKTUKELUARPRESENSILONG, it).apply() }
 
     var preftanggalpresensi: String?
         get() = pref.getString(TAG_TANGGALPRESENSI,"")

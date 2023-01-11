@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -31,7 +30,7 @@ class PraLoginFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPraloginBinding.inflate(inflater, container, false)
         return binding.root
@@ -41,13 +40,13 @@ class PraLoginFragment : Fragment() {
         super.onStart()
         val currentUser = auth.currentUser
         if (currentUser != null) {
-            reloadPerusahaan();
-            Log.i("perusahaan : ", currentUser.toString());
+            reloadPerusahaan()
+            Log.i("perusahaan : ", currentUser.toString())
         } else if (pref.prefstatus) {
             reloadKaryawan()
-            Log.i("karyawan", "Login");
+            Log.i("karyawan", "Login")
         } else {
-            Log.i("karyawan", "Gagal Login");
+            Log.i("karyawan", "Gagal Login")
 
         }
     }

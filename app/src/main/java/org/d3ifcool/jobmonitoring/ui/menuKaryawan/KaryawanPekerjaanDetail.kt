@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.menuKaryawan
 
 import android.app.Activity
@@ -12,21 +14,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import kotlinx.android.synthetic.main.fragment_home_karyawan.*
 import kotlinx.android.synthetic.main.fragment_karyawan_pekerjaan_detail.*
-import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanPekerjaanDetailBinding
-import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
@@ -39,14 +35,14 @@ class KaryawanPekerjaanDetail : Fragment() {
     val dbRef = database.getReference("Pekerjaan")
     val storage = Firebase.storage
     val storageRef = storage.getReference("images")
-    private lateinit var ImageUri: Uri
+    private lateinit var imageUri: Uri
     lateinit var nDialog: ProgressDialog
-    var starttPoint = 0
+    private var startPoint = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentKaryawanPekerjaanDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -63,7 +59,7 @@ class KaryawanPekerjaanDetail : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.kdpJudul.text = pref.prefnamapekerjaanuser
@@ -74,13 +70,30 @@ class KaryawanPekerjaanDetail : Fragment() {
             binding.layoutKaryawanPekerjaanDetail.isRefreshing = false
         }
 
-        starttPoint = pref.prefprogresspekerjaan!!.toInt()
+        startPoint = pref.prefprogresspekerjaan!!.toInt()
         progressbar()
+        binding.seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                binding.kdptextProgress.text = seekBar.progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                if (startPoint <= 99) {
+                    startPoint += 1
+                    progressbar()
+                }
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                binding.kdptextProgress.text = seekBar.progress.toString()
+            }
+
+        })
         binding.kdpTambah.setOnClickListener {
-            if (starttPoint <= 90) {
-                starttPoint += 10
+            if (startPoint <= 90) {
+                startPoint += 10
                 progressbar()
-                if (starttPoint == 100) {
+                if (startPoint == 100) {
                     binding.kdpButton.visibility = View.VISIBLE
                     binding.kdpButtonn.visibility = View.GONE
                 } else {
@@ -91,10 +104,10 @@ class KaryawanPekerjaanDetail : Fragment() {
         }
 
         binding.kdpKurang.setOnClickListener {
-            if (starttPoint >= 10) {
-                starttPoint -= 10
+            if (startPoint >= 10) {
+                startPoint -= 10
                 progressbar()
-                if (starttPoint == 100) {
+                if (startPoint == 100) {
                     binding.kdpButton.visibility = View.VISIBLE
                     binding.kdpButtonn.visibility = View.GONE
                 } else {
@@ -134,14 +147,14 @@ class KaryawanPekerjaanDetail : Fragment() {
                 iddivisi!!,
                 namaPekerjaan!!,
                 desc!!,
-                starttPoint,
+                startPoint,
                 status
             )
-            dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
+            dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan)
                 .addOnCompleteListener {
                     findNavController().popBackStack()
                     Toast.makeText(activity, "Update Progress selesai", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener { tast ->
+                }.addOnFailureListener {
                     Toast.makeText(
                         activity,
                         "Gagal",
@@ -163,14 +176,14 @@ class KaryawanPekerjaanDetail : Fragment() {
                     idPekerjaan!!,iduser!!,
                     iddivisi!!,
                     namaPekerjaan!!,
-                    desc!!, starttPoint,
+                    desc!!, startPoint,
                     status
                 )
-                dbRef.child(idPerusahaan!!).child(idPekerjaan!!).setValue(pekerjaan)
+                dbRef.child(idPerusahaan!!).child(idPekerjaan).setValue(pekerjaan)
                     .addOnCompleteListener {
                         findNavController().popBackStack()
                         Toast.makeText(activity, "Pekerjaan Selesai", Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener { tast ->
+                    }.addOnFailureListener {
                         Toast.makeText(
                             activity,
                             "Gagal",
@@ -188,8 +201,8 @@ class KaryawanPekerjaanDetail : Fragment() {
 
     }
 
-    fun progressbar() {
-        seekBar.progress = starttPoint
+    private fun progressbar() {
+        seekBar.progress = startPoint
         binding.kdptextProgress.text = seekBar.progress.toString()
     }
     private fun selectPicture() {
@@ -199,16 +212,17 @@ class KaryawanPekerjaanDetail : Fragment() {
         startActivityForResult(intent, 100)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            ImageUri = data?.data!!
-            binding.imageSelfie.setImageURI(ImageUri)
+            imageUri = data?.data!!
+            binding.imageSelfie.setImageURI(imageUri)
             val contextt: Context
             contextt = requireActivity()
             pref = Preference(contextt)
-            pref.prefimguserpekerjaan = ImageUri.toString()
+            pref.prefimguserpekerjaan = imageUri.toString()
         }
     }
 

@@ -1,14 +1,13 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterCatatanPresensiBinding
 import org.d3ifcool.jobmonitoring.model.PresensiModel
-
 class CatatanPresensiAdapter(
     val data: ArrayList<PresensiModel>,
-
     ) : RecyclerView.Adapter<CatatanPresensiAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,6 +34,7 @@ class CatatanPresensiAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(datas: List<PresensiModel>) {
         data.clear()
         data.addAll(datas)

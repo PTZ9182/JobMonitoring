@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
 import android.annotation.SuppressLint
@@ -5,16 +7,9 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Toast
-import androidx.appcompat.R
-import androidx.core.app.ActivityCompat
+import android.view.*
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,14 +17,21 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import kotlinx.android.synthetic.main.fragment_pekerjaan_detail.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentPekerjaanDetailBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
+import kotlin.math.max
+import kotlin.math.min
+import android.view.ScaleGestureDetector
+
 
 class PekerjaanDetailFragment : Fragment() {
 
     private var _binding: FragmentPekerjaanDetailBinding? = null
+    private lateinit var scaleGestureDetector: ScaleGestureDetector
+    private var scaleFactor = 1.0f
     private val binding get() = _binding!!
     val database = Firebase.database
     private lateinit var pref: Preference
@@ -39,10 +41,20 @@ class PekerjaanDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
+        scaleGestureDetector = ScaleGestureDetector(context, ScaleListener())
         _binding = FragmentPekerjaanDetailBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    private inner class ScaleListener : ScaleGestureDetector.SimpleOnScaleGestureListener() {
+        override fun onScale(scaleGestureDetector: ScaleGestureDetector): Boolean {
+            scaleFactor *= scaleGestureDetector.scaleFactor
+            scaleFactor = max(0.1f, min(scaleFactor, 10.0f))
+            imageSelfie.scaleX = scaleFactor
+            imageSelfie.scaleY = scaleFactor
+            return true
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -61,7 +73,7 @@ class PekerjaanDetailFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val user = Firebase.auth.currentUser
@@ -82,7 +94,7 @@ class PekerjaanDetailFragment : Fragment() {
             }
         })
         val idkaryawan = pref.prefidkaryawanpekerjaan
-        val dbReff = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("id").equalTo(idkaryawan)
+        val dbReff = database.getReference("Karyawan").child(idPerusahaan).orderByChild("id").equalTo(idkaryawan)
         dbReff.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){

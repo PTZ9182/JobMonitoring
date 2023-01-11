@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.ProgressDialog
@@ -28,7 +30,7 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentGantiPasswordAkunKaryawanBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,7 +42,7 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val contextt: Context
@@ -85,12 +87,12 @@ class GantiPasswordAkunKaryawanFragment : Fragment() {
 
                 val user = KaryawanModel(id!!, nama!!, tanggallahir!!, jeniskelamin!!, alamat!!, nohp!!,divisi!!,email!!,pref.prefpassworduser!!
                 )
-                dbRef.child(idPerusahaan!!).child(id!!).setValue(user)
+                dbRef.child(idPerusahaan!!).child(id).setValue(user)
                     .addOnCompleteListener {
                         nDialog.cancel()
                         findNavController().popBackStack()
                         Toast.makeText(context, "Password berhasil diubah", Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener { tast ->
+                    }.addOnFailureListener {
                         nDialog.cancel()
                         Toast.makeText(context, "Gagal merubah password", Toast.LENGTH_SHORT).show()
                     }

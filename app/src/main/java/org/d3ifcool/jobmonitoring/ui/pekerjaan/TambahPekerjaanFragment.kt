@@ -1,16 +1,16 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahPekerjaanBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
@@ -41,7 +40,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTambahPekerjaanBinding.inflate(inflater, container, false)
         listKaryawan()
@@ -54,7 +53,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.layoutTambahPekerjaan.setOnRefreshListener {
@@ -85,7 +84,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val user = Firebase.auth.currentUser
         val idPekerjaan = dbRef.push().key!!
         val idPerusahaan = user?.uid
-        var idkaryawan = pref.prefidkaryawanpekerjaan
+        val idkaryawan = pref.prefidkaryawanpekerjaan
         val iddivisi = pref.prefiddivisipekerjaan
         val pekerjaan = PekerjaanModel(
             idPekerjaan,idkaryawan!!, iddivisi!!,
@@ -116,7 +115,7 @@ class TambahPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children){
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         listKaryawan.add(datas!!.namaKaryawan)
-                        listidKaryawan.add(datas!!.id)
+                        listidKaryawan.add(datas.id)
                     }
                     binding.tpListKaryawan.onItemSelectedListener = this@TambahPekerjaanFragment
                     val adapter = context?.let {

@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
@@ -28,6 +27,7 @@ import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+@Suppress("DEPRECATION")
 class TambahPresensiKaryawanFragment : Fragment() {
 
     private var _binding: FragmentTambahPresensiKaryawanBinding? = null
@@ -37,14 +37,14 @@ class TambahPresensiKaryawanFragment : Fragment() {
     val dbRef = database.getReference("Presensi")
     val storageRef = storage.getReference("images")
     private lateinit var pref: Preference
-    private lateinit var ImageUri: Uri
+    private lateinit var imageUri: Uri
     private lateinit var url :String
     private lateinit var img :String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTambahPresensiKaryawanBinding.inflate(inflater, container, false)
         return binding.root
@@ -116,17 +116,19 @@ class TambahPresensiKaryawanFragment : Fragment() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            ImageUri = data?.data!!
-            binding.imageSelfie.setImageURI(ImageUri)
-            url = ImageUri.toString()
+            imageUri = data?.data!!
+            binding.imageSelfie.setImageURI(imageUri)
+            url = imageUri.toString()
         }
     }
 
 
+    @Suppress("DEPRECATION")
     private fun tambahAbsensi(keterangan: String, waktu: String){
         val context: Context
         context = requireActivity()
@@ -146,7 +148,7 @@ class TambahPresensiKaryawanFragment : Fragment() {
         }
         if (img != url) {
             storageRef.child("Presensi").child(idPerusahaan).child(idUser).child(tanggal)
-                .putFile(ImageUri)
+                .putFile(imageUri)
                 .addOnSuccessListener {
                     Log.i("photo", "Berhasil")
                 }

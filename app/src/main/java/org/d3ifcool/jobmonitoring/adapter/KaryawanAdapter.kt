@@ -1,10 +1,10 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -17,7 +17,6 @@ import com.google.firebase.storage.ktx.storage
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
-
 class KaryawanAdapter (
     val data: ArrayList<KaryawanModel>,
     val listener : OnAdapterListener,
@@ -37,7 +36,6 @@ class KaryawanAdapter (
     }
 
     override fun getItemCount()= data.size
-
 
     class ViewHolder(private val itemBinding: AdapterKaryawanBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
@@ -75,7 +73,8 @@ class KaryawanAdapter (
         val coll = itemBinding.collKaryawan
     }
 
-    public fun setData(datas: List<KaryawanModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(datas: List<KaryawanModel>) {
         data.clear()
         data.addAll(datas)
         notifyDataSetChanged()

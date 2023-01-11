@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,9 +19,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.PekerjaanFilterDivisiAdapter
 import org.d3ifcool.jobmonitoring.adapter.PresensiFilterAdapter
-import org.d3ifcool.jobmonitoring.databinding.FragmentPekerjaanFilterDivisiBinding
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiFilterBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -40,7 +37,7 @@ class PresensiFilterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPresensiFilterBinding.inflate(inflater, container, false)
         getDivisi()

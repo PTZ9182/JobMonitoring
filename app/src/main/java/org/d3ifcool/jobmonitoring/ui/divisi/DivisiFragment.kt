@@ -1,9 +1,7 @@
 package org.d3ifcool.jobmonitoring.ui.divisi
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.*
 import android.widget.PopupMenu
@@ -24,8 +22,6 @@ import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat.recreate
-
-
 class DivisiFragment : Fragment() {
 
     private var _binding: FragmentDivisiBinding? = null
@@ -40,7 +36,7 @@ class DivisiFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentDivisiBinding.inflate(inflater, container, false)
         getDivisi("")

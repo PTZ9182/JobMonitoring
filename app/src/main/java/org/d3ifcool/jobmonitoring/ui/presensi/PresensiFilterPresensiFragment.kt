@@ -10,8 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -47,7 +45,7 @@ class PresensiFilterPresensiFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPresensiFilterPresensiBinding.inflate(inflater, container, false)
         getpresensi()
@@ -173,7 +171,7 @@ class PresensiFilterPresensiFragment : Fragment() {
                     if (snapshot.exists()) {
                         for (datasnap in snapshot.children) {
                             val datas = datasnap.getValue(PresensiModel::class.java)
-                            if (datas!!.tanggal!! == tanggal)
+                            if (datas!!.tanggal == tanggal)
                                 data.add(datas)
                             pref.prefjpresesnsi = data.size
 

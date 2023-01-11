@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="Job-Monitoring"
+                    android:text="@string/job_monitoring2"
                     style="@style/Toolbar.Homeperusahaan"/>
             </androidx.appcompat.widget.Toolbar>
 
@@ -47,7 +47,7 @@
                     android:layout_height="88dp"
                     android:layout_marginTop="24dp"
                     android:contentDescription="@string/img_profil_perusahaan"
-                    android:src="@drawable/profil"
+                    android:src="@drawable/company"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -59,13 +59,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/nunito"
-                    tools:text="@string/nama_profil_perusahaan"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/img_profil_perusahaan"
-                    tools:ignore="TextContrastCheck" />
+                    tools:ignore="TextContrastCheck"
+                    tools:text="@string/nama_profil_perusahaan" />
 
                 <TextView
                     android:id="@+id/alamat_perusahaan"
@@ -73,14 +73,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="50dp"
                     android:fontFamily="@font/nunito"
-                    tools:text="Bandung,Jawab barat, Indonesia"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nama_profil_perusahaan"
-                    tools:ignore="TextContrastCheck" />
+                    tools:ignore="TextContrastCheck"
+                    tools:text="Bandung,Jawab barat, Indonesia" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

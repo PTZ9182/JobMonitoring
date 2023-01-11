@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito"
-                    android:text="Edit Profil"
+                    android:text="@string/edit_profilpere"
                     style="@style/Toolbar.Homeperusahaan"/>
             </androidx.appcompat.widget.Toolbar>
 
@@ -241,7 +241,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:autofillHints="" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -283,7 +284,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:autofillHints="" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

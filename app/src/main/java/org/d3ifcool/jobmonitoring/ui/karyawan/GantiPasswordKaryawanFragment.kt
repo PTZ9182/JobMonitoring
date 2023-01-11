@@ -1,14 +1,14 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
@@ -16,7 +16,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.databinding.FragmentGantiPasswordBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
-import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 
 class GantiPasswordKaryawanFragment : Fragment() {
@@ -32,7 +31,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentGantiPasswordBinding.inflate(inflater, container, false)
         return binding.root
@@ -44,7 +43,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val contextt: Context
@@ -77,7 +76,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
                 binding.gpIsiformPasswordBaru2.requestFocus()
             } else {
                 nDialog.show()
-                val contextt: Context
+                @Suppress("NAME_SHADOWING") val contextt: Context
                 contextt = requireActivity()
                 pref = Preference(contextt)
                 val user = Firebase.auth.currentUser
@@ -86,6 +85,7 @@ class GantiPasswordKaryawanFragment : Fragment() {
                 val karyawan = KaryawanModel(
                     pref.prefidkaryawan!!,
                     pref.prefnamakaryawan!!,
+
                     pref.preftanggallahirkaryawan!!,
                     pref.prefjeniskelaminkaryawan!!,
                     pref.prefalamatkaryawan!!,

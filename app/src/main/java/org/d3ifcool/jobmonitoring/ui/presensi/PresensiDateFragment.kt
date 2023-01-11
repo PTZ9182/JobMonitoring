@@ -1,7 +1,6 @@
 package org.d3ifcool.jobmonitoring.ui.presensi
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
@@ -9,16 +8,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -26,10 +22,8 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.adapter.CatatanPresensiAdapter
-import org.d3ifcool.jobmonitoring.adapter.KaryawanAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentPresensiDateBinding
 import org.d3ifcool.jobmonitoring.model.JadwalPresensiModel
-import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import org.d3ifcool.jobmonitoring.model.PresensiModel
 import java.time.Instant
@@ -53,7 +47,7 @@ class PresensiDateFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPresensiDateBinding.inflate(inflater, container, false)
         getJpresensi()
@@ -93,13 +87,9 @@ class PresensiDateFragment : Fragment() {
                 Toast.makeText(context, "Waktu presensi belum ada", Toast.LENGTH_SHORT).show()
             }
         } else {
-//            val wm = pref.prefwaktumasukjpresensi
-//            val wk = pref.prefwaktukeluarjpresensi
-//            val waktumasuk : Long = pref.prefwaktumasukjpresensi!!.toLong()
-//            val waktukeluar : Long = pref.prefwaktukeluarjpresensi!!.toLong()
             binding.waktumasuk.text = getTime(waktumasuk)
             binding.waktukeluar.text = getTime(waktukeluar)
-            if (waktuSerkarang >= waktumasuk && waktuSerkarang <= waktukeluar ) {
+            if (waktuSerkarang in waktumasuk..waktukeluar) {
                 binding.buttonMasuk.setOnClickListener {
                     findNavController().navigate(R.id.action_presensiDateFragment_to_tambahPresensiKaryawanFragment)
                 }
@@ -173,8 +163,8 @@ class PresensiDateFragment : Fragment() {
         val idUser = pref.prefiduser
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter).toString()
-        val tanggal = date
-        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("tanggal").equalTo(tanggal)
+        val dbRef = database.getReference("Presensi").child(idPerusahaan!!).orderByChild("tanggal").equalTo(
+            date)
         dbRef.addValueEventListener(object  : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 data.clear()
@@ -182,7 +172,7 @@ class PresensiDateFragment : Fragment() {
                     for (datasnap in snapshot.children){
                         val datas = datasnap.getValue(PresensiModel::class.java)
                         if (datas!!.idkaryawan == idUser) {
-                            data.add(datas!!)
+                            data.add(datas)
                             pref.prefidpresensi = datas.id
                             pref.prefwaktukeluarpresensi = datas.waktukeluar
                             pref.prefketeranganpresensi = datas.keterangan
@@ -211,8 +201,8 @@ class PresensiDateFragment : Fragment() {
         val idPerusahaan = pref.prefidperusahaanuser!!
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
         val date = LocalDateTime.now().format(formatter).toString()
-        val tanggal = date
-        val dbRef = database.getReference("Jadwal_Presensi").child(idPerusahaan!!).orderByChild("tanggal").equalTo(tanggal)
+        val dbRef = database.getReference("Jadwal_Presensi").child(idPerusahaan).orderByChild("tanggal").equalTo(
+            date)
         dbRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -239,7 +229,7 @@ class PresensiDateFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getTime(waktu : Long) : String{
-        val formatter = DateTimeFormatter.ofPattern("HH.mm");
+        val formatter = DateTimeFormatter.ofPattern("HH.mm")
         val instant = Instant.ofEpochMilli(waktu)
         val date = LocalDateTime.ofInstant(instant, ZoneId.systemDefault())
         return (formatter.format(date))

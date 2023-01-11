@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pekerjaan
 
 import android.app.ProgressDialog
@@ -9,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,7 +21,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditPekerjaanBinding
-import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -41,7 +41,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditPekerjaanBinding.inflate(inflater, container, false)
         getKaryawan()
@@ -55,7 +55,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val contextt: Context
@@ -91,7 +91,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val user = Firebase.auth.currentUser
         val idPerusahaan = user?.uid
         val idPekerjaan = pref.prefidpekerjaan
-        var idkaryawan = pref.prefidkaryawanpekerjaan
+        val idkaryawan = pref.prefidkaryawanpekerjaan
         val iddivisi = pref.prefiddivisipekerjaan
         val progress = pref.prefprogresspekerjaan
         val status = pref.prefstatuspekerjaan
@@ -162,7 +162,7 @@ class EditPekerjaanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(KaryawanModel::class.java)
                         listKaryawan.add(datas!!.namaKaryawan)
-                        listidKaryawan.add(datas!!.id)
+                        listidKaryawan.add(datas.id)
 
                     }
                     binding.epListKaryawan.onItemSelectedListener = this@EditPekerjaanFragment

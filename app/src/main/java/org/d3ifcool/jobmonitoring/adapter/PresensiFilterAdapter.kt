@@ -1,5 +1,6 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,7 @@ class PresensiFilterAdapter (
         val coll = itemBinding.ppfkCollDivisi
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(datas: List<DivisiModel>) {
         data.clear()
         data.addAll(datas)

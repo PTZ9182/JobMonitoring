@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.databinding.FragmentPengaturanBinding
 import org.d3ifcool.jobmonitoring.databinding.FragmentPengaturanKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.Preference
 
@@ -23,7 +22,7 @@ class PengaturanKaryawanFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding = FragmentPengaturanKaryawanBinding.inflate(layoutInflater)
 

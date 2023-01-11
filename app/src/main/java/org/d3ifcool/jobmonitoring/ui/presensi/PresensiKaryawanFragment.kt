@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.presensi
 
 import android.app.ProgressDialog
@@ -7,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +37,7 @@ class PresensiKaryawanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPresensiKaryawanBinding.inflate(inflater, container, false)
         return binding.root
@@ -48,7 +49,7 @@ class PresensiKaryawanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.layoutKaryawanFragment.setOnRefreshListener {
@@ -60,9 +61,9 @@ class PresensiKaryawanFragment : Fragment() {
         contextt = requireActivity()
         pref = Preference(contextt)
         val user = Firebase.auth.currentUser
-        var idUser = pref.prefidkaryawanpresensi
-        var idPerusahaan = user!!.uid
-        var tanggal = pref.preftanggalpresensi
+        val idUser = pref.prefidkaryawanpresensi
+        val idPerusahaan = user!!.uid
+        val tanggal = pref.preftanggalpresensi
 
         nDialog.show()
         val storageRefff =
@@ -76,7 +77,7 @@ class PresensiKaryawanFragment : Fragment() {
         }
         nDialog.show()
         val storageReff =
-            storage.getReference("images").child("Presensi").child(idPerusahaan!!).child(idUser!!).child(tanggal!!)
+            storage.getReference("images").child("Presensi").child(idPerusahaan).child(idUser).child(tanggal!!)
         storageReff.getBytes(10 * 1024 * 1024).addOnSuccessListener {
             val bitmap = BitmapFactory.decodeByteArray(it, 0, it.size)
             binding.imageSelfie.setImageBitmap(bitmap)
@@ -85,7 +86,7 @@ class PresensiKaryawanFragment : Fragment() {
             nDialog.cancel()
         }
 
-        val dbReff = database.getReference("Karyawan").child(idPerusahaan!!).orderByChild("id").equalTo(pref.prefidkaryawanpresensi)
+        val dbReff = database.getReference("Karyawan").child(idPerusahaan).orderByChild("id").equalTo(pref.prefidkaryawanpresensi)
         dbReff.addValueEventListener(object  : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){

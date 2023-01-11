@@ -71,7 +71,8 @@ class PresensiAdapter (
         val coll = itemBinding.collPresensi
     }
 
-    public fun setData(datas: List<PresensiModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(datas: List<PresensiModel>) {
         data.clear()
         data.addAll(datas)
         notifyDataSetChanged()

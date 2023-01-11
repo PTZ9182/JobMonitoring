@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.karyawan
 
 
@@ -5,14 +7,12 @@ import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,7 +23,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_tambah_karyawan.*
-import kotlinx.android.synthetic.main.fragment_tambah_presensi_karyawan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentTambahKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
@@ -31,7 +30,6 @@ import org.d3ifcool.jobmonitoring.model.Preference
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
@@ -48,7 +46,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentTambahKaryawanBinding.inflate(inflater, container, false)
         listDivisi()
@@ -61,7 +59,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.tkFormTanggallahir.setOnClickListener{
@@ -184,7 +182,7 @@ class TambahKaryawanFragment : Fragment(), AdapterView.OnItemSelectedListener {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(DivisiModel::class.java)
                         listDivisi.add(datas!!.divisi)
-                        listidDivisi.add(datas!!.id)
+                        listidDivisi.add(datas.id)
 
                     }
                     binding.tkFormPilihdivisi.onItemSelectedListener = this@TambahKaryawanFragment

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.Activity
@@ -17,7 +19,6 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -29,11 +30,9 @@ import kotlinx.android.synthetic.main.fragment_edit_profile_karyawan.*
 import org.d3ifcool.jobmonitoring.R
 import org.d3ifcool.jobmonitoring.databinding.FragmentEditProfileKaryawanBinding
 import org.d3ifcool.jobmonitoring.model.KaryawanModel
-import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.tan
 
 
 class EditProfileKaryawanFragment : Fragment() {
@@ -45,13 +44,13 @@ class EditProfileKaryawanFragment : Fragment() {
     val dbRef = database.getReference("Karyawan")
     val storageRef = storage.getReference("images")
     private lateinit var pref: Preference
-    private lateinit var ImageUri: Uri
+    private lateinit var imageUri: Uri
     lateinit var nDialog: ProgressDialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentEditProfileKaryawanBinding.inflate(inflater, container, false)
         binding.edit.setOnClickListener {
@@ -76,7 +75,7 @@ class EditProfileKaryawanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.isiformNama.setText(pref.prefnamauser)
@@ -90,7 +89,7 @@ class EditProfileKaryawanFragment : Fragment() {
             android.R.layout.simple_spinner_item
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.isiformJeniskelamin.setAdapter(adapter)
+        binding.isiformJeniskelamin.adapter = adapter
         if (pref.prefjeniskelaminuser != null) {
             val spinnerPosition = adapter.getPosition(pref.prefjeniskelaminuser)
             binding.isiformJeniskelamin.setSelection(spinnerPosition)
@@ -196,16 +195,17 @@ class EditProfileKaryawanFragment : Fragment() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            ImageUri = data?.data!!
-            binding.imgKaryawan.setImageURI(ImageUri)
+            imageUri = data?.data!!
+            binding.imgKaryawan.setImageURI(imageUri)
             val contextt: Context
             contextt = requireActivity()
             pref = Preference(contextt)
-            pref.prefimguser = ImageUri.toString()
+            pref.prefimguser = imageUri.toString()
         }
     }
 
@@ -240,7 +240,7 @@ class EditProfileKaryawanFragment : Fragment() {
                 nDialog.cancel()
                 findNavController().popBackStack()
                 Toast.makeText(context, "Data berhasil diubah", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener { tast ->
+            }.addOnFailureListener {
                 nDialog.cancel()
                 Toast.makeText(context, "Data gagal diubah", Toast.LENGTH_SHORT).show()
             }

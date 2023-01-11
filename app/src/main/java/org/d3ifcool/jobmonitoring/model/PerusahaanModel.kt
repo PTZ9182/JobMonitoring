@@ -7,5 +7,4 @@ class PerusahaanModel(
     var password: String = "",
     var alamat: String? = null,
     var nohp: String? = null,
-    var level: String = "Admin"
 )

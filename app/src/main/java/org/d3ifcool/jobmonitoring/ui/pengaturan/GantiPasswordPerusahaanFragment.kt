@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.pengaturan
 
 import android.app.ProgressDialog
@@ -13,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_ganti_password_perusahaan.*
 import org.d3ifcool.jobmonitoring.databinding.FragmentGantiPasswordPerusahaanBinding
 import org.d3ifcool.jobmonitoring.model.PerusahaanModel
 import org.d3ifcool.jobmonitoring.model.Preference
@@ -31,7 +32,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentGantiPasswordPerusahaanBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,7 +44,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang memuat")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         val contextt: Context
@@ -88,7 +89,7 @@ class GantiPasswordPerusahaanFragment : Fragment() {
                         dbRef.child(user.uid).setValue(perusahaan)
                             .addOnCompleteListener {
                                 Log.i("pass", "Berhasil")
-                            }.addOnFailureListener { tast ->
+                            }.addOnFailureListener {
                                 Log.i("pss", "Gagal")
                             }
                         nDialog.cancel()

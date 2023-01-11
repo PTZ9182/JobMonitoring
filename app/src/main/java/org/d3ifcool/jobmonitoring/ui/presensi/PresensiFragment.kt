@@ -8,8 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -44,7 +42,7 @@ class PresensiFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPresensiBinding.inflate(inflater, container, false)
         getpresensi()
@@ -118,7 +116,7 @@ class PresensiFragment : Fragment() {
                     for (datasnap in snapshot.children) {
                         val datas = datasnap.getValue(PresensiModel::class.java)
                         if (datas!!.tanggal == date) {
-                            data.add(datas!!)
+                            data.add(datas)
                             pref.prefjpresesnsi = data.size
                         }
                     }

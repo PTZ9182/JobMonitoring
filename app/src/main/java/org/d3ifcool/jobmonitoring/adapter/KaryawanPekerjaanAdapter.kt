@@ -1,12 +1,12 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanPekerjaanBinding
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
-
 class KaryawanPekerjaanAdapter (
     val datas: ArrayList<PekerjaanModel>,
     val listener : OnAdapterListener,
@@ -29,6 +29,7 @@ class KaryawanPekerjaanAdapter (
 
     class ViewHolder(private val itemBinding: AdapterKaryawanPekerjaanBinding) :
         RecyclerView.ViewHolder(itemBinding.root){
+        @SuppressLint("SetTextI18n")
         fun bind(pekerjaan: PekerjaanModel) {
             val statuss = pekerjaan.status
             itemBinding.kpkPekerjaanSelesai.text = pekerjaan.nama_pekerjaan
@@ -41,7 +42,8 @@ class KaryawanPekerjaanAdapter (
         val coll = itemBinding.kpkCollPekerjaan
     }
 
-    public fun setData(data: List<PekerjaanModel>) {
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: List<PekerjaanModel>) {
         datas.clear()
         datas.addAll(data)
         notifyDataSetChanged()

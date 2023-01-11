@@ -429,4 +429,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_divisi">Edit Divisi</string>
+    <string name="edit_karyawan">Edit Karyawan</string>
+    <string name="edit_pekerjaanpppp">Edit Pekerjaan</string>
+    <string name="edit_profilpepepe">Edit Profil</string>
+    <string name="edit_profilpere">Edit Profil</string>
+    <string name="ganti_emailqwqw">Ganti Email</string>
+    <string name="ganti_passwordsasa">Ganti Password</string>
+    <string name="ganti_passwordsass">Ganti Password</string>
+    <string name="ganti_passwordsd">Ganti Password</string>
+    <string name="job_monitoring1">Job-Monitoring</string>
+    <string name="job_monitoring2">Job-Monitoring</string>
+    <string name="karyawan1">Karyawan</string>
+    <string name="pekerjaan">Pekerjaan</string>
 </resources>

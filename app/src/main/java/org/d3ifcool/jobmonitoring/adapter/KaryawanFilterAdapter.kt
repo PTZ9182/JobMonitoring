@@ -1,12 +1,12 @@
 package org.d3ifcool.jobmonitoring.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.d3ifcool.jobmonitoring.databinding.AdapterKaryawanFilterBinding
 import org.d3ifcool.jobmonitoring.model.DivisiModel
-
 class KaryawanFilterAdapter(
     val data: ArrayList<DivisiModel>,
     val listener: OnAdapterListener,
@@ -38,6 +38,7 @@ class KaryawanFilterAdapter(
         val coll = itemBinding.fkCollDivisi
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(datas: List<DivisiModel>) {
         data.clear()
         data.addAll(datas)

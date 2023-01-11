@@ -3,7 +3,6 @@ package org.d3ifcool.jobmonitoring.ui.pekerjaan
 import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -44,7 +42,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentPekerjaanFilterPekerjaanBinding.inflate(inflater, container, false)
         getPekerjaan("")
@@ -189,7 +187,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                             for (datasnap in snapshot.children) {
                                 val datas = datasnap.getValue(PekerjaanModel::class.java)
                                 if (datas!!.iddivisi == iddivisi)
-                                    data.add(datas!!)
+                                    data.add(datas)
                                 pref.prefjpekerjaan = data.size
                             }
                             pekerjaanAdapter.setData(data)
@@ -261,7 +259,7 @@ class PekerjaanFilterPekerjaanFragment : Fragment() {
                             for (datasnap in snapshot.children) {
                                 val datas = datasnap.getValue(PekerjaanModel::class.java)
                                 if (datas!!.iddivisi == iddivisi && datas.idkaryawan == karyawan)
-                                    data.add(datas!!)
+                                    data.add(datas)
                                 pref.prefjpekerjaan = data.size
                             }
                             pekerjaanAdapter.setData(data)

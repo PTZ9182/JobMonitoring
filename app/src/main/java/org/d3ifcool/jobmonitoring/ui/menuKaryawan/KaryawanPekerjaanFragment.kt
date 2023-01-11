@@ -7,11 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,7 +16,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import org.d3ifcool.jobmonitoring.R
-import org.d3ifcool.jobmonitoring.adapter.KaryawanAdapter
 import org.d3ifcool.jobmonitoring.adapter.KaryawanPekerjaanAdapter
 import org.d3ifcool.jobmonitoring.databinding.FragmentKaryawanPekerjaanBinding
 import org.d3ifcool.jobmonitoring.model.PekerjaanModel
@@ -39,7 +35,7 @@ class KaryawanPekerjaanFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentKaryawanPekerjaanBinding.inflate(inflater, container, false)
         getPekerjaan()

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring
 
 import android.os.Bundle
@@ -17,14 +19,14 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSplashBinding.inflate(inflater, container, false)
 
-        val SPLASH_TIME_OUT:Long = 3000
+        @Suppress("DEPRECATION") val Splash_Time_Out :Long = 3000
         Handler().postDelayed({
             findNavController().navigate(R.id.action_splashFragment_to_praLoginFragment)
-        }, SPLASH_TIME_OUT)
+        }, Splash_Time_Out)
         return binding.root
     }
 

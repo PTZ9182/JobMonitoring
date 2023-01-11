@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.d3ifcool.jobmonitoring.ui.loginRegister
 
 import android.app.ProgressDialog
@@ -8,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.recreate
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -32,7 +33,7 @@ class LoginPerusahaanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentLoginPerusahaanBinding.inflate(inflater, container, false)
         return binding.root
@@ -42,7 +43,7 @@ class LoginPerusahaanFragment : Fragment() {
         super.onStart()
         val currentUser = auth.currentUser
         if(currentUser != null){
-            reload();
+            reload()
         }
     }
 
@@ -54,7 +55,7 @@ class LoginPerusahaanFragment : Fragment() {
         nDialog = ProgressDialog(activity)
         nDialog.setMessage("Tunggu..")
         nDialog.setTitle("Sedang Login")
-        nDialog.setIndeterminate(false)
+        nDialog.isIndeterminate = false
         nDialog.setCancelable(true)
 
         binding.loginPerusahaan.setOnRefreshListener {

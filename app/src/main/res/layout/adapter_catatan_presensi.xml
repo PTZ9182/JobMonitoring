@@ -28,7 +28,8 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/prr_tanggal" />
+            tools:text="@string/prr_tanggal"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/masuk"
@@ -42,7 +43,8 @@
             android:textColor="#515151"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/catatan" />
+            app:layout_constraintTop_toBottomOf="@id/catatan"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/waktumasuk"
@@ -56,7 +58,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/catatan"
-            tools:text="@string/prr_masuk" />
+            tools:text="@string/prr_masuk"
+            tools:ignore="RtlHardcoded" />
 
         <View
             android:id="@+id/view"
@@ -81,7 +84,8 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view" />
+            app:layout_constraintTop_toBottomOf="@id/view"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/waktukeluar"
@@ -95,7 +99,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
-            tools:text="@string/prr_keluar" />
+            tools:text="@string/prr_keluar"
+            tools:ignore="RtlHardcoded" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
